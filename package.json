@@ -60,7 +60,7 @@
     "IE 10"
   ],
   "lint-staged": {
-    "*.js": [
+    "*.[jt]s": [
       "npm run lint:eslint:fix",
       "git add --force",
       "jest --findRelatedTests $STAGED_FILES"

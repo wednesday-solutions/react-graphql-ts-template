@@ -82,7 +82,6 @@
     "apisauce": "2.1.1",
     "chalk": "4.1.1",
     "compression": "1.7.4",
-    "connected-react-router": "6.4.0",
     "core-js": "3.6.5",
     "cross-env": "7.0.3",
     "deep-map-keys": "^2.0.1",

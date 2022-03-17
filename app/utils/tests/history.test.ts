@@ -1,21 +1,19 @@
-import { baseUrl } from '../history';
+import history from '../history';
 
-describe('Tests for baseUrl method in history', () => {
-  const OLD_ENV = process.env;
-  beforeEach(() => {
-    jest.resetModules();
-    process.env = { ...OLD_ENV };
-  });
-
-  afterAll(() => {
-    process.env = OLD_ENV;
-  });
-  it('should the path /react-template in production', () => {
-    process.env.NODE_ENV = 'production';
-    expect(baseUrl()).toEqual('/react-template');
-  });
-
-  it('should the path /react-template in development or test mode', () => {
-    expect(baseUrl()).toEqual('/');
+describe('history tests', () => {
+  it("should create history object with pathname '/'", () => {
+    expect(history).toEqual(
+      expect.objectContaining({
+        block: expect.any(Function),
+        createHref: expect.any(Function),
+        go: expect.any(Function),
+        goBack: expect.any(Function),
+        goForward: expect.any(Function),
+        listen: expect.any(Function),
+        location: { hash: '', pathname: '/', search: '', state: undefined },
+        push: expect.any(Function),
+        replace: expect.any(Function)
+      })
+    );
   });
 });

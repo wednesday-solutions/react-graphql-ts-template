@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> container tests should render and match the snapshot 1`] = `
+<div>
+  <header
+    class="ant-layout-header Header__StyledHeader-a7tfu0-0 jzTYtm"
+    data-testid="header"
+  >
+    <img
+      alt="logo"
+      class="Header__Logo-a7tfu0-1 nUlCS"
+      src="IMAGE_MOCK"
+    />
+    <p
+      class="T__StyledText-gcrjip-0 fPfjuE Header__Title-a7tfu0-2 gnIHNO"
+      data-testid="t"
+    >
+      Wednesday Solutions
+    </p>
+  </header>
+  <main
+    class="ant-layout-content"
+  >
+    <div
+      class="StyledContainer-sc-1g4wsls-0 cIWXBb"
+    >
+      <h1
+        style="text-align: center;"
+      >
+        Welcome to SpaceX API
+      </h1>
+    </div>
+  </main>
+</div>
+`;

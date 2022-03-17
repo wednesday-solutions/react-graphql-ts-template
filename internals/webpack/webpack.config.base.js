@@ -45,6 +45,16 @@ module.exports = (options) => ({
         ]
       },
       {
+        test: /\.(ts|tsx)$/,
+        exclude: '/node_modules/',
+        loader: 'ts-loader',
+        options: {
+          compilerOptions: {
+            noEmit: false
+          }
+        }
+      },
+      {
         // Preprocess our own .css files
         // This is the place to add your own loaders (e.g. sass/less etc.)
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
@@ -170,7 +180,7 @@ module.exports = (options) => ({
       moment$: path.resolve(__dirname, '../../node_modules/moment/moment.js'),
       '@ant-design/icons/lib/dist$': path.resolve(__dirname, './app/icons.js')
     },
-    extensions: ['.js', '.jsx', '.react.js'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main']
   },
   devtool: options.devtool,

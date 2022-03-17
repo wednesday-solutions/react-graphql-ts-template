@@ -44,7 +44,7 @@ describe('<For />', () => {
       />
     );
 
-    expect(findByTestId('parent-span')).not.toBeUndefined();
+    expect(findByTestId('parent-span')).resolves.toBeInTheDocument();
     expect(getAllByTestId('child').length).toEqual(items.length);
   });
 
@@ -57,7 +57,7 @@ describe('<For />', () => {
       />
     );
 
-    expect(findByTestId('parent-span')).not.toBeUndefined();
+    expect(findByTestId('parent-span')).resolves.not.toBeInTheDocument();
 
     const rendered = renderWithIntl(
       <For
@@ -66,6 +66,6 @@ describe('<For />', () => {
       />
     );
 
-    expect(rendered.findByTestId('parent-span')).not.toBeUndefined();
+    expect(rendered.findByTestId('parent-span')).resolves.not.toBeInTheDocument();
   });
 });

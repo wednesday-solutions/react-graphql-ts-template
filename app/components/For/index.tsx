@@ -33,17 +33,17 @@ export function For<T>({
   noParent,
   ...props
 }: ForProps<T>) {
-  const list = () => of?.map((item, index) => ({ ...renderItem(item, index), key: index }));
+  const items = () => of?.map((item, index) => ({ ...renderItem(item, index), key: index }));
   if (noParent) {
     ParentComponent = ({ children }: PropsWithChildren<{}>) => <>{children}</>;
   }
-  const children = () => (
+  const list = () => (
     <ParentComponent {...props} data-testid="for">
-      {list()}
+      {items()}
     </ParentComponent>
   );
 
-  return (of || []).length ? children() : null;
+  return (of || []).length ? list() : null;
 }
 
 For.propTypes = {

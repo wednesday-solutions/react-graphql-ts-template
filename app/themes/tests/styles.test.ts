@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import colors from '../colors';
+import * as colors from '../colors';
 import styles, { configureFlex } from '../styles';
 
 describe('Tests for styles', () => {

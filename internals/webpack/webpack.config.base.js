@@ -47,7 +47,12 @@ module.exports = (options) => ({
       {
         test: /\.(ts|tsx)$/,
         exclude: '/node_modules/',
-        use: ['ts-loader']
+        loader: 'ts-loader',
+        options: {
+          compilerOptions: {
+            noEmit: false
+          }
+        }
       },
       {
         // Preprocess our own .css files

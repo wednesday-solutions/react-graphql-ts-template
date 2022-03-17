@@ -38,7 +38,8 @@ describe('Tests for dynamicFontSize method', () => {
         tabletDelta + parseInt((font()[0]! as string).replace('font-size:', '').replace('rem;', '').replace(/\s+/g, ''))
       }rem;`}
     ${media.greaterThan('desktop')`font-size: ${
-        desktopDelta + parseInt((font()[0]! as string).replace('font-size:', '').replace('rem;', '').replace(/\s+/g, ''))
+        desktopDelta +
+        parseInt((font()[0]! as string).replace('font-size:', '').replace('rem;', '').replace(/\s+/g, ''))
       }rem;`}
     `;
     expect(JSON.stringify(dynamicFontSize(font, desktopDelta, tabletDelta))).toEqual(JSON.stringify(expectedResult));

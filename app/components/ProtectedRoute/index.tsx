@@ -29,7 +29,6 @@ const ProtectedRoute = ({ render: Component, isLoggedIn, handleLogout = () => {}
       // user is not logged in
       if (!isUnprotectedRoute) {
         to = routeConstants.login.route;
-        console.log(handleLogout.toString());
         handleLogout();
       } else {
         // not logged in and trying to access an unprotected route so don't redirect

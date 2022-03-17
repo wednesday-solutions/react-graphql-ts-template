@@ -2,8 +2,8 @@
  * Create the store with dynamic reducers
  */
 
-import { createStore, applyMiddleware, compose, Store } from 'redux';
-import createSagaMiddleware, { Task } from 'redux-saga';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
 import immutableTransform from 'redux-persist-transform-immutable';
 import { composeWithDevTools } from '@redux-devtools/extension';

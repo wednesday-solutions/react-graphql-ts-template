@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProtectedRoute /> tests should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <h1>
+      Hello World
+    </h1>
+  </div>
+</body>
+`;

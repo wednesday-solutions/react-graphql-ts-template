@@ -11,7 +11,8 @@ module.exports = {
         useBuiltIns: 'entry'
       }
     ],
-    '@babel/preset-react'
+    '@babel/preset-react',
+    '@babel/preset-typescript'
   ],
   plugins: [
     'lodash',

@@ -1,18 +1,19 @@
 {
   "collectCoverageFrom": [
-    "app/**/*.{js,jsx}",
-    "!app/**/*.test.{js,jsx}",
-    "!app/*/RbGenerated*/*.{js,jsx}",
-    "!app/app.js",
-    "!app/components/ScrollToTop/*.js",
-    "!app/components/ErrorBoundary/*.js",
-    "!app/global-styles.js",
-    "!app/*/*/Loadable.{js,jsx}",
-    "!**/loadable.js",
-    "!**/apiUtils.js",
-    "!**/testUtils.js",
+    "app/**/*.{js,jsx,ts,tsx}",
+    "!app/**/*.test.{ts,tsx}",
+    "!app/*/RbGenerated*/*.{ts,tsx}",
+    "!app/app.tsx",
+    "!app/components/ScrollToTop/*.tsx",
+    "!app/components/ErrorBoundary/*.tsx",
+    "!app/global-styles.{ts}",
+    "!app/*/*/Loadable.{js,ts,tsx}",
+    "!**/loadable.tsx",
+    "!**/apiUtils.ts",
+    "!**/testUtils.tsx",
     "!**/stories/**",
-    "!**/themes/index.js"
+    "!**/themes/index.ts",
+    "!app/vendor.d.ts"
   ],
   "testEnvironment": "jsdom",
   "reporters": [
@@ -49,6 +50,6 @@
     "react-testing-library/cleanup-after-each"
   ],
   "setupFiles": ["raf/polyfill"],
-  "testRegex": "tests/.*\\.test\\.js$",
+  "testRegex": "tests/.*\\.test\\.[jt]sx?$",
   "snapshotSerializers": []
 }

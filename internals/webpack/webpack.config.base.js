@@ -34,7 +34,7 @@ module.exports = (options) => ({
   module: {
     rules: [
       {
-        test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
+        test: /\.(jsx?|tsx?)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -42,16 +42,6 @@ module.exports = (options) => ({
             options: options.babelQuery
           }
         ]
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: '/node_modules/',
-        loader: 'ts-loader',
-        options: {
-          compilerOptions: {
-            noEmit: false
-          }
-        }
       },
       {
         // Preprocess our own .css files

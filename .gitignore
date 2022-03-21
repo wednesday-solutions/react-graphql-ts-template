@@ -13,3 +13,4 @@ reports/
 .DS_Store
 npm-debug.log
 .idea
+.tsconfig-lint.json

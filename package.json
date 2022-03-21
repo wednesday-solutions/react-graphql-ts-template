@@ -26,7 +26,7 @@
     "build:clean": "rimraf ./build",
     "predeploy": "yarn build && yarn build-storybook -o build/stories",
     "deploy": "gh-pages -d build",
-    "start": "export ENVIRONMENT_NAME=local && cross-env NODE_ENV=development node server",
+    "start": "export ENVIRONMENT_NAME=local && concurrently -c green.bold,blue.bold -n WEBPACK,TYPESCRIPT \"cross-env NODE_ENV=development node server\" \"yarn tsc:watch\"",
     "start:tunnel": "cross-env NODE_ENV=development ENABLE_TUNNEL=true node server",
     "start:production": "npm run test && npm run build && npm run start:prod",
     "start:prod": "cross-env NODE_ENV=production node server",
@@ -45,6 +45,8 @@
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:staged": "jest --findRelatedTests",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
+    "test:tsc": "npx tsc --noEmit",
+    "tsc:watch": "npx tsc -p app/tsconfig.json -w",
     "test:coverage": "npm test -- --coverage",
     "test:badges": "npm run test  && jest-coverage-badges --output './badges'",
     "create:badges": "jest-coverage-badges --output './badges'",
@@ -65,6 +67,9 @@
       "npm run lint:eslint:fix",
       "git add --force",
       "jest --findRelatedTests $STAGED_FILES"
+    ],
+    "*.{ts,tsx}": [
+      "./internals/scripts/tsc-lint.sh"
     ],
     "*.json": [
       "prettier --write",
@@ -166,6 +171,7 @@
     "circular-dependency-plugin": "5.2.2",
     "compare-versions": "3.4.0",
     "compression-webpack-plugin": "8.0.0",
+    "concurrently": "^7.0.0",
     "coveralls": "3.0.3",
     "css-loader": "^5.2.6",
     "eslint": "^8.11.0",
@@ -223,7 +229,6 @@
     "stylelint-processor-styled-components": "1.6.0",
     "svg-url-loader": "7.1.1",
     "terser-webpack-plugin": "5.1.3",
-    "ts-loader": "^9.2.8",
     "typescript": "^4.6.2",
     "url-loader": "4.1.1",
     "webpack": "^5.40.0",

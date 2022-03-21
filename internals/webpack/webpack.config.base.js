@@ -26,8 +26,7 @@ module.exports = (options) => ({
     {
       // Compile into js/build.js
       path: path.resolve(process.cwd(), 'build'),
-      // to run prod build locally, set public path to '/' instead of '/react-template/'
-      publicPath: process.env.NODE_ENV === 'production' ? '/react-template/' : '/'
+      publicPath: '/'
     },
     options.output
   ), // Merge with env dependent settings
@@ -35,7 +34,7 @@ module.exports = (options) => ({
   module: {
     rules: [
       {
-        test: /\.jsx?$/, // Transform all .js and .jsx files required somewhere with Babel
+        test: /\.(jsx?|tsx?)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -43,16 +42,6 @@ module.exports = (options) => ({
             options: options.babelQuery
           }
         ]
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: '/node_modules/',
-        loader: 'ts-loader',
-        options: {
-          compilerOptions: {
-            noEmit: false
-          }
-        }
       },
       {
         // Preprocess our own .css files

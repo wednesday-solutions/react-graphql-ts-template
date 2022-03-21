@@ -13,11 +13,11 @@ describe('HomeContainer reducer tests', () => {
   });
 
   it('should return the update the state when an action of type DEFAULT is dispatched', () => {
-    const expectedResult = { ...state, somePayload: 'Mohammed Ali Chherawalla' };
+    const expectedResult = { ...state };
     expect(
       homeContainerReducer(state, {
         type: homeContainerTypes.DEFAULT_ACTION,
-        somePayload: 'Mohammed Ali Chherawalla'
+        launchData: 'Mohammed Ali Chherawalla'
       })
     ).toEqual(expectedResult);
   });

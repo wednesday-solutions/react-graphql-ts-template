@@ -1,17 +1,26 @@
 import { createSelector } from 'reselect';
+import get from 'lodash/get';
 import { initialState } from './reducer';
 
 /**
  * Direct selector to the homeContainer state domain
  */
 
-const selectHomeContainerDomain = (state: { homeContainer: any }) => state.homeContainer || initialState;
+export const selectHomeContainerDomain = (state: any) => state.homeContainer || initialState;
 
 /**
- * use createSelector if you are doing something with the returned state.
- * https://redux.js.org/usage/deriving-data-selectors#createselector-overview
- * e.g:  const makeSelectHomeContainer = () =>
- * createSelector(selectHomeContainerDomain, substate =>  get(substate, 'somevalue'))
+ * Other specific selectors
  */
 
-export const selectHomeContainer: any = () => createSelector(selectHomeContainerDomain, (substate) => substate);
+/**
+ * Default selector used by HomeContainer
+ */
+
+export const selectLaunchData: any = () =>
+  createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchData'));
+
+export const selectLaunchListError: any = () =>
+  createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchListError'));
+
+export const selectLaunchQuery: any = () =>
+  createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchQuery'));

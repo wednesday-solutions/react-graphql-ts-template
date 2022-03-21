@@ -5,15 +5,15 @@ import { mapKeysDeep } from './index';
 
 const apiClients: Record<string, ApisauceInstance> = {};
 
-export const getApiClient = (type = 'github') => apiClients[type];
+export const getApiClient = (type = 'spacex') => apiClients[type];
 
-export const generateApiClient = (type = 'github') => {
+export const generateApiClient = (type = 'spacex') => {
   switch (type) {
-    case 'github':
-      apiClients[type] = createApiClientWithTransForm(process.env.GITHUB_URL!);
+    case 'spacex':
+      apiClients[type] = createApiClientWithTransForm(process.env.SPACEX_URL!);
       return apiClients[type];
     default:
-      apiClients.default = createApiClientWithTransForm(process.env.GITHUB_URL!);
+      apiClients.default = createApiClientWithTransForm(process.env.SPACEX_URL!);
       return apiClients.default;
   }
 };

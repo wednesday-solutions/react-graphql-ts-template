@@ -1,12 +1,21 @@
-import { takeLatest } from 'redux-saga/effects';
-import { homeContainerTypes } from './reducer';
-// Individual exports for testing
-const { DEFAULT_ACTION } = homeContainerTypes;
+import { put, call, takeLatest } from 'redux-saga/effects';
+import { getRepos } from '@services/launchApi';
+import { homeContainerTypes, homeContainerCreators } from './reducer';
 
-export function* defaultFunction(/* action */) {
-  // console.log('Do something here')
+const { REQUEST_GET_LAUNCH_LIST }: any = homeContainerTypes;
+const { successGetLaunchList, failureGetLaunchList } = homeContainerCreators;
+export function* getLaunchList(): any {
+  const response = yield call(getRepos);
+  const { data, ok } = response;
+  if (ok) {
+    if (!data.errors) {
+      yield put(successGetLaunchList(data));
+    }
+  } else {
+    yield put(failureGetLaunchList(data));
+  }
 }
-
+// Individual exports for testing
 export default function* homeContainerSaga() {
-  yield takeLatest(DEFAULT_ACTION, defaultFunction);
+  yield takeLatest(REQUEST_GET_LAUNCH_LIST, getLaunchList);
 }

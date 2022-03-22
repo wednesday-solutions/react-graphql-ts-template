@@ -1,9 +1,16 @@
 import { gql } from 'apollo-boost';
-import { client } from './apolloClient';
+import { client } from '@utils/apiUtils';
+
+interface Launches {
+  launches: {
+    mission_name: string;
+    restOfTheFields: object;
+  };
+}
 
 export const getLaunches = () =>
   client
-    .query({
+    .query<Launches>({
       query: GET_LAUNCHES
     })
     .then((res) => ({

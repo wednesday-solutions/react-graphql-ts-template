@@ -94,15 +94,11 @@ export function HomeContainer({
     );
   };
   const renderErrorState = () => {
-    let launchError;
-    if (launchListError) {
-      launchError = launchListError;
-    }
     return (
       !loading &&
-      launchError && (
+      launchListError && (
         <CustomCard data-testid="error-card" title={intl.formatMessage({ id: 'launches_list' })}>
-          <If condition={launchError} otherwise={<T data-testid="default-message" id={launchError} />}>
+          <If condition={launchListError} otherwise={<T data-testid="default-message" id={launchListError} />}>
             <T data-testid="error-message" text={launchListError} />
           </If>
         </CustomCard>

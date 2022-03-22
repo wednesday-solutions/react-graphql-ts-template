@@ -10,6 +10,8 @@ export function* getLaunchList(): any {
   if (ok) {
     if (!data.errors) {
       yield put(successGetLaunchList(data));
+    } else {
+      yield put(failureGetLaunchList(data));
     }
   } else {
     yield put(failureGetLaunchList(data));

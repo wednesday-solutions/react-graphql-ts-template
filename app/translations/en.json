@@ -3,5 +3,6 @@
   "launch_search_default": "Search for a launch by entering it's name in the search box",
   "get_launch_details": "Get details of launches by Spacex",
   "wednesday_solutions": "Wednesday Solutions",
-  "launches_list": "List of launches"
+  "launches_list": "List of launches",
+  "something_went_wrong": "Something went wrong"
 }

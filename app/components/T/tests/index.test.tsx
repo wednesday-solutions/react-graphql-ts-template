@@ -20,8 +20,8 @@ describe('<T /> component tests', () => {
   });
 
   it('should contain render the text according to the id', () => {
-    const { getAllByText } = renderWithIntl(<T id="repo_list" />);
-    expect(getAllByText(/Repository List/).length).toBe(1);
+    const { getAllByText } = renderWithIntl(<T id="launches_list" />);
+    expect(getAllByText(/List of launches/).length).toBe(1);
   });
 
   it('should have a margin-bottom of 5px when we pass marginBottom as 5', () => {

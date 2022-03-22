@@ -19,7 +19,6 @@ const CustomCard = styled(Card)`
   && {
     margin: 20px 0;
     color: ${(props) => props.color};
-    ${(props) => props.color && `color: ${props.color}`};
   }
 `;
 const Container = styled.div`
@@ -49,11 +48,11 @@ export function HomeContainer({ dispatchLaunchList, dispatchClearLaunchList, int
     }
   }, [launchData]);
 
-  const renderRepoList = () => {
+  const renderLaunchList = () => {
     const launches = get(launchData, 'launches', []);
     return (
       <If condition={!isEmpty(launches) || loading}>
-        <CustomCard>
+        <CustomCard data-testid="list">
           <Skeleton loading={loading} active>
             {launches.map(
               (
@@ -89,7 +88,7 @@ export function HomeContainer({ dispatchLaunchList, dispatchClearLaunchList, int
     return (
       !loading &&
       launchError && (
-        <CustomCard color={launchError ? 'red' : 'grey'} title={intl.formatMessage({ id: 'launches_list' })}>
+        <CustomCard data-testid="error-card" title={intl.formatMessage({ id: 'launches_list' })}>
           <If condition={launchError} otherwise={<T data-testid="default-message" id={launchError} />}>
             <T data-testid="error-message" text={launchListError} />
           </If>
@@ -101,7 +100,7 @@ export function HomeContainer({ dispatchLaunchList, dispatchClearLaunchList, int
   return (
     <Container>
       <CustomCard title={intl.formatMessage({ id: 'spacex_search' })} />
-      {renderRepoList()}
+      {renderLaunchList()}
       {renderErrorState()}
     </Container>
   );

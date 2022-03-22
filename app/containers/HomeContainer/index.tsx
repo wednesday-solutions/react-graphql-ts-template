@@ -46,7 +46,6 @@ export function HomeContainer({
   launchListError
 }: HomeContainerProps | any) {
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     setLoading(true);
     dispatchClearLaunchList();
@@ -71,8 +70,8 @@ export function HomeContainer({
             {launches.map(
               (
                 mission: {
-                  missionName: string | null | undefined;
-                  launchDateLocal: string | null | undefined;
+                  mission_name: string | null | undefined;
+                  launch_date_local: string | null | undefined;
                   links: {
                     wikipedia: string;
                   };
@@ -80,9 +79,9 @@ export function HomeContainer({
                 idx: React.Key | null | undefined
               ) => (
                 <div key={idx}>
-                  Name: {mission.missionName}
+                  Name: {mission.mission_name}
                   <br />
-                  <div>Launch Date: {mission.launchDateLocal}</div>
+                  <div>Launch Date: {mission.launch_date_local}</div>
                   <a href={mission.links.wikipedia} target="_blank" rel="noopener noreferrer" key={idx}>
                     link
                   </a>

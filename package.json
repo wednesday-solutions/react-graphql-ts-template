@@ -78,6 +78,7 @@
   },
   "pre-commit": "lint:staged",
   "dependencies": {
+    "@apollo/react-hooks": "^4.0.0",
     "@babel/helper-regex": "^7.10.5",
     "@formatjs/intl-relativetimeformat": "^9.1.6",
     "@redux-devtools/extension": "^3.2.2",
@@ -85,6 +86,7 @@
     "@testing-library/react": "12.0.0",
     "antd": "^4.9.3",
     "apisauce": "2.1.1",
+    "apollo-boost": "^0.4.9",
     "chalk": "4.1.1",
     "compression": "1.7.4",
     "core-js": "3.6.5",
@@ -93,6 +95,7 @@
     "dotenv": "10.0.0",
     "express": "4.16.4",
     "fontfaceobserver": "2.1.0",
+    "graphql": "^16.3.0",
     "history": "4.9.x",
     "hoist-non-react-statics": "3.3.0",
     "immer": "9.0.3",

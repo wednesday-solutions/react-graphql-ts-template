@@ -1,19 +1,25 @@
-import { generateApiClient } from '@utils/apiUtils';
-const launchApi = generateApiClient('spacex');
+import { gql } from 'apollo-boost';
+import { client } from './apolloClient';
 
 export const getLaunches = () =>
-  launchApi.post('', {
-    query: `{
-      launches {
-        id
-        mission_name
-        launch_date_local
-        links {
-          flickr_images
-          wikipedia
-        }
-        
+  client
+    .query({
+      query: GET_LAUNCHES
+    })
+    .then((res) => ({
+      data: res,
+      ok: true
+    }));
+
+const GET_LAUNCHES = gql`
+  query {
+    launches {
+      launch_date_local
+      mission_name
+      links {
+        wikipedia
+        flickr_images
       }
     }
-    `
-  });
+  }
+`;

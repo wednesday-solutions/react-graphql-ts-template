@@ -24,6 +24,12 @@ jest.mock('react-router-dom', () => {
     })
   };
 });
+
+jest.doMock('apollo-boost', () => ({
+  __esModule: true,
+  default: () => ({ query: (query) => Promise.resolve(query) }),
+  gql: () => ({})
+}));
 Object.defineProperty(window, 'matchMedia', {
   value: jest.fn(() => {
     return {

@@ -6,7 +6,12 @@ import { initialState } from './reducer';
  * Direct selector to the homeContainer state domain
  */
 
-export const selectHomeContainerDomain = (state: any) => state.homeContainer || initialState;
+export const selectHomeContainerDomain = (state: {
+  launchQuery?: null;
+  launchData?: {};
+  launchListError?: null;
+  homeContainer?: any;
+}) => state.homeContainer || initialState;
 
 /**
  * Other specific selectors

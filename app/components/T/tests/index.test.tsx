@@ -27,7 +27,7 @@ describe('<T /> component tests', () => {
   it('should have a margin-bottom of 5px when we pass marginBottom as 5', () => {
     const props = {
       marginBottom: 5,
-      id: 'repo_list'
+      id: 'launches_list'
     };
     const styles = getComponentStyles(T, props);
     expect(styles.marginBottom).toBe(`${props.marginBottom}px`);

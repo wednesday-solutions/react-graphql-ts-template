@@ -14,7 +14,7 @@ describe('Tests for getCurrentRouteDetails method', () => {
   });
 
   it('should return null of the route if pathname is not in routeConstants', () => {
-    const location = { pathname: '/repos' };
+    const location = { pathname: '/launches' };
     expect(getCurrentRouteDetails(location)).toEqual(null);
   });
 });

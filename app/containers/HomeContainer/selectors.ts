@@ -16,11 +16,11 @@ export const selectHomeContainerDomain = (state: any) => state.homeContainer || 
  * Default selector used by HomeContainer
  */
 
-export const selectLaunchData: any = () =>
+export const selectLaunchData = () =>
   createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchData'));
 
-export const selectLaunchListError: any = () =>
+export const selectLaunchListError = () =>
   createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchListError'));
 
-export const selectLaunchQuery: any = () =>
+export const selectLaunchQuery = () =>
   createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchQuery'));

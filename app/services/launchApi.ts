@@ -1,8 +1,8 @@
 import { generateApiClient } from '@utils/apiUtils';
-const repoApi = generateApiClient('github');
+const launchApi = generateApiClient('spacex');
 
 export const getLaunches = () =>
-  repoApi.post('', {
+  launchApi.post('', {
     query: `{
       launches {
         id

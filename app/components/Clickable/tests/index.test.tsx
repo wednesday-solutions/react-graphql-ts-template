@@ -15,7 +15,7 @@ describe('<Clickable /> component tests', () => {
     clickSpy = jest.fn();
   });
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderWithIntl(<Clickable textId="repo_list" onClick={clickSpy} />);
+    const { baseElement } = renderWithIntl(<Clickable textId="launches_list" onClick={clickSpy} />);
     expect(baseElement).toMatchSnapshot();
   });
 });

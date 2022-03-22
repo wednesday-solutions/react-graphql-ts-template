@@ -5,7 +5,7 @@ import { mapKeysDeep } from './index';
 
 const apiClients: Record<string, ApisauceInstance> = {};
 
-export const getApiClient = () => apiClients.default;
+export const getApiClient = (type = 'spacex') => apiClients[type];
 
 export const generateApiClient = (type = 'spacex') => {
   switch (type) {

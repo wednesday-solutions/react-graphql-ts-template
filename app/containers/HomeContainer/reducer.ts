@@ -10,11 +10,19 @@ export const { Types: homeContainerTypes, Creators: homeContainerCreators } = cr
 });
 export const initialState = { launchQuery: null, launchData: {}, launchListError: null };
 
-export const homeContainerReducer = (
-  state = initialState,
-  action: { type?: any; somePayload?: string; launchQuery?: any; launchData?: any; error?: any }
-) =>
-  produce(state, (draft) => {
+interface reducerTypes {
+  type?: string;
+  somePayload?: string | null;
+  launchQuery?: any;
+  launchData?: {
+    data: Array<Object>;
+    errors: Object;
+  };
+  launchListError?: string;
+}
+
+export const homeContainerReducer = (state = initialState, action: reducerTypes) =>
+  produce(state, (draft: any) => {
     switch (action.type) {
       case homeContainerTypes.REQUEST_GET_LAUNCH_LIST:
         draft.launchQuery = action.launchQuery;
@@ -25,10 +33,10 @@ export const homeContainerReducer = (
         draft.launchData = {};
         break;
       case homeContainerTypes.SUCCESS_GET_LAUNCH_LIST:
-        draft.launchData = action.launchData.data;
+        draft.launchData = action?.launchData?.data;
         break;
       case homeContainerTypes.FAILURE_GET_LAUNCH_LIST:
-        draft.launchListError = get(action.launchData.errors, 'message', 'something_went_wrong');
+        draft.launchListError = get(action?.launchData?.errors, 'message', 'something_went_wrong');
         break;
     }
   });

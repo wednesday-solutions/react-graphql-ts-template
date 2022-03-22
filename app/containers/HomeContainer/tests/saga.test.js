@@ -8,7 +8,7 @@ describe('HomeContainer saga tests', () => {
   const generator = homeContainerSaga();
   let getLaunchListGenerator = getLaunchList();
 
-  it('should start task to watch for REQUEST_GET_GITHUB_REPOS action', () => {
+  it('should start task to watch for REQUEST_GET_LAUNCH_LIST action', () => {
     expect(generator.next().value).toEqual(takeLatest(homeContainerTypes.REQUEST_GET_LAUNCH_LIST, getLaunchList));
   });
 
@@ -26,12 +26,12 @@ describe('HomeContainer saga tests', () => {
     );
   });
 
-  it('should ensure that the action SUCCESS_GET_GITHUB_REPOS is dispatched when the api call succeeds', () => {
+  it('should ensure that the action SUCCESS_GET_LAUNCH_LIST is dispatched when the api call succeeds', () => {
     getLaunchListGenerator = getLaunchList();
     const res = getLaunchListGenerator.next().value;
     expect(res).toEqual(call(getLaunches));
     const apiResponse = {
-      launches: [{ missionName: 'samepleName' }]
+      launches: [{ missionName: 'sampleName' }]
     };
     expect(getLaunchListGenerator.next(apiResponseGenerator(true, apiResponse)).value).toEqual(
       put({

@@ -6,7 +6,7 @@ import { AnyAction, compose } from 'redux';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import styled from 'styled-components';
-import { injectIntl } from 'react-intl';
+import { injectIntl, IntlShape } from 'react-intl';
 import { injectSaga } from 'redux-injectors';
 import { Card, Skeleton } from 'antd';
 import T from '@components/T';
@@ -30,7 +30,21 @@ const Container = styled.div`
   }
 `;
 
-export function HomeContainer({ dispatchLaunchList, dispatchClearLaunchList, intl, launchData, launchListError }: any) {
+interface HomeContainerProps {
+  dispatchLaunchList: Function;
+  dispatchClearLaunchList: Function;
+  launchData: Object;
+  launchListError: string;
+  intl: IntlShape;
+}
+
+export function HomeContainer({
+  dispatchLaunchList,
+  dispatchClearLaunchList,
+  intl,
+  launchData,
+  launchListError
+}: HomeContainerProps | any) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

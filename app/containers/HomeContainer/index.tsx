@@ -9,11 +9,11 @@ import styled from 'styled-components';
 import { injectIntl, IntlShape } from 'react-intl';
 import { injectSaga } from 'redux-injectors';
 import { Card, Skeleton } from 'antd';
-import T from '@components/T';
 import If from '@components/If';
 import { selectLaunchData, selectLaunchListError } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
+import { ErrorHandler } from '@app/components/ErrorHandler';
 
 const CustomCard = styled(Card)`
   && {
@@ -93,24 +93,12 @@ export function HomeContainer({
       </If>
     );
   };
-  const renderErrorState = () => {
-    return (
-      !loading &&
-      launchListError && (
-        <CustomCard data-testid="error-card" title={intl.formatMessage({ id: 'launches_list' })}>
-          <If condition={launchListError} otherwise={<T data-testid="default-message" id={launchListError} />}>
-            <T data-testid="error-message" text={launchListError} />
-          </If>
-        </CustomCard>
-      )
-    );
-  };
 
   return (
     <Container>
       <CustomCard title={intl.formatMessage({ id: 'spacex_search' })} />
       {renderLaunchList()}
-      {renderErrorState()}
+      <ErrorHandler loading={loading} launchListError={launchListError} />
     </Container>
   );
 }

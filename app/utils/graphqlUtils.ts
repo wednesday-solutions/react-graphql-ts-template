@@ -6,20 +6,20 @@ export const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-interface responseData {
+interface ResponseData {
   data: Launch | null;
   ok: boolean | null;
   error: Object | null;
 }
 
 export const getQueryResponse = (query: DocumentNode) => {
-  const responseData: responseData = {
+  const responseData: ResponseData = {
     data: null,
     error: null,
     ok: false
   };
   return client
-    .query<responseData>({ query: query })
+    .query<ResponseData>({ query: query })
     .then((res) => {
       if (res.errors) {
         return { ...responseData, error: res.errors };

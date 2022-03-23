@@ -1,6 +1,42 @@
-import ApolloClient, { InMemoryCache } from 'apollo-boost';
+import { ApisauceInstance, create } from 'apisauce';
+import snakeCase from 'lodash/snakeCase';
+import camelCase from 'lodash/camelCase';
+import { mapKeysDeep } from './index';
 
-export const client = new ApolloClient({
-  uri: 'https://api.spacex.land/graphql',
-  cache: new InMemoryCache()
-});
+const apiClients: Record<string, ApisauceInstance> = {};
+
+export const getApiClient = (type = 'spacex') => apiClients[type];
+
+export const generateApiClient = (type = 'spacex') => {
+  switch (type) {
+    case 'spacex':
+      apiClients[type] = createApiClientWithTransForm(process.env.SPACEX_URL!);
+      return apiClients[type];
+    default:
+      apiClients.default = createApiClientWithTransForm(process.env.SPACEX_URL!);
+      return apiClients.default;
+  }
+};
+
+export const createApiClientWithTransForm = (baseURL: string) => {
+  const api = create({
+    baseURL,
+    headers: { 'Content-Type': 'application/json' }
+  });
+  api.addResponseTransform((response) => {
+    const { ok, data } = response;
+    if (ok && data) {
+      response.data = mapKeysDeep(data, (keys: string) => camelCase(keys));
+    }
+    return response;
+  });
+
+  api.addRequestTransform((request) => {
+    const { data } = request;
+    if (data) {
+      request.data = mapKeysDeep(data, (keys: string) => snakeCase(keys));
+    }
+    return request;
+  });
+  return api;
+};

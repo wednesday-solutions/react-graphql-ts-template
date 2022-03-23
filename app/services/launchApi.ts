@@ -1,5 +1,5 @@
 import { gql } from 'apollo-boost';
-import { client } from '@utils/apiUtils';
+import { client } from '@utils/graphqlUtils';
 import { launch } from '@app/containers/HomeContainer';
 
 export const getLaunches = () =>

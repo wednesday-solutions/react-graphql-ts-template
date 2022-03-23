@@ -11,7 +11,7 @@ describe('HomContainer reducer tests', () => {
   });
 
   it('should return the initial state when an action of type GET_LAUNCH_LIST is dispatched', () => {
-    const expectedResult = { ...state, launchQuery: undefined };
+    const expectedResult = { ...state, launchQuery: undefined, loading: true };
     expect(
       homeContainerReducer(state, {
         type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST

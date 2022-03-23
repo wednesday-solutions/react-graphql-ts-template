@@ -82,9 +82,9 @@ describe('<HomeContainer /> tests', () => {
 
   it('should render Skeleton Comp when "loading" is true', async () => {
     const { baseElement } = renderProvider(
-      <HomeContainer dispatchLaunchList={submitSpy} dispatchClearLaunchList={jest.fn()} />
+      <HomeContainer dispatchLaunchList={submitSpy} dispatchClearLaunchList={jest.fn()} loading={true} />
     );
-    await timeout(500);
+
     expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
   });
 });

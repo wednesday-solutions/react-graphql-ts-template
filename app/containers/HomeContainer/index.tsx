@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useState } from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -10,7 +10,7 @@ import { injectIntl, IntlShape } from 'react-intl';
 import { injectSaga } from 'redux-injectors';
 import { Card, Skeleton } from 'antd';
 import If from '@components/If';
-import { selectLaunchData, selectLaunchListError } from './selectors';
+import { selectLaunchData, selectLaunchListError, selectLoading } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
 import For from '@app/components/For';
@@ -54,24 +54,14 @@ export function HomeContainer({
   dispatchLaunchList,
   dispatchClearLaunchList,
   intl,
+  loading,
   launchData,
   launchListError
 }: HomeContainerProps | any) {
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setLoading(true);
     dispatchClearLaunchList();
     dispatchLaunchList();
   }, []);
-
-  useEffect(() => {
-    const loaded = get(launchData, 'launches', null);
-    if (loaded) {
-      setLoading(false);
-    } else {
-      setLoading(true);
-    }
-  }, [launchData]);
 
   const renderLaunchList = () => {
     const launches = get(launchData, 'launches', []);
@@ -128,7 +118,8 @@ HomeContainer.defaultProps = {
 
 const mapStateToProps = createStructuredSelector({
   launchData: selectLaunchData(),
-  launchListError: selectLaunchListError()
+  launchListError: selectLaunchListError(),
+  loading: selectLoading()
 });
 
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {

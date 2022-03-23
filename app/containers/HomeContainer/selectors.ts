@@ -24,3 +24,5 @@ export const selectLaunchListError = () =>
 
 export const selectLaunchQuery = () =>
   createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchQuery'));
+
+export const selectLoading = () => createSelector(selectHomeContainerDomain, (substate) => get(substate, 'loading'));

@@ -10,6 +10,10 @@ export const getLaunches = () =>
     .then((res) => ({
       data: res,
       ok: true
+    }))
+    .catch((err) => ({
+      data: err,
+      res: false
     }));
 
 const GET_LAUNCHES = gql`

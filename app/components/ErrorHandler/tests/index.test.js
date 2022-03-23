@@ -22,4 +22,8 @@ describe('<ErrorHandler />', () => {
     const { getAllByTestId } = renderWithIntl(<ErrorHandler loading={loading} launchListError={launchListError} />);
     expect(getAllByTestId('error-message').length).toBe(1);
   });
+  it('should not show error when the page is loading', () => {
+    const { getAllByTestId } = renderWithIntl(<ErrorHandler loading={true} launchListError={launchListError} />);
+    expect(() => getAllByTestId('error-message')).toThrowError();
+  });
 });

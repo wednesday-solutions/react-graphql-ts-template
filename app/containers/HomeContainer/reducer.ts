@@ -1,6 +1,7 @@
 import produce from 'immer';
 import { createActions } from 'reduxsauce';
 import get from 'lodash/get';
+import { launch } from './index';
 
 export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({
   requestGetLaunchList: ['launchQuery'],
@@ -15,7 +16,7 @@ interface reducerTypes {
   somePayload?: string | null;
   launchQuery?: any;
   launchData?: {
-    data: Array<Object>;
+    data: launch;
     errors: Object;
   };
   launchListError?: string;

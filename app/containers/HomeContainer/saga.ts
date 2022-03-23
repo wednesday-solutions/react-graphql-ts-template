@@ -2,10 +2,11 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import { getLaunches } from '@services/launchApi';
 import { homeContainerTypes, homeContainerCreators } from './reducer';
 import { DefaultActionTypes } from 'reduxsauce';
+import { launch } from '.';
 
 const { REQUEST_GET_LAUNCH_LIST }: DefaultActionTypes = homeContainerTypes;
 const { successGetLaunchList, failureGetLaunchList } = homeContainerCreators;
-export function* getLaunchList(): Generator<any, any, { data: { errors: Object }; ok: boolean }> {
+export function* getLaunchList(): Generator<any, any, { data: { launches: launch; errors: Object }; ok: boolean }> {
   const response = yield call(getLaunches);
   const { data, ok } = response;
   if (ok) {

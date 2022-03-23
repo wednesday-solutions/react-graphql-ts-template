@@ -13,6 +13,7 @@ import If from '@components/If';
 import { selectLaunchData, selectLaunchListError } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
+import For from '@app/components/For';
 import { ErrorHandler } from '@app/components/ErrorHandler';
 
 const CustomCard = styled(Card)`
@@ -30,10 +31,21 @@ const Container = styled.div`
   }
 `;
 
+interface launch {
+  mission_name: string;
+  launch_date_local: string;
+  links: {
+    wikipedia: string;
+    flick_images: Array<string>;
+  };
+}
+
 interface HomeContainerProps {
   dispatchLaunchList: Function;
   dispatchClearLaunchList: Function;
-  launchData: Object;
+  launchData: {
+    data: launch;
+  };
   launchListError: string;
   intl: IntlShape;
 }
@@ -67,27 +79,16 @@ export function HomeContainer({
       <If condition={!isEmpty(launches) || loading}>
         <CustomCard data-testid="list">
           <Skeleton loading={loading} active>
-            {launches.map(
-              (
-                mission: {
-                  mission_name: string | null | undefined;
-                  launch_date_local: string | null | undefined;
-                  links: {
-                    wikipedia: string;
-                  };
-                },
-                idx: React.Key | null | undefined
-              ) => (
-                <div key={idx}>
-                  Name: {mission.mission_name}
-                  <br />
-                  <div>Launch Date: {mission.launch_date_local}</div>
-                  <a href={mission.links.wikipedia} target="_blank" rel="noopener noreferrer" key={idx}>
-                    link
-                  </a>
-                </div>
-              )
-            )}
+            <For
+              of={launches}
+              ParentComponent={Container}
+              renderItem={(launch: launch, idx) => (
+                <CustomCard key={idx}>
+                  <div>{launch.mission_name}</div>
+                  <div> {launch.launch_date_local}</div>
+                </CustomCard>
+              )}
+            ></For>
           </Skeleton>
         </CustomCard>
       </If>

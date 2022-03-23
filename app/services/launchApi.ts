@@ -13,7 +13,7 @@ export const getLaunches = () =>
     }))
     .catch((err) => ({
       data: err,
-      res: false
+      ok: false
     }));
 
 const GET_LAUNCHES = gql`

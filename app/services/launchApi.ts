@@ -1,16 +1,10 @@
 import { gql } from 'apollo-boost';
 import { client } from '@utils/apiUtils';
-
-interface Launches {
-  launches: {
-    mission_name: string;
-    restOfTheFields: object;
-  };
-}
+import { launch } from '@app/containers/HomeContainer';
 
 export const getLaunches = () =>
   client
-    .query<Launches>({
+    .query<launch>({
       query: GET_LAUNCHES
     })
     .then((res) => ({

@@ -31,7 +31,7 @@ const Container = styled.div`
   }
 `;
 
-interface launch {
+export interface launch {
   mission_name: string;
   launch_date_local: string;
   links: {

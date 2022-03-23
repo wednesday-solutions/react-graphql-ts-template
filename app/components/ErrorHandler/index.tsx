@@ -19,17 +19,18 @@ interface ErrorHandlerTypes {
   launchListError: string;
 }
 
-export function ErrorHandler({ loading, launchListError }: ErrorHandlerTypes | any) {
-  return (
-    !loading &&
-    launchListError && (
+export function ErrorHandler({ loading, launchListError }: ErrorHandlerTypes) {
+  if (!loading && launchListError) {
+    return (
       <CustomCard data-testid="error-card">
         <If condition={launchListError} otherwise={<T data-testid="default-message" id={launchListError} />}>
           <T data-testid="error-message" text={launchListError} />
         </If>
       </CustomCard>
-    )
-  );
+    );
+  } else {
+    return null;
+  }
 }
 
 ErrorHandler.propTypes = {

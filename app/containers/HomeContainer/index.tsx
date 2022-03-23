@@ -31,7 +31,7 @@ const Container = styled.div`
   }
 `;
 
-export interface launch {
+export interface Launch {
   mission_name: string;
   launch_date_local: string;
   links: {
@@ -44,10 +44,11 @@ interface HomeContainerProps {
   dispatchLaunchList: Function;
   dispatchClearLaunchList: Function;
   launchData: {
-    data: launch;
+    data: Launch;
   };
   launchListError: string;
   intl: IntlShape;
+  loading: boolean;
 }
 
 export function HomeContainer({
@@ -57,7 +58,7 @@ export function HomeContainer({
   loading,
   launchData,
   launchListError
-}: HomeContainerProps | any) {
+}: HomeContainerProps) {
   useEffect(() => {
     dispatchClearLaunchList();
     dispatchLaunchList();
@@ -72,7 +73,7 @@ export function HomeContainer({
             <For
               of={launches}
               ParentComponent={Container}
-              renderItem={(launch: launch, idx) => (
+              renderItem={(launch: Launch, idx) => (
                 <CustomCard key={idx}>
                   <div>{launch.mission_name}</div>
                   <div> {launch.launch_date_local}</div>
@@ -139,4 +140,4 @@ export default compose(
   injectSaga({ key: 'homeContainer', saga: homeContainerSaga })
 )(HomeContainer);
 
-export const HomeContainerTest = compose(injectIntl)(HomeContainer);
+export const HomeContainerTest = compose(injectIntl, memo)(HomeContainer);

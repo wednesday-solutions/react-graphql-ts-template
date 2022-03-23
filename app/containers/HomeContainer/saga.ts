@@ -1,12 +1,12 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { homeContainerTypes, homeContainerCreators } from './reducer';
 import { DefaultActionTypes } from 'reduxsauce';
-import { launch } from '.';
+import { Launch } from '.';
 import { getQueryResponse } from '@app/utils/graphqlUtils';
 import { GET_LAUNCHES } from './queries';
 
 interface GetLaunchList {
-  data: { launches: launch; errors: Object };
+  data: { launches: Launch; errors: Object };
   ok: boolean;
 }
 

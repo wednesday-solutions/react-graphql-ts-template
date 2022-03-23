@@ -41,23 +41,4 @@ describe('HomeContainer saga tests', () => {
       })
     );
   });
-
-  it('should call FAILURE_GET_LAUNCH_LIST if the data has errors', () => {
-    getLaunchListGenerator = getLaunchList();
-    const res = getLaunchListGenerator.next().value;
-    expect(res).toEqual(call(getQueryResponse, GET_LAUNCHES));
-    const apiResponse = {
-      launches: {},
-      errors: {
-        message: 'This is sample error'
-      }
-    };
-
-    expect(getLaunchListGenerator.next(apiResponseGenerator(true, apiResponse)).value).toEqual(
-      put({
-        type: homeContainerTypes.FAILURE_GET_LAUNCH_LIST,
-        launchListError: apiResponse
-      })
-    );
-  });
 });

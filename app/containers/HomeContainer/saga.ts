@@ -8,14 +8,10 @@ import { GET_LAUNCHES } from './queries';
 const { REQUEST_GET_LAUNCH_LIST }: DefaultActionTypes = homeContainerTypes;
 const { successGetLaunchList, failureGetLaunchList } = homeContainerCreators;
 export function* getLaunchList(): Generator<any, any, { data: { launches: launch; errors: Object }; ok: boolean }> {
-  const response = yield call<any>(getQueryResponse, GET_LAUNCHES);
+  const response = yield call(getQueryResponse, GET_LAUNCHES);
   const { data, ok } = response;
   if (ok) {
-    if (!data.errors) {
-      yield put(successGetLaunchList(data));
-    } else {
-      yield put(failureGetLaunchList(data));
-    }
+    yield put(successGetLaunchList(data));
   } else {
     yield put(failureGetLaunchList(data));
   }

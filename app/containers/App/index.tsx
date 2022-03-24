@@ -9,49 +9,78 @@
 import React from 'react';
 import GlobalStyle from '@app/global-styles';
 import { routeConfig } from '@app/routeConfig';
-import For from '@components/For';
-import Header from '@components/Header';
-import { colors } from '@themes/index';
 import { Layout } from 'antd';
 import map from 'lodash/map';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { compose } from 'redux';
-import { ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import For from '@components/For';
+import Header from '@components/Header';
+import { colors } from '@themes/index';
+import icon from '@images/ion_rocket-sharp.svg';
 
 const theme = {
   fg: colors.primary,
-  bg: colors.secondary
+  bg: colors.secondaryText
 };
+
+const SideBar = styled.div`
+  && {
+    width: 6%;
+    min-width: 5rem;
+    min-height: 100vh;
+    height: auto;
+    background-color: ${colors.primary};
+    display: inline;
+  }
+`;
+
+const CustomImage = styled.img`
+  && {
+    margin: 1rem;
+  }
+`;
+
+const CustomLayout = styled(Layout)`
+  && {
+    flex-direction: row;
+  }
+`;
 
 export function App() {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      <Layout.Content>
-        <For
-          ParentComponent={(props) => <Switch {...props} />}
-          of={map(Object.keys(routeConfig))}
-          renderItem={(routeKey, index) => {
-            const Component = routeConfig[routeKey].component;
-            return (
-              <Route
-                exact={routeConfig[routeKey].exact}
-                key={index}
-                path={routeConfig[routeKey].route}
-                render={(props) => {
-                  const updatedProps = {
-                    ...props,
-                    ...routeConfig[routeKey].props
-                  };
-                  return <Component {...updatedProps} />;
-                }}
-              />
-            );
-          }}
-        />
-        <GlobalStyle />
-      </Layout.Content>
+      <CustomLayout>
+        <SideBar>
+          <CustomImage src={icon} alt="" />
+        </SideBar>
+        <Layout.Content>
+          <For
+            ParentComponent={(props) => <Switch {...props} />}
+            of={map(Object.keys(routeConfig))}
+            renderItem={(routeKey, index) => {
+              const Component = routeConfig[routeKey].component;
+              return (
+                <Route
+                  exact={routeConfig[routeKey].exact}
+                  key={index}
+                  path={routeConfig[routeKey].route}
+                  render={(props) => {
+                    const updatedProps = {
+                      ...props,
+                      ...routeConfig[routeKey].props
+                    };
+                    return <Component {...updatedProps} />;
+                  }}
+                />
+              );
+            }}
+          />
+          <GlobalStyle />
+        </Layout.Content>
+      </CustomLayout>
     </ThemeProvider>
   );
 }

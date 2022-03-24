@@ -30,11 +30,6 @@ export const homeContainerReducer = (state = initialState, action: ReducerTypes)
         draft.loading = true;
         draft.launchQuery = action.launchQuery;
         break;
-      case homeContainerTypes.CLEAR_LAUNCH_LIST:
-        draft.launchQuery = null;
-        draft.launchListError = null;
-        draft.launchData = {};
-        break;
       case homeContainerTypes.SUCCESS_GET_LAUNCH_LIST:
         draft.launchData = action?.launchData?.data;
         draft.loading = false;

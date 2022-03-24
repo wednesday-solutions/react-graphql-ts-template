@@ -4,13 +4,30 @@ import styled from 'styled-components';
 import { get, isEmpty } from 'lodash';
 import { Card, Skeleton } from 'antd';
 import If from '@components/If';
+import { colors } from '@app/themes';
+import T from '@components/T';
 import { Launch } from '@app/containers/HomeContainer';
 import For from '@components/For';
 
 const CustomCard = styled(Card)`
   && {
-    margin: 20px 0;
-    color: ${(props) => props.color};
+    color: ${colors.primary};
+    background-color: ${colors.secondaryText};
+  }
+`;
+const WrapperCard = styled(Card)`
+  && {
+    color: ${colors.primary};
+    border: none;
+    background-color: ${colors.secondaryText};
+  }
+`;
+
+const CustomErrorCard = styled(Card)`
+  && {
+    color: ${colors.secondary};
+    margin: 2rem;
+    background-color: ${colors.secondaryText};
   }
 `;
 
@@ -20,19 +37,27 @@ const Container = styled.div`
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
+    background-color: ${colors.secondaryText};
   }
 `;
 
 interface LaunchListProps {
-  launchData: Launch;
+  launchData: { launches: Launch[] };
   loading: boolean;
 }
 
 export function LaunchList({ launchData, loading }: LaunchListProps) {
   const launches = get(launchData, 'launches', []);
   return (
-    <If condition={!isEmpty(launches) || loading}>
-      <CustomCard data-testid="list">
+    <If
+      condition={!isEmpty(launches) || loading}
+      otherwise={
+        <CustomErrorCard>
+          <T data-testid="default-message" id="fallback" />
+        </CustomErrorCard>
+      }
+    >
+      <WrapperCard data-testid="list">
         <Skeleton loading={loading} active>
           <For
             of={launches}
@@ -45,19 +70,23 @@ export function LaunchList({ launchData, loading }: LaunchListProps) {
             )}
           ></For>
         </Skeleton>
-      </CustomCard>
+      </WrapperCard>
     </If>
   );
 }
 
 LaunchList.propTypes = {
   launchData: PropTypes.shape({
-    mission_name: PropTypes.string,
-    launch_date_local: PropTypes.string,
-    links: PropTypes.shape({
-      wikipedia: PropTypes.string,
-      flick_images: PropTypes.array
-    })
+    launches: PropTypes.arrayOf(
+      PropTypes.shape({
+        mission_name: PropTypes.string,
+        launch_date_local: PropTypes.string,
+        links: PropTypes.shape({
+          wikipedia: PropTypes.string,
+          flick_images: PropTypes.array
+        })
+      })
+    )
   }),
   loading: PropTypes.bool
 };

@@ -2,6 +2,21 @@
 
 exports[`<LaunchList /> should render and match the snapshot 1`] = `
 <body>
-  <div />
+  <div>
+    <div
+      class="ant-card ant-card-bordered LaunchList__CustomErrorCard-sc-1l6drbj-2 kKRUhr"
+    >
+      <div
+        class="ant-card-body"
+      >
+        <p
+          class="T__StyledText-gcrjip-0 fIysFh"
+          data-testid="default-message"
+        >
+          No results found for the search term.
+        </p>
+      </div>
+    </div>
+  </div>
 </body>
 `;

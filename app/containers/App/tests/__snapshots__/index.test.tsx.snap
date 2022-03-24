@@ -18,8 +18,21 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
       Wednesday Solutions
     </p>
   </header>
-  <main
-    class="ant-layout-content"
-  />
+  <section
+    class="ant-layout App__CustomLayout-di9tar-2 edUAiy"
+  >
+    <div
+      class="App__SideBar-di9tar-0 enYyZa"
+    >
+      <img
+        alt=""
+        class="App__CustomImage-di9tar-1 kSQUXY"
+        src="IMAGE_MOCK"
+      />
+    </div>
+    <main
+      class="ant-layout-content"
+    />
+  </section>
 </div>
 `;

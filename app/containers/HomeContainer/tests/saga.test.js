@@ -14,12 +14,13 @@ describe('HomeContainer saga tests', () => {
   });
 
   it('should ensure that the action FAILURE_GET_LAUNCH_LIST is dispatched when the api call fails', () => {
+    let missionName;
     const res = getLaunchListGenerator.next().value;
-    expect(res).toEqual(call(getQueryResponse, GET_LAUNCHES));
+    expect(res).toEqual(call(getQueryResponse, GET_LAUNCHES, { missionName }));
     const errorResponse = {
       errorMessage: 'There was an error while fetching launch informations.'
     };
-    expect(getLaunchListGenerator.next(apiResponseGenerator(false, errorResponse)).value).toEqual(
+    expect(getLaunchListGenerator.next(apiResponseGenerator(false, errorResponse, undefined)).value).toEqual(
       put({
         type: homeContainerTypes.FAILURE_GET_LAUNCH_LIST,
         launchListError: errorResponse
@@ -30,7 +31,8 @@ describe('HomeContainer saga tests', () => {
   it('should ensure that the action SUCCESS_GET_LAUNCH_LIST is dispatched when the api call succeeds', () => {
     getLaunchListGenerator = getLaunchList();
     const res = getLaunchListGenerator.next().value;
-    expect(res).toEqual(call(getQueryResponse, GET_LAUNCHES));
+    let missionName;
+    expect(res).toEqual(call(getQueryResponse, GET_LAUNCHES, { missionName }));
     const apiResponse = {
       launches: [{ missionName: 'sampleName' }]
     };

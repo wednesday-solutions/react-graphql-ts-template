@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { AnyAction, compose } from 'redux';
+import debounce from 'lodash/debounce';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import styled from 'styled-components';
 import { injectIntl, IntlShape } from 'react-intl';
 import { injectSaga } from 'redux-injectors';
-import { Card, Skeleton } from 'antd';
+import { Card, Input, Skeleton } from 'antd';
 import If from '@components/If';
-import { selectLaunchData, selectLaunchListError, selectLoading } from './selectors';
+import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
 import For from '@app/components/For';
 import { ErrorHandler } from '@app/components/ErrorHandler';
 
+const { Search } = Input;
 const CustomCard = styled(Card)`
   && {
     margin: 20px 0;
@@ -48,6 +50,8 @@ interface HomeContainerProps {
   };
   launchListError: string;
   intl: IntlShape;
+  loading: boolean;
+  launchQuery: string;
 }
 
 export function HomeContainer({
@@ -56,12 +60,23 @@ export function HomeContainer({
   intl,
   loading,
   launchData,
+  launchQuery,
   launchListError
 }: HomeContainerProps | any) {
   useEffect(() => {
     dispatchClearLaunchList();
     dispatchLaunchList();
   }, []);
+
+  const handleOnChange = (rName: string) => {
+    if (!isEmpty(rName)) {
+      dispatchLaunchList(rName);
+    } else {
+      dispatchLaunchList();
+    }
+  };
+
+  const debouncedHandleOnChange = debounce(handleOnChange, 200);
 
   const renderLaunchList = () => {
     const launches = get(launchData, 'launches', []);
@@ -88,6 +103,13 @@ export function HomeContainer({
   return (
     <Container>
       <CustomCard title={intl.formatMessage({ id: 'spacex_search' })} />
+      <Search
+        data-testid="search-bar"
+        defaultValue={launchQuery}
+        type="text"
+        onChange={(evt) => debouncedHandleOnChange(evt.target.value)}
+        onSearch={(searchText) => debouncedHandleOnChange(searchText)}
+      />
       {renderLaunchList()}
       <ErrorHandler loading={loading} launchListError={launchListError} />
     </Container>
@@ -119,13 +141,14 @@ HomeContainer.defaultProps = {
 const mapStateToProps = createStructuredSelector({
   launchData: selectLaunchData(),
   launchListError: selectLaunchListError(),
-  loading: selectLoading()
+  loading: selectLoading(),
+  lanchQuery: selectLaunchQuery()
 });
 
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
   const { requestGetLaunchList, clearLaunchList } = homeContainerCreators;
   return {
-    dispatchLaunchList: () => dispatch(requestGetLaunchList()),
+    dispatchLaunchList: (launchQuery: string) => dispatch(requestGetLaunchList(launchQuery)),
     dispatchClearLaunchList: () => dispatch(clearLaunchList())
   };
 }

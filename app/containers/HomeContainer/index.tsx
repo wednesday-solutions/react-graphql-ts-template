@@ -4,18 +4,16 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { AnyAction, compose } from 'redux';
 import debounce from 'lodash/debounce';
-import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import styled from 'styled-components';
 import { injectIntl, IntlShape } from 'react-intl';
 import { injectSaga } from 'redux-injectors';
-import { Card, Input, Skeleton } from 'antd';
-import If from '@components/If';
+import { Card, Input } from 'antd';
 import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
-import For from '@app/components/For';
 import { ErrorHandler } from '@app/components/ErrorHandler';
+import { LaunchList } from '@app/components/LaunchList';
 
 const { Search } = Input;
 const CustomCard = styled(Card)`
@@ -33,7 +31,7 @@ const Container = styled.div`
   }
 `;
 
-export interface launch {
+export interface Launch {
   mission_name: string;
   launch_date_local: string;
   links: {
@@ -46,7 +44,7 @@ interface HomeContainerProps {
   dispatchLaunchList: Function;
   dispatchClearLaunchList: Function;
   launchData: {
-    data: launch;
+    data: Launch;
   };
   launchListError: string;
   intl: IntlShape;
@@ -78,28 +76,6 @@ export function HomeContainer({
 
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
 
-  const renderLaunchList = () => {
-    const launches = get(launchData, 'launches', []);
-    return (
-      <If condition={!isEmpty(launches) || loading}>
-        <CustomCard data-testid="list">
-          <Skeleton loading={loading} active>
-            <For
-              of={launches}
-              ParentComponent={Container}
-              renderItem={(launch: launch, idx) => (
-                <CustomCard key={idx}>
-                  <div>{launch.mission_name}</div>
-                  <div> {launch.launch_date_local}</div>
-                </CustomCard>
-              )}
-            ></For>
-          </Skeleton>
-        </CustomCard>
-      </If>
-    );
-  };
-
   return (
     <Container>
       <CustomCard title={intl.formatMessage({ id: 'spacex_search' })} />
@@ -110,7 +86,7 @@ export function HomeContainer({
         onChange={(evt) => debouncedHandleOnChange(evt.target.value)}
         onSearch={(searchText) => debouncedHandleOnChange(searchText)}
       />
-      {renderLaunchList()}
+      <LaunchList launchData={launchData} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />
     </Container>
   );

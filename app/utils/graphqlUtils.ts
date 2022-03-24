@@ -1,4 +1,4 @@
-import { launch } from '@app/containers/HomeContainer';
+import { Launch } from '@app/containers/HomeContainer';
 import ApolloClient, { DocumentNode, InMemoryCache, QueryOptions } from 'apollo-boost';
 
 export const client = new ApolloClient({
@@ -7,7 +7,7 @@ export const client = new ApolloClient({
 });
 
 interface responseData {
-  data: launch | null;
+  data: Launch | null;
   ok: boolean | null;
   error: Object | null;
 }

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="HomeContainer__Container-wd79o1-1 ACgFJ"
+    >
+      <div
+        class="ant-card ant-card-bordered HomeContainer__CustomCard-wd79o1-0 bgsSER"
+      >
+        <div
+          class="ant-card-head"
+        >
+          <div
+            class="ant-card-head-wrapper"
+          >
+            <div
+              class="ant-card-head-title"
+            >
+              Spacex Launches Search
+            </div>
+          </div>
+        </div>
+        <div
+          class="ant-card-body"
+        />
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -1,12 +1,15 @@
 import { Launch } from '@app/containers/HomeContainer';
+
 import ApolloClient, { DocumentNode, InMemoryCache, QueryOptions } from 'apollo-boost';
+
 
 export const client = new ApolloClient({
   uri: 'https://api.spacex.land/graphql',
   cache: new InMemoryCache()
 });
 
-interface responseData {
+
+interface ResponseData {
   data: Launch | null;
   ok: boolean | null;
   error: Object | null;

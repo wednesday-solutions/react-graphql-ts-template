@@ -70,7 +70,8 @@ export function HomeContainer({
     }
   }, []);
 
-  useEffect(() => {
+
+ useEffect(() => {
     if (!launchQuery && !launchData) {
       dispatchLaunchList();
     }

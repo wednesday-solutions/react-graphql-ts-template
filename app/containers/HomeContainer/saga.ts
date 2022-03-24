@@ -13,10 +13,7 @@ interface GetLaunchList {
 const { REQUEST_GET_LAUNCH_LIST }: DefaultActionTypes = homeContainerTypes;
 const { successGetLaunchList, failureGetLaunchList } = homeContainerCreators;
 
-export function* getLaunchList(action: {
-  launchQuery: string;
-  type: string;
-}): Generator<any, any, { data: { launches: Launch; errors: Object }; ok: boolean }> {
+export function* getLaunchList(action: { launchQuery: string; type: string }): Generator<any, any, GetLaunchList> {
   const response = yield call(getQueryResponse, GET_LAUNCHES, { missionName: action?.launchQuery });
   const { data, ok } = response;
   if (ok) {

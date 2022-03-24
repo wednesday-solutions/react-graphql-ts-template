@@ -69,12 +69,6 @@ describe('<HomeContainer /> tests', () => {
     await timeout(500);
     expect(submitSpy).toBeCalled();
   });
-  it('should  dispatchLaunchList on update on mount if repoName is already persisted', async () => {
-    const launchQuery = 'Thia';
-    renderProvider(<HomeContainer launchQuery={launchQuery} launchData={null} dispatchLaunchList={submitSpy} />);
-    await timeout(500);
-    expect(submitSpy).toBeCalledWith(launchQuery);
-  });
   it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {
     renderProvider(<HomeContainer launchQuery={null} launchData={null} dispatchLaunchList={submitSpy} />);
     await timeout(500);

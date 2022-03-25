@@ -15,7 +15,6 @@ module.exports = {
     '@babel/preset-typescript'
   ],
   plugins: [
-    'lodash',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-syntax-optional-chaining',
     'styled-components',

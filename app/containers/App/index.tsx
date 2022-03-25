@@ -10,7 +10,7 @@ import React from 'react';
 import GlobalStyle from '@app/global-styles';
 import { routeConfig } from '@app/routeConfig';
 import { Layout } from 'antd';
-import map from 'lodash/map';
+import map from 'lodash-es/map';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { compose } from 'redux';

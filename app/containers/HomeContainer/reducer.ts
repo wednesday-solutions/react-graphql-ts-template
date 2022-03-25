@@ -1,6 +1,6 @@
 import produce from 'immer';
 import { createActions } from 'reduxsauce';
-import get from 'lodash/get';
+import get from 'lodash-es/get';
 import { Launch } from '@app/containers/HomeContainer';
 
 export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({

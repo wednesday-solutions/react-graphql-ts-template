@@ -4,17 +4,33 @@ exports[`<LaunchList /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered LaunchList__CustomErrorCard-sc-1l6drbj-2 kKRUhr"
+      class="ant-card ant-card-bordered LaunchList__WrapperCard-sc-1l6drbj-1 iKbhmK"
+      data-testid="list"
     >
       <div
         class="ant-card-body"
       >
-        <p
-          class="T__StyledText-gcrjip-0 fIysFh"
-          data-testid="default-message"
+        <div
+          class="LaunchList__Container-sc-1l6drbj-3 eGnFfA"
+          data-testid="for"
+          orientation="row"
         >
-          No results found for the search term.
-        </p>
+          <div
+            class="ant-card ant-card-bordered LaunchList__CustomCard-sc-1l6drbj-0 lpnqcA"
+          >
+            <div
+              class="ant-card-body"
+            >
+              <div>
+                Thaicom 6
+              </div>
+              <div>
+                 
+                2014-01-06T14:06:00-04:00
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

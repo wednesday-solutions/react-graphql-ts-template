@@ -12583,6 +12583,11 @@ lint-staged@9.4.3:
     string-argv "^0.3.0"
     stringify-object "^3.3.0"
 
+list-files@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/list-files/-/list-files-1.1.4.tgz#ec7403155d3a678507d91f40eeaa24a559aedcad"
+  integrity sha1-7HQDFV06Z4UH2R9A7qokpVmu3K0=
+
 listr-silent-renderer@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/listr-silent-renderer/-/listr-silent-renderer-1.1.1.tgz#924b5a3757153770bf1a8e3fbf74b8bbf3f9242e"

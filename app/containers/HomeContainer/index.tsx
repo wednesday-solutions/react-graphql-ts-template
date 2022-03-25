@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from 'react';
+import React, { useEffect, memo, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -13,8 +13,7 @@ import { Input } from 'antd';
 import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
-import { ErrorHandler } from '@app/components/ErrorHandler';
-import { LaunchList } from '@app/components/LaunchList';
+import { LaunchList, ErrorHandler } from '@app/components';
 import { colors } from '@app/themes';
 
 const Container = styled.div`
@@ -60,6 +59,7 @@ export function HomeContainer({
   dispatchLaunchList,
   loading,
   launchData,
+  intl,
   launchQuery,
   launchListError
 }: HomeContainerProps) {
@@ -69,15 +69,14 @@ export function HomeContainer({
     }
   }, []);
 
-  const handleOnChange = (rName: string) => {
+  const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    const rName = e.target.value;
     if (!isEmpty(rName)) {
       dispatchLaunchList(rName);
     } else {
       dispatchLaunchList();
     }
-  };
-
-  const debouncedHandleOnChange = debounce(handleOnChange, 200);
+  }, 200);
 
   const prefix = (
     <SearchOutlined
@@ -95,8 +94,8 @@ export function HomeContainer({
         data-testid="search-bar"
         defaultValue={launchQuery}
         type="text"
-        placeholder="SEARCH BY MISSION NAME"
-        onChange={(evt) => debouncedHandleOnChange(evt.target.value)}
+        placeholder={intl.formatMessage({ id: 'placeholder_text' })}
+        onChange={handleOnChange}
       />
       <LaunchList launchData={launchData} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />

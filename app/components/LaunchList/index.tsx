@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { get, isEmpty } from 'lodash-es';
 import { Card, Skeleton } from 'antd';
-import If from '@components/If';
+import { If, T, For } from '@app/components';
 import { colors } from '@app/themes';
-import T from '@components/T';
 import { Launch } from '@app/containers/HomeContainer';
-import For from '@components/For';
 
 const CustomCard = styled(Card)`
   && {
@@ -68,7 +66,7 @@ export function LaunchList({ launchData, loading }: LaunchListProps) {
                 <div> {launch.launch_date_local}</div>
               </CustomCard>
             )}
-          ></For>
+          />
         </Skeleton>
       </WrapperCard>
     </If>

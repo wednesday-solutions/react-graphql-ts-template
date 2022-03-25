@@ -46,15 +46,14 @@ export interface Launch {
 }
 
 interface HomeContainerProps {
-  dispatchLaunchList: Function;
-  dispatchClearLaunchList: Function;
+  dispatchLaunchList: (query?: string) => void;
   launchData: {
-    launches: Launch[];
+    launches?: Launch[];
   };
   launchListError: string;
   intl: IntlShape;
   loading: boolean;
-  launchQuery: string;
+  launchQuery?: string;
 }
 
 export function HomeContainer({
@@ -131,7 +130,7 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
   const { requestGetLaunchList } = homeContainerCreators;
   return {
-    dispatchLaunchList: (launchQuery: string) => dispatch(requestGetLaunchList(launchQuery))
+    dispatchLaunchList: (launchQuery?: string) => dispatch(requestGetLaunchList(launchQuery))
   };
 }
 

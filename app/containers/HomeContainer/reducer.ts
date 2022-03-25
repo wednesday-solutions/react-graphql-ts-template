@@ -11,7 +11,7 @@ export const { Types: homeContainerTypes, Creators: homeContainerCreators } = cr
 });
 export const initialState = { launchQuery: null, launchData: {}, launchListError: null, loading: false };
 
-export interface ReducerTypes {
+export interface HomeContainerActionTypes {
   type?: string;
   somePayload?: string | null;
   launchQuery?: any;
@@ -23,7 +23,7 @@ export interface ReducerTypes {
   loading: boolean;
 }
 
-export const homeContainerReducer = (state = initialState, action: ReducerTypes) =>
+export const homeContainerReducer = (state = initialState, action: HomeContainerActionTypes) =>
   produce(state, (draft: any) => {
     switch (action.type) {
       case homeContainerTypes.REQUEST_GET_LAUNCH_LIST:

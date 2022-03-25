@@ -42,7 +42,7 @@ const Container = styled.div`
 `;
 
 interface LaunchListProps {
-  launchData: { launches: Launch[] };
+  launchData: { launches?: Launch[] };
   loading: boolean;
 }
 

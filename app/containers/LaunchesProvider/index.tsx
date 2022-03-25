@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledContainer } from '@app/components';
+import { StyledContainer } from '@components';
 import { Helmet } from 'react-helmet';
 
 function LaunchesProvider() {

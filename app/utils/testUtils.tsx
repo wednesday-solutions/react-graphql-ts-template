@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import configureStore from '@app/configureStore';
 import { DEFAULT_LOCALE, translationMessages } from '@app/i18n';
 import ConnectedLanguageProvider from '@containers/LanguageProvider';
-import { IntlGlobalProvider } from '@components/IntlGlobalProvider';
+import IntlGlobalProvider from '@components/IntlGlobalProvider';
 import { History } from 'history';
 
 export const renderWithIntl = (children: React.ReactNode) =>

@@ -5,7 +5,7 @@ import { IntlShape, useIntl } from 'react-intl';
 // 'intl' service singleton reference
 let intl: IntlShape;
 
-export function IntlGlobalProvider({ children }: { children: React.ReactNode }) {
+export default function IntlGlobalProvider({ children }: { children: React.ReactNode }) {
   intl = useIntl(); // Keep the 'intl' service reference
   return <>{children}</>;
 }

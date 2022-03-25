@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { get, isEmpty } from 'lodash-es';
 import { Card, Skeleton } from 'antd';
-import { If, T, For } from '@app/components';
+import { If, T, For } from '@components';
 import { colors } from '@app/themes';
 import { Launch } from '@app/containers/HomeContainer';
 

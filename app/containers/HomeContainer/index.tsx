@@ -13,7 +13,7 @@ import { Input } from 'antd';
 import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
-import { LaunchList, ErrorHandler } from '@app/components';
+import { LaunchList, ErrorHandler } from '@components';
 import { colors } from '@app/themes';
 
 const Container = styled.div`
@@ -76,7 +76,7 @@ export function HomeContainer({
     } else {
       dispatchLaunchList();
     }
-  }, 200);
+  }, 300);
 
   const prefix = (
     <SearchOutlined

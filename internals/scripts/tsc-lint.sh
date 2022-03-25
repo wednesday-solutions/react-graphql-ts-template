@@ -16,4 +16,4 @@ cat >>$TMP <<EOF
   ]
 }
 EOF
-npx tsc --project $TMP --skipLibCheck --noEmit
+npx tsc --project $TMP

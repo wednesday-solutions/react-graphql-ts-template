@@ -27,7 +27,7 @@ function LaunchItem({ missionName, launchDateLocal, links }: Launch) {
   return (
     <LaunchCard>
       <If condition={!isEmpty(missionName)} otherwise={<T id="mission_name_unavailable" />}>
-        <T marginBottom={1.5} type="subheading" text={missionName} />
+        <T data-testid="mission-name" marginBottom={1.5} type="subheading" text={missionName} />
       </If>
       <If condition={!isEmpty(launchDateLocal)} otherwise={<T id="launch_date_unavailable" />}>
         <T text={launchDateLocal} />

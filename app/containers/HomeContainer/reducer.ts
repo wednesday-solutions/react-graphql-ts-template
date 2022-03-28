@@ -39,6 +39,7 @@ export const homeContainerReducer = (state = initialState, action: HomeContainer
 
       case homeContainerTypes.SUCCESS_GET_LAUNCH_LIST:
         draft.launchData = action.launchData!;
+        draft.launchListError = null;
         draft.loading = false;
         break;
       case homeContainerTypes.FAILURE_GET_LAUNCH_LIST:

@@ -2,10 +2,12 @@ import React from 'react';
 import { timeout, renderProvider } from '@utils/testUtils';
 import { HomeContainerProps, HomeContainerTest as HomeContainer, LaunchData, mapDispatchToProps } from '../index';
 import { homeContainerTypes } from '../reducer';
+import { fireEvent } from 'react-testing-library';
 
 describe('<HomeContainer /> tests', () => {
   let submitSpy: jest.Mock;
   let defaultProps: HomeContainerProps;
+  let launchData: LaunchData;
 
   beforeEach(() => {
     submitSpy = jest.fn();
@@ -13,6 +15,42 @@ describe('<HomeContainer /> tests', () => {
       loading: true,
       dispatchLaunchList: submitSpy,
       launchQuery: ''
+    };
+    launchData = {
+      launches: [
+        {
+          missionName: 'Mission 1',
+          launchDateLocal: '2020-10-20',
+          links: {
+            flickrImages: ['image1'],
+            wikipedia: 'some wiki'
+          }
+        },
+        {
+          missionName: 'Mission 2',
+          launchDateLocal: '2021-11-20',
+          links: {
+            flickrImages: ['image1'],
+            wikipedia: 'some wiki'
+          }
+        },
+        {
+          missionName: 'Mission 3',
+          launchDateLocal: '2000-10-20',
+          links: {
+            flickrImages: ['image1'],
+            wikipedia: 'some wiki'
+          }
+        },
+        {
+          missionName: 'Mission 4',
+          launchDateLocal: '1991-10-20',
+          links: {
+            flickrImages: ['image1'],
+            wikipedia: 'some wiki'
+          }
+        }
+      ]
     };
   });
   it('should render and match the snapshot', () => {
@@ -26,7 +64,7 @@ describe('<HomeContainer /> tests', () => {
     expect(submitSpy).toBeCalledWith();
   });
 
-  it('should validate mapDispatchToProps actions', async () => {
+  it('should validate mapDispatchToProps actions', () => {
     const dispatchLaunchListSpy = jest.fn();
     const actions = {
       dispatchLaunchList: { type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST },
@@ -69,5 +107,33 @@ describe('<HomeContainer /> tests', () => {
     const { baseElement } = renderProvider(<HomeContainer {...defaultProps} loading={true} />);
 
     expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
+  });
+
+  it('should sort the launches by date in ASC', async () => {
+    const { getByText, getByRole, getAllByTestId } = renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
+    );
+    fireEvent.mouseDown(getByRole('combobox')!);
+    fireEvent.click(getByText('ASC'));
+    await timeout(500);
+    const ascMissions = launchData!
+      .launches!.sort((a, b) => +new Date(a.launchDateLocal) - +new Date(b.launchDateLocal))
+      .map((l) => l.missionName);
+    const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
+    expect(ascMissions).toEqual(missionsInDom);
+  });
+
+  it('should sort the launches by date in DESC', async () => {
+    const { getByText, getByRole, getAllByTestId } = renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
+    );
+    fireEvent.mouseDown(getByRole('combobox')!);
+    fireEvent.click(getByText('DESC'));
+    await timeout(500);
+    const ascMissions = launchData!
+      .launches!.sort((a, b) => +new Date(b.launchDateLocal) - +new Date(a.launchDateLocal))
+      .map((l) => l.missionName);
+    const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
+    expect(ascMissions).toEqual(missionsInDom);
   });
 });

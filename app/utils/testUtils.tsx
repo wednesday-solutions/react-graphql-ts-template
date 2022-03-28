@@ -21,7 +21,6 @@ export const getComponentStyles = (Component: React.FC<any>, props = {}) => {
   renderWithIntl(Component(props));
   const { styledComponentId } = Component(props)!.type;
   const componentRoots = document.getElementsByClassName(styledComponentId);
-  // eslint-disable-next-line no-underscore-dangle
   return window.getComputedStyle(componentRoots[0]);
 };
 

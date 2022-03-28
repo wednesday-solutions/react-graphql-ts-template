@@ -85,7 +85,7 @@ export function HomeContainer({
   launchQuery,
   launchListError
 }: HomeContainerProps) {
-  const [launches, setLaunches] = useState(launchData);
+  const [launches, setLaunches] = useState<LaunchData>({});
   const [dateSort, setDateSort] = useState<Sort>('default');
   const page = +(new URLSearchParams(window.location.search).get('page') || 1);
 
@@ -107,8 +107,9 @@ export function HomeContainer({
         break;
     }
     const offset = (page - 1) * LAUNCH_PER_PAGE;
-    setLaunches({ launches: sortedLaunches.slice(offset, offset + 6) });
-  }, [dateSort]);
+    const paginatedLaunches = sortedLaunches.slice(offset, offset + LAUNCH_PER_PAGE);
+    setLaunches({ launches: paginatedLaunches });
+  }, [launchData, dateSort]);
 
   const handleOnChange = (rName: string) => {
     if (!isEmpty(rName)) {
@@ -158,11 +159,13 @@ export function HomeContainer({
           value={dateSort}
           onChange={(value) => setDateSort(value as Sort)}
         >
-          <Select.Option value="default" disabled>
-            SORT DATE
+          <Select.Option data-testid="default-option" value="default" disabled>
+            SORT BY DATE
           </Select.Option>
           <Select.Option value="desc">DESC</Select.Option>
-          <Select.Option value="asc">ASC</Select.Option>
+          <Select.Option data-testid="asc-option" value="asc">
+            ASC
+          </Select.Option>
         </SortSelect>
       </CustomHeader>
       <LaunchList launchData={launches} loading={loading} />

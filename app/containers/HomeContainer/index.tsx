@@ -85,6 +85,7 @@ export function HomeContainer({
   launchQuery,
   launchListError
 }: HomeContainerProps) {
+
   const [launches, setLaunches] = useState(launchData);
   const [dateSort, setDateSort] = useState<Sort>('default');
   const page = +(new URLSearchParams(window.location.search).get('page') || 1);
@@ -128,6 +129,28 @@ export function HomeContainer({
 
   const handleNext = () => {
     history.push({ pathname: '/', search: `?page=${page + 1}` });
+
+  const renderLaunchList = () => {
+    const launches = get(launchData, 'launches', []);
+    return (
+      <If condition={!isEmpty(launches) || loading}>
+        <CustomCard data-testid="list">
+          <Skeleton loading={loading} active>
+            <For
+              of={launches}
+              ParentComponent={Container}
+              renderItem={(launch: Launch, idx) => (
+                <CustomCard key={idx}>
+                  <div>{launch.mission_name}</div>
+                  <div> {launch.launch_date_local}</div>
+                </CustomCard>
+              )}
+            ></For>
+          </Skeleton>
+        </CustomCard>
+      </If>
+    );
+
   };
 
   return (

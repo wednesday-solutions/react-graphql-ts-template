@@ -5,8 +5,14 @@ import { Launch } from '@app/containers/HomeContainer';
 import { getQueryResponse } from '@app/utils/graphqlUtils';
 import { GET_LAUNCHES } from './queries';
 
+interface GetLaunchList {
+  data: { launches: Launch; errors: Object };
+  ok: boolean;
+}
+
 const { REQUEST_GET_LAUNCH_LIST }: DefaultActionTypes = homeContainerTypes;
 const { successGetLaunchList, failureGetLaunchList } = homeContainerCreators;
+
 export function* getLaunchList(action: {
   launchQuery?: string;
   type: string;

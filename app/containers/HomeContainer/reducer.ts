@@ -1,6 +1,7 @@
 import produce from 'immer';
 import { createActions } from 'reduxsauce';
 import get from 'lodash/get';
+
 import { Launch } from '@app/containers/HomeContainer';
 
 export type HomeContainerState = {
@@ -11,6 +12,7 @@ export type HomeContainerState = {
   launchListError: any;
   loading: boolean;
 };
+
 
 export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({
   requestGetLaunchList: ['launchQuery'],

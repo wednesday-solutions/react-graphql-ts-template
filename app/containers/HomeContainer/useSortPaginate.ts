@@ -43,6 +43,7 @@ export default function useSortPaginate(launchData: LaunchData) {
       const sortPaginatedLaunches = sortPaginate(launchData.launches, dateSort, page);
       if (!sortPaginatedLaunches.length && page !== 1) {
         resetPage();
+        return;
       }
       setLaunches({ launches: sortPaginatedLaunches });
     }

@@ -96,7 +96,9 @@ export function HomeContainer({
     useSortPaginate(launchData);
 
   useEffect(() => {
-    dispatchLaunchList();
+    if (isEmpty(launchData.launches)) {
+      dispatchLaunchList();
+    }
   }, []);
 
   const handleSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
@@ -150,9 +152,7 @@ export function HomeContainer({
             SORT BY DATE
           </Select.Option>
           <Select.Option value="desc">DESC</Select.Option>
-          <Select.Option data-testid="asc-option" value="asc">
-            ASC
-          </Select.Option>
+          <Select.Option value="asc">ASC</Select.Option>
         </SortSelect>
       </CustomHeader>
       <LaunchList launchData={launches} loading={loading} />

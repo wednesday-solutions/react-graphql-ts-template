@@ -1,33 +1,32 @@
-import React, { useEffect, memo, useState } from 'react';
+import React, { useEffect, memo, ChangeEvent, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { AnyAction, compose } from 'redux';
-import debounce from 'lodash/debounce';
-import isEmpty from 'lodash/isEmpty';
+import debounce from 'lodash-es/debounce';
+import isEmpty from 'lodash-es/isEmpty';
+import { SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { injectSaga } from 'redux-injectors';
 import { Button, Input, Select } from 'antd';
 import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
-import { homeContainerCreators } from './reducer';
-import homeContainerSaga from './saga';
-import { ErrorHandler } from '@components/ErrorHandler';
-import { LaunchList } from '@components/LaunchList';
 import history from '@app/utils/history';
 import arrowUp from '@images/ArrowUp.svg';
 import arrowDown from '@images/ArrowDown.svg';
 import arrowUpDown from '@images/ArrowUpDown.svg';
+import { homeContainerCreators } from './reducer';
+import homeContainerSaga from './saga';
+import { LaunchList, ErrorHandler } from '@components';
 import { colors } from '@app/themes';
-
-const { Search } = Input;
+import { injectIntl, IntlShape } from 'react-intl';
 
 const Container = styled.div`
   && {
     display: flex;
     flex-direction: column;
-    width: 100%;
     margin: 0 auto;
     padding: 1rem;
+    background-color: ${colors.secondaryText};
   }
 `;
 
@@ -37,10 +36,19 @@ const CustomHeader = styled.div`
   width: 100%;
 `;
 
+const CustomSearch = styled(Input)`
+  && {
+    .ant-input {
+      padding-left: 0.5rem;
+    }
+  }
+`;
+
 const SortSelect = styled(Select)`
   && {
     width: 9.5rem;
     background-color: #fff;
+
     .ant-select-selection-item {
       color: ${colors.secondaryText};
     }
@@ -69,9 +77,10 @@ export interface LaunchData {
 export interface HomeContainerProps {
   dispatchLaunchList: (missionName?: string) => void;
   launchQuery: string;
-  launchData?: LaunchData;
+  launchData: LaunchData;
   launchListError?: string;
   loading: boolean;
+  intl: IntlShape;
 }
 
 type Sort = 'asc' | 'desc' | 'default';
@@ -82,6 +91,7 @@ export function HomeContainer({
   dispatchLaunchList,
   loading,
   launchData,
+  intl,
   launchQuery,
   launchListError
 }: HomeContainerProps) {
@@ -111,15 +121,29 @@ export function HomeContainer({
     setLaunches({ launches: paginatedLaunches });
   }, [launchData, dateSort]);
 
-  const handleOnChange = (rName: string) => {
+  useEffect(() => {
+    if (!launchQuery && !launchData?.launches) {
+      dispatchLaunchList();
+    }
+  }, []);
+
+  const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    const rName = e.target.value;
     if (!isEmpty(rName)) {
       dispatchLaunchList(rName);
     } else {
       dispatchLaunchList();
     }
-  };
+  }, 300);
 
-  const debouncedHandleOnChange = debounce(handleOnChange, 200);
+  const prefix = (
+    <SearchOutlined
+      style={{
+        fontSize: 22,
+        color: 'black'
+      }}
+    />
+  );
 
   const clearSort = () => setDateSort('default');
 
@@ -134,12 +158,13 @@ export function HomeContainer({
   return (
     <Container>
       <CustomHeader>
-        <Search
+        <CustomSearch
+          prefix={prefix}
           data-testid="search-bar"
           defaultValue={launchQuery}
           type="text"
-          onChange={(evt) => debouncedHandleOnChange(evt.target.value)}
-          onSearch={(searchText) => debouncedHandleOnChange(searchText)}
+          placeholder={intl.formatMessage({ id: 'placeholder_text' })}
+          onChange={handleOnChange}
         />
         <Button disabled={dateSort === 'default'} onClick={clearSort}>
           CLEAR SORT
@@ -193,8 +218,7 @@ HomeContainer.propTypes = {
   }),
   launchListError: PropTypes.string,
   history: PropTypes.object,
-  maxwidth: PropTypes.number,
-  padding: PropTypes.number
+  intl: PropTypes.object
 };
 
 HomeContainer.defaultProps = {
@@ -212,12 +236,17 @@ const mapStateToProps = createStructuredSelector({
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
   const { requestGetLaunchList } = homeContainerCreators;
   return {
-    dispatchLaunchList: (missionName?: string) => dispatch(requestGetLaunchList(missionName))
+    dispatchLaunchList: (launchQuery?: string) => dispatch(requestGetLaunchList(launchQuery))
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect, memo, injectSaga({ key: 'homeContainer', saga: homeContainerSaga }))(HomeContainer);
+export default compose(
+  withConnect,
+  memo,
+  injectSaga({ key: 'homeContainer', saga: homeContainerSaga }),
+  injectIntl
+)(HomeContainer);
 
 export const HomeContainerTest = HomeContainer;

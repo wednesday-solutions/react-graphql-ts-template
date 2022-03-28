@@ -1,7 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { apiResponseGenerator } from '@utils/testUtils';
 import homeContainerSaga, { getLaunchList } from '../saga';
-import { HomeContainerState, homeContainerTypes } from '../reducer';
+import { homeContainerTypes } from '../reducer';
 import { getQueryResponse } from '@app/utils/graphqlUtils';
 import { GET_LAUNCHES } from '../queries';
 
@@ -18,12 +18,9 @@ describe('HomeContainer saga tests', () => {
     const res = getLaunchListGenerator.next().value;
     expect(res).toEqual(call(getQueryResponse, GET_LAUNCHES, { missionName }));
     const errorResponse = {
-      errorMessage: 'There was an error while fetching launch informations.'
+      message: 'There was an error while fetching launch informations.'
     };
-    expect(
-      getLaunchListGenerator.next(apiResponseGenerator<HomeContainerState['launchData']>(false, {}, errorResponse))
-        .value
-    ).toEqual(
+    expect(getLaunchListGenerator.next(apiResponseGenerator(false, {}, errorResponse)).value).toEqual(
       put({
         type: homeContainerTypes.FAILURE_GET_LAUNCH_LIST,
         launchListError: errorResponse
@@ -48,9 +45,7 @@ describe('HomeContainer saga tests', () => {
         }
       ]
     };
-    expect(
-      getLaunchListGenerator.next(apiResponseGenerator<HomeContainerState['launchData']>(true, apiResponse)).value
-    ).toEqual(
+    expect(getLaunchListGenerator.next(apiResponseGenerator(true, apiResponse)).value).toEqual(
       put({
         type: homeContainerTypes.SUCCESS_GET_LAUNCH_LIST,
         launchData: apiResponse

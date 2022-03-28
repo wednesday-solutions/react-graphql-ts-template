@@ -8,5 +8,7 @@
   "mission_name_unavailable": "Mission name unavailable",
   "launch_date_unavailable": "Launch date unavailable",
   "launch_links_unavailable": "Launch links unavailable",
-  "launch_wiki_unavailable": "Launch wiki link unavailable"
+  "launch_wiki_unavailable": "Launch wiki link unavailable",
+  "fallback": "No results found for the search term.",
+  "placeholder_text": "SEARCH BY MISSION NAME"
 }

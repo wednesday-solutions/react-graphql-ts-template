@@ -69,7 +69,10 @@ module.exports = (options) => ({
                   'btn-font-weight': 600,
                   'btn-primary-bg': colors.primary,
                   'btn-primary-color': colors.secondaryText,
-                  'select-background': colors.primary
+                  'select-background': colors.primary,
+                  'input-bg': colors.secondary,
+                  'input-placeholder-color': colors.primary,
+                  'height-base': '40px'
                 }
               },
               implementation: require('less')

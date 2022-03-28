@@ -1,10 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
+import { colors } from '@app/themes';
 
 const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
   }
@@ -18,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    background-color: #fafafa;
+    background-color: ${colors.secondaryText};
     min-height: 100%;
     min-width: 100%;
   }

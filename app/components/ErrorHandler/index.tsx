@@ -1,11 +1,8 @@
-import React, { memo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl } from 'react-intl';
 import styled from 'styled-components';
 import { Card } from 'antd';
-import T from '@components/T';
-import If from '@components/If';
-import { compose } from 'redux';
+import { T, If } from '@components';
 
 const CustomCard = styled(Card)`
   && {
@@ -39,4 +36,4 @@ ErrorHandler.propTypes = {
   intl: PropTypes.object
 };
 
-export default compose(memo, injectIntl)(ErrorHandler);
+export default ErrorHandler;

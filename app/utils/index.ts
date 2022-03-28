@@ -1,5 +1,5 @@
-import find from 'lodash/find';
-import get from 'lodash/get';
+import find from 'lodash-es/find';
+import get from 'lodash-es/get';
 import routeConstants from './routeConstants';
 
 export const getCurrentRouteDetails = (location: Partial<Location>) => {

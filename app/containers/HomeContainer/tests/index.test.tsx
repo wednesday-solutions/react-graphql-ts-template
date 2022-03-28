@@ -3,6 +3,8 @@ import { timeout, renderProvider } from '@utils/testUtils';
 import { HomeContainerProps, HomeContainerTest as HomeContainer, LaunchData, mapDispatchToProps } from '../index';
 import { homeContainerTypes } from '../reducer';
 import { fireEvent } from 'react-testing-library';
+import { createIntl } from 'react-intl';
+import { translationMessages } from '@app/i18n';
 
 describe('<HomeContainer /> tests', () => {
   let submitSpy: jest.Mock;
@@ -12,9 +14,11 @@ describe('<HomeContainer /> tests', () => {
   beforeEach(() => {
     submitSpy = jest.fn();
     defaultProps = {
+      intl: createIntl({ locale: 'en', messages: translationMessages.en }),
       loading: true,
       dispatchLaunchList: submitSpy,
-      launchQuery: ''
+      launchQuery: '',
+      launchData: {}
     };
     launchData = {
       launches: [
@@ -86,7 +90,7 @@ describe('<HomeContainer /> tests', () => {
     expect(getByTestId('error-message').textContent).toBe(defaultError);
   });
 
-  it('should render the data when loading becomes false', () => {
+  it('should render the data when loading becomes false', async () => {
     const launchData: LaunchData = {
       launches: [
         {
@@ -99,14 +103,35 @@ describe('<HomeContainer /> tests', () => {
         }
       ]
     };
-    const { getByTestId } = renderProvider(<HomeContainer launchData={launchData} {...defaultProps} />);
-    expect(getByTestId('list')).toBeInTheDocument();
+    const { getByText } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
+    expect(getByText('Sample Mission'));
   });
 
   it('should render Skeleton Comp when "loading" is true', async () => {
     const { baseElement } = renderProvider(<HomeContainer {...defaultProps} loading={true} />);
 
     expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
+  });
+
+  it('should call dispatchGetLaunchList on empty change', async () => {
+    const { getByTestId } = renderProvider(
+      <HomeContainer {...defaultProps} dispatchLaunchList={submitSpy} loading={false} />
+    );
+    fireEvent.change(getByTestId('search-bar'), {
+      target: { value: 'a' }
+    });
+    await timeout(500);
+    expect(submitSpy).toBeCalledWith('a');
+    fireEvent.change(getByTestId('search-bar'), {
+      target: { value: '' }
+    });
+    await timeout(500);
+    expect(submitSpy).toBeCalled();
+  });
+  it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {
+    renderProvider(<HomeContainer {...defaultProps} launchData={{}} />);
+    await timeout(500);
+    expect(submitSpy).toBeCalled();
   });
 
   it('should sort the launches by date in ASC', async () => {

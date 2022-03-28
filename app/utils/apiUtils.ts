@@ -1,6 +1,6 @@
 import { ApisauceInstance, create } from 'apisauce';
-import snakeCase from 'lodash/snakeCase';
-import camelCase from 'lodash/camelCase';
+import snakeCase from 'lodash-es/snakeCase';
+import camelCase from 'lodash-es/camelCase';
 import { mapKeysDeep } from './index';
 
 const apiClients: Record<string, ApisauceInstance> = {};

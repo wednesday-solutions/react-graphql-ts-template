@@ -1,12 +1,19 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { get, isEmpty } from 'lodash';
-import { Skeleton } from 'antd';
-import If from '@components/If';
-import { Launch } from '@app/containers/HomeContainer';
-import For from '@components/For';
-import LaunchItem from '@components/LaunchItem';
+import { Launch } from '@containers/HomeContainer';
+import { get, isEmpty } from 'lodash-es';
+import { Card, Skeleton } from 'antd';
+import { If, T, For, LaunchItem } from '@components';
+import { colors } from '@app/themes';
+
+const CustomErrorCard = styled(Card)`
+  && {
+    color: ${colors.secondary};
+    margin: 2rem;
+    background-color: ${colors.secondaryText};
+  }
+`;
 
 const Container = styled.div`
   && {
@@ -14,11 +21,12 @@ const Container = styled.div`
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
+    background-color: ${colors.secondaryText};
   }
 `;
 
 interface LaunchListProps {
-  launchData?: { launches?: Launch[] };
+  launchData: { launches?: Launch[] };
   loading: boolean;
 }
 
@@ -26,16 +34,21 @@ export function LaunchList({ launchData, loading }: LaunchListProps) {
   const launches = get(launchData, 'launches', []);
 
   return (
-    <If condition={!isEmpty(launches) || loading}>
-      <div data-testid="list">
-        <Skeleton loading={loading} active>
-          <For
-            of={launches}
-            ParentComponent={Container}
-            renderItem={(launch: Launch, idx) => <LaunchItem key={idx} {...launch} />}
-          />
-        </Skeleton>
-      </div>
+    <If
+      condition={!isEmpty(launches) || loading}
+      otherwise={
+        <CustomErrorCard>
+          <T data-testid="default-message" id="fallback" />
+        </CustomErrorCard>
+      }
+    >
+      <Skeleton loading={loading} active>
+        <For
+          of={launches}
+          ParentComponent={Container}
+          renderItem={(launch: Launch, idx) => <LaunchItem key={idx} {...launch} />}
+        />
+      </Skeleton>
     </If>
   );
 }

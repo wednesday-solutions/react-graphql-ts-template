@@ -1,4 +1,4 @@
-import camelCase from 'lodash/camelCase';
+import camelCase from 'lodash-es/camelCase';
 import { getCurrentRouteDetails, isLocal, mapKeysDeep } from '@utils/index';
 import routeConstants from '@utils/routeConstants';
 

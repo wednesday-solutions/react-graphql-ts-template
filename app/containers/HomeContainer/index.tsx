@@ -1,33 +1,37 @@
-import React, { useEffect, memo } from 'react';
+import React, { useEffect, memo, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { AnyAction, compose } from 'redux';
-import get from 'lodash/get';
-import isEmpty from 'lodash/isEmpty';
+import debounce from 'lodash-es/debounce';
+import isEmpty from 'lodash-es/isEmpty';
+import { SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { injectIntl, IntlShape } from 'react-intl';
 import { injectSaga } from 'redux-injectors';
-import { Card, Skeleton } from 'antd';
-import If from '@components/If';
-import { selectLaunchData, selectLaunchListError, selectLoading } from './selectors';
+import { Input } from 'antd';
+import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
-import For from '@app/components/For';
-import { ErrorHandler } from '@app/components/ErrorHandler';
+import { LaunchList, ErrorHandler } from '@components';
+import { colors } from '@app/themes';
 
-const CustomCard = styled(Card)`
-  && {
-    margin: 20px 0;
-    color: ${(props) => props.color};
-  }
-`;
 const Container = styled.div`
   && {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
+    background-color: ${colors.secondaryText};
+  }
+`;
+
+const CustomSearch = styled(Input)`
+  && {
+    height: 100px;
+    height: 3rem;
+    width: 80vw;
+    margin: 1rem;
   }
 `;
 
@@ -41,55 +45,59 @@ export interface Launch {
 }
 
 interface HomeContainerProps {
-  dispatchLaunchList: Function;
-  dispatchClearLaunchList: Function;
+  dispatchLaunchList: (query?: string) => void;
   launchData: {
-    data: Launch;
+    launches?: Launch[];
   };
   launchListError: string;
   intl: IntlShape;
   loading: boolean;
+  launchQuery?: string;
 }
 
 export function HomeContainer({
   dispatchLaunchList,
-  dispatchClearLaunchList,
-  intl,
   loading,
   launchData,
+  intl,
+  launchQuery,
   launchListError
 }: HomeContainerProps) {
   useEffect(() => {
-    dispatchClearLaunchList();
-    dispatchLaunchList();
+    if (!launchQuery && !launchData?.launches) {
+      dispatchLaunchList();
+    }
   }, []);
 
-  const renderLaunchList = () => {
-    const launches = get(launchData, 'launches', []);
-    return (
-      <If condition={!isEmpty(launches) || loading}>
-        <CustomCard data-testid="list">
-          <Skeleton loading={loading} active>
-            <For
-              of={launches}
-              ParentComponent={Container}
-              renderItem={(launch: Launch, idx) => (
-                <CustomCard key={idx}>
-                  <div>{launch.mission_name}</div>
-                  <div> {launch.launch_date_local}</div>
-                </CustomCard>
-              )}
-            ></For>
-          </Skeleton>
-        </CustomCard>
-      </If>
-    );
-  };
+  const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
+    const rName = e.target.value;
+    if (!isEmpty(rName)) {
+      dispatchLaunchList(rName);
+    } else {
+      dispatchLaunchList();
+    }
+  }, 300);
+
+  const prefix = (
+    <SearchOutlined
+      style={{
+        fontSize: 22,
+        color: 'black'
+      }}
+    />
+  );
 
   return (
     <Container>
-      <CustomCard title={intl.formatMessage({ id: 'spacex_search' })} />
-      {renderLaunchList()}
+      <CustomSearch
+        prefix={prefix}
+        data-testid="search-bar"
+        defaultValue={launchQuery}
+        type="text"
+        placeholder={intl.formatMessage({ id: 'placeholder_text' })}
+        onChange={handleOnChange}
+      />
+      <LaunchList launchData={launchData} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />
     </Container>
   );
@@ -100,19 +108,13 @@ HomeContainer.propTypes = {
   dispatchClearLaunchList: PropTypes.func,
   intl: PropTypes.object,
   launchData: PropTypes.shape({
-    totalCount: PropTypes.number,
-    incompleteResults: PropTypes.bool,
-    items: PropTypes.array
+    launches: PropTypes.array
   }),
   launchListError: PropTypes.string,
-  history: PropTypes.object,
-  maxwidth: PropTypes.number,
-  padding: PropTypes.number
+  history: PropTypes.object
 };
 
 HomeContainer.defaultProps = {
-  maxwidth: 500,
-  padding: 20,
   launchData: {},
   launchListError: null
 };
@@ -120,14 +122,14 @@ HomeContainer.defaultProps = {
 const mapStateToProps = createStructuredSelector({
   launchData: selectLaunchData(),
   launchListError: selectLaunchListError(),
-  loading: selectLoading()
+  loading: selectLoading(),
+  lanchQuery: selectLaunchQuery()
 });
 
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
-  const { requestGetLaunchList, clearLaunchList } = homeContainerCreators;
+  const { requestGetLaunchList } = homeContainerCreators;
   return {
-    dispatchLaunchList: () => dispatch(requestGetLaunchList()),
-    dispatchClearLaunchList: () => dispatch(clearLaunchList())
+    dispatchLaunchList: (launchQuery?: string) => dispatch(requestGetLaunchList(launchQuery))
   };
 }
 

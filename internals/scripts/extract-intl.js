@@ -9,7 +9,7 @@ require('shelljs/global');
 const fs = require('fs');
 const nodeGlob = require('glob');
 const { transform } = require('@babel/core');
-const get = require('lodash/get');
+const get = require('lodash-es/get');
 
 const animateProgress = require('./helpers/progress');
 const addCheckmark = require('./helpers/checkmark');

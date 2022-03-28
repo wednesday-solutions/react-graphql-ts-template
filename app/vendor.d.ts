@@ -3,6 +3,11 @@ declare module '*.png' {
   export default value;
 }
 
+declare module '*.svg' {
+  const value: any;
+  export default value;
+}
+
 declare module 'intl/locale-data/jsonp/en.js';
 
 // https://github.com/rt2zz/redux-persist-transform-immutable/pull/40/files

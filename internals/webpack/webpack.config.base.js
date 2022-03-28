@@ -66,7 +66,9 @@ module.exports = (options) => ({
               lessOptions: {
                 javascriptEnabled: true,
                 modifyVars: {
-                  'primary-color': colors.secondary
+                  'primary-color': colors.secondary,
+                  'component-background': colors.secondary,
+                  '@input-placeholder-color': colors.primary
                 }
               },
               implementation: require('less')

@@ -1,7 +1,7 @@
 import produce from 'immer';
 import { createActions } from 'reduxsauce';
-import get from 'lodash/get';
-import { Launch } from './index';
+import get from 'lodash-es/get';
+import { Launch } from '@app/containers/HomeContainer';
 
 export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({
   requestGetLaunchList: ['launchQuery'],
@@ -11,7 +11,7 @@ export const { Types: homeContainerTypes, Creators: homeContainerCreators } = cr
 });
 export const initialState = { launchQuery: null, launchData: {}, launchListError: null, loading: false };
 
-interface reducerTypes {
+export interface HomeContainerActionTypes {
   type?: string;
   somePayload?: string | null;
   launchQuery?: any;
@@ -23,17 +23,12 @@ interface reducerTypes {
   loading: boolean;
 }
 
-export const homeContainerReducer = (state = initialState, action: reducerTypes) =>
+export const homeContainerReducer = (state = initialState, action: HomeContainerActionTypes) =>
   produce(state, (draft: any) => {
     switch (action.type) {
       case homeContainerTypes.REQUEST_GET_LAUNCH_LIST:
         draft.loading = true;
         draft.launchQuery = action.launchQuery;
-        break;
-      case homeContainerTypes.CLEAR_LAUNCH_LIST:
-        draft.launchQuery = null;
-        draft.launchListError = null;
-        draft.launchData = {};
         break;
       case homeContainerTypes.SUCCESS_GET_LAUNCH_LIST:
         draft.launchData = action?.launchData?.data;

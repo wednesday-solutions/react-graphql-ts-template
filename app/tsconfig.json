@@ -19,6 +19,7 @@
     "paths": {
       "@app/*": ["./*"],
       "@components/*": ["components/*"],
+      "@components": ["components"],
       "@containers/*": ["containers/*"],
       "@utils/*": ["utils/*"],
       "@services/*": ["services/*"],

@@ -4,5 +4,7 @@
   "get_launch_details": "Get details of launches by Spacex",
   "wednesday_solutions": "Wednesday Solutions",
   "launches_list": "List of launches",
-  "something_went_wrong": "Something went wrong"
+  "something_went_wrong": "Something went wrong",
+  "fallback": "No results found for the search term.",
+  "placeholder_text": "SEARCH BY MISSION NAME"
 }

@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export const GET_LAUNCHES = gql`
-  query {
-    launches {
+  query launches($missionName: String) {
+    launches(find: { mission_name: $missionName }) {
       launch_date_local
       mission_name
       links {

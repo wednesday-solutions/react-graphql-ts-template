@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { colors } from '@app/themes';
 
 const GlobalStyle = createGlobalStyle`
   html,
@@ -18,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #app {
-    background-color: #fafafa;
+    background-color: ${colors.secondaryText};
     min-height: 100%;
     min-width: 100%;
   }

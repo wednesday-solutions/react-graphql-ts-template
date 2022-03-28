@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card } from 'antd';
-import T from '@components/T';
-import If from '@components/If';
+import { T, If } from '@components';
 
 const CustomCard = styled(Card)`
   && {

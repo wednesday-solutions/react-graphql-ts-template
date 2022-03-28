@@ -1,33 +1,32 @@
-import { Launch } from '@app/containers/HomeContainer';
-import ApolloClient, { DocumentNode, InMemoryCache, QueryOptions } from 'apollo-boost';
+import ApolloClient, { DocumentNode, InMemoryCache } from 'apollo-boost';
+import { camelCase } from 'lodash';
+import { mapKeysDeep } from '.';
 
 export const client = new ApolloClient({
   uri: 'https://api.spacex.land/graphql',
   cache: new InMemoryCache()
 });
 
-interface responseData {
-  data: Launch | null;
-  ok: boolean | null;
-  error: Object | null;
+interface QueryReponse<Data> {
+  data?: Data;
+  error?: any;
+  ok: boolean;
 }
 
-export const getQueryResponse = (query: DocumentNode, variables?: QueryOptions['variables']) => {
-  const responseData: responseData = {
-    data: null,
-    error: null,
-    ok: false
-  };
+export const getQueryResponse = <Data, Variables>(
+  query: DocumentNode,
+  variables?: Variables
+): Promise<QueryReponse<Data>> => {
   return client
-    .query<responseData>({ query: query, variables })
+    .query<Data, Variables>({ query: query, variables })
     .then((res) => {
       if (res.errors) {
-        return { ...responseData, error: res.errors };
+        return { error: res.errors, ok: false };
       } else {
-        return { ...responseData, data: res, ok: true };
+        return { data: mapKeysDeep(res.data, camelCase), ok: true };
       }
     })
     .catch((err) => {
-      return { ...responseData, error: err };
+      return { error: err, ok: false };
     });
 };

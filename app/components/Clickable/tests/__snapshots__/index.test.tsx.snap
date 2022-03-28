@@ -8,7 +8,7 @@ exports[`<Clickable /> component tests should render and match the snapshot 1`] 
       data-testid="clickable"
     >
       <p
-        class="T__StyledText-gcrjip-0 fIysFh"
+        class="T__StyledText-gcrjip-0 cSxVIW"
         data-testid="t"
       >
         List of launches

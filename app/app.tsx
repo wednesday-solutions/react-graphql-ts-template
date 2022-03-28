@@ -19,8 +19,8 @@ import App from '@containers/App';
 
 // Import Language Provider
 import LanguageProvider from '@containers/LanguageProvider';
-import ScrollToTop from '@components/ScrollToTop';
 import ErrorBoundary from '@components/ErrorBoundary';
+import ScrollToTop from '@components/ScrollToTop';
 // Load the favicon and the .htaccess file
 /* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';

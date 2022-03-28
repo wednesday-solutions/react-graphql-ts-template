@@ -4,5 +4,9 @@
   "get_launch_details": "Get details of launches by Spacex",
   "wednesday_solutions": "Wednesday Solutions",
   "launches_list": "List of launches",
-  "something_went_wrong": "Something went wrong"
+  "something_went_wrong": "Something went wrong",
+  "mission_name_unavailable": "Mission name unavailable",
+  "launch_date_unavailable": "Launch date unavailable",
+  "launch_links_unavailable": "Launch links unavailable",
+  "launch_wiki_unavailable": "Launch wiki link unavailable"
 }

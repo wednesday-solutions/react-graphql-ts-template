@@ -6,12 +6,14 @@ import {
   selectLoading
 } from '../selectors';
 import { initialState } from '../reducer';
+import { RootState } from '@app/configureStore';
+import { Launch } from '..';
 describe('HomeContainer selector tests', () => {
-  let mockedState;
-  let launchQuery;
-  let launchData;
-  let launchListError;
-  let loading;
+  let mockedState: RootState;
+  let launchQuery: string;
+  let launchData: { launches?: Partial<Launch>[] };
+  let launchListError: Object;
+  let loading: boolean;
 
   beforeEach(() => {
     launchData = {

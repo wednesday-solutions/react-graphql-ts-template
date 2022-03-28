@@ -42,7 +42,8 @@ export const renderProvider = (children: React.ReactNode, history?: History) => 
   );
 };
 export const timeout = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-export const apiResponseGenerator = <Data,>(ok: boolean, data: Data) => ({
+export const apiResponseGenerator = <Data,>(ok: boolean, data: Data, error?: object) => ({
   ok,
-  data
+  data,
+  error
 });

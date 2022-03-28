@@ -12,3 +12,7 @@ export const GET_LAUNCHES = gql`
     }
   }
 `;
+
+export interface LaunchesQueryVariables {
+  missionName: string;
+}

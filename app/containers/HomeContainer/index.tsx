@@ -1,4 +1,4 @@
-import React, { useEffect, memo } from 'react';
+import React, { useEffect, memo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -6,65 +6,109 @@ import { AnyAction, compose } from 'redux';
 import debounce from 'lodash/debounce';
 import isEmpty from 'lodash/isEmpty';
 import styled from 'styled-components';
-import { injectIntl, IntlShape } from 'react-intl';
 import { injectSaga } from 'redux-injectors';
-import { Card, Input } from 'antd';
+import { Button, Input, Select } from 'antd';
 import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
 import { homeContainerCreators } from './reducer';
 import homeContainerSaga from './saga';
-import { ErrorHandler } from '@app/components/ErrorHandler';
-import { LaunchList } from '@app/components/LaunchList';
+import { ErrorHandler } from '@components/ErrorHandler';
+import { LaunchList } from '@components/LaunchList';
+import history from '@app/utils/history';
+import arrowUp from '@images/ArrowUp.svg';
+import arrowDown from '@images/ArrowDown.svg';
+import arrowUpDown from '@images/ArrowUpDown.svg';
+import { colors } from '@app/themes';
 
 const { Search } = Input;
-const CustomCard = styled(Card)`
-  && {
-    margin: 20px 0;
-    color: ${(props) => props.color};
-  }
-`;
+
 const Container = styled.div`
   && {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
+    padding: 1rem;
   }
 `;
 
+const CustomHeader = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+`;
+
+const SortSelect = styled(Select)`
+  && {
+    width: 9.5rem;
+    background-color: #fff;
+    .ant-select-selection-item {
+      color: ${colors.secondaryText};
+    }
+  }
+`;
+
+const CustomFooter = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+`;
+
 export interface Launch {
-  mission_name: string;
-  launch_date_local: string;
+  missionName: string;
+  launchDateLocal: string;
   links: {
     wikipedia: string;
-    flick_images: Array<string>;
+    flickrImages: Array<string>;
   };
 }
 
-interface HomeContainerProps {
-  dispatchLaunchList: Function;
-  dispatchClearLaunchList: Function;
-  launchData: {
-    data: Launch;
-  };
-  launchListError: string;
-  intl: IntlShape;
-  loading: boolean;
-  launchQuery: string;
+export interface LaunchData {
+  launches?: Launch[];
 }
+
+export interface HomeContainerProps {
+  dispatchLaunchList: (missionName?: string) => void;
+  launchQuery: string;
+  launchData?: LaunchData;
+  launchListError?: string;
+  loading: boolean;
+}
+
+type Sort = 'asc' | 'desc' | 'default';
+
+const LAUNCH_PER_PAGE = 6;
 
 export function HomeContainer({
   dispatchLaunchList,
-  dispatchClearLaunchList,
-  intl,
   loading,
   launchData,
   launchQuery,
   launchListError
-}: HomeContainerProps | any) {
+}: HomeContainerProps) {
+  const [launches, setLaunches] = useState(launchData);
+  const [dateSort, setDateSort] = useState<Sort>('default');
+  const page = +(new URLSearchParams(window.location.search).get('page') || 1);
+
   useEffect(() => {
-    dispatchClearLaunchList();
     dispatchLaunchList();
   }, []);
+
+  useEffect(() => {
+    if (!launchData?.launches) {
+      return;
+    }
+    const sortedLaunches = launchData.launches.slice();
+    switch (dateSort) {
+      case 'asc':
+        sortedLaunches.sort((a, b) => +new Date(a.launchDateLocal) - +new Date(b.launchDateLocal));
+        break;
+      case 'desc':
+        sortedLaunches.sort((a, b) => +new Date(b.launchDateLocal) - +new Date(a.launchDateLocal));
+        break;
+    }
+    const offset = (page - 1) * LAUNCH_PER_PAGE;
+    setLaunches({ launches: sortedLaunches.slice(offset, offset + 6) });
+  }, [dateSort]);
 
   const handleOnChange = (rName: string) => {
     if (!isEmpty(rName)) {
@@ -76,30 +120,73 @@ export function HomeContainer({
 
   const debouncedHandleOnChange = debounce(handleOnChange, 200);
 
+  const clearSort = () => setDateSort('default');
+
+  const handlePrev = () => {
+    history.push({ pathname: '/', search: `?page=${page - 1}` });
+  };
+
+  const handleNext = () => {
+    history.push({ pathname: '/', search: `?page=${page + 1}` });
+  };
+
   return (
     <Container>
-      <CustomCard title={intl.formatMessage({ id: 'spacex_search' })} />
-      <Search
-        data-testid="search-bar"
-        defaultValue={launchQuery}
-        type="text"
-        onChange={(evt) => debouncedHandleOnChange(evt.target.value)}
-        onSearch={(searchText) => debouncedHandleOnChange(searchText)}
-      />
-      <LaunchList launchData={launchData} loading={loading} />
+      <CustomHeader>
+        <Search
+          data-testid="search-bar"
+          defaultValue={launchQuery}
+          type="text"
+          onChange={(evt) => debouncedHandleOnChange(evt.target.value)}
+          onSearch={(searchText) => debouncedHandleOnChange(searchText)}
+        />
+        <Button disabled={dateSort === 'default'} onClick={clearSort}>
+          CLEAR SORT
+        </Button>
+        <SortSelect
+          data-testid="sort-select"
+          id="sort-select"
+          suffixIcon={
+            dateSort === 'default' ? (
+              <img src={arrowUpDown} alt="chevron-up-down" />
+            ) : dateSort === 'asc' ? (
+              <img src={arrowUp} alt="chevron-up" />
+            ) : (
+              <img src={arrowDown} alt="chevron-down" />
+            )
+          }
+          value={dateSort}
+          onChange={(value) => setDateSort(value as Sort)}
+        >
+          <Select.Option value="default" disabled>
+            SORT DATE
+          </Select.Option>
+          <Select.Option value="desc">DESC</Select.Option>
+          <Select.Option value="asc">ASC</Select.Option>
+        </SortSelect>
+      </CustomHeader>
+      <LaunchList launchData={launches} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />
+      <CustomFooter>
+        <Button type="primary" onClick={handlePrev} disabled={!launchData?.launches?.length || loading || page === 1}>
+          PREV
+        </Button>
+        <Button
+          type="primary"
+          onClick={handleNext}
+          disabled={!launchData?.launches?.length || loading || page >= launchData.launches.length / LAUNCH_PER_PAGE}
+        >
+          NEXT
+        </Button>
+      </CustomFooter>
     </Container>
   );
 }
 
 HomeContainer.propTypes = {
   dispatchLaunchList: PropTypes.func,
-  dispatchClearLaunchList: PropTypes.func,
-  intl: PropTypes.object,
   launchData: PropTypes.shape({
-    totalCount: PropTypes.number,
-    incompleteResults: PropTypes.bool,
-    items: PropTypes.array
+    launches: PropTypes.array
   }),
   launchListError: PropTypes.string,
   history: PropTypes.object,
@@ -108,8 +195,6 @@ HomeContainer.propTypes = {
 };
 
 HomeContainer.defaultProps = {
-  maxwidth: 500,
-  padding: 20,
   launchData: {},
   launchListError: null
 };
@@ -122,20 +207,14 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
-  const { requestGetLaunchList, clearLaunchList } = homeContainerCreators;
+  const { requestGetLaunchList } = homeContainerCreators;
   return {
-    dispatchLaunchList: (launchQuery: string) => dispatch(requestGetLaunchList(launchQuery)),
-    dispatchClearLaunchList: () => dispatch(clearLaunchList())
+    dispatchLaunchList: (missionName?: string) => dispatch(requestGetLaunchList(missionName))
   };
 }
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  injectIntl,
-  withConnect,
-  memo,
-  injectSaga({ key: 'homeContainer', saga: homeContainerSaga })
-)(HomeContainer);
+export default compose(withConnect, memo, injectSaga({ key: 'homeContainer', saga: homeContainerSaga }))(HomeContainer);
 
-export const HomeContainerTest = compose(injectIntl)(HomeContainer);
+export const HomeContainerTest = HomeContainer;

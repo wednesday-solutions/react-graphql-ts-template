@@ -7,15 +7,17 @@ import { GET_LAUNCHES } from './queries';
 
 const { REQUEST_GET_LAUNCH_LIST }: DefaultActionTypes = homeContainerTypes;
 const { successGetLaunchList, failureGetLaunchList } = homeContainerCreators;
-export function* getLaunchList(
-  action: any
-): Generator<any, any, { data: { launches: Launch; errors: Object }; ok: boolean }> {
+export function* getLaunchList(action: {
+  launchQuery?: string;
+  type: string;
+}): Generator<any, any, { data?: { launches?: Launch[] }; error?: any; ok: boolean }> {
   const response = yield call(getQueryResponse, GET_LAUNCHES, { missionName: action?.launchQuery });
-  const { data, ok } = response;
+
+  const { data, ok, error } = response;
   if (ok) {
     yield put(successGetLaunchList(data));
   } else {
-    yield put(failureGetLaunchList(data));
+    yield put(failureGetLaunchList(error));
   }
 }
 // Individual exports for testing

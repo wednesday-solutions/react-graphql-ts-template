@@ -38,8 +38,7 @@ module.exports = (options) => ({
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
-            options: options.babelQuery
+            loader: 'babel-loader'
           }
         ]
       },
@@ -66,7 +65,11 @@ module.exports = (options) => ({
               lessOptions: {
                 javascriptEnabled: true,
                 modifyVars: {
-                  'primary-color': colors.secondary
+                  'primary-color': colors.secondary,
+                  'btn-font-weight': 600,
+                  'btn-primary-bg': colors.primary,
+                  'btn-primary-color': colors.secondaryText,
+                  'select-background': colors.primary
                 }
               },
               implementation: require('less')

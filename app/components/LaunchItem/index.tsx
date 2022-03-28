@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import If from '@components/If';
 import { T } from '@components/T';
-import isEmpty from 'lodash/isEmpty';
+import isEmpty from 'lodash-es/isEmpty';
 import { colors } from '@app/themes';
 
 const LaunchCard = styled(Card)`

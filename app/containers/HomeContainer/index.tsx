@@ -1,4 +1,4 @@
-import React, { useEffect, memo, ChangeEvent, useState } from 'react';
+import React, { useEffect, memo, ChangeEvent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -10,7 +10,6 @@ import styled from 'styled-components';
 import { injectSaga } from 'redux-injectors';
 import { Button, Input, Select } from 'antd';
 import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
-import history from '@app/utils/history';
 import arrowUp from '@images/ArrowUp.svg';
 import arrowDown from '@images/ArrowDown.svg';
 import arrowUpDown from '@images/ArrowUpDown.svg';
@@ -19,6 +18,7 @@ import homeContainerSaga from './saga';
 import { LaunchList, ErrorHandler } from '@components';
 import { colors } from '@app/themes';
 import { injectIntl, IntlShape } from 'react-intl';
+import useSortPaginate from './useSortPaginate';
 
 const Container = styled.div`
   && {
@@ -86,12 +86,6 @@ export interface HomeContainerProps {
 
 export const LAUNCH_PER_PAGE = 6;
 
-function getSearchWithParam(param: string, value: string | number) {
-  const urlParams = new URLSearchParams(history.location.search);
-  urlParams.set(param, value as string);
-  return urlParams.toString();
-}
-
 export function HomeContainer({
   dispatchLaunchList,
   loading,
@@ -100,36 +94,11 @@ export function HomeContainer({
   launchQuery,
   launchListError
 }: HomeContainerProps) {
-  const [launches, setLaunches] = useState<LaunchData>({});
-  const dateSort = new URLSearchParams(window.location.search).get('sort') || 'default';
-  const page = +(new URLSearchParams(window.location.search).get('page') || 1);
+  const { launches, dateSort, hasNextPage, hasPrevPage, handleClearSort, handleDateSort, handleNext, handlePrev } =
+    useSortPaginate(launchData);
 
   useEffect(() => {
     dispatchLaunchList();
-  }, []);
-
-  useEffect(() => {
-    if (!launchData?.launches) {
-      return;
-    }
-    const sortedLaunches = launchData.launches.slice();
-    switch (dateSort) {
-      case 'asc':
-        sortedLaunches.sort((a, b) => a.launchDateUnix - b.launchDateUnix);
-        break;
-      case 'desc':
-        sortedLaunches.sort((a, b) => b.launchDateUnix - a.launchDateUnix);
-        break;
-    }
-    const offset = (page - 1) * LAUNCH_PER_PAGE;
-    const paginatedLaunches = sortedLaunches.slice(offset, offset + LAUNCH_PER_PAGE);
-    setLaunches({ launches: paginatedLaunches });
-  }, [launchData]);
-
-  useEffect(() => {
-    if (!launchQuery && !launchData?.launches) {
-      dispatchLaunchList();
-    }
   }, []);
 
   const handleSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
@@ -149,20 +118,6 @@ export function HomeContainer({
       }}
     />
   );
-
-  const handleClearSort = () => history.push({ search: getSearchWithParam('sort', 'default') });
-
-  const handleDateSort = (value: string) => {
-    history.push({ search: getSearchWithParam('sort', value) });
-  };
-
-  const handlePrev = () => {
-    history.push({ search: getSearchWithParam('page', page - 1) });
-  };
-
-  const handleNext = () => {
-    history.push({ search: getSearchWithParam('page', page + 1) });
-  };
 
   return (
     <Container>
@@ -205,20 +160,10 @@ export function HomeContainer({
       <LaunchList launchData={launches} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />
       <CustomFooter>
-        <Button
-          data-testid="prev-btn"
-          type="primary"
-          onClick={handlePrev}
-          disabled={!launchData?.launches?.length || loading || page === 1}
-        >
+        <Button data-testid="prev-btn" type="primary" onClick={handlePrev} disabled={loading || !hasPrevPage}>
           PREV
         </Button>
-        <Button
-          data-testid="next-btn"
-          type="primary"
-          onClick={handleNext}
-          disabled={!launchData?.launches?.length || loading || page >= launchData.launches.length / LAUNCH_PER_PAGE}
-        >
+        <Button data-testid="next-btn" type="primary" onClick={handleNext} disabled={loading || !hasNextPage}>
           NEXT
         </Button>
       </CustomFooter>

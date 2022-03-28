@@ -38,6 +38,7 @@ describe('HomeContainer saga tests', () => {
         {
           missionName: 'sampleName',
           launchDateLocal: 'some date',
+          launchDateUnix: 123121232,
           links: {
             wikipedia: 'wiki link',
             flickrImages: ['image1', 'image2']

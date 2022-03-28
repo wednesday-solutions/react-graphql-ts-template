@@ -4,6 +4,7 @@ export const GET_LAUNCHES = gql`
   query launches($missionName: String) {
     launches(find: { mission_name: $missionName }) {
       launch_date_local
+      launch_date_unix
       mission_name
       links {
         wikipedia

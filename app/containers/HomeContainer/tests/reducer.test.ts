@@ -1,3 +1,4 @@
+import { LaunchData } from '..';
 import { homeContainerReducer, initialState, homeContainerTypes } from '../reducer';
 
 describe('HomContainer reducer tests', () => {
@@ -31,11 +32,12 @@ describe('HomContainer reducer tests', () => {
   });
 
   it('should ensure that the launch data is present  when SUCCESS_GET_LAUNCH_LIST is dispatched', () => {
-    const launchData = {
+    const launchData: LaunchData = {
       launches: [
         {
           missionName: 'Sample Launch',
           launchDateLocal: 'some date',
+          launchDateUnix: 123123123,
           links: {
             wikipedia: 'wiki link',
             flickrImages: ['image1', 'image2']

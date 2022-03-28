@@ -64,6 +64,7 @@ const CustomFooter = styled.div`
 export interface Launch {
   missionName: string;
   launchDateLocal: string;
+  launchDateUnix: number;
   links: {
     wikipedia: string;
     flickrImages: Array<string>;
@@ -83,9 +84,13 @@ export interface HomeContainerProps {
   intl: IntlShape;
 }
 
-type Sort = 'asc' | 'desc' | 'default';
-
 export const LAUNCH_PER_PAGE = 6;
+
+function getSearchWithParam(param: string, value: string | number) {
+  const urlParams = new URLSearchParams(history.location.search);
+  urlParams.set(param, value as string);
+  return urlParams.toString();
+}
 
 export function HomeContainer({
   dispatchLaunchList,
@@ -96,7 +101,7 @@ export function HomeContainer({
   launchListError
 }: HomeContainerProps) {
   const [launches, setLaunches] = useState<LaunchData>({});
-  const [dateSort, setDateSort] = useState<Sort>('default');
+  const dateSort = new URLSearchParams(window.location.search).get('sort') || 'default';
   const page = +(new URLSearchParams(window.location.search).get('page') || 1);
 
   useEffect(() => {
@@ -110,16 +115,16 @@ export function HomeContainer({
     const sortedLaunches = launchData.launches.slice();
     switch (dateSort) {
       case 'asc':
-        sortedLaunches.sort((a, b) => +new Date(a.launchDateLocal) - +new Date(b.launchDateLocal));
+        sortedLaunches.sort((a, b) => a.launchDateUnix - b.launchDateUnix);
         break;
       case 'desc':
-        sortedLaunches.sort((a, b) => +new Date(b.launchDateLocal) - +new Date(a.launchDateLocal));
+        sortedLaunches.sort((a, b) => b.launchDateUnix - a.launchDateUnix);
         break;
     }
     const offset = (page - 1) * LAUNCH_PER_PAGE;
     const paginatedLaunches = sortedLaunches.slice(offset, offset + LAUNCH_PER_PAGE);
     setLaunches({ launches: paginatedLaunches });
-  }, [launchData, dateSort]);
+  }, [launchData]);
 
   useEffect(() => {
     if (!launchQuery && !launchData?.launches) {
@@ -127,7 +132,7 @@ export function HomeContainer({
     }
   }, []);
 
-  const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const rName = e.target.value;
     if (!isEmpty(rName)) {
       dispatchLaunchList(rName);
@@ -145,14 +150,18 @@ export function HomeContainer({
     />
   );
 
-  const clearSort = () => setDateSort('default');
+  const handleClearSort = () => history.push({ search: getSearchWithParam('sort', 'default') });
+
+  const handleDateSort = (value: string) => {
+    history.push({ search: getSearchWithParam('sort', value) });
+  };
 
   const handlePrev = () => {
-    history.push({ search: `?page=${page - 1}` });
+    history.push({ search: getSearchWithParam('page', page - 1) });
   };
 
   const handleNext = () => {
-    history.push({ search: `?page=${page + 1}` });
+    history.push({ search: getSearchWithParam('page', page + 1) });
   };
 
   return (
@@ -164,9 +173,9 @@ export function HomeContainer({
           defaultValue={launchQuery}
           type="text"
           placeholder={intl.formatMessage({ id: 'placeholder_text' })}
-          onChange={handleOnChange}
+          onChange={handleSearch}
         />
-        <Button disabled={dateSort === 'default'} onClick={clearSort} data-testid="clear-sort">
+        <Button disabled={dateSort === 'default'} onClick={handleClearSort} data-testid="clear-sort">
           CLEAR SORT
         </Button>
         <SortSelect
@@ -182,7 +191,7 @@ export function HomeContainer({
             )
           }
           value={dateSort}
-          onChange={(value) => setDateSort(value as Sort)}
+          onChange={handleDateSort as any}
         >
           <Select.Option data-testid="default-option" value="default" disabled>
             SORT BY DATE

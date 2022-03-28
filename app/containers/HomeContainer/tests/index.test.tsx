@@ -30,60 +30,103 @@ describe('<HomeContainer /> tests', () => {
     launchData = {
       launches: [
         {
-          missionName: 'Mission 1',
-          launchDateLocal: '2020-10-20',
+          missionName: 'Thaicom 6',
           links: {
-            flickrImages: ['image1'],
-            wikipedia: 'some wiki'
-          }
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/Thaicom_6'
+          },
+          launchDateLocal: '2014-01-06T14:06:00-04:00',
+          launchDateUnix: 1389031560
         },
         {
-          missionName: 'Mission 2',
-          launchDateLocal: '2021-11-20',
+          missionName: 'AsiaSat 6',
           links: {
-            flickrImages: ['image1'],
-            wikipedia: 'some wiki'
-          }
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/AsiaSat_6'
+          },
+          launchDateLocal: '2014-09-07T01:00:00-04:00',
+          launchDateUnix: 1410066000
         },
         {
-          missionName: 'Mission 3',
-          launchDateLocal: '2000-10-20',
+          missionName: 'OG-2 Mission 2',
           links: {
-            flickrImages: ['image1'],
-            wikipedia: 'some wiki'
-          }
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/Falcon_9_flight_20'
+          },
+          launchDateLocal: '2015-12-22T21:29:00-04:00',
+          launchDateUnix: 1450747740
         },
         {
-          missionName: 'Mission 4',
-          launchDateLocal: '1991-10-20',
+          missionName: 'FalconSat',
           links: {
-            flickrImages: ['image1'],
-            wikipedia: 'some wiki'
-          }
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/DemoSat'
+          },
+          launchDateLocal: '2006-03-25T10:30:00+12:00',
+          launchDateUnix: 1143239400
         },
         {
-          missionName: 'Mission 5',
-          launchDateLocal: '1998-01-20',
+          missionName: 'CRS-1',
           links: {
-            flickrImages: ['image1'],
-            wikipedia: 'some wiki'
-          }
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/SpaceX_CRS-1'
+          },
+          launchDateLocal: '2012-10-08T20:35:00-04:00',
+          launchDateUnix: 1349656500
         },
         {
-          missionName: 'Mission 6',
-          launchDateLocal: '1850-11-02',
+          missionName: 'CASSIOPE',
           links: {
-            flickrImages: ['image1'],
-            wikipedia: 'some wiki'
-          }
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/CASSIOPE'
+          },
+          launchDateLocal: '2013-09-29T09:00:00-07:00',
+          launchDateUnix: 1380470400
         },
         {
-          missionName: 'Mission 7',
-          launchDateLocal: '2017-90-22',
+          missionName: 'ABS-3A / Eutelsat 115W B',
           links: {
-            flickrImages: ['image1'],
-            wikipedia: 'some wiki'
-          }
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/ABS-3A'
+          },
+          launchDateLocal: '2015-03-02T23:50:00-04:00',
+          launchDateUnix: 1425268200
+        },
+        {
+          missionName: 'COTS 1',
+          links: {
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/SpaceX_COTS_Demo_Flight_1'
+          },
+          launchDateLocal: '2010-12-08T11:43:00-04:00',
+          launchDateUnix: 1291822980
+        },
+        {
+          missionName: 'TürkmenÄlem 52°E / MonacoSAT',
+          links: {
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/T%C3%BCrkmen%C3%84lem_52%C2%B0E_/_MonacoSAT'
+          },
+          launchDateLocal: '2015-04-27T19:03:00-04:00',
+          launchDateUnix: 1430175780
+        },
+        {
+          missionName: 'CRS-11',
+          links: {
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/SpaceX_CRS-11'
+          },
+          launchDateLocal: '2017-06-03T17:07:00-04:00',
+          launchDateUnix: 1496524020
+        },
+        {
+          missionName: 'Iridium NEXT Mission 1',
+          links: {
+            flickrImages: ['image1', 'image2'],
+            wikipedia: 'https://en.wikipedia.org/wiki/Iridium_satellite_constellation#Next-generation_constellation'
+          },
+          launchDateLocal: '2017-01-14T10:54:00-07:00',
+          launchDateUnix: 1484416440
         }
       ]
     };
@@ -127,6 +170,7 @@ describe('<HomeContainer /> tests', () => {
         {
           missionName: 'Sample Mission',
           launchDateLocal: 'some date',
+          launchDateUnix: 12312313,
           links: {
             wikipedia: 'sample link',
             flickrImages: ['sample image']
@@ -166,14 +210,20 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should sort the launches by date in ASC', async () => {
-    const { getByText, getByRole, getAllByTestId } = renderProvider(
+    const { getByText, getByRole, rerender, getAllByTestId } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('ASC'));
+    expect(history.location.search).toContain('sort=asc');
+    renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+      history,
+      rerender as any
+    );
     await timeout(500);
     const ascMissions = launchData!
-      .launches!.sort((a, b) => +new Date(a.launchDateLocal) - +new Date(b.launchDateLocal))
+      .launches!.sort((a, b) => a.launchDateUnix - b.launchDateUnix)
       .slice(0, LAUNCH_PER_PAGE)
       .map((l) => l.missionName);
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
@@ -181,31 +231,36 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should sort the launches by date in DESC', async () => {
-    const { getByText, getByRole, getAllByTestId } = renderProvider(
+    const { getByText, getByRole, rerender, getAllByTestId } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('DESC'));
-    await timeout(500);
-    const ascMissions = launchData!
-      .launches!.sort((a, b) => +new Date(b.launchDateLocal) - +new Date(a.launchDateLocal))
+    expect(history.location.search).toContain('sort=desc');
+    renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+      history,
+      rerender as any
+    );
+    const descMissions = launchData!
+      .launches!.sort((a, b) => b.launchDateUnix - a.launchDateUnix)
       .slice(0, LAUNCH_PER_PAGE)
       .map((l) => l.missionName);
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
-    expect(ascMissions).toEqual(missionsInDom);
+    expect(descMissions).toEqual(missionsInDom);
   });
 
   it('should push the user to next page when clicked on next button', () => {
     const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
     fireEvent.click(getByTestId('next-btn'));
-    expect(history.location.search).toBe('?page=2');
+    expect(history.location.search).toContain('page=2');
   });
 
   it('should push the user to prev page when clicked on prev button', () => {
     history.location.search = '?page=2';
     const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
     fireEvent.click(getByTestId('prev-btn'));
-    expect(history.location.search).toBe('?page=1');
+    expect(history.location.search).toContain('page=1');
   });
 
   it('should clear sort when clicked on clear sort', () => {

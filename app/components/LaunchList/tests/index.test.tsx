@@ -15,6 +15,7 @@ describe('<LaunchList />', () => {
     launches: [
       {
         launchDateLocal: '2014-01-06T14:06:00-04:00',
+        launchDateUnix: 123123123,
         missionName: 'Thaicom 6',
         links: {
           wikipedia: 'https://en.wikipedia.org/wiki/Thaicom_6',

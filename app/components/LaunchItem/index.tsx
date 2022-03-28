@@ -7,6 +7,7 @@ import If from '@components/If';
 import { T } from '@components/T';
 import isEmpty from 'lodash-es/isEmpty';
 import { colors } from '@app/themes';
+import { GlobalOutlined } from '@ant-design/icons';
 
 const LaunchCard = styled(Card)`
   && {
@@ -19,6 +20,8 @@ const LaunchCard = styled(Card)`
 const WikiLink = styled(Button)`
   && {
     padding: 0;
+    display: flex;
+    align-items: center;
     color: ${colors.text};
   }
 `;
@@ -34,8 +37,8 @@ function LaunchItem({ missionName, launchDateLocal, links }: Launch) {
       </If>
       <If condition={!isEmpty(links)} otherwise={<T id="launch_links_unavailable" />}>
         <If condition={!isEmpty(links.wikipedia)} otherwise={<T id="launch_wiki_unavailable" />}>
-          <WikiLink type="link" rel="noreferrer" target="_blank" href={links.wikipedia}>
-            Wiki Link
+          <WikiLink type="link" rel="noreferrer" target="_blank" href={links.wikipedia} icon={<GlobalOutlined />}>
+            Wikipedia
           </WikiLink>
         </If>
       </If>

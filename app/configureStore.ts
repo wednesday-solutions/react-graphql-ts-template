@@ -16,7 +16,7 @@ const persistConfig = {
   version: 1,
   transforms: [immutableTransform()],
   key: 'root',
-  blacklist: ['homeContainer.launchQuery'],
+  blacklist: ['homeContainer'],
   storage
 };
 

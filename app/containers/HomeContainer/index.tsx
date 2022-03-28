@@ -64,7 +64,7 @@ export function HomeContainer({
   launchListError
 }: HomeContainerProps) {
   useEffect(() => {
-    if (!launchQuery && !launchData) {
+    if (!launchQuery && !launchData?.launches) {
       dispatchLaunchList();
     }
   }, []);

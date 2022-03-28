@@ -1,17 +1,12 @@
 import React from 'react';
 import { timeout, renderProvider } from '@utils/testUtils';
-import {
-  HomeContainerProps,
-  HomeContainerTest as HomeContainer,
-  LaunchData,
-  LAUNCH_PER_PAGE,
-  mapDispatchToProps
-} from '../index';
+import { HomeContainerProps, HomeContainerTest as HomeContainer, LaunchData, mapDispatchToProps } from '../index';
 import { homeContainerTypes } from '../reducer';
 import { fireEvent } from 'react-testing-library';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';
 import history from '@app/utils/history';
+import { LAUNCH_PER_PAGE, sortPaginate } from '../useSortPaginate';
 
 describe('<HomeContainer /> tests', () => {
   let submitSpy: jest.Mock;
@@ -222,10 +217,7 @@ describe('<HomeContainer /> tests', () => {
       rerender as any
     );
     await timeout(500);
-    const ascMissions = launchData!
-      .launches!.sort((a, b) => a.launchDateUnix - b.launchDateUnix)
-      .slice(0, LAUNCH_PER_PAGE)
-      .map((l) => l.missionName);
+    const ascMissions = sortPaginate(launchData.launches!, 'asc', 1).map((l) => l.missionName);
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
     expect(ascMissions).toEqual(missionsInDom);
   });
@@ -242,12 +234,25 @@ describe('<HomeContainer /> tests', () => {
       history,
       rerender as any
     );
-    const descMissions = launchData!
-      .launches!.sort((a, b) => b.launchDateUnix - a.launchDateUnix)
-      .slice(0, LAUNCH_PER_PAGE)
-      .map((l) => l.missionName);
+    const descMissions = sortPaginate(launchData.launches!, 'desc', 1).map((l) => l.missionName);
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
     expect(descMissions).toEqual(missionsInDom);
+  });
+
+  it('should push to first page if no data found in the current page', async () => {
+    history.location.search = '?page=3';
+    const { rerender } = renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+      history
+    );
+    expect(history.location.search).toContain('page=1');
+    renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+      history,
+      rerender as any
+    );
+    await timeout(500);
+    expect(history.location.search).toContain('page=1');
   });
 
   it('should push the user to next page when clicked on next button', () => {
@@ -279,6 +284,6 @@ describe('<HomeContainer /> tests', () => {
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
     const nonSortedMissions = launchData!.launches!.slice(0, LAUNCH_PER_PAGE).map((l) => l.missionName);
     expect(missionsInDom).toEqual(nonSortedMissions);
-    expect(history.location.search).toContain('sort=default');
+    expect(history.location.search).not.toContain('sort=desc');
   });
 });

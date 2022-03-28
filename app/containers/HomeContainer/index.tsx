@@ -84,8 +84,6 @@ export interface HomeContainerProps {
   intl: IntlShape;
 }
 
-export const LAUNCH_PER_PAGE = 6;
-
 export function HomeContainer({
   dispatchLaunchList,
   loading,

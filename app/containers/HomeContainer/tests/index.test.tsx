@@ -263,15 +263,22 @@ describe('<HomeContainer /> tests', () => {
     expect(history.location.search).toContain('page=1');
   });
 
-  it('should clear sort when clicked on clear sort', () => {
-    const { getByText, getByRole, getByTestId, getAllByTestId } = renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
+  it('should clear sort when clicked on clear sort button', () => {
+    const { getByText, getByRole, getByTestId, getAllByTestId, rerender } = renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+      history
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('DESC'));
+    renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+      history,
+      rerender as any
+    );
     fireEvent.click(getByTestId('clear-sort'));
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
     const nonSortedMissions = launchData!.launches!.slice(0, LAUNCH_PER_PAGE).map((l) => l.missionName);
     expect(missionsInDom).toEqual(nonSortedMissions);
+    expect(history.location.search).toContain('sort=default');
   });
 });

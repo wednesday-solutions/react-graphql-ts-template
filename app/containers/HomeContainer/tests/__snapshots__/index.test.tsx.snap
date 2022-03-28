@@ -46,6 +46,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
         </span>
         <button
           class="ant-btn"
+          data-testid="clear-sort"
           disabled=""
           type="button"
         >
@@ -126,6 +127,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
       >
         <button
           class="ant-btn ant-btn-primary"
+          data-testid="prev-btn"
           disabled=""
           type="button"
         >
@@ -135,6 +137,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
         </button>
         <button
           class="ant-btn ant-btn-primary"
+          data-testid="next-btn"
           disabled=""
           type="button"
         >

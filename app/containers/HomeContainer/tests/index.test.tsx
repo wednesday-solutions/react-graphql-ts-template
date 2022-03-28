@@ -1,10 +1,17 @@
 import React from 'react';
 import { timeout, renderProvider } from '@utils/testUtils';
-import { HomeContainerProps, HomeContainerTest as HomeContainer, LaunchData, mapDispatchToProps } from '../index';
+import {
+  HomeContainerProps,
+  HomeContainerTest as HomeContainer,
+  LaunchData,
+  LAUNCH_PER_PAGE,
+  mapDispatchToProps
+} from '../index';
 import { homeContainerTypes } from '../reducer';
 import { fireEvent } from 'react-testing-library';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';
+import history from '@app/utils/history';
 
 describe('<HomeContainer /> tests', () => {
   let submitSpy: jest.Mock;
@@ -49,6 +56,30 @@ describe('<HomeContainer /> tests', () => {
         {
           missionName: 'Mission 4',
           launchDateLocal: '1991-10-20',
+          links: {
+            flickrImages: ['image1'],
+            wikipedia: 'some wiki'
+          }
+        },
+        {
+          missionName: 'Mission 5',
+          launchDateLocal: '1998-01-20',
+          links: {
+            flickrImages: ['image1'],
+            wikipedia: 'some wiki'
+          }
+        },
+        {
+          missionName: 'Mission 6',
+          launchDateLocal: '1850-11-02',
+          links: {
+            flickrImages: ['image1'],
+            wikipedia: 'some wiki'
+          }
+        },
+        {
+          missionName: 'Mission 7',
+          launchDateLocal: '2017-90-22',
           links: {
             flickrImages: ['image1'],
             wikipedia: 'some wiki'
@@ -143,6 +174,7 @@ describe('<HomeContainer /> tests', () => {
     await timeout(500);
     const ascMissions = launchData!
       .launches!.sort((a, b) => +new Date(a.launchDateLocal) - +new Date(b.launchDateLocal))
+      .slice(0, LAUNCH_PER_PAGE)
       .map((l) => l.missionName);
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
     expect(ascMissions).toEqual(missionsInDom);
@@ -157,8 +189,34 @@ describe('<HomeContainer /> tests', () => {
     await timeout(500);
     const ascMissions = launchData!
       .launches!.sort((a, b) => +new Date(b.launchDateLocal) - +new Date(a.launchDateLocal))
+      .slice(0, LAUNCH_PER_PAGE)
       .map((l) => l.missionName);
     const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
     expect(ascMissions).toEqual(missionsInDom);
+  });
+
+  it('should push the user to next page when clicked on next button', () => {
+    const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
+    fireEvent.click(getByTestId('next-btn'));
+    expect(history.location.search).toBe('?page=2');
+  });
+
+  it('should push the user to prev page when clicked on prev button', () => {
+    history.location.search = '?page=2';
+    const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
+    fireEvent.click(getByTestId('prev-btn'));
+    expect(history.location.search).toBe('?page=1');
+  });
+
+  it('should clear sort when clicked on clear sort', () => {
+    const { getByText, getByRole, getByTestId, getAllByTestId } = renderProvider(
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
+    );
+    fireEvent.mouseDown(getByRole('combobox')!);
+    fireEvent.click(getByText('DESC'));
+    fireEvent.click(getByTestId('clear-sort'));
+    const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
+    const nonSortedMissions = launchData!.launches!.slice(0, LAUNCH_PER_PAGE).map((l) => l.missionName);
+    expect(missionsInDom).toEqual(nonSortedMissions);
   });
 });

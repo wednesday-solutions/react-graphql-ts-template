@@ -85,7 +85,7 @@ export interface HomeContainerProps {
 
 type Sort = 'asc' | 'desc' | 'default';
 
-const LAUNCH_PER_PAGE = 6;
+export const LAUNCH_PER_PAGE = 6;
 
 export function HomeContainer({
   dispatchLaunchList,
@@ -148,11 +148,11 @@ export function HomeContainer({
   const clearSort = () => setDateSort('default');
 
   const handlePrev = () => {
-    history.push({ pathname: '/', search: `?page=${page - 1}` });
+    history.push({ search: `?page=${page - 1}` });
   };
 
   const handleNext = () => {
-    history.push({ pathname: '/', search: `?page=${page + 1}` });
+    history.push({ search: `?page=${page + 1}` });
   };
 
   return (
@@ -166,7 +166,7 @@ export function HomeContainer({
           placeholder={intl.formatMessage({ id: 'placeholder_text' })}
           onChange={handleOnChange}
         />
-        <Button disabled={dateSort === 'default'} onClick={clearSort}>
+        <Button disabled={dateSort === 'default'} onClick={clearSort} data-testid="clear-sort">
           CLEAR SORT
         </Button>
         <SortSelect
@@ -196,10 +196,16 @@ export function HomeContainer({
       <LaunchList launchData={launches} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />
       <CustomFooter>
-        <Button type="primary" onClick={handlePrev} disabled={!launchData?.launches?.length || loading || page === 1}>
+        <Button
+          data-testid="prev-btn"
+          type="primary"
+          onClick={handlePrev}
+          disabled={!launchData?.launches?.length || loading || page === 1}
+        >
           PREV
         </Button>
         <Button
+          data-testid="next-btn"
           type="primary"
           onClick={handleNext}
           disabled={!launchData?.launches?.length || loading || page >= launchData.launches.length / LAUNCH_PER_PAGE}

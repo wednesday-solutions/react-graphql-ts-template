@@ -22,7 +22,4 @@ export const selectLaunchData = () =>
 export const selectLaunchListError = () =>
   createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchListError'));
 
-export const selectLaunchQuery = () =>
-  createSelector(selectHomeContainerDomain, (substate) => get(substate, 'launchQuery'));
-
 export const selectLoading = () => createSelector(selectHomeContainerDomain, (substate) => get(substate, 'loading'));

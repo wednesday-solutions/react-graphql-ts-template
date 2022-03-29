@@ -6,7 +6,6 @@ import { fireEvent } from 'react-testing-library';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';
 import history from '@app/utils/history';
-import { LAUNCH_PER_PAGE, sortPaginate } from '../useSortPaginate';
 
 describe('<HomeContainer /> tests', () => {
   let submitSpy: jest.Mock;
@@ -19,12 +18,12 @@ describe('<HomeContainer /> tests', () => {
       intl: createIntl({ locale: 'en', messages: translationMessages.en }),
       loading: true,
       dispatchLaunchList: submitSpy,
-      launchQuery: '',
       launchData: {}
     };
     launchData = {
       launches: [
         {
+          id: '1',
           missionName: 'Thaicom 6',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -34,6 +33,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1389031560
         },
         {
+          id: '1',
           missionName: 'AsiaSat 6',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -43,6 +43,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1410066000
         },
         {
+          id: '1',
           missionName: 'OG-2 Mission 2',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -52,6 +53,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1450747740
         },
         {
+          id: '1',
           missionName: 'FalconSat',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -61,6 +63,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1143239400
         },
         {
+          id: '1',
           missionName: 'CRS-1',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -70,6 +73,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1349656500
         },
         {
+          id: '1',
           missionName: 'CASSIOPE',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -79,6 +83,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1380470400
         },
         {
+          id: '1',
           missionName: 'ABS-3A / Eutelsat 115W B',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -88,6 +93,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1425268200
         },
         {
+          id: '1',
           missionName: 'COTS 1',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -97,6 +103,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1291822980
         },
         {
+          id: '1',
           missionName: 'TürkmenÄlem 52°E / MonacoSAT',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -106,6 +113,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1430175780
         },
         {
+          id: '1',
           missionName: 'CRS-11',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -115,6 +123,7 @@ describe('<HomeContainer /> tests', () => {
           launchDateUnix: 1496524020
         },
         {
+          id: '1',
           missionName: 'Iridium NEXT Mission 1',
           links: {
             flickrImages: ['image1', 'image2'],
@@ -134,18 +143,23 @@ describe('<HomeContainer /> tests', () => {
   it('should call dispatchLaunchList on page reload', async () => {
     renderProvider(<HomeContainer {...defaultProps} />);
     await timeout(500);
-    expect(submitSpy).toBeCalledWith();
+    expect(submitSpy).toBeCalled();
   });
 
   it('should validate mapDispatchToProps actions', () => {
     const dispatchLaunchListSpy = jest.fn();
+    const payload = {
+      missionName: null,
+      order: null,
+      page: 1
+    };
     const actions = {
-      dispatchLaunchList: { type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST },
+      dispatchLaunchList: { type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST, ...payload },
       dispatchClearLaunchList: { type: homeContainerTypes.CLEAR_LAUNCH_LIST }
     };
 
     const props = mapDispatchToProps(dispatchLaunchListSpy);
-    props.dispatchLaunchList();
+    props.dispatchLaunchList(payload);
     expect(dispatchLaunchListSpy).toHaveBeenCalledWith(actions.dispatchLaunchList);
   });
 
@@ -163,6 +177,7 @@ describe('<HomeContainer /> tests', () => {
     const launchData: LaunchData = {
       launches: [
         {
+          id: '1',
           missionName: 'Sample Mission',
           launchDateLocal: 'some date',
           launchDateUnix: 12312313,
@@ -183,20 +198,21 @@ describe('<HomeContainer /> tests', () => {
     expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
   });
 
-  it('should call dispatchGetLaunchList on empty change', async () => {
+  it('should delete mission_name query param from search on empty change', async () => {
     const { getByTestId } = renderProvider(
-      <HomeContainer {...defaultProps} dispatchLaunchList={submitSpy} loading={false} />
+      <HomeContainer {...defaultProps} dispatchLaunchList={submitSpy} loading={false} />,
+      history
     );
     fireEvent.change(getByTestId('search-bar'), {
       target: { value: 'a' }
     });
     await timeout(500);
-    expect(submitSpy).toBeCalledWith('a');
+    expect(history.location.search).toContain('mission_name=a');
     fireEvent.change(getByTestId('search-bar'), {
       target: { value: '' }
     });
     await timeout(500);
-    expect(submitSpy).toBeCalled();
+    expect(history.location.search).not.toContain('mission=');
   });
   it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {
     renderProvider(<HomeContainer {...defaultProps} launchData={{}} />);
@@ -205,44 +221,37 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should sort the launches by date in ASC', async () => {
-    const { getByText, getByRole, rerender, getAllByTestId } = renderProvider(
+    const { getByText, getByRole, rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('ASC'));
-    expect(history.location.search).toContain('sort=asc');
+    expect(history.location.search).toContain('order=asc');
     renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
       history,
       rerender as any
     );
-    await timeout(500);
-    const ascMissions = sortPaginate(launchData.launches!, 'asc', 1).map((l) => l.missionName);
-    const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
-    expect(ascMissions).toEqual(missionsInDom);
   });
 
   it('should sort the launches by date in DESC', async () => {
-    const { getByText, getByRole, rerender, getAllByTestId } = renderProvider(
+    const { getByText, getByRole, rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('DESC'));
-    expect(history.location.search).toContain('sort=desc');
+    expect(history.location.search).toContain('order=desc');
     renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
       history,
       rerender as any
     );
-    const descMissions = sortPaginate(launchData.launches!, 'desc', 1).map((l) => l.missionName);
-    const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
-    expect(descMissions).toEqual(missionsInDom);
   });
 
   it('should push to first page if no data found in the current page', async () => {
     history.location.search = '?page=3';
     const { rerender } = renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+      <HomeContainer {...defaultProps} launchData={{ launches: [] }} loading={false} />,
       history
     );
     expect(history.location.search).toContain('page=1');
@@ -256,6 +265,7 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should push the user to next page when clicked on next button', () => {
+    history.location.search = '?page=2';
     const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
     fireEvent.click(getByTestId('next-btn'));
     expect(history.location.search).toContain('page=2');
@@ -269,7 +279,7 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should clear sort when clicked on clear sort button', () => {
-    const { getByText, getByRole, getByTestId, getAllByTestId, rerender } = renderProvider(
+    const { getByText, getByRole, getByTestId, rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
       history
     );
@@ -281,9 +291,6 @@ describe('<HomeContainer /> tests', () => {
       rerender as any
     );
     fireEvent.click(getByTestId('clear-sort'));
-    const missionsInDom = getAllByTestId('mission-name').map((mission) => mission.textContent);
-    const nonSortedMissions = launchData!.launches!.slice(0, LAUNCH_PER_PAGE).map((l) => l.missionName);
-    expect(missionsInDom).toEqual(nonSortedMissions);
-    expect(history.location.search).not.toContain('sort=desc');
+    expect(history.location.search).not.toContain('order=desc');
   });
 });

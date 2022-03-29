@@ -9,16 +9,19 @@ import { SearchOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import { injectSaga } from 'redux-injectors';
 import { Button, Input, Select } from 'antd';
-import { selectLaunchData, selectLaunchListError, selectLaunchQuery, selectLoading } from './selectors';
+import { selectLaunchData, selectLaunchListError, selectLoading } from './selectors';
 import arrowUp from '@images/ArrowUp.svg';
 import arrowDown from '@images/ArrowDown.svg';
 import arrowUpDown from '@images/ArrowUpDown.svg';
 import { homeContainerCreators } from './reducer';
-import homeContainerSaga from './saga';
+import homeContainerSaga, { LaunchesActionCreator, RequestLaunchesActionPayload } from './saga';
 import { LaunchList, ErrorHandler } from '@components';
 import { colors } from '@app/themes';
 import { injectIntl, IntlShape } from 'react-intl';
-import useSortPaginate from './useSortPaginate';
+import useSort from './useSort';
+import usePaginate from './usePaginate';
+import { setQueryParam } from '@app/utils';
+import history from '@app/utils/history';
 
 const Container = styled.div`
   && {
@@ -62,6 +65,7 @@ const CustomFooter = styled.div`
 `;
 
 export interface Launch {
+  id: string;
   missionName: string;
   launchDateLocal: string;
   launchDateUnix: number;
@@ -76,37 +80,37 @@ export interface LaunchData {
 }
 
 export interface HomeContainerProps {
-  dispatchLaunchList: (missionName?: string) => void;
-  launchQuery: string;
+  dispatchLaunchList: LaunchesActionCreator;
   launchData: LaunchData;
   launchListError?: string;
   loading: boolean;
   intl: IntlShape;
 }
 
-export function HomeContainer({
-  dispatchLaunchList,
-  loading,
-  launchData,
-  intl,
-  launchQuery,
-  launchListError
-}: HomeContainerProps) {
-  const { launches, dateSort, hasNextPage, hasPrevPage, handleClearSort, handleDateSort, handleNext, handlePrev } =
-    useSortPaginate(launchData);
+export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, launchListError }: HomeContainerProps) {
+  const { order, handleClearSort, handleDateSort } = useSort();
+  const { page, hasNextPage, hasPrevPage, handleNext, handlePrev, resetPage } = usePaginate(launchData);
+
+  const missionName = new URLSearchParams(history.location.search).get('mission_name');
+  const setMissionName = (missionName: string) => setQueryParam('mission_name', missionName);
+  const clearMissionName = () => setQueryParam('mission_name', '', 'delete');
 
   useEffect(() => {
-    if (isEmpty(launchData.launches)) {
-      dispatchLaunchList();
-    }
+    dispatchLaunchList({ missionName, order, page });
   }, []);
 
+  useEffect(() => {
+    if (launchData.launches && !launchData.launches.length && page !== 1) {
+      resetPage();
+    }
+  }, [launchData]);
+
   const handleSearch = debounce((e: ChangeEvent<HTMLInputElement>) => {
-    const rName = e.target.value;
-    if (!isEmpty(rName)) {
-      dispatchLaunchList(rName);
+    const missionSearch = e.target.value;
+    if (!isEmpty(missionSearch)) {
+      setMissionName(missionSearch);
     } else {
-      dispatchLaunchList();
+      clearMissionName();
     }
   }, 300);
 
@@ -125,37 +129,37 @@ export function HomeContainer({
         <CustomSearch
           prefix={prefix}
           data-testid="search-bar"
-          defaultValue={launchQuery}
           type="text"
           placeholder={intl.formatMessage({ id: 'placeholder_text' })}
+          defaultValue={missionName || ''}
           onChange={handleSearch}
         />
-        <Button disabled={dateSort === 'default'} onClick={handleClearSort} data-testid="clear-sort">
+        <Button disabled={!order} onClick={handleClearSort} data-testid="clear-sort">
           CLEAR SORT
         </Button>
         <SortSelect
           data-testid="sort-select"
           id="sort-select"
           suffixIcon={
-            dateSort === 'default' ? (
-              <img src={arrowUpDown} alt="chevron-up-down" />
-            ) : dateSort === 'asc' ? (
+            order === 'asc' ? (
               <img src={arrowUp} alt="chevron-up" />
-            ) : (
+            ) : order === 'desc' ? (
               <img src={arrowDown} alt="chevron-down" />
+            ) : (
+              <img src={arrowUpDown} alt="chevron-up-down" />
             )
           }
-          value={dateSort}
+          value={order || 'default'}
           onChange={handleDateSort as any}
         >
-          <Select.Option data-testid="default-option" value="default" disabled>
+          <Select.Option value="default" disabled>
             SORT BY DATE
           </Select.Option>
           <Select.Option value="desc">DESC</Select.Option>
           <Select.Option value="asc">ASC</Select.Option>
         </SortSelect>
       </CustomHeader>
-      <LaunchList launchData={launches} loading={loading} />
+      <LaunchList launchData={launchData} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />
       <CustomFooter>
         <Button data-testid="prev-btn" type="primary" onClick={handlePrev} disabled={loading || !hasPrevPage}>
@@ -187,14 +191,13 @@ HomeContainer.defaultProps = {
 const mapStateToProps = createStructuredSelector({
   launchData: selectLaunchData(),
   launchListError: selectLaunchListError(),
-  loading: selectLoading(),
-  lanchQuery: selectLaunchQuery()
+  loading: selectLoading()
 });
 
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
   const { requestGetLaunchList } = homeContainerCreators;
   return {
-    dispatchLaunchList: (launchQuery?: string) => dispatch(requestGetLaunchList(launchQuery))
+    dispatchLaunchList: (payload: RequestLaunchesActionPayload) => dispatch(requestGetLaunchList(payload))
   };
 }
 

@@ -12,21 +12,10 @@ describe('HomContainer reducer tests', () => {
   });
 
   it('should return the initial state when an action of type REQUEST_GET_LAUNCH_LIST is dispatched', () => {
-    const expectedResult = { ...state, launchQuery: 'Sat', loading: true };
-    expect(
-      homeContainerReducer(state, {
-        type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST,
-        launchQuery: expectedResult.launchQuery
-      })
-    ).toEqual(expectedResult);
-  });
-
-  it("should dispatch GET_LAUNCH_LIST action without launchQuery and update state launchQuery to ''", () => {
     const expectedResult = { ...state, loading: true };
     expect(
       homeContainerReducer(state, {
-        type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST,
-        launchQuery: expectedResult.launchQuery
+        type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST
       })
     ).toEqual(expectedResult);
   });
@@ -35,6 +24,7 @@ describe('HomContainer reducer tests', () => {
     const launchData: LaunchData = {
       launches: [
         {
+          id: '1',
           missionName: 'Sample Launch',
           launchDateLocal: 'some date',
           launchDateUnix: 123123123,

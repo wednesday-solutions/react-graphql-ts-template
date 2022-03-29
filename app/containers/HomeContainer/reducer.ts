@@ -4,7 +4,6 @@ import get from 'lodash-es/get';
 import { Launch } from '@app/containers/HomeContainer';
 
 export type HomeContainerState = {
-  launchQuery: string;
   launchData: {
     launches?: Launch[];
   };
@@ -13,20 +12,22 @@ export type HomeContainerState = {
 };
 
 export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({
-  requestGetLaunchList: ['launchQuery'],
+  requestGetLaunchList: { missionName: null, order: 'asc', page: 1 },
   successGetLaunchList: ['launchData'],
   failureGetLaunchList: ['launchListError']
 });
 
 export const initialState: HomeContainerState = {
   loading: false,
-  launchQuery: '',
   launchData: {},
   launchListError: null
 };
 
 export interface HomeContainerAction extends Partial<Omit<HomeContainerState, 'loading'>> {
   type?: string;
+  order?: string;
+  page?: number;
+  missionName?: string;
 }
 
 export const homeContainerReducer = (state = initialState, action: HomeContainerAction) =>
@@ -34,7 +35,6 @@ export const homeContainerReducer = (state = initialState, action: HomeContainer
     switch (action.type) {
       case homeContainerTypes.REQUEST_GET_LAUNCH_LIST:
         draft.loading = true;
-        draft.launchQuery = action.launchQuery || '';
         break;
 
       case homeContainerTypes.SUCCESS_GET_LAUNCH_LIST:

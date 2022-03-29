@@ -1,5 +1,6 @@
 import find from 'lodash-es/find';
 import get from 'lodash-es/get';
+import history from './history';
 import routeConstants from './routeConstants';
 
 export const getCurrentRouteDetails = (location: Partial<Location>) => {
@@ -37,4 +38,10 @@ export const isLocal = () => {
     // continue regardless of error
   }
   return false;
+};
+
+export const setQueryParam = (param: string, value: string | number, op: 'set' | 'delete' = 'set') => {
+  const urlParams = new URLSearchParams(history.location.search);
+  urlParams[op](param, value as string);
+  history.push({ search: urlParams.toString() });
 };

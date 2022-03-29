@@ -1,8 +1,15 @@
 import { gql } from 'apollo-boost';
 
 export const GET_LAUNCHES = gql`
-  query launches($missionName: String) {
-    launches(find: { mission_name: $missionName }) {
+  query launches($missionName: String, $order: String, $limit: Int, $offset: Int) {
+    launches(
+      find: { mission_name: $missionName }
+      sort: "launch_date_local"
+      order: $order
+      limit: $limit
+      offset: $offset
+    ) {
+      id
       launch_date_local
       launch_date_unix
       mission_name
@@ -13,7 +20,3 @@ export const GET_LAUNCHES = gql`
     }
   }
 `;
-
-export interface LaunchesQueryVariables {
-  missionName: string;
-}

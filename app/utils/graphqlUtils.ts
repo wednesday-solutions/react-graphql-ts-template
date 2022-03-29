@@ -18,7 +18,7 @@ export const getQueryResponse = <Data, Variables>(
   variables?: Variables
 ): Promise<QueryReponse<Data>> => {
   return client
-    .query<Data, Variables>({ query: query, variables })
+    .query<Data, Variables>({ query, variables })
     .then((res) => {
       if (res.errors) {
         return { error: res.errors, ok: false };

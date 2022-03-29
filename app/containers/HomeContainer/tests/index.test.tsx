@@ -264,14 +264,14 @@ describe('<HomeContainer /> tests', () => {
     expect(history.location.search).toContain('page=1');
   });
 
-  it('should push the user to next page when clicked on next button', () => {
-    history.location.search = '?page=2';
+  it('should push the user to next page when clicked on NEXT button', () => {
+    history.location.search = '?page=1';
     const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
     fireEvent.click(getByTestId('next-btn'));
     expect(history.location.search).toContain('page=2');
   });
 
-  it('should push the user to prev page when clicked on prev button', () => {
+  it('should push the user to prev page when clicked on PREV button', () => {
     history.location.search = '?page=2';
     const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
     fireEvent.click(getByTestId('prev-btn'));

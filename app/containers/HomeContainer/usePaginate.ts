@@ -15,7 +15,7 @@ function usePaginate(launchData: LaunchData) {
   return {
     page,
     hasPrevPage: launchData.launches?.length && page !== 1,
-    hasNextPage: launchData.launches?.length === LAUNCH_PER_PAGE,
+    hasNextPage: launchData.launches?.length && launchData.launches.length >= LAUNCH_PER_PAGE,
     handlePrev,
     handleNext,
     resetPage

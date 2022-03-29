@@ -14,6 +14,7 @@ describe('<LaunchList />', () => {
   const launchData: LaunchData = {
     launches: [
       {
+        id: '1',
         launchDateLocal: '2014-01-06T14:06:00-04:00',
         launchDateUnix: 123123123,
         missionName: 'Thaicom 6',

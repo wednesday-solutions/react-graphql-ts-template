@@ -81,4 +81,11 @@ describe('setQueryParam tests', () => {
     setQueryParam({ param: 'key', deleteParam: true });
     expect(history.location.search).toEqual('');
   });
+
+  it('should throw error if history[historyOp] is not function', () => {
+    history.location.search = '?key=value';
+    expect(() => setQueryParam({ param: 'key', deleteParam: true, historyOp: 'unknown' as any })).toThrow(
+      Error('Invalid history operation')
+    );
+  });
 });

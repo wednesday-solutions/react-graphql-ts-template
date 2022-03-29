@@ -54,5 +54,9 @@ export const setQueryParam = ({ param, value, deleteParam, historyOp = 'push' }:
   } else {
     urlParams.set(param, String(value));
   }
-  history[historyOp]({ search: urlParams.toString() });
+  if (typeof history[historyOp] === 'function') {
+    history[historyOp]({ search: urlParams.toString() });
+  } else {
+    throw new Error('Invalid history operation');
+  }
 };

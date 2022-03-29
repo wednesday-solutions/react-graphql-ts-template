@@ -92,8 +92,8 @@ export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, l
   const { page, hasNextPage, hasPrevPage, handleNext, handlePrev, resetPage } = usePaginate(launchData);
 
   const missionName = new URLSearchParams(history.location.search).get('mission_name');
-  const setMissionName = (missionName: string) => setQueryParam('mission_name', missionName);
-  const clearMissionName = () => setQueryParam('mission_name', '', 'delete');
+  const setMissionName = (missionName: string) => setQueryParam({ param: 'mission_name', value: missionName });
+  const clearMissionName = () => setQueryParam({ param: 'mission_name', deleteParam: true });
 
   useEffect(() => {
     dispatchLaunchList({ missionName, order, page });
@@ -133,6 +133,7 @@ export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, l
           placeholder={intl.formatMessage({ id: 'placeholder_text' })}
           defaultValue={missionName || ''}
           onChange={handleSearch}
+          autoFocus
         />
         <Button disabled={!order} onClick={handleClearSort} data-testid="clear-sort">
           CLEAR SORT

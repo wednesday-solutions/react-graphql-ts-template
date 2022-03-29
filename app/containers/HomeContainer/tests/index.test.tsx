@@ -221,6 +221,7 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should sort the launches by date in ASC', async () => {
+    history.location.search = '?order=unknown';
     const { getByText, getByRole, rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );

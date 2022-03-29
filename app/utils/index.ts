@@ -40,8 +40,19 @@ export const isLocal = () => {
   return false;
 };
 
-export const setQueryParam = (param: string, value: string | number, op: 'set' | 'delete' = 'set') => {
+interface SetQueryParamOptions {
+  param: string;
+  value?: string | number;
+  deleteParam?: boolean;
+  historyOp?: 'push' | 'replace';
+}
+
+export const setQueryParam = ({ param, value, deleteParam, historyOp = 'push' }: SetQueryParamOptions) => {
   const urlParams = new URLSearchParams(history.location.search);
-  urlParams[op](param, value as string);
-  history.push({ search: urlParams.toString() });
+  if (deleteParam) {
+    urlParams.delete(param);
+  } else {
+    urlParams.set(param, String(value));
+  }
+  history[historyOp]({ search: urlParams.toString() });
 };

@@ -10,7 +10,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
         class="HomeContainer__CustomHeader-wd79o1-1 hlkaQK"
       >
         <span
-          class="ant-input-affix-wrapper HomeContainer__CustomSearch-wd79o1-2 iORBao"
+          class="ant-input-affix-wrapper ant-input-affix-wrapper-focused HomeContainer__CustomSearch-wd79o1-2 iORBao"
         >
           <span
             class="ant-input-prefix"

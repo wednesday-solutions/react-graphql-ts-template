@@ -43,11 +43,7 @@ export function LaunchList({ launchData, loading }: LaunchListProps) {
       }
     >
       <Skeleton loading={loading} active>
-        <For
-          of={launches}
-          ParentComponent={Container}
-          renderItem={(launch: Launch, idx) => <LaunchItem key={idx} {...launch} />}
-        />
+        <For of={launches} ParentComponent={Container} renderItem={(launch: Launch) => <LaunchItem {...launch} />} />
       </Skeleton>
     </If>
   );

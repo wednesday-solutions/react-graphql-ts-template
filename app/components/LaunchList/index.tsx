@@ -1,25 +1,11 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Launch } from '@containers/HomeContainer';
 import { get, isEmpty } from 'lodash-es';
 import { Card, Skeleton } from 'antd';
-import { If, T, For } from '@components';
+import { If, T, For, LaunchItem } from '@components';
 import { colors } from '@app/themes';
-import { Launch } from '@app/containers/HomeContainer';
-
-const CustomCard = styled(Card)`
-  && {
-    color: ${colors.primary};
-    background-color: ${colors.secondaryText};
-  }
-`;
-const WrapperCard = styled(Card)`
-  && {
-    color: ${colors.primary};
-    border: none;
-    background-color: ${colors.secondaryText};
-  }
-`;
 
 const CustomErrorCard = styled(Card)`
   && {
@@ -46,6 +32,7 @@ interface LaunchListProps {
 
 export function LaunchList({ launchData, loading }: LaunchListProps) {
   const launches = get(launchData, 'launches', []);
+
   return (
     <If
       condition={!isEmpty(launches) || loading}
@@ -55,20 +42,9 @@ export function LaunchList({ launchData, loading }: LaunchListProps) {
         </CustomErrorCard>
       }
     >
-      <WrapperCard data-testid="list">
-        <Skeleton loading={loading} active>
-          <For
-            of={launches}
-            ParentComponent={Container}
-            renderItem={(launch: Launch, idx) => (
-              <CustomCard key={idx}>
-                <div>{launch.mission_name}</div>
-                <div> {launch.launch_date_local}</div>
-              </CustomCard>
-            )}
-          />
-        </Skeleton>
-      </WrapperCard>
+      <Skeleton loading={loading} active>
+        <For of={launches} ParentComponent={Container} renderItem={(launch: Launch) => <LaunchItem {...launch} />} />
+      </Skeleton>
     </If>
   );
 }
@@ -77,11 +53,11 @@ LaunchList.propTypes = {
   launchData: PropTypes.shape({
     launches: PropTypes.arrayOf(
       PropTypes.shape({
-        mission_name: PropTypes.string,
-        launch_date_local: PropTypes.string,
+        missionName: PropTypes.string,
+        launchDateLocal: PropTypes.string,
         links: PropTypes.shape({
           wikipedia: PropTypes.string,
-          flick_images: PropTypes.array
+          flickrImages: PropTypes.array
         })
       })
     )

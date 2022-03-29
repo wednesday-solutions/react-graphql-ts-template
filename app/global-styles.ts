@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
   }
@@ -28,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   span,
   button,
   label {
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family: 'Rubik', sans-serif;
     line-height: 1.5em;
     margin-bottom: 0;
   }

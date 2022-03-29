@@ -33,12 +33,13 @@ const SideBar = styled.div`
     height: auto;
     background-color: ${colors.primary};
     display: inline;
+    text-align: center;
   }
 `;
 
-const CustomImage = styled.img`
+const RocketLogo = styled.img`
   && {
-    margin: 1rem;
+    margin-top: 1rem;
   }
 `;
 
@@ -54,7 +55,7 @@ export function App() {
       <Header />
       <CustomLayout>
         <SideBar>
-          <CustomImage src={icon} alt="" />
+          <RocketLogo src={icon} alt="" />
         </SideBar>
         <Layout.Content>
           <For

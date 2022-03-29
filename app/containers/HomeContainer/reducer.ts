@@ -3,40 +3,48 @@ import { createActions } from 'reduxsauce';
 import get from 'lodash-es/get';
 import { Launch } from '@app/containers/HomeContainer';
 
-export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({
-  requestGetLaunchList: ['launchQuery'],
-  successGetLaunchList: ['launchData'],
-  failureGetLaunchList: ['launchListError'],
-  clearLaunchList: {}
-});
-export const initialState = { launchQuery: null, launchData: {}, launchListError: null, loading: false };
-
-export interface HomeContainerActionTypes {
-  type?: string;
-  somePayload?: string | null;
-  launchQuery?: any;
-  launchData?: {
-    data: Launch;
-    errors: Object;
+export type HomeContainerState = {
+  launchData: {
+    launches?: Launch[];
   };
-  launchListError?: string;
+  launchListError: any;
   loading: boolean;
+};
+
+export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({
+  requestGetLaunchList: { missionName: null, order: 'asc', page: 1 },
+  successGetLaunchList: ['launchData'],
+  failureGetLaunchList: ['launchListError']
+});
+
+export const initialState: HomeContainerState = {
+  loading: false,
+  launchData: {},
+  launchListError: null
+};
+
+export interface HomeContainerAction extends Partial<Omit<HomeContainerState, 'loading'>> {
+  type?: string;
+  order?: string;
+  page?: number;
+  missionName?: string;
 }
 
-export const homeContainerReducer = (state = initialState, action: HomeContainerActionTypes) =>
-  produce(state, (draft: any) => {
+export const homeContainerReducer = (state = initialState, action: HomeContainerAction) =>
+  produce(state, (draft) => {
     switch (action.type) {
       case homeContainerTypes.REQUEST_GET_LAUNCH_LIST:
         draft.loading = true;
-        draft.launchQuery = action.launchQuery;
         break;
+
       case homeContainerTypes.SUCCESS_GET_LAUNCH_LIST:
-        draft.launchData = action?.launchData?.data;
+        draft.launchData = action.launchData!;
+        draft.launchListError = null;
         draft.loading = false;
         break;
       case homeContainerTypes.FAILURE_GET_LAUNCH_LIST:
         draft.loading = false;
-        draft.launchListError = get(action?.launchData?.errors, 'message', 'something_went_wrong');
+        draft.launchListError = draft.launchListError = get(action.launchListError, 'message', 'something_went_wrong');
         break;
     }
   });

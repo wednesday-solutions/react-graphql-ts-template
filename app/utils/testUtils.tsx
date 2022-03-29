@@ -21,13 +21,12 @@ export const getComponentStyles = (Component: React.FC<any>, props = {}) => {
   renderWithIntl(Component(props));
   const { styledComponentId } = Component(props)!.type;
   const componentRoots = document.getElementsByClassName(styledComponentId);
-  // eslint-disable-next-line no-underscore-dangle
   return window.getComputedStyle(componentRoots[0]);
 };
 
-export const renderProvider = (children: React.ReactNode, history?: History) => {
+export const renderProvider = (children: React.ReactNode, history?: History, renderFn = render) => {
   const store = configureStore({}).store;
-  return render(
+  return renderFn(
     <Provider store={store}>
       <ConnectedLanguageProvider messages={translationMessages}>
         <ThemeProvider
@@ -42,7 +41,8 @@ export const renderProvider = (children: React.ReactNode, history?: History) => 
   );
 };
 export const timeout = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-export const apiResponseGenerator = <Data,>(ok: boolean, data: Data) => ({
+export const apiResponseGenerator = <Data,>(ok: boolean, data: Data, error?: object) => ({
   ok,
-  data
+  data,
+  error
 });

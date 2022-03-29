@@ -26,7 +26,7 @@ export const createApiClientWithTransForm = (baseURL: string) => {
   api.addResponseTransform((response) => {
     const { ok, data } = response;
     if (ok && data) {
-      response.data = mapKeysDeep(data, (keys: string) => camelCase(keys));
+      response.data = mapKeysDeep(data, camelCase);
     }
     return response;
   });
@@ -34,7 +34,7 @@ export const createApiClientWithTransForm = (baseURL: string) => {
   api.addRequestTransform((request) => {
     const { data } = request;
     if (data) {
-      request.data = mapKeysDeep(data, (keys: string) => snakeCase(keys));
+      request.data = mapKeysDeep(data, snakeCase);
     }
     return request;
   });

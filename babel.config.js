@@ -35,7 +35,18 @@ module.exports = {
       plugins: [['import', { libraryName: 'antd', style: true }]]
     },
     development: {
-      plugins: [['import', { libraryName: 'antd', style: true }]]
+      plugins: [
+        ['import', { libraryName: 'antd', style: true }],
+        [
+          'import',
+          {
+            libraryName: '@ant-design/icons',
+            libraryDirectory: 'es/icons',
+            camel2DashComponentName: false
+          },
+          '@ant-design/icons'
+        ]
+      ]
     },
     test: {
       plugins: [

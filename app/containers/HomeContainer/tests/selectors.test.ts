@@ -1,17 +1,12 @@
-import {
-  selectHomeContainerDomain,
-  selectLaunchData,
-  selectLaunchListError,
-  selectLaunchQuery,
-  selectLoading
-} from '../selectors';
+import { selectHomeContainerDomain, selectLaunchData, selectLaunchListError, selectLoading } from '../selectors';
 import { initialState } from '../reducer';
+import { RootState } from '@app/configureStore';
+import { Launch } from '..';
 describe('HomeContainer selector tests', () => {
-  let mockedState;
-  let launchQuery;
-  let launchData;
-  let launchListError;
-  let loading;
+  let mockedState: RootState;
+  let launchData: { launches?: Partial<Launch>[] };
+  let launchListError: Object;
+  let loading: boolean;
 
   beforeEach(() => {
     launchData = {
@@ -22,14 +17,12 @@ describe('HomeContainer selector tests', () => {
       ]
     };
     launchListError = 'There was some error while fetching the launch details';
-    launchQuery = 'mission 1';
     loading = false;
 
     mockedState = {
       homeContainer: {
         launchData,
         launchListError,
-        launchQuery,
         loading
       }
     };
@@ -38,11 +31,6 @@ describe('HomeContainer selector tests', () => {
   it('should select reposData', () => {
     const launchsDataSelector = selectLaunchData();
     expect(launchsDataSelector(mockedState)).toEqual(launchData);
-  });
-
-  it('should select the launchQuery', () => {
-    const repoSelector = selectLaunchQuery();
-    expect(repoSelector(mockedState)).toEqual(launchQuery);
   });
 
   it('should select the reposError', () => {

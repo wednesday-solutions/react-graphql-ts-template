@@ -10,3 +10,4 @@ export { default as ScrollToTop } from '@components/ScrollToTop';
 export { default as StyledContainer } from '@components/StyledContainer';
 export { default as T } from '@components/T';
 export { default as ErrorHandler } from '@components/ErrorHandler';
+export { default as LaunchItem } from '@components/LaunchItem';

@@ -3,16 +3,16 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="ant-layout-header Header__StyledHeader-a7tfu0-0 fquOgr"
+    class="ant-layout-header Header__StyledHeader-a7tfu0-0 bfRGtz"
     data-testid="header"
   >
     <img
       alt="logo"
-      class="Header__Logo-a7tfu0-1 nUlCS"
+      class="Header__Logo-a7tfu0-1 cTOQXQ"
       src="IMAGE_MOCK"
     />
     <p
-      class="T__StyledText-gcrjip-0 fPfjuE Header__Title-a7tfu0-2 fdMcFf"
+      class="T__StyledText-gcrjip-0 gjTOrr Header__Title-a7tfu0-2 fdMcFf"
       data-testid="t"
     >
       Wednesday Solutions
@@ -22,11 +22,11 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     class="ant-layout App__CustomLayout-di9tar-2 edUAiy"
   >
     <div
-      class="App__SideBar-di9tar-0 enYyZa"
+      class="App__SideBar-di9tar-0 iLRUWR"
     >
       <img
         alt=""
-        class="App__CustomImage-di9tar-1 kSQUXY"
+        class="App__RocketLogo-di9tar-1 lmXCEd"
         src="IMAGE_MOCK"
       />
     </div>

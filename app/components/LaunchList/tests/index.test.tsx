@@ -5,20 +5,22 @@
  */
 
 import React from 'react';
-// import { fireEvent } from '@testing-library/dom'
 import { renderWithIntl } from '@utils/testUtils';
 import LaunchList from '../index';
+import { LaunchData } from '@app/containers/HomeContainer';
 
 describe('<LaunchList />', () => {
   const loading = false;
-  const launchData = {
+  const launchData: LaunchData = {
     launches: [
       {
-        launch_date_local: '2014-01-06T14:06:00-04:00',
-        mission_name: 'Thaicom 6',
+        id: '1',
+        launchDateLocal: '2014-01-06T14:06:00-04:00',
+        launchDateUnix: 123123123,
+        missionName: 'Thaicom 6',
         links: {
           wikipedia: 'https://en.wikipedia.org/wiki/Thaicom_6',
-          flickr_images: ['https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg']
+          flickrImages: ['https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg']
         }
       }
     ]
@@ -27,9 +29,9 @@ describe('<LaunchList />', () => {
     const { baseElement } = renderWithIntl(<LaunchList loading={loading} launchData={launchData} />);
     expect(baseElement).toMatchSnapshot();
   });
-  it('should show the fallbackMessage if the  ', () => {
+  it('should show the fallbackMessage if luanchData is empty', () => {
     const message = 'No results found for the search term.';
-    const { getByText } = renderWithIntl(<LaunchList loading={loading} launchData={null} />);
+    const { getByText } = renderWithIntl(<LaunchList loading={loading} launchData={{}} />);
     expect(getByText(message)).toBeInTheDocument();
   });
   it('should render the list for the launches when data is available', () => {

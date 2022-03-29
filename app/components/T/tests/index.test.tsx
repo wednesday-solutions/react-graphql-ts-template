@@ -30,6 +30,15 @@ describe('<T /> component tests', () => {
       id: 'launches_list'
     };
     const styles = getComponentStyles(T, props);
-    expect(styles.marginBottom).toBe(`${props.marginBottom}px`);
+    expect(styles.marginBottom).toBe(`${props.marginBottom}rem`);
+  });
+
+  it('should have a margin-bottom of 5px when we pass marginBottom as 5', () => {
+    const props = {
+      marginBottom: '5px',
+      id: 'launches_list'
+    };
+    const styles = getComponentStyles(T, props);
+    expect(styles.marginBottom).toBe(props.marginBottom);
   });
 });

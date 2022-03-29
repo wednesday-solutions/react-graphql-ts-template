@@ -22,12 +22,12 @@ const StyledHeader = styled(Layout.Header)`
     display: flex;
     justify-content: center;
     background-color: ${colors.primary};
+    gap: 1rem;
   }
 `;
 const Logo = styled.img`
   height: 5rem;
   width: auto;
-  margin-top: 1rem;
 `;
 const Title = styled(T)`
   && {

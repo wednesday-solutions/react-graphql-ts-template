@@ -12,13 +12,15 @@ import If from '@components/If';
 import { fonts } from '@themes/index';
 
 interface StyledTextProps {
-  marginBottom?: string;
+  marginBottom?: string | number;
   font?: () => FlattenSimpleInterpolation;
 }
 
 const StyledText = styled.p<StyledTextProps>`
   && {
-    ${(props) => props.marginBottom && `margin-bottom: ${props.marginBottom}px;`};
+    ${(props) =>
+      props.marginBottom &&
+      `margin-bottom: ${typeof props.marginBottom === 'string' ? props.marginBottom : `${props.marginBottom}rem`};`}
     ${(props) => props.font && props.font()};
   }
 `;
@@ -31,21 +33,21 @@ interface TProps {
   type?: FontStyleType;
   text?: string;
   id?: string;
-  marginBottom?: string;
+  marginBottom?: string | number;
   values?: Record<string, React.ReactNode>;
 }
 
-export const T = ({ type, text, id, marginBottom, values, ...otherProps }: TProps) => (
-  <StyledText data-testid="t" font={type && getFontStyle(type)} marginBottom={marginBottom} {...otherProps}>
+export const T = ({ type = 'standard', text, id, marginBottom, values = {}, ...otherProps }: TProps) => (
+  <StyledText data-testid="t" font={getFontStyle(type)} marginBottom={marginBottom} {...otherProps}>
     <If condition={id} otherwise={text}>
-      <FormattedMessage id={id} values={values || {}} />
+      <FormattedMessage id={id} values={values} />
     </If>
   </StyledText>
 );
 
 T.propTypes = {
   id: PropTypes.string,
-  marginBottom: PropTypes.number,
+  marginBottom: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   values: PropTypes.object,
   text: PropTypes.string,
   type: PropTypes.oneOf(Object.keys(fonts.style))

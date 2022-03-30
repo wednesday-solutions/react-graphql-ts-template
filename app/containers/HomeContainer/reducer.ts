@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import get from 'lodash/get';
+import get from 'lodash-es/get';
 
 export const initialState = {
   loading: false,
@@ -7,7 +7,7 @@ export const initialState = {
   launchListError: null
 };
 
-const homeReducer = createSlice({
+const homeSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
@@ -15,9 +15,7 @@ const homeReducer = createSlice({
       reducer: (state) => {
         state.loading = true;
       },
-      prepare: (payload: object) => {
-        return { payload };
-      }
+      prepare: (payload: object) => ({ payload })
     },
     successGetLaunchList(state, action) {
       state.launchListError = null;
@@ -31,6 +29,6 @@ const homeReducer = createSlice({
   }
 });
 
-export const { requestGetLaunchList, successGetLaunchList, failureGetLaunchList } = homeReducer.actions;
+export const { requestGetLaunchList, successGetLaunchList, failureGetLaunchList } = homeSlice.actions;
 
-export default homeReducer.reducer;
+export default homeSlice.reducer;

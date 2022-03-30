@@ -1,11 +1,11 @@
 import React from 'react';
 import { timeout, renderProvider } from '@utils/testUtils';
 import { HomeContainerProps, HomeContainerTest as HomeContainer, LaunchData, mapDispatchToProps } from '../index';
-import { homeContainerTypes } from '../reducer';
 import { fireEvent } from 'react-testing-library';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';
 import history from '@app/utils/history';
+import { requestGetLaunchList } from '../reducer';
 
 describe('<HomeContainer /> tests', () => {
   let submitSpy: jest.Mock;
@@ -154,8 +154,7 @@ describe('<HomeContainer /> tests', () => {
       page: 1
     };
     const actions = {
-      dispatchLaunchList: { type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST, ...payload },
-      dispatchClearLaunchList: { type: homeContainerTypes.CLEAR_LAUNCH_LIST }
+      dispatchLaunchList: requestGetLaunchList(payload)
     };
 
     const props = mapDispatchToProps(dispatchLaunchListSpy);

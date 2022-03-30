@@ -1,23 +1,33 @@
 import { LaunchData } from '..';
-import { homeContainerReducer, initialState, homeContainerTypes } from '../reducer';
+import homeReducer, {
+  initialState,
+  requestGetLaunchList,
+  successGetLaunchList,
+  failureGetLaunchList
+} from '../reducer';
 
 describe('HomContainer reducer tests', () => {
   let state: typeof initialState;
+  const payload = {
+    missionName: 'Asia',
+    sort: 'asc',
+    page: 1
+  };
   beforeEach(() => {
     state = initialState;
   });
 
   it('should return the initial state', () => {
-    expect(homeContainerReducer(undefined, {})).toEqual(state);
+    expect(
+      homeReducer(undefined, {
+        type: undefined
+      })
+    ).toEqual(state);
   });
 
   it('should return the initial state when an action of type REQUEST_GET_LAUNCH_LIST is dispatched', () => {
     const expectedResult = { ...state, loading: true };
-    expect(
-      homeContainerReducer(state, {
-        type: homeContainerTypes.REQUEST_GET_LAUNCH_LIST
-      })
-    ).toEqual(expectedResult);
+    expect(homeReducer(state, requestGetLaunchList(payload))).toEqual(expectedResult);
   });
 
   it('should ensure that the launch data is present  when SUCCESS_GET_LAUNCH_LIST is dispatched', () => {
@@ -37,12 +47,7 @@ describe('HomContainer reducer tests', () => {
     };
 
     const expectedResult = { ...state, launchData };
-    expect(
-      homeContainerReducer(state, {
-        type: homeContainerTypes.SUCCESS_GET_LAUNCH_LIST,
-        launchData
-      })
-    ).toEqual(expectedResult);
+    expect(homeReducer(state, successGetLaunchList(launchData))).toEqual(expectedResult);
   });
 
   it('should ensure that the launchListError has some data  when failureGetLaunchList is dispatched', () => {
@@ -50,11 +55,6 @@ describe('HomContainer reducer tests', () => {
       message: 'something went wrong'
     };
     const expectedResult = { ...state, launchListError: launchListError.message };
-    expect(
-      homeContainerReducer(state, {
-        type: homeContainerTypes.FAILURE_GET_LAUNCH_LIST,
-        launchListError
-      })
-    ).toEqual(expectedResult);
+    expect(homeReducer(state, failureGetLaunchList(launchListError))).toEqual(expectedResult);
   });
 });

@@ -1,46 +1,20 @@
-/*
- *
- * LanguageProvider reducer
- *
- */
-import { createActions } from 'reduxsauce';
-import produce from 'immer';
+import { createSlice } from '@reduxjs/toolkit';
 import { DEFAULT_LOCALE } from '@app/i18n';
-
-type LanguageProviderTypes = {
-  CHANGE_LOCALE: 'CHANGE_LOCALE';
-};
-
-type LanguageProviderAction = {
-  type?: keyof LanguageProviderTypes;
-  locale?: string;
-};
-
-type LanguageProviderCreators = {
-  changeLocale: (locale: 'en') => LanguageProviderAction;
-};
-
-export const { Types: languageProviderTypes, Creators: languageProviderActions } = createActions<
-  LanguageProviderTypes,
-  LanguageProviderCreators
->({
-  changeLocale: ['locale']
-});
 
 export const initialState = {
   locale: DEFAULT_LOCALE
 };
 
-/* eslint-disable default-case, no-param-reassign */
-export const languageProviderReducer = (state = initialState, action: LanguageProviderAction) =>
-  produce(state, (draft) => {
-    switch (action.type) {
-      case languageProviderTypes.CHANGE_LOCALE:
-        if (action.locale) {
-          draft.locale = action.locale;
-        }
-        break;
+const languageProviderSlice = createSlice({
+  name: 'language',
+  initialState,
+  reducers: {
+    changeLocale(state, action) {
+      state.locale = action.payload;
     }
-  });
+  }
+});
 
-export default languageProviderReducer;
+export const { changeLocale } = languageProviderSlice.actions;
+
+export default languageProviderSlice.reducer;

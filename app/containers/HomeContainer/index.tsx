@@ -13,8 +13,8 @@ import { selectLaunchData, selectLaunchListError, selectLoading } from './select
 import arrowUp from '@images/ArrowUp.svg';
 import arrowDown from '@images/ArrowDown.svg';
 import arrowUpDown from '@images/ArrowUpDown.svg';
-import { homeContainerCreators } from './reducer';
 import homeContainerSaga, { LaunchesActionCreator, RequestLaunchesActionPayload } from './saga';
+import { requestGetLaunchList } from './reducer';
 import { LaunchList, ErrorHandler } from '@components';
 import { colors } from '@app/themes';
 import { injectIntl, IntlShape } from 'react-intl';
@@ -196,7 +196,6 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
-  const { requestGetLaunchList } = homeContainerCreators;
   return {
     dispatchLaunchList: (payload: RequestLaunchesActionPayload) => dispatch(requestGetLaunchList(payload))
   };

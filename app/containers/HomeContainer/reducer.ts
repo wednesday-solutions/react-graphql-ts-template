@@ -1,52 +1,36 @@
-import produce from 'immer';
-import { createActions } from 'reduxsauce';
-import get from 'lodash-es/get';
-import { Launch } from '@app/containers/HomeContainer';
+import { createSlice } from '@reduxjs/toolkit';
+import get from 'lodash/get';
 
-export type HomeContainerState = {
-  launchData: {
-    launches?: Launch[];
-  };
-  launchListError: any;
-  loading: boolean;
-};
-
-export const { Types: homeContainerTypes, Creators: homeContainerCreators } = createActions({
-  requestGetLaunchList: { missionName: null, order: 'asc', page: 1 },
-  successGetLaunchList: ['launchData'],
-  failureGetLaunchList: ['launchListError']
-});
-
-export const initialState: HomeContainerState = {
+export const initialState = {
   loading: false,
   launchData: {},
   launchListError: null
 };
 
-export interface HomeContainerAction extends Partial<Omit<HomeContainerState, 'loading'>> {
-  type?: string;
-  order?: string;
-  page?: number;
-  missionName?: string;
-}
-
-export const homeContainerReducer = (state = initialState, action: HomeContainerAction) =>
-  produce(state, (draft) => {
-    switch (action.type) {
-      case homeContainerTypes.REQUEST_GET_LAUNCH_LIST:
-        draft.loading = true;
-        break;
-
-      case homeContainerTypes.SUCCESS_GET_LAUNCH_LIST:
-        draft.launchData = action.launchData!;
-        draft.launchListError = null;
-        draft.loading = false;
-        break;
-      case homeContainerTypes.FAILURE_GET_LAUNCH_LIST:
-        draft.loading = false;
-        draft.launchListError = draft.launchListError = get(action.launchListError, 'message', 'something_went_wrong');
-        break;
+const homeReducer = createSlice({
+  name: 'home',
+  initialState,
+  reducers: {
+    requestGetLaunchList: {
+      reducer: (state) => {
+        state.loading = true;
+      },
+      prepare: (payload: object) => {
+        return { payload };
+      }
+    },
+    successGetLaunchList(state, action) {
+      state.launchListError = null;
+      state.launchData = action.payload;
+      state.loading = false;
+    },
+    failureGetLaunchList(state, action) {
+      state.launchListError = get(action.payload, 'message', 'something_went_wrong');
+      state.loading = false;
     }
-  });
+  }
+});
 
-export default homeContainerReducer;
+export const { requestGetLaunchList, successGetLaunchList, failureGetLaunchList } = homeReducer.actions;
+
+export default homeReducer.reducer;

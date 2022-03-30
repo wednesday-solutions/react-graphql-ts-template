@@ -9,18 +9,12 @@ describe('HomeContainer selector tests', () => {
   let loading: boolean;
 
   beforeEach(() => {
-    launchData = {
-      launches: [
-        {
-          missionName: 'Sample Mission'
-        }
-      ]
-    };
+    launchData = { launches: [{}] };
     launchListError = 'There was some error while fetching the launch details';
     loading = false;
 
     mockedState = {
-      homeContainer: {
+      home: {
         launchData,
         launchListError,
         loading
@@ -28,22 +22,26 @@ describe('HomeContainer selector tests', () => {
     };
   });
 
-  it('should select reposData', () => {
-    const launchsDataSelector = selectLaunchData();
-    expect(launchsDataSelector(mockedState)).toEqual(launchData);
-  });
-
-  it('should select the reposError', () => {
+  it('should select the launchListError', () => {
     const launchErrorSelector = selectLaunchListError();
     expect(launchErrorSelector(mockedState)).toEqual(launchListError);
   });
 
   it('should select the global state', () => {
+    const selector = selectHomeContainerDomain(mockedState);
+    expect(selector).toEqual(mockedState.home);
+  });
+
+  it('should select the global state from initial state if state.home is not defined', () => {
     const selector = selectHomeContainerDomain(initialState);
     expect(selector).toEqual(initialState);
   });
-  it('should select the loading state', () => {
-    const loadingSelector = selectLoading();
-    expect(loadingSelector(mockedState)).toEqual(loading);
+  it('should select  loading', () => {
+    const launchLoadingSelector = selectLoading();
+    expect(launchLoadingSelector(mockedState)).toEqual(loading);
+  });
+  it('should select the launchData', () => {
+    const launchDataSelector = selectLaunchData();
+    expect(launchDataSelector(mockedState)).toEqual(launchData);
   });
 });

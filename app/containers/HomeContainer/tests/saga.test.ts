@@ -1,22 +1,24 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { apiResponseGenerator } from '@utils/testUtils';
 import homeContainerSaga, { getLaunchList } from '../saga';
-import { homeContainerTypes } from '../reducer';
 import { getQueryResponse } from '@app/utils/graphqlUtils';
 import { GET_LAUNCHES } from '../queries';
 import { LAUNCH_PER_PAGE } from '../usePaginate';
+import { failureGetLaunchList, requestGetLaunchList, successGetLaunchList } from '../reducer';
 
 describe('HomeContainer saga tests', () => {
   const generator = homeContainerSaga();
   let getLaunchListGenerator = getLaunchList({
     type: 'SOME ACTION',
-    missionName: null,
-    order: null,
-    page: 1
+    payload: {
+      missionName: null,
+      order: null,
+      page: 1
+    }
   });
 
   it('should start task to watch for REQUEST_GET_LAUNCH_LIST action', () => {
-    expect(generator.next().value).toEqual(takeLatest(homeContainerTypes.REQUEST_GET_LAUNCH_LIST, getLaunchList));
+    expect(generator.next().value).toEqual(takeLatest(requestGetLaunchList.toString(), getLaunchList));
   });
 
   it('should ensure that the action FAILURE_GET_LAUNCH_LIST is dispatched when the api call fails', () => {
@@ -34,19 +36,18 @@ describe('HomeContainer saga tests', () => {
       message: 'There was an error while fetching launch informations.'
     };
     expect(getLaunchListGenerator.next(apiResponseGenerator(false, {}, errorResponse)).value).toEqual(
-      put({
-        type: homeContainerTypes.FAILURE_GET_LAUNCH_LIST,
-        launchListError: errorResponse
-      })
+      put(failureGetLaunchList(errorResponse))
     );
   });
 
   it('should ensure that the action SUCCESS_GET_LAUNCH_LIST is dispatched when the api call succeeds', () => {
     getLaunchListGenerator = getLaunchList({
       type: 'SOME_ACTION',
-      missionName: null,
-      order: null,
-      page: 1
+      payload: {
+        missionName: null,
+        order: null,
+        page: 1
+      }
     });
     const res = getLaunchListGenerator.next().value;
     expect(res).toEqual(
@@ -73,10 +74,7 @@ describe('HomeContainer saga tests', () => {
       ]
     };
     expect(getLaunchListGenerator.next(apiResponseGenerator(true, apiResponse)).value).toEqual(
-      put({
-        type: homeContainerTypes.SUCCESS_GET_LAUNCH_LIST,
-        launchData: apiResponse
-      })
+      put(successGetLaunchList(apiResponse))
     );
   });
 });

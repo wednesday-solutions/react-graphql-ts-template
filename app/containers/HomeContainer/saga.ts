@@ -26,7 +26,7 @@ export function* getLaunchList(action: LaunchesAction): Generator<any, any, Laun
   const response = yield call(getQueryResponse, GET_LAUNCHES, {
     missionName,
     order,
-    sort: 'launch_date_local',
+    sort: 'launch_date_utc',
     limit: LAUNCH_PER_PAGE,
     offset: (page - 1) * LAUNCH_PER_PAGE
   });

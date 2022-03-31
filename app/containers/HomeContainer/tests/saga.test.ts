@@ -27,7 +27,7 @@ describe('HomeContainer saga tests', () => {
       call(getQueryResponse, GET_LAUNCHES, {
         missionName: null,
         order: null,
-        sort: 'launch_date_local',
+        sort: 'launch_date_utc',
         limit: LAUNCH_PER_PAGE,
         offset: 0
       })
@@ -54,7 +54,7 @@ describe('HomeContainer saga tests', () => {
       call(getQueryResponse, GET_LAUNCHES, {
         missionName: null,
         order: null,
-        sort: 'launch_date_local',
+        sort: 'launch_date_utc',
         limit: LAUNCH_PER_PAGE,
         offset: 0
       })
@@ -64,7 +64,7 @@ describe('HomeContainer saga tests', () => {
         {
           id: '1',
           missionName: 'sampleName',
-          launchDateLocal: '2017-01-14T10:54:00-07:00',
+          launchDateUtc: '2017-01-14T10:54:00-07:00',
           launchDateUnix: 123121232,
           links: {
             wikipedia: 'wiki link',

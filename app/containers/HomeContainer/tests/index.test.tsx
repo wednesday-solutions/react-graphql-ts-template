@@ -29,7 +29,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/Thaicom_6'
           },
-          launchDateLocal: '2014-01-06T14:06:00-04:00',
+          launchDateUtc: '2014-01-06T14:06:00-04:00',
           launchDateUnix: 1389031560
         },
         {
@@ -39,7 +39,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/AsiaSat_6'
           },
-          launchDateLocal: '2014-09-07T01:00:00-04:00',
+          launchDateUtc: '2014-09-07T01:00:00-04:00',
           launchDateUnix: 1410066000
         },
         {
@@ -49,7 +49,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/Falcon_9_flight_20'
           },
-          launchDateLocal: '2015-12-22T21:29:00-04:00',
+          launchDateUtc: '2015-12-22T21:29:00-04:00',
           launchDateUnix: 1450747740
         },
         {
@@ -59,7 +59,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/DemoSat'
           },
-          launchDateLocal: '2006-03-25T10:30:00+12:00',
+          launchDateUtc: '2006-03-25T10:30:00+12:00',
           launchDateUnix: 1143239400
         },
         {
@@ -69,7 +69,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/SpaceX_CRS-1'
           },
-          launchDateLocal: '2012-10-08T20:35:00-04:00',
+          launchDateUtc: '2012-10-08T20:35:00-04:00',
           launchDateUnix: 1349656500
         },
         {
@@ -79,7 +79,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/CASSIOPE'
           },
-          launchDateLocal: '2013-09-29T09:00:00-07:00',
+          launchDateUtc: '2013-09-29T09:00:00-07:00',
           launchDateUnix: 1380470400
         },
         {
@@ -89,7 +89,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/ABS-3A'
           },
-          launchDateLocal: '2015-03-02T23:50:00-04:00',
+          launchDateUtc: '2015-03-02T23:50:00-04:00',
           launchDateUnix: 1425268200
         },
         {
@@ -99,7 +99,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/SpaceX_COTS_Demo_Flight_1'
           },
-          launchDateLocal: '2010-12-08T11:43:00-04:00',
+          launchDateUtc: '2010-12-08T11:43:00-04:00',
           launchDateUnix: 1291822980
         },
         {
@@ -109,7 +109,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/T%C3%BCrkmen%C3%84lem_52%C2%B0E_/_MonacoSAT'
           },
-          launchDateLocal: '2015-04-27T19:03:00-04:00',
+          launchDateUtc: '2015-04-27T19:03:00-04:00',
           launchDateUnix: 1430175780
         },
         {
@@ -119,7 +119,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/SpaceX_CRS-11'
           },
-          launchDateLocal: '2017-06-03T17:07:00-04:00',
+          launchDateUtc: '2017-06-03T17:07:00-04:00',
           launchDateUnix: 1496524020
         },
         {
@@ -129,7 +129,7 @@ describe('<HomeContainer /> tests', () => {
             flickrImages: ['image1', 'image2'],
             wikipedia: 'https://en.wikipedia.org/wiki/Iridium_satellite_constellation#Next-generation_constellation'
           },
-          launchDateLocal: '2017-01-14T10:54:00-07:00',
+          launchDateUtc: '2017-01-14T10:54:00-07:00',
           launchDateUnix: 1484416440
         }
       ]
@@ -178,7 +178,7 @@ describe('<HomeContainer /> tests', () => {
         {
           id: '1',
           missionName: 'Sample Mission',
-          launchDateLocal: '2017-01-14T10:54:00-07:00',
+          launchDateUtc: '2017-01-14T10:54:00-07:00',
           launchDateUnix: 12312313,
           links: {
             wikipedia: 'sample link',

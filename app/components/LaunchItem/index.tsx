@@ -34,7 +34,7 @@ const WikiLink = styled(Button)`
   }
 `;
 
-function LaunchItem({ missionName, launchDateLocal, links, id }: Launch) {
+function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
   const goToLaunch = () => history.push(`/${id}`);
 
   return (
@@ -42,8 +42,8 @@ function LaunchItem({ missionName, launchDateLocal, links, id }: Launch) {
       <If condition={!isEmpty(missionName)} otherwise={<T id="mission_name_unavailable" />}>
         <T data-testid="mission-name" marginBottom={1.5} type="subheading" text={missionName} />
       </If>
-      <If condition={!isEmpty(launchDateLocal)} otherwise={<T id="launch_date_unavailable" />}>
-        <T text={moment(launchDateLocal).format('ddd, Do MMMM YYYY, hh:mm A')} />
+      <If condition={!isEmpty(launchDateUtc)} otherwise={<T id="launch_date_unavailable" />}>
+        <T text={moment(launchDateUtc).format('ddd, Do MMMM YYYY, hh:mm A')} />
       </If>
       <If condition={!isEmpty(links)} otherwise={<T id="launch_links_unavailable" />}>
         <If condition={!isEmpty(links.wikipedia)}>
@@ -67,7 +67,7 @@ function LaunchItem({ missionName, launchDateLocal, links, id }: Launch) {
 LaunchItem.propTypes = {
   id: PropTypes.string,
   missionName: PropTypes.string,
-  launchDateLocal: PropTypes.string,
+  launchDateUtc: PropTypes.string,
   links: PropTypes.shape({
     wikipedia: PropTypes.string,
     flickrImages: PropTypes.arrayOf(PropTypes.string)

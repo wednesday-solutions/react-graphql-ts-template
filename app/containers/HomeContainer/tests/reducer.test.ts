@@ -36,7 +36,7 @@ describe('HomContainer reducer tests', () => {
         {
           id: '1',
           missionName: 'Sample Launch',
-          launchDateLocal: '2017-01-14T10:54:00-07:00',
+          launchDateUtc: '2017-01-14T10:54:00-07:00',
           launchDateUnix: 123123123,
           links: {
             wikipedia: 'wiki link',

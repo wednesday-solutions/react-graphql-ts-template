@@ -64,7 +64,7 @@ describe('HomeContainer saga tests', () => {
         {
           id: '1',
           missionName: 'sampleName',
-          launchDateLocal: 'some date',
+          launchDateLocal: '2017-01-14T10:54:00-07:00',
           launchDateUnix: 123121232,
           links: {
             wikipedia: 'wiki link',

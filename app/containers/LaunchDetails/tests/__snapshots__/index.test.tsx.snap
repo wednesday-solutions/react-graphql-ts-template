@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LaunchDetails /> container tests should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div>
+      <pre>
+        {}
+      </pre>
+      <p />
+    </div>
+  </div>
+</body>
+`;

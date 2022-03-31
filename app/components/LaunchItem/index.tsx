@@ -17,6 +17,9 @@ const LaunchCard = styled(Card)`
     margin: 1rem 0;
     color: ${(props) => props.color};
     background-color: ${colors.cardBg};
+    &:hover {
+      box-shadow: inset 0 0 10px -5px rgba(0, 0, 0, 0.6);
+    }
   }
 `;
 

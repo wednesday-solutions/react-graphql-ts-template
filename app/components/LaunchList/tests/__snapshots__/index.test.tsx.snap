@@ -9,7 +9,7 @@ exports[`<LaunchList /> should render and match the snapshot 1`] = `
       orientation="row"
     >
       <div
-        class="ant-card ant-card-bordered LaunchItem__LaunchCard-tig4gy-0 esnDje"
+        class="ant-card ant-card-bordered LaunchItem__LaunchCard-tig4gy-0 gnHEfq"
         data-testid="launch-item"
       >
         <div

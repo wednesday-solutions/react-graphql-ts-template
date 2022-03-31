@@ -7,7 +7,7 @@ describe('LaunchDetails selector tests', () => {
   let launchError: string;
   let loading: boolean;
 
-  beforeEach(() => {
+  beforeAll(() => {
     launch = {};
     launchError = 'new LaunchError("_^_")';
     loading = false;
@@ -21,7 +21,7 @@ describe('LaunchDetails selector tests', () => {
     };
   });
 
-  it('should select the user state', () => {
+  it('should select the launchDetails state', () => {
     expect(selectLaunchDetailsDomain(mockedState)).toEqual(mockedState.launchDetails);
   });
 

@@ -2,13 +2,13 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import configureStore from '@app/configureStore';
 import { DEFAULT_LOCALE, translationMessages } from '@app/i18n';
 import ConnectedLanguageProvider from '@containers/LanguageProvider';
 import IntlGlobalProvider from '@components/IntlGlobalProvider';
-import { History } from 'history';
+import history from './history';
 
 export const renderWithIntl = (children: React.ReactNode) =>
   render(
@@ -24,7 +24,7 @@ export const getComponentStyles = (Component: React.FC<any>, props = {}) => {
   return window.getComputedStyle(componentRoots[0]);
 };
 
-export const renderProvider = (children: React.ReactNode, history?: History, renderFn = render) => {
+export const renderProvider = (children: React.ReactNode, { path }: { path?: string } = {}, renderFn = render) => {
   const store = configureStore({}).store;
   return renderFn(
     <Provider store={store}>
@@ -34,7 +34,7 @@ export const renderProvider = (children: React.ReactNode, history?: History, ren
             main: 'violet'
           }}
         >
-          {history ? <Router history={history}>{children}</Router> : <BrowserRouter>{children}</BrowserRouter>}
+          <Router history={history}>{path ? <Route path={path}>{children}</Route> : children}</Router>
         </ThemeProvider>
       </ConnectedLanguageProvider>
     </Provider>

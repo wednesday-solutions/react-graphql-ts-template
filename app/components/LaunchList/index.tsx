@@ -54,7 +54,7 @@ LaunchList.propTypes = {
     launches: PropTypes.arrayOf(
       PropTypes.shape({
         missionName: PropTypes.string,
-        launchDateLocal: PropTypes.string,
+        launchDateUtc: PropTypes.string,
         links: PropTypes.shape({
           wikipedia: PropTypes.string,
           flickrImages: PropTypes.array

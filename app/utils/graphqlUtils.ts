@@ -7,7 +7,7 @@ export const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-interface QueryReponse<Data> {
+export interface GqlQueryReponse<Data> {
   data?: Data;
   error?: any;
   ok: boolean;
@@ -16,7 +16,7 @@ interface QueryReponse<Data> {
 export const getQueryResponse = <Data, Variables>(
   query: DocumentNode,
   variables?: Variables
-): Promise<QueryReponse<Data>> => {
+): Promise<GqlQueryReponse<Data>> => {
   return client
     .query<Data, Variables>({ query, variables })
     .then((res) => {

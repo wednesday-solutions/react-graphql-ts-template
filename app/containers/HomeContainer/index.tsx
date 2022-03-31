@@ -67,7 +67,7 @@ const CustomFooter = styled.div`
 export interface Launch {
   id: string;
   missionName: string;
-  launchDateLocal: string;
+  launchDateUtc: string;
   launchDateUnix: number;
   links: {
     wikipedia: string;

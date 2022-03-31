@@ -23,7 +23,8 @@ const ProtectedRoute = ({ render: Component, isLoggedIn, handleLogout = () => {}
       .filter((key) => !routeConstants[key].isProtected)
       .map((key) => routeConstants[key].route)
       .includes(rest.path) && rest.exact;
-  const handleRedirection = (renderProps: RouteComponentProps) => {
+
+  function handleRedirection(renderProps: RouteComponentProps) {
     let to;
     if (!isLoggedIn) {
       // user is not logged in
@@ -44,7 +45,7 @@ const ProtectedRoute = ({ render: Component, isLoggedIn, handleLogout = () => {}
       }
     }
     return <Redirect to={to} />;
-  };
+  }
   return <Route {...rest} render={handleRedirection} />;
 };
 

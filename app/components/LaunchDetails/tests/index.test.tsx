@@ -30,4 +30,20 @@ describe('<LaundDetails> tests', () => {
     const { getByTestId } = renderProvider(<LaunchDetails {...launchDetails} />);
     expect(getByTestId('mission-name')).toBeInTheDocument();
   });
+  it('should render the ship name if it is available', () => {
+    const { getByTestId } = renderProvider(<LaunchDetails {...launchDetails} />);
+    expect(getByTestId('ship-name')).toBeInTheDocument();
+  });
+  it('should render the ship type if it is available', () => {
+    const { getByTestId } = renderProvider(<LaunchDetails {...launchDetails} />);
+    expect(getByTestId('ship-type')).toBeInTheDocument();
+  });
+  it('should render the rocket name if it is available', () => {
+    const { getByTestId } = renderProvider(<LaunchDetails {...launchDetails} />);
+    expect(getByTestId('rocket-name')).toBeInTheDocument();
+  });
+  it('should render the rocket type if it is available', () => {
+    const { getByTestId } = renderProvider(<LaunchDetails {...launchDetails} />);
+    expect(getByTestId('rocket-type')).toBeInTheDocument();
+  });
 });

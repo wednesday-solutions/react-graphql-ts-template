@@ -42,4 +42,36 @@ describe('<LaunchDetails /> container tests', () => {
     props.dispatchLaunch('1');
     expect(dispatchSpy).toBeCalledWith(requestGetLaunch('1'));
   });
+  it('should not render the launchDetails if there is no data', () => {
+    const { getByTestId } = renderProvider(<LaunchDetails {...defaultProps} />);
+    expect(() => getByTestId('launch-details')).toThrowError();
+  });
+  it('should  render the launchDetails if there is data', () => {
+    const props = {
+      loading: false,
+      launch: {
+        id: '1',
+        missionName: 'CRS-21',
+        links: {
+          flickrImages: ['https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg']
+        },
+        details: "SpaceX's 21st ISS resupply mission.",
+        rocket: {
+          rocketName: 'Falcon 9',
+          rocketType: 'FT'
+        },
+        ships: [
+          {
+            name: 'Ship 1',
+            type: 'Type 1'
+          }
+        ]
+      },
+      dispatchLaunch: submitSpy
+    };
+
+    const { getByTestId } = renderProvider(<LaunchDetails {...props} />);
+
+    expect(getByTestId('launch-details')).toBeInTheDocument();
+  });
 });

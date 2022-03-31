@@ -125,7 +125,12 @@ LaunchDetails.propTypes = {
     rocket_name: PropTypes.string,
     rocket_type: PropTypes.string
   }),
-  ships: PropTypes.arrayOf(PropTypes.string)
+  ships: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      type: PropTypes.string
+    })
+  )
 };
 
 export default LaunchDetails;

@@ -32,8 +32,7 @@ export function ErrorHandler({ loading, launchListError }: ErrorHandlerTypes) {
 
 ErrorHandler.propTypes = {
   loading: PropTypes.bool,
-  launchListError: PropTypes.string,
-  intl: PropTypes.object
+  launchListError: PropTypes.string
 };
 
 export default ErrorHandler;

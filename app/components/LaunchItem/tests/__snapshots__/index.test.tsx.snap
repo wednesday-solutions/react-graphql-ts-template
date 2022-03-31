@@ -20,7 +20,7 @@ exports[`<LaunchItem /> should render and match the snapshot 1`] = `
           class="T__StyledText-gcrjip-0 cSxVIW"
           data-testid="t"
         >
-          Mon, 6th January 2014, 11:36 PM
+          Mon, 6th January 2014, 06:06 PM
         </p>
         <a
           class="ant-btn ant-btn-link LaunchItem__WikiLink-tig4gy-1 bHCehg"

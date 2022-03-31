@@ -9,7 +9,8 @@ exports[`<LaunchList /> should render and match the snapshot 1`] = `
       orientation="row"
     >
       <div
-        class="ant-card ant-card-bordered LaunchItem__LaunchCard-tig4gy-0 eDryXK"
+        class="ant-card ant-card-bordered LaunchItem__LaunchCard-tig4gy-0 esnDje"
+        data-testid="launch-item"
       >
         <div
           class="ant-card-body"
@@ -24,10 +25,11 @@ exports[`<LaunchList /> should render and match the snapshot 1`] = `
             class="T__StyledText-gcrjip-0 cSxVIW"
             data-testid="t"
           >
-            2014-01-06T14:06:00-04:00
+            Mon, 6th January 2014, 11:36 PM
           </p>
           <a
-            class="ant-btn ant-btn-link LaunchItem__WikiLink-tig4gy-1 jGA-DgB"
+            class="ant-btn ant-btn-link LaunchItem__WikiLink-tig4gy-1 bHCehg"
+            data-testid="wiki-link"
             href="https://en.wikipedia.org/wiki/Thaicom_6"
             rel="noreferrer"
             target="_blank"

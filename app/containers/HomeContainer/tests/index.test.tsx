@@ -178,7 +178,7 @@ describe('<HomeContainer /> tests', () => {
         {
           id: '1',
           missionName: 'Sample Mission',
-          launchDateLocal: 'some date',
+          launchDateLocal: '2017-01-14T10:54:00-07:00',
           launchDateUnix: 12312313,
           links: {
             wikipedia: 'sample link',
@@ -199,8 +199,7 @@ describe('<HomeContainer /> tests', () => {
 
   it('should delete mission_name query param from search on empty change', async () => {
     const { getByTestId } = renderProvider(
-      <HomeContainer {...defaultProps} dispatchLaunchList={submitSpy} loading={false} />,
-      history
+      <HomeContainer {...defaultProps} dispatchLaunchList={submitSpy} loading={false} />
     );
     fireEvent.change(getByTestId('search-bar'), {
       target: { value: 'a' }
@@ -229,7 +228,7 @@ describe('<HomeContainer /> tests', () => {
     expect(history.location.search).toContain('order=asc');
     renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-      history,
+      undefined,
       rerender as any
     );
   });
@@ -243,7 +242,7 @@ describe('<HomeContainer /> tests', () => {
     expect(history.location.search).toContain('order=desc');
     renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-      history,
+      undefined,
       rerender as any
     );
   });
@@ -251,15 +250,10 @@ describe('<HomeContainer /> tests', () => {
   it('should push to first page if no data found in the current page', async () => {
     history.location.search = '?page=3';
     const { rerender } = renderProvider(
-      <HomeContainer {...defaultProps} launchData={{ launches: [] }} loading={false} />,
-      history
+      <HomeContainer {...defaultProps} launchData={{ launches: [] }} loading={false} />
     );
     expect(history.location.search).toContain('page=1');
-    renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-      history,
-      rerender as any
-    );
+    renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
     await timeout(500);
     expect(history.location.search).toContain('page=1');
   });
@@ -280,16 +274,11 @@ describe('<HomeContainer /> tests', () => {
 
   it('should clear sort when clicked on clear sort button', () => {
     const { getByText, getByRole, getByTestId, rerender } = renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-      history
+      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('DESC'));
-    renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-      history,
-      rerender as any
-    );
+    renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
     fireEvent.click(getByTestId('clear-sort'));
     expect(history.location.search).not.toContain('order=desc');
   });

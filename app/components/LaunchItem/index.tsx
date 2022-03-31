@@ -8,9 +8,12 @@ import { T } from '@components/T';
 import isEmpty from 'lodash-es/isEmpty';
 import { colors } from '@app/themes';
 import { GlobalOutlined } from '@ant-design/icons';
+import history from '@app/utils/history';
+import moment from 'moment';
 
 const LaunchCard = styled(Card)`
   && {
+    cursor: pointer;
     margin: 1rem 0;
     color: ${(props) => props.color};
     background-color: ${colors.cardBg};
@@ -23,21 +26,36 @@ const WikiLink = styled(Button)`
     display: flex;
     align-items: center;
     color: ${colors.text};
+    width: max-content;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 
-function LaunchItem({ missionName, launchDateLocal, links }: Launch) {
+function LaunchItem({ missionName, launchDateLocal, links, id }: Launch) {
+  const goToLaunch = () => history.push(`/${id}`);
+
   return (
-    <LaunchCard>
+    <LaunchCard data-testid="launch-item" onClick={goToLaunch}>
       <If condition={!isEmpty(missionName)} otherwise={<T id="mission_name_unavailable" />}>
         <T data-testid="mission-name" marginBottom={1.5} type="subheading" text={missionName} />
       </If>
       <If condition={!isEmpty(launchDateLocal)} otherwise={<T id="launch_date_unavailable" />}>
-        <T text={launchDateLocal} />
+        <T text={moment(launchDateLocal).format('ddd, Do MMMM YYYY, hh:mm A')} />
       </If>
       <If condition={!isEmpty(links)} otherwise={<T id="launch_links_unavailable" />}>
-        <If condition={!isEmpty(links.wikipedia)} otherwise={<T id="launch_wiki_unavailable" />}>
-          <WikiLink type="link" rel="noreferrer" target="_blank" href={links.wikipedia} icon={<GlobalOutlined />}>
+        <If condition={!isEmpty(links.wikipedia)}>
+          <WikiLink
+            data-testid="wiki-link"
+            type="link"
+            rel="noreferrer"
+            target="_blank"
+            onClick={(e) => e.stopPropagation()}
+            href={links.wikipedia}
+            icon={<GlobalOutlined />}
+          >
             Wikipedia
           </WikiLink>
         </If>
@@ -47,6 +65,7 @@ function LaunchItem({ missionName, launchDateLocal, links }: Launch) {
 }
 
 LaunchItem.propTypes = {
+  id: PropTypes.string,
   missionName: PropTypes.string,
   launchDateLocal: PropTypes.string,
   links: PropTypes.shape({

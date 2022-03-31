@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { renderWithIntl } from '@utils/testUtils';
+import { renderProvider } from '@utils/testUtils';
 import LaunchList from '../index';
 import { LaunchData } from '@app/containers/HomeContainer';
 
@@ -26,16 +26,16 @@ describe('<LaunchList />', () => {
     ]
   };
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderWithIntl(<LaunchList loading={loading} launchData={launchData} />);
+    const { baseElement } = renderProvider(<LaunchList loading={loading} launchData={launchData} />);
     expect(baseElement).toMatchSnapshot();
   });
   it('should show the fallbackMessage if luanchData is empty', () => {
     const message = 'No results found for the search term.';
-    const { getByText } = renderWithIntl(<LaunchList loading={loading} launchData={{}} />);
+    const { getByText } = renderProvider(<LaunchList loading={loading} launchData={{}} />);
     expect(getByText(message)).toBeInTheDocument();
   });
   it('should render the list for the launches when data is available', () => {
-    const { getByText } = renderWithIntl(<LaunchList loading={loading} launchData={launchData} />);
+    const { getByText } = renderProvider(<LaunchList loading={loading} launchData={launchData} />);
     expect(getByText('Thaicom 6')).toBeInTheDocument();
   });
 });

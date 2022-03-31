@@ -2,16 +2,16 @@ export type RouteConstant = {
   route: string;
   exact?: boolean;
   isProtected?: boolean;
-  props: object;
+  props?: object;
 };
 
 const routeConstants: Record<string, RouteConstant> = {
   home: {
     route: '/',
-    props: {
-      maxwidth: 500,
-      padding: 20
-    },
+    exact: true
+  },
+  launch: {
+    route: '/:launchId',
     exact: true
   }
 };

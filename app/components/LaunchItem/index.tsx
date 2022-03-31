@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Launch } from '@app/containers/HomeContainer';
 import { Button, Card } from 'antd';
 import PropTypes from 'prop-types';
@@ -40,13 +40,15 @@ const WikiLink = styled(Button)`
 function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
   const goToLaunch = () => history.push(`/${id}`);
 
+  const memoizedLaunchDate = useMemo(() => moment(launchDateUtc).format('ddd, Do MMMM YYYY, hh:mm A'), [launchDateUtc]);
+
   return (
     <LaunchCard data-testid="launch-item" onClick={goToLaunch}>
       <If condition={!isEmpty(missionName)} otherwise={<T id="mission_name_unavailable" />}>
         <T data-testid="mission-name" marginBottom={1.5} type="subheading" text={missionName} />
       </If>
       <If condition={!isEmpty(launchDateUtc)} otherwise={<T id="launch_date_unavailable" />}>
-        <T text={moment(launchDateUtc).format('ddd, Do MMMM YYYY, hh:mm A')} />
+        <T text={memoizedLaunchDate} />
       </If>
       <If condition={!isEmpty(links)} otherwise={<T id="launch_links_unavailable" />}>
         <If condition={!isEmpty(links.wikipedia)}>

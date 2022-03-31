@@ -5,6 +5,7 @@
  */
 
 import React, { memo, useEffect } from 'react';
+import LaunchDetailsComponent from '@app/components/LaunchDetails';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -18,7 +19,7 @@ import { useParams } from 'react-router-dom';
 import { Skeleton } from 'antd';
 
 export interface LaunchDetailsProps {
-  launch: LaunchDetailsType | {};
+  launch: LaunchDetailsType | null;
   launchError?: string;
   loading: boolean;
   dispatchLaunch: (launchId: string) => AnyAction;
@@ -40,7 +41,7 @@ export function LaunchDetails({ launch, launchError, loading, dispatchLaunch }: 
         <meta name="description" content="Description of LaunchDetails" />
       </Helmet>
       <Skeleton loading={loading} active>
-        <pre>{JSON.stringify(launch, null, 2)}</pre>
+        {launch && <LaunchDetailsComponent {...launch} />}
         <p>{launchError}</p>
       </Skeleton>
     </div>

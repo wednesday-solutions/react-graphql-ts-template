@@ -20,7 +20,7 @@ describe('<LaunchDetails /> container tests', () => {
     submitSpy = jest.fn();
     defaultProps = {
       loading: false,
-      launch: {},
+      launch: null,
       dispatchLaunch: submitSpy
     };
   });

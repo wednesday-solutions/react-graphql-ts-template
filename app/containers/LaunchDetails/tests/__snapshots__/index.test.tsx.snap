@@ -4,9 +4,6 @@ exports[`<LaunchDetails /> container tests should render and match the snapshot 
 <body>
   <div>
     <div>
-      <pre>
-        {}
-      </pre>
       <p />
     </div>
   </div>

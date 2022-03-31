@@ -18,7 +18,7 @@ export interface LaunchDetails {
     type: string;
   }[];
   links: {
-    flickrImages: string[];
+    flickrImages?: string[];
   };
 }
 

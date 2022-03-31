@@ -28,7 +28,7 @@ describe('<LaunchItem />', () => {
   it('should take us to launch details page if clicked on it', () => {
     const { getByTestId } = renderProvider(<LaunchItem {...launch} />);
     fireEvent.click(getByTestId('launch-item'));
-    expect(history.location.pathname).toBe(`/${launch.id}`);
+    expect(history.location.pathname).toBe(`/launch/${launch.id}`);
   });
 
   it('should stopPropagation when clicked on link', () => {

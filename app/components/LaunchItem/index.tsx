@@ -38,7 +38,7 @@ const WikiLink = styled(Button)`
 `;
 
 function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
-  const goToLaunch = () => history.push(`/${id}`);
+  const goToLaunch = () => history.push(`/launch/${id}`);
 
   const memoizedLaunchDate = useMemo(() => moment(launchDateUtc).format('ddd, Do MMMM YYYY, hh:mm A'), [launchDateUtc]);
 

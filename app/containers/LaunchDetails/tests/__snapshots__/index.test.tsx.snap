@@ -4,10 +4,34 @@ exports[`<LaunchDetails /> container tests should render and match the snapshot 
 <body>
   <div>
     <div>
-      <pre>
-        {}
-      </pre>
-      <p />
+      <div
+        class="NotFoundPage__NotFoundContainer-ywwv48-1 hYGWmJ"
+      >
+        <p
+          class="T__StyledText-gcrjip-0 kPLUDf"
+          data-testid="details"
+        >
+          Oops you ran out of Oxygen!, dont worry, you can go back home and start exploring again!
+        </p>
+        <button
+          class="NotFoundPage__CustomButton-ywwv48-2 inGbhQ"
+          data-testid="back-button"
+        >
+          Go Back
+        </button>
+        <div
+          class="ant-image"
+        >
+          <img
+            class="ant-image-img NotFoundPage__NotFoundImage-ywwv48-0 eLTHHc"
+            src="IMAGE_MOCK"
+          />
+        </div>
+      </div>
+      <p
+        class="T__StyledText-gcrjip-0 cSxVIW"
+        data-testid="default-message"
+      />
     </div>
   </div>
 </body>

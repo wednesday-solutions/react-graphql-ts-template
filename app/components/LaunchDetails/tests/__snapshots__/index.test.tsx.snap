@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div
+      class="ant-card ant-card-bordered LaunchDetails__LaunchDetailsCard-ytnak2-0 iDczOM"
+      data-testid="launch-details"
+    >
+      <div
+        class="ant-card-body"
+      >
+        <div
+          class="ant-image"
+        >
+          <img
+            class="ant-image-img LaunchDetails__CustomImage-ytnak2-1 iQFXIj"
+            src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
+          />
+        </div>
+        <div
+          class="LaunchDetails__DetailsCard-ytnak2-2 ikyptG"
+        >
+          <p
+            class="T__StyledText-gcrjip-0 glWvmi"
+            data-testid="mission-name"
+          >
+            CRS-21
+          </p>
+          <p
+            class="T__StyledText-gcrjip-0 bJJiWe"
+            data-testid="details"
+          >
+            Details: SpaceX's 21st ISS resupply mission.
+          </p>
+          <p
+            class="T__StyledText-gcrjip-0 gNVGGd"
+            data-testid="rocket-name"
+          >
+            Rocket Name: Falcon 9
+          </p>
+          <p
+            class="T__StyledText-gcrjip-0 gNVGGd"
+            data-testid="rocket-type"
+          >
+            Rocket Type: FT
+          </p>
+          <p
+            class="T__StyledText-gcrjip-0 cSxVIW"
+            data-testid="t"
+          >
+            Ships:
+          </p>
+          <div
+            class="LaunchDetails__ShipContainer-ytnak2-3 DOyyN"
+            data-testid="for"
+            orientation="row"
+          >
+            <p
+              class="T__StyledText-gcrjip-0 gNVGGd LaunchDetails__CustomT-ytnak2-4 jgSNQi"
+              data-testid="ship-name"
+            >
+              Ship Name: Ship 1
+            </p>
+            <p
+              class="T__StyledText-gcrjip-0 gNVGGd LaunchDetails__CustomT-ytnak2-4 jgSNQi"
+              data-testid="ship-type"
+            >
+              Ship Type: Type 1
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

@@ -1,24 +1,20 @@
-/**
- *
- * LaunchDetails
- *
- */
-
 import React, { memo, useEffect } from 'react';
+import LaunchDetailsComponent from '@app/components/LaunchDetails';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
+import { useParams } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import { AnyAction, compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
 import { selectLaunch, selectLaunchError, selectLoading } from './selectors';
 import saga, { LaunchDetails as LaunchDetailsType } from './saga';
 import { requestGetLaunch } from './reducer';
-import { useParams } from 'react-router-dom';
-import { Skeleton } from 'antd';
+import { ErrorHandler, If } from '@components';
+import NotFound from '@containers/NotFoundPage';
 
 export interface LaunchDetailsProps {
-  launch: LaunchDetailsType | {};
+  launch: LaunchDetailsType | null;
   launchError?: string;
   loading: boolean;
   dispatchLaunch: (launchId: string) => AnyAction;
@@ -39,10 +35,11 @@ export function LaunchDetails({ launch, launchError, loading, dispatchLaunch }: 
         <title>Launch Details</title>
         <meta name="description" content="Description of LaunchDetails" />
       </Helmet>
-      <Skeleton loading={loading} active>
-        <pre>{JSON.stringify(launch, null, 2)}</pre>
-        <p>{launchError}</p>
-      </Skeleton>
+      {launch && <LaunchDetailsComponent {...launch} loading={loading} />}
+      <If condition={!launch}>
+        <NotFound />
+      </If>
+      <ErrorHandler loading={loading} launchListError={launchError} />
     </div>
   );
 }

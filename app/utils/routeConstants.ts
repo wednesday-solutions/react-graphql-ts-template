@@ -11,7 +11,7 @@ const routeConstants: Record<string, RouteConstant> = {
     exact: true
   },
   launch: {
-    route: '/:launchId',
+    route: '/launch/:launchId',
     exact: true
   }
 };

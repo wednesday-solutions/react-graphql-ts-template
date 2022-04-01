@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderProvider } from '@utils/testUtils';
 import ProtectedRoute from '../index';
+import * as protectedRouteFile from '../index';
 import '@testing-library/jest-dom';
 
 const RENDER_TEXT = 'Hello World';
@@ -60,5 +61,10 @@ describe('<ProtectedRoute /> tests', () => {
       <ProtectedRoute isLoggedIn={true} render={HomeContainer} exact={true} path="/login" />
     );
     expect(queryByText(RENDER_TEXT)).toBeNull();
+  });
+  it('should call the default logout function', () => {
+    const spy = jest.spyOn(protectedRouteFile.default.propTypes, 'handleLogout');
+    renderProvider(<ProtectedRoute isLoggedIn={false} render={HomeContainer} exact={true} path="/" />);
+    expect(spy).toHaveBeenCalled();
   });
 });

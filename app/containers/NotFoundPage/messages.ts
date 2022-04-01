@@ -10,6 +10,6 @@ export const scope = 'app.containers.NotFoundPage';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'This is the NotFoundPage container!'
+    defaultMessage: 'Oops you ran out of Oxygen!, dont worry, you can go back home and start exploring again!'
   }
 });

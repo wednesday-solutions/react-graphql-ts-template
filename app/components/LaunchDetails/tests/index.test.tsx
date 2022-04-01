@@ -5,6 +5,7 @@ import { renderProvider } from '@app/utils/testUtils';
 describe('<LaundDetails> tests', () => {
   const launchDetails = {
     id: '1',
+    loading: false,
     missionName: 'CRS-21',
     links: {
       flickrImages: ['https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg']
@@ -45,5 +46,10 @@ describe('<LaundDetails> tests', () => {
   it('should render the rocket type if it is available', () => {
     const { getByTestId } = renderProvider(<LaunchDetails {...launchDetails} />);
     expect(getByTestId('rocket-type')).toBeInTheDocument();
+  });
+  it('should render the skeleton  if loading is true', () => {
+    launchDetails.loading = true;
+    const { baseElement } = renderProvider(<LaunchDetails {...launchDetails} />);
+    expect(baseElement.getElementsByClassName('ant-skeleton').length).toEqual(2);
   });
 });

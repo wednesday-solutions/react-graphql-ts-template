@@ -5,7 +5,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('@lcdp/offline-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = require('./webpack.config.base')({
   mode: 'production',
@@ -125,8 +124,7 @@ module.exports = require('./webpack.config.base')({
           ios: true
         }
       ]
-    }),
-    new BundleAnalyzerPlugin()
+    })
   ],
   devtool: 'source-map',
   performance: {

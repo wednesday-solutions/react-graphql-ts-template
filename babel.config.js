@@ -28,7 +28,16 @@ module.exports = {
         'transform-react-remove-prop-types',
         '@babel/plugin-transform-react-inline-elements',
         '@babel/plugin-transform-react-constant-elements',
-        ['import', { libraryName: 'antd', style: true }, 'import-antd']
+        ['import', { libraryName: 'antd', style: true }, 'import-antd'],
+        [
+          'import',
+          {
+            libraryName: '@ant-design/icons',
+            libraryDirectory: 'es/icons',
+            camel2DashComponentName: false
+          },
+          '@ant-design/icons'
+        ]
       ]
     },
     dev: {

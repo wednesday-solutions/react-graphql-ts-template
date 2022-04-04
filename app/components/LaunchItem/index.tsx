@@ -9,7 +9,7 @@ import isEmpty from 'lodash-es/isEmpty';
 import { colors } from '@app/themes';
 import { GlobalOutlined } from '@ant-design/icons';
 import history from '@app/utils/history';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 const LaunchCard = styled(Card)`
   && {
@@ -40,7 +40,10 @@ const WikiLink = styled(Button)`
 function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
   const goToLaunch = () => history.push(`/launch/${id}`);
 
-  const memoizedLaunchDate = useMemo(() => moment(launchDateUtc).format('ddd, Do MMMM YYYY, hh:mm A'), [launchDateUtc]);
+  const memoizedLaunchDate = useMemo(
+    () => format(new Date(launchDateUtc), 'eee, do MMMM yyyy, hh:mm a'),
+    [launchDateUtc]
+  );
 
   return (
     <LaunchCard data-testid="launch-item" onClick={goToLaunch}>

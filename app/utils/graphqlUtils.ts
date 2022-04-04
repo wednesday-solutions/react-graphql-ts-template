@@ -1,5 +1,5 @@
 import ApolloClient, { DocumentNode, InMemoryCache } from 'apollo-boost';
-import { camelCase } from 'lodash';
+import camelCase from 'lodash-es/camelCase';
 import { mapKeysDeep } from '.';
 
 export const client = new ApolloClient({

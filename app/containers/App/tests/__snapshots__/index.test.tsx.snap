@@ -22,13 +22,17 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     class="ant-layout App__CustomLayout-di9tar-2 edUAiy"
   >
     <div
-      class="App__SideBar-di9tar-0 iLRUWR"
+      class="App__SideBar-di9tar-0 hDOcQA"
     >
-      <img
-        alt=""
-        class="App__RocketLogo-di9tar-1 lmXCEd"
-        src="IMAGE_MOCK"
-      />
+      <a
+        href="/"
+      >
+        <img
+          alt=""
+          class="App__RocketLogo-di9tar-1 lmXCEd"
+          src="IMAGE_MOCK"
+        />
+      </a>
     </div>
     <main
       class="ant-layout-content"

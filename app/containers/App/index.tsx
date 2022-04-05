@@ -12,7 +12,7 @@ import { routeConfig } from '@app/routeConfig';
 import { Layout } from 'antd';
 import map from 'lodash-es/map';
 import { withRouter } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { compose } from 'redux';
 import styled, { ThemeProvider } from 'styled-components';
 import For from '@components/For';
@@ -28,7 +28,8 @@ const theme = {
 const SideBar = styled.div`
   && {
     width: 6%;
-    min-width: 5rem;
+    min-width: 4.5rem;
+    max-width: 7rem;
     min-height: 100vh;
     height: auto;
     background-color: ${colors.primary};
@@ -55,7 +56,9 @@ export function App() {
       <Header />
       <CustomLayout>
         <SideBar>
-          <RocketLogo src={icon} alt="" />
+          <Link to="/">
+            <RocketLogo src={icon} alt="" />
+          </Link>
         </SideBar>
         <Layout.Content>
           <For

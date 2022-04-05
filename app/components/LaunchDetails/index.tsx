@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { If, T, For } from '@components';
 import isEmpty from 'lodash-es/isEmpty';
-import { colors } from '@app/themes';
+import { colors, media } from '@app/themes';
 import { LaunchDetails as LaunchDetailsType } from '@app/containers/LaunchDetails/saga';
 import { Card, Image, Skeleton } from 'antd';
 import placeholderImage from '@images/undraw_to_the_stars_re_wq2x.svg';
@@ -12,7 +12,13 @@ const LaunchDetailsCard = styled(Card)`
   && {
     .ant-card-body {
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       color: ${(props) => props.color};
+
+      ${media.greaterThan('tablet')`
+        flex-direction: row;
+      `}
     }
     margin: 1.5rem;
     background-color: ${colors.cardBg};
@@ -21,16 +27,31 @@ const LaunchDetailsCard = styled(Card)`
 
 const CustomImage = styled(Image)`
   && {
-    height: 692px;
-    width: 547px;
-    margin: 2rem;
+    ${media.between('tablet', 'desktop')`
+    .ant-image-img{
+      width: 80%;
+      margin: 0;
+    }
+    `}
+    ${media.greaterThan('desktop')`
+      height: 692px;
+      width: 547px;
+      margin: 2rem;
+    `}
   }
 `;
 
 const DetailsCard = styled.div`
   && {
-    width: 40%;
-    margin: 13% 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+    margin: 3rem 0;
+    ${media.greaterThan('desktop')`
+      width: 50%;
+      /* margin: 13% 2%; */
+   `}
   }
 `;
 

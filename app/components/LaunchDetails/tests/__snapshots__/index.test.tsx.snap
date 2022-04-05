@@ -4,7 +4,7 @@ exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered LaunchDetails__LaunchDetailsCard-ytnak2-0 iDczOM"
+      class="ant-card ant-card-bordered LaunchDetails__LaunchDetailsCard-ytnak2-0 icITYs"
       data-testid="launch-details"
     >
       <div
@@ -14,12 +14,12 @@ exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
           class="ant-image"
         >
           <img
-            class="ant-image-img LaunchDetails__CustomImage-ytnak2-1 iQFXIj"
+            class="ant-image-img LaunchDetails__CustomImage-ytnak2-1 jvwxVq"
             src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
           />
         </div>
         <div
-          class="LaunchDetails__DetailsCard-ytnak2-2 ikyptG"
+          class="LaunchDetails__DetailsCard-ytnak2-2 kbToiw"
         >
           <p
             class="T__StyledText-gcrjip-0 glWvmi"

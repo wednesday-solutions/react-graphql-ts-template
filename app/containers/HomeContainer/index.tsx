@@ -16,7 +16,7 @@ import arrowUpDown from '@images/ArrowUpDown.svg';
 import homeContainerSaga, { LaunchesActionCreator, RequestLaunchesActionPayload } from './saga';
 import { requestGetLaunchList } from './reducer';
 import { LaunchList, ErrorHandler } from '@components';
-import { colors } from '@app/themes';
+import { colors, media } from '@app/themes';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSort from './useSort';
 import usePaginate from './usePaginate';
@@ -35,8 +35,13 @@ const Container = styled.div`
 
 const CustomHeader = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
   width: 100%;
+
+  ${media.greaterThan('tablet')`
+    flex-direction: row;
+  `}
 `;
 
 const CustomSearch = styled(Input)`
@@ -47,11 +52,19 @@ const CustomSearch = styled(Input)`
   }
 `;
 
+const ButtonBox = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
+
 const SortSelect = styled(Select)`
   && {
     width: 9.5rem;
     background-color: #fff;
 
+    ${media.lessThan('tablet')`
+      flex: 1;
+    `}
     .ant-select-selection-item {
       color: ${colors.secondaryText};
     }
@@ -135,30 +148,32 @@ export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, l
           onChange={handleSearch}
           autoFocus
         />
-        <Button disabled={!order} onClick={handleClearSort} data-testid="clear-sort">
-          CLEAR SORT
-        </Button>
-        <SortSelect
-          data-testid="sort-select"
-          id="sort-select"
-          suffixIcon={
-            order === 'asc' ? (
-              <img src={arrowUp} alt="chevron-up" />
-            ) : order === 'desc' ? (
-              <img src={arrowDown} alt="chevron-down" />
-            ) : (
-              <img src={arrowUpDown} alt="chevron-up-down" />
-            )
-          }
-          value={order || 'default'}
-          onChange={handleDateSort as any}
-        >
-          <Select.Option value="default" disabled>
-            SORT BY DATE
-          </Select.Option>
-          <Select.Option value="desc">DESC</Select.Option>
-          <Select.Option value="asc">ASC</Select.Option>
-        </SortSelect>
+        <ButtonBox>
+          <Button disabled={!order} onClick={handleClearSort} data-testid="clear-sort">
+            CLEAR SORT
+          </Button>
+          <SortSelect
+            data-testid="sort-select"
+            id="sort-select"
+            suffixIcon={
+              order === 'asc' ? (
+                <img src={arrowUp} alt="chevron-up" />
+              ) : order === 'desc' ? (
+                <img src={arrowDown} alt="chevron-down" />
+              ) : (
+                <img src={arrowUpDown} alt="chevron-up-down" />
+              )
+            }
+            value={order || 'default'}
+            onChange={handleDateSort as any}
+          >
+            <Select.Option value="default" disabled>
+              SORT BY DATE
+            </Select.Option>
+            <Select.Option value="desc">DESC</Select.Option>
+            <Select.Option value="asc">ASC</Select.Option>
+          </SortSelect>
+        </ButtonBox>
       </CustomHeader>
       <LaunchList launchData={launchData} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />

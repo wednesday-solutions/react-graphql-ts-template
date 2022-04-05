@@ -7,7 +7,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
       class="HomeContainer__Container-wd79o1-0 ikliEb"
     >
       <div
-        class="HomeContainer__CustomHeader-wd79o1-1 hlkaQK"
+        class="HomeContainer__CustomHeader-wd79o1-1 euKLTj"
       >
         <span
           class="ant-input-affix-wrapper ant-input-affix-wrapper-focused HomeContainer__CustomSearch-wd79o1-2 iORBao"
@@ -44,61 +44,65 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
             value=""
           />
         </span>
-        <button
-          class="ant-btn"
-          data-testid="clear-sort"
-          disabled=""
-          type="button"
-        >
-          <span>
-            CLEAR SORT
-          </span>
-        </button>
         <div
-          class="ant-select HomeContainer__SortSelect-wd79o1-3 izVGL ant-select-single ant-select-show-arrow"
-          data-testid="sort-select"
+          class="HomeContainer__ButtonBox-wd79o1-3 htscFM"
         >
-          <div
-            class="ant-select-selector"
+          <button
+            class="ant-btn"
+            data-testid="clear-sort"
+            disabled=""
+            type="button"
           >
-            <span
-              class="ant-select-selection-search"
+            <span>
+              CLEAR SORT
+            </span>
+          </button>
+          <div
+            class="ant-select HomeContainer__SortSelect-wd79o1-4 jnsQrO ant-select-single ant-select-show-arrow"
+            data-testid="sort-select"
+          >
+            <div
+              class="ant-select-selector"
             >
-              <input
-                aria-activedescendant="sort-select_list_0"
-                aria-autocomplete="list"
-                aria-controls="sort-select_list"
-                aria-haspopup="listbox"
-                aria-owns="sort-select_list"
-                autocomplete="off"
-                class="ant-select-selection-search-input"
-                id="sort-select"
-                readonly=""
-                role="combobox"
-                style="opacity: 0;"
-                type="search"
-                unselectable="on"
-                value=""
+              <span
+                class="ant-select-selection-search"
+              >
+                <input
+                  aria-activedescendant="sort-select_list_0"
+                  aria-autocomplete="list"
+                  aria-controls="sort-select_list"
+                  aria-haspopup="listbox"
+                  aria-owns="sort-select_list"
+                  autocomplete="off"
+                  class="ant-select-selection-search-input"
+                  id="sort-select"
+                  readonly=""
+                  role="combobox"
+                  style="opacity: 0;"
+                  type="search"
+                  unselectable="on"
+                  value=""
+                />
+              </span>
+              <span
+                class="ant-select-selection-item"
+                title="SORT BY DATE"
+              >
+                SORT BY DATE
+              </span>
+            </div>
+            <span
+              aria-hidden="true"
+              class="ant-select-arrow"
+              style="user-select: none;"
+              unselectable="on"
+            >
+              <img
+                alt="chevron-up-down"
+                src="IMAGE_MOCK"
               />
             </span>
-            <span
-              class="ant-select-selection-item"
-              title="SORT BY DATE"
-            >
-              SORT BY DATE
-            </span>
           </div>
-          <span
-            aria-hidden="true"
-            class="ant-select-arrow"
-            style="user-select: none;"
-            unselectable="on"
-          >
-            <img
-              alt="chevron-up-down"
-              src="IMAGE_MOCK"
-            />
-          </span>
         </div>
       </div>
       <div
@@ -123,7 +127,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="HomeContainer__CustomFooter-wd79o1-4 kxwytO"
+        class="HomeContainer__CustomFooter-wd79o1-5 kKgmkD"
       >
         <button
           class="ant-btn ant-btn-primary"

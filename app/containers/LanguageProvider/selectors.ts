@@ -5,7 +5,7 @@ import { initialState } from './reducer';
 /**
  * Direct selector to the languageToggle state domain
  */
-const selectLanguage = (state: Partial<RootState>) => state.language || initialState;
+const selectLanguage = (state: Partial<RootState>) => state.languageProvider || initialState;
 
 /**
  * Select the language locale

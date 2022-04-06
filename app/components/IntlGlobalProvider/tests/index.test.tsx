@@ -1,7 +1,7 @@
 import React from 'react';
 import getIntl from '@utils/getIntl';
 import { render } from '@testing-library/react';
-import { IntlGlobalProvider, setIntl, translate } from '../index';
+import IntlGlobalProvider, { setIntl, translate } from '../index';
 
 jest.mock('react-intl');
 const reactIntl = require('react-intl');

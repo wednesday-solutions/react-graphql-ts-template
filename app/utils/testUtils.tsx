@@ -2,13 +2,13 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import configureStore from '@app/configureStore';
 import { DEFAULT_LOCALE, translationMessages } from '@app/i18n';
 import ConnectedLanguageProvider from '@containers/LanguageProvider';
-import { IntlGlobalProvider } from '@components/IntlGlobalProvider';
-import { History } from 'history';
+import IntlGlobalProvider from '@components/IntlGlobalProvider';
+import history from './history';
 
 export const renderWithIntl = (children: React.ReactNode) =>
   render(
@@ -21,13 +21,12 @@ export const getComponentStyles = (Component: React.FC<any>, props = {}) => {
   renderWithIntl(Component(props));
   const { styledComponentId } = Component(props)!.type;
   const componentRoots = document.getElementsByClassName(styledComponentId);
-  // eslint-disable-next-line no-underscore-dangle
   return window.getComputedStyle(componentRoots[0]);
 };
 
-export const renderProvider = (children: React.ReactNode, history?: History) => {
+export const renderProvider = (children: React.ReactNode, { path }: { path?: string } = {}, renderFn = render) => {
   const store = configureStore({}).store;
-  return render(
+  return renderFn(
     <Provider store={store}>
       <ConnectedLanguageProvider messages={translationMessages}>
         <ThemeProvider
@@ -35,14 +34,15 @@ export const renderProvider = (children: React.ReactNode, history?: History) => 
             main: 'violet'
           }}
         >
-          {history ? <Router history={history}>{children}</Router> : <BrowserRouter>{children}</BrowserRouter>}
+          <Router history={history}>{path ? <Route path={path}>{children}</Route> : children}</Router>
         </ThemeProvider>
       </ConnectedLanguageProvider>
     </Provider>
   );
 };
 export const timeout = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-export const apiResponseGenerator = <Data,>(ok: boolean, data: Data) => ({
+export const apiResponseGenerator = <Data,>(ok: boolean, data: Data, error?: object) => ({
   ok,
-  data
+  data,
+  error
 });

@@ -4,7 +4,9 @@
 
 import { combineReducers } from 'redux';
 
-import languageProviderReducer from '@containers/LanguageProvider/reducer';
+import languageProvider from '@containers/LanguageProvider/reducer';
+import home from '@containers/HomeContainer/reducer';
+import launchDetails from '@containers/LaunchDetails/reducer';
 
 /**
  * Merges the main reducer with the router state and dynamically injected reducers
@@ -12,7 +14,9 @@ import languageProviderReducer from '@containers/LanguageProvider/reducer';
 export default function createReducer(injectedReducer = {}) {
   const rootReducer = combineReducers({
     ...injectedReducer,
-    language: languageProviderReducer
+    languageProvider,
+    home,
+    launchDetails
   });
 
   return rootReducer;

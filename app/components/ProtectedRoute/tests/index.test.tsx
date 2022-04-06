@@ -2,9 +2,10 @@ import React from 'react';
 import { renderProvider } from '@utils/testUtils';
 import ProtectedRoute from '../index';
 import '@testing-library/jest-dom';
-import { createBrowserHistory, History } from 'history';
 
-const HomeContainer = () => <h1>Hello World</h1>;
+const RENDER_TEXT = 'Hello World';
+
+const HomeContainer = () => <h1>{RENDER_TEXT}</h1>;
 
 jest.mock('@utils/routeConstants', () => {
   return {
@@ -20,11 +21,6 @@ jest.mock('@utils/routeConstants', () => {
 });
 
 describe('<ProtectedRoute /> tests', () => {
-  let history: History;
-
-  beforeEach(() => {
-    history = createBrowserHistory();
-  });
   it('should render and match the snapshot', () => {
     const { baseElement } = renderProvider(
       <ProtectedRoute isLoggedIn={true} render={HomeContainer} exact={true} path="/" />
@@ -35,31 +31,34 @@ describe('<ProtectedRoute /> tests', () => {
     const { getByText } = renderProvider(
       <ProtectedRoute isLoggedIn={true} render={HomeContainer} exact={true} path="/" />
     );
-    expect(getByText('Hello World')).toBeInTheDocument();
+    expect(getByText(RENDER_TEXT)).toBeInTheDocument();
   });
   it('should not render component if user is not logged in with handleLogout', () => {
     const logoutSpy = jest.fn();
     renderProvider(
-      <ProtectedRoute isLoggedIn={false} render={HomeContainer} exact={true} path="/" handleLogout={logoutSpy} />,
-      history
+      <ProtectedRoute isLoggedIn={false} render={HomeContainer} exact={true} path="/" handleLogout={logoutSpy} />
     );
     expect(logoutSpy).toHaveBeenCalled();
   });
-  it('should render component , not logged in, unprotected route', () => {
-    history.location.pathname = '/login';
-    renderProvider(<ProtectedRoute isLoggedIn={false} render={HomeContainer} exact={true} path="/login" />, history);
-    expect(history.location.pathname).toBe('/login');
-  });
-  it('should redirect to the dashboard if logged in and accessing login page(unprotected)', () => {
-    history.location.pathname = '/login';
-    renderProvider(<ProtectedRoute isLoggedIn={true} render={HomeContainer} exact={true} path="/login" />, history);
-    expect(history.location.pathname).toBe('/');
-  });
+
   it('should not render component if user is not logged in without handleLogout', () => {
     const { queryByText } = renderProvider(
-      <ProtectedRoute isLoggedIn={false} render={HomeContainer} exact={true} path="/" />,
-      history
+      <ProtectedRoute isLoggedIn={false} render={HomeContainer} exact={true} path="/" />
     );
-    expect(queryByText('Hello World')).not.toBeInTheDocument();
+    expect(queryByText(RENDER_TEXT)).toBeNull();
+  });
+
+  it('should render component , not logged in, unprotected route', () => {
+    const { queryByText } = renderProvider(
+      <ProtectedRoute isLoggedIn={false} render={HomeContainer} exact={true} path="/login" />
+    );
+    expect(queryByText(RENDER_TEXT)).toBeInTheDocument();
+  });
+
+  it('should redirect to the dashboard if logged in and accessing login page(unprotected)', () => {
+    const { queryByText } = renderProvider(
+      <ProtectedRoute isLoggedIn={true} render={HomeContainer} exact={true} path="/login" />
+    );
+    expect(queryByText(RENDER_TEXT)).toBeNull();
   });
 });

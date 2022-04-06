@@ -15,7 +15,6 @@ module.exports = {
     '@babel/preset-typescript'
   ],
   plugins: [
-    'lodash',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-syntax-optional-chaining',
     'styled-components',
@@ -26,18 +25,37 @@ module.exports = {
     production: {
       only: ['app'],
       plugins: [
-        'lodash',
         'transform-react-remove-prop-types',
         '@babel/plugin-transform-react-inline-elements',
         '@babel/plugin-transform-react-constant-elements',
-        ['import', { libraryName: 'antd', style: true }, 'import-antd']
+        ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }, 'antd'],
+        [
+          'import',
+          {
+            libraryName: '@ant-design/icons',
+            libraryDirectory: 'es/icons',
+            camel2DashComponentName: false
+          },
+          '@ant-design/icons'
+        ]
       ]
     },
     dev: {
       plugins: [['import', { libraryName: 'antd', style: true }]]
     },
     development: {
-      plugins: [['import', { libraryName: 'antd', style: true }]]
+      plugins: [
+        ['import', { libraryName: 'antd', style: true }],
+        [
+          'import',
+          {
+            libraryName: '@ant-design/icons',
+            libraryDirectory: 'es/icons',
+            camel2DashComponentName: false
+          },
+          '@ant-design/icons'
+        ]
+      ]
     },
     test: {
       plugins: [

@@ -22,12 +22,12 @@ const StyledHeader = styled(Layout.Header)`
     display: flex;
     justify-content: center;
     background-color: ${colors.primary};
+    gap: 1rem;
   }
 `;
 const Logo = styled.img`
   height: 5rem;
   width: auto;
-  margin-top: 1rem;
 `;
 const Title = styled(T)`
   && {
@@ -35,6 +35,7 @@ const Title = styled(T)`
     ${fonts.dynamicFontSize(fonts.size.xRegular, 1, 0.5)};
     display: flex;
     align-self: center;
+    color: ${colors.secondaryText};
   }
 `;
 

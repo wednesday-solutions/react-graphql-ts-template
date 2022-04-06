@@ -38,8 +38,7 @@ module.exports = (options) => ({
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader',
-            options: options.babelQuery
+            loader: 'babel-loader'
           }
         ]
       },
@@ -54,19 +53,22 @@ module.exports = (options) => ({
       {
         test: /\.less$/,
         use: [
-          {
-            loader: 'style-loader'
-          },
-          {
-            loader: 'css-loader'
-          },
+          'style-loader',
+          'css-loader',
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
                 javascriptEnabled: true,
                 modifyVars: {
-                  'primary-color': colors.secondary
+                  'primary-color': colors.secondary,
+                  'btn-font-weight': 600,
+                  'btn-primary-bg': colors.primary,
+                  'btn-primary-color': colors.secondaryText,
+                  'select-background': colors.primary,
+                  'input-bg': colors.secondary,
+                  'input-placeholder-color': colors.primary,
+                  'height-base': '40px'
                 }
               },
               implementation: require('less')

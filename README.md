@@ -191,8 +191,8 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [jest.config.ts](jest.config.ts)
-  - [jest.setup.ts](jest.setup.ts)
+  - [jest.config.json](jest.config.json)
+  - [jest.setup.js](jest.setup.js)
   - [app/containers/HomeContainer/tests](app/containers/HomeContainer/tests)
   - [app/services/tests/repoApi.test.ts](app/services/tests/repoApi.test.ts)
   - [app/components/T/tests/index.test.tsx](app/components/T/tests/index.test.tsx)

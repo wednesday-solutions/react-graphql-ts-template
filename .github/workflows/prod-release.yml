@@ -1,15 +1,14 @@
 on:
   push:
     branches:
-      - develop
+      - master
 
-name: Create Alpha Release
+name: Create Production Release
 
 jobs:
   build:
-    name: Create Alpha Release
+    name: Create Production Release
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, 'release aplha') || contains(github.event.head_commit.message, 'alpha release')"
     steps:
       - name: Actions Ecosystem Action Get Merged Pull Request
         uses: actions-ecosystem/action-get-merged-pull-request@v1.0.1
@@ -29,13 +28,13 @@ jobs:
           do
             IFS=":" read -r type cmmsg <<< $(git log --format=%B -n 1 $i)
             type="${type}" | xargs
-            text_msg="&nbsp;&nbsp;&nbsp;&nbsp;&#8226; $i - ${cmmsg}<br/>" 
+            text_msg="&nbsp;&nbsp;&nbsp;&nbsp;&#8226; $i - ${cmmsg}<br/>"
             flag=1
             for i in "${!category[@]}"
             do
                 if [ "${type}" == "$i" ]
                 then
-                    category[$i]+="${text_msg}" 
+                    category[$i]+="${text_msg}"
                     flag=0
                     break
                 fi
@@ -52,28 +51,28 @@ jobs:
                     msg+="${categoryTitle[$i]}${category[$i]}"
                 fi
             done
-            # if [ ! -z "${category[others]}" ]
-            # then 
-            #     msg+="${categoryTitle[others]}${category[others]}"
-            # fi
+            if [ ! -z "${category[others]}" ]
+            then
+                msg+="${categoryTitle[others]}${category[others]}"
+            fi
             echo "COMMIT_MESSAGE=${msg}" >> $GITHUB_ENV
       - name: Bump version and push tag
         run: |
           cd "$GITHUB_WORKSPACE"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git config user.name "$GITHUB_ACTOR"
-          npm version patch
-          git push && git push --tags
+          npm version major
+          git push
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
-      - name: Create Alpha Release
+      - name: Create Prod Release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.package-version.outputs.current-version}}-alpha
-          release_name: v${{ steps.package-version.outputs.current-version}}-alpha
+          tag_name: ${{ steps.package-version.outputs.current-version}}
+          release_name: v${{ steps.package-version.outputs.current-version}}
           body: ${{ env.COMMIT_MESSAGE }}
           draft: false
           prerelease: false

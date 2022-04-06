@@ -22,7 +22,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     class="ant-layout App__CustomLayout-di9tar-2 edUAiy"
   >
     <div
-      class="App__SideBar-di9tar-0 hDOcQA"
+      class="App__SideBar-di9tar-0 cysyFI"
     >
       <a
         href="/"

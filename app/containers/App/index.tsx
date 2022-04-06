@@ -30,7 +30,7 @@ const SideBar = styled.div`
     width: 6%;
     min-width: 4.5rem;
     max-width: 7rem;
-    min-height: 100vh;
+    min-height: calc(100vh - 7rem);
     height: auto;
     background-color: ${colors.primary};
     display: inline;

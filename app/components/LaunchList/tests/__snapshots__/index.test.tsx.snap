@@ -28,7 +28,7 @@ exports[`<LaunchList /> should render and match the snapshot 1`] = `
             Mon, 6th January 2014, 06:06 PM
           </p>
           <a
-            class="ant-btn ant-btn-link LaunchItem__WikiLink-tig4gy-1 bHCehg"
+            class="ant-btn ant-btn-link LaunchItem__WikiLink-tig4gy-1 gTQyCi"
             data-testid="wiki-link"
             href="https://en.wikipedia.org/wiki/Thaicom_6"
             rel="noreferrer"

@@ -46,7 +46,7 @@ const DetailsCard = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.3rem;
+    gap: 1rem;
     margin: 3rem 0;
     ${media.greaterThan('desktop')`
       width: 50%;
@@ -55,18 +55,43 @@ const DetailsCard = styled.div`
   }
 `;
 
-const ShipContainer = styled.div`
+const RocketBox = styled.div`
   && {
-    display: block;
-    margin-left: 1rem;
+    display: flex;
+    gap: 1rem;
+    margin-left: 1.5rem;
   }
 `;
 
 const CustomT = styled(T)`
   && {
     display: block;
+    font-weight: thin;
+    opacity: 0.7;
   }
 `;
+
+const LaunchLabel = styled.b`
+  text-transform: uppercase;
+  display: block;
+  font-size: small;
+  color: ${colors.primary};
+  opacity: 1;
+  font-weight: bolder;
+`;
+
+const ShipContainer = styled.div`
+  margin-left: 1.5rem;
+  display: grid;
+  grid-template-columns: max-content auto;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 1rem;
+`;
+
+function labelRenderer(chunks: string) {
+  return <LaunchLabel>{chunks}</LaunchLabel>;
+}
 
 interface LaunchDetailsProps extends LaunchDetailsType {
   loading: boolean;
@@ -82,65 +107,54 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
       </Skeleton>
       <Skeleton loading={loading} active>
         <DetailsCard>
-          <If condition={!isEmpty(missionName)} otherwise={<T marginBottom={1.5} id="mission_name_unavailable" />}>
-            <T
-              data-testid="mission-name"
-              marginBottom={1.5}
-              type="heading"
-              id="mission_name"
-              values={{ missionName }}
-            />
+          <If condition={!isEmpty(missionName)}>
+            <CustomT marginBottom={0.5} data-testid="mission-name" type="heading" text={missionName} />
           </If>
 
-          <If condition={!isEmpty(details)} otherwise={<T marginBottom={0.5} id="details_unavailable" />}>
-            <T marginBottom={0.5} data-testid="details" type="standard" id="details" values={{ details }} />
+          <If condition={!isEmpty(details)}>
+            <CustomT data-testid="details" type="standard" id="details" values={{ details, b: labelRenderer }} />
           </If>
-          <If condition={!isEmpty(rocket.rocketName)} otherwise={<T marginBottom={0.2} id="rocket_name_unavailable" />}>
-            <T
-              marginBottom={0.2}
-              data-testid="rocket-name"
-              type="standard"
-              id="rocket_name"
-              values={{ rocketName: rocket.rocketName }}
-            />
+          <If condition={!isEmpty(rocket)}>
+            <LaunchLabel>Rocket </LaunchLabel>
+            <RocketBox>
+              <If condition={!isEmpty(rocket.rocketName)}>
+                <CustomT
+                  data-testid="rocket-name"
+                  type="standard"
+                  id="name_label"
+                  values={{ name: rocket.rocketName, b: labelRenderer }}
+                />
+              </If>
+              <If condition={!isEmpty(rocket.rocketType)}>
+                <CustomT
+                  data-testid="rocket-type"
+                  type="standard"
+                  id="type_label"
+                  values={{ type: rocket.rocketType, b: labelRenderer }}
+                />
+              </If>
+            </RocketBox>
           </If>
-          <If condition={!isEmpty(rocket.rocketType)} otherwise={<T marginBottom={0.2} id="rocket_type_unavailable" />}>
-            <T
-              marginBottom={0.2}
-              data-testid="rocket-type"
-              type="standard"
-              id="rocket_type"
-              values={{ rocketType: rocket.rocketType }}
-            />
-          </If>
-          <If condition={!isEmpty(ships)} otherwise={<T marginBottom={0.2} id="ships_unavailable" />}>
-            <T type="standard" text={'Ships:'} />
-            <For
-              of={ships}
-              ParentComponent={ShipContainer}
-              renderItem={(item) => (
-                <>
-                  <If condition={!isEmpty(item.name)} otherwise={<T marginBottom={0.2} id="ship_name_unavailable" />}>
-                    <CustomT
-                      marginBottom={0.2}
-                      data-testid="ship-name"
-                      type="standard"
-                      id="ship_name"
-                      values={{ shipName: item.name }}
-                    />
-                  </If>
-                  <If condition={!isEmpty(item.type)} otherwise={<T marginBottom={0.2} id="ship_type_unavailable" />}>
-                    <CustomT
-                      marginBottom={0.2}
-                      data-testid="ship-type"
-                      type="standard"
-                      id="ship_type"
-                      values={{ shipType: item.type }}
-                    />
-                  </If>
-                </>
-              )}
-            />
+          <If condition={!isEmpty(ships)}>
+            <LaunchLabel>Ships </LaunchLabel>
+            <ShipContainer>
+              <CustomT marginBottom={-0.5} id="name_label" values={{ name: '', b: labelRenderer }} />
+              <CustomT marginBottom={-0.5} id="type_label" values={{ type: '', b: labelRenderer }} />
+              <For
+                noParent
+                of={ships}
+                renderItem={(ship) => (
+                  <>
+                    <If condition={!isEmpty(ship.name)}>
+                      <CustomT data-testid="ship-name" type="standard" text={ship.name} />
+                    </If>
+                    <If condition={!isEmpty(ship.type)}>
+                      <CustomT data-testid="ship-type" type="standard" text={ship.type} />
+                    </If>
+                  </>
+                )}
+              />
+            </ShipContainer>
           </If>
         </DetailsCard>
       </Skeleton>
@@ -158,8 +172,8 @@ LaunchDetails.propTypes = {
   }),
   details: PropTypes.string,
   rocket: PropTypes.shape({
-    rocket_name: PropTypes.string,
-    rocket_type: PropTypes.string
+    rocketName: PropTypes.string,
+    rocketType: PropTypes.string
   }),
   ships: PropTypes.arrayOf(
     PropTypes.shape({

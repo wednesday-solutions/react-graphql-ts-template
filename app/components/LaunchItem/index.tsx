@@ -30,9 +30,8 @@ const WikiLink = styled(Button)`
     align-items: center;
     color: ${colors.text};
     width: max-content;
-    opacity: 0.5;
     &:hover {
-      opacity: 1;
+      opacity: 0.6;
     }
   }
 `;
@@ -47,13 +46,13 @@ function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
 
   return (
     <LaunchCard data-testid="launch-item" onClick={goToLaunch}>
-      <If condition={!isEmpty(missionName)} otherwise={<T id="mission_name_unavailable" />}>
+      <If condition={!isEmpty(missionName)}>
         <T data-testid="mission-name" marginBottom={1.5} type="subheading" text={missionName} />
       </If>
-      <If condition={!isEmpty(launchDateUtc)} otherwise={<T id="launch_date_unavailable" />}>
+      <If condition={!isEmpty(launchDateUtc)}>
         <T text={memoizedLaunchDate} />
       </If>
-      <If condition={!isEmpty(links)} otherwise={<T id="launch_links_unavailable" />}>
+      <If condition={!isEmpty(links)}>
         <If condition={!isEmpty(links.wikipedia)}>
           <WikiLink
             data-testid="wiki-link"

@@ -19,54 +19,97 @@ exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
           />
         </div>
         <div
-          class="LaunchDetails__DetailsCard-ytnak2-2 kbToiw"
+          class="LaunchDetails__DetailsCard-ytnak2-2 dIJvjM"
         >
           <p
-            class="T__StyledText-gcrjip-0 glWvmi"
+            class="T__StyledText-gcrjip-0 kPLUDf LaunchDetails__CustomT-ytnak2-4 guCdjX"
             data-testid="mission-name"
           >
             CRS-21
           </p>
           <p
-            class="T__StyledText-gcrjip-0 bJJiWe"
+            class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
             data-testid="details"
           >
-            Details: SpaceX's 21st ISS resupply mission.
+            <b
+              class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+            >
+              Details
+            </b>
+             SpaceX's 21st ISS resupply mission.
           </p>
-          <p
-            class="T__StyledText-gcrjip-0 gNVGGd"
-            data-testid="rocket-name"
+          <b
+            class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
           >
-            Rocket Name: Falcon 9
-          </p>
-          <p
-            class="T__StyledText-gcrjip-0 gNVGGd"
-            data-testid="rocket-type"
-          >
-            Rocket Type: FT
-          </p>
-          <p
-            class="T__StyledText-gcrjip-0 cSxVIW"
-            data-testid="t"
-          >
-            Ships:
-          </p>
+            Rocket 
+          </b>
           <div
-            class="LaunchDetails__ShipContainer-ytnak2-3 DOyyN"
-            data-testid="for"
-            orientation="row"
+            class="LaunchDetails__RocketBox-ytnak2-3 hijyAI"
           >
             <p
-              class="T__StyledText-gcrjip-0 gNVGGd LaunchDetails__CustomT-ytnak2-4 jgSNQi"
-              data-testid="ship-name"
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
+              data-testid="rocket-name"
             >
-              Ship Name: Ship 1
+              <b
+                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+              >
+                Name
+              </b>
+               Falcon 9
             </p>
             <p
-              class="T__StyledText-gcrjip-0 gNVGGd LaunchDetails__CustomT-ytnak2-4 jgSNQi"
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
+              data-testid="rocket-type"
+            >
+              <b
+                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+              >
+                Type
+              </b>
+               FT
+            </p>
+          </div>
+          <b
+            class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+          >
+            Ships 
+          </b>
+          <div
+            class="LaunchDetails__ShipContainer-ytnak2-6 iQytZb"
+          >
+            <p
+              class="T__StyledText-gcrjip-0 kiETvv LaunchDetails__CustomT-ytnak2-4 guCdjX"
+              data-testid="t"
+            >
+              <b
+                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+              >
+                Name
+              </b>
+               
+            </p>
+            <p
+              class="T__StyledText-gcrjip-0 kiETvv LaunchDetails__CustomT-ytnak2-4 guCdjX"
+              data-testid="t"
+            >
+              <b
+                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+              >
+                Type
+              </b>
+               
+            </p>
+            <p
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
+              data-testid="ship-name"
+            >
+              Ship 1
+            </p>
+            <p
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
               data-testid="ship-type"
             >
-              Ship Type: Type 1
+              Type 1
             </p>
           </div>
         </div>

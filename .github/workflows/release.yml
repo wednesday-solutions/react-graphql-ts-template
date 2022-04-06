@@ -67,13 +67,13 @@ jobs:
       - name: get-npm-version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
-      - name: Create Alpha Release
+      - name: Create Release
         uses: actions/create-release@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ steps.package-version.outputs.current-version}}-alpha
-          release_name: v${{ steps.package-version.outputs.current-version}}-alpha
+          tag_name: ${{ steps.package-version.outputs.current-version}}
+          release_name: v${{ steps.package-version.outputs.current-version}}
           body: ${{ env.COMMIT_MESSAGE }}
           draft: false
           prerelease: false

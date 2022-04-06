@@ -105,7 +105,7 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
           condition={!isEmpty(links?.flickrImages)}
           otherwise={<CustomImage preview={false} src={placeholderImage} />}
         >
-          <CustomImage preview={false} src={links.flickrImages![0]} />
+          <CustomImage preview={false} src={links?.flickrImages![0]} />
         </If>
       </Skeleton>
       <Skeleton loading={loading} active>

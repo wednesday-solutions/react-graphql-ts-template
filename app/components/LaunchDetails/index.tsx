@@ -101,8 +101,11 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
   return (
     <LaunchDetailsCard data-testid="launch-details">
       <Skeleton loading={loading} active>
-        <If condition={!isEmpty(links.flickrImages)} otherwise={<CustomImage preview={false} src={placeholderImage} />}>
-          <CustomImage preview={false} src={links.flickrImages![0]} />
+        <If
+          condition={!isEmpty(links?.flickrImages)}
+          otherwise={<CustomImage preview={false} src={placeholderImage} />}
+        >
+          <CustomImage preview={false} src={links?.flickrImages![0]} />
         </If>
       </Skeleton>
       <Skeleton loading={loading} active>

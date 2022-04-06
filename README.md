@@ -61,14 +61,14 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/reducer.js](app/containers/HomeContainer/reducer.js)
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/containers/HomeContainer/reducer.ts](app/containers/HomeContainer/reducer.ts)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 - Computing and getting state from the redux store using [Reselect](https://github.com/reduxjs/reselect)
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/selectors.js](app/containers/HomeContainer/selectors.js)
+  - [app/containers/HomeContainer/selectors.ts](app/containers/HomeContainer/selectors.ts)
 
 ## Implementing a Redux middleware using redux-sagas
 
@@ -76,8 +76,8 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/saga.js](app/containers/HomeContainer/saga.js)
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/containers/HomeContainer/saga.ts](app/containers/HomeContainer/saga.ts)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 ## Network requests using apisauce
 
@@ -85,9 +85,17 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/utils/apiUtils.js](app/utils/apiUtils.js)
-  - [app/services/repoApi.js](app/services/repoApi.js)
-  - [app/containers/HomeContainer/saga.js](app/containers/HomeContainer/saga.js)
+  - [app/utils/apiUtils.ts](app/utils/apiUtils.ts)
+  - [app/services/repoApi.ts](app/services/repoApi.ts)
+
+## GraphQL requests using Apollo Boost
+
+- GraphQL queries using [Apollo Boost](https://www.npmjs.com/package/apollo-boost)
+
+  Take a look at the following files
+
+  - [app/utils/graphqlUtils.ts](app/utils/graphqlUtils.ts)
+  - [app/containers/HomeContainer/saga.ts](app/containers/HomeContainer/saga.ts)
 
 ## Styling using styled-components
 
@@ -95,8 +103,8 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/components/T/index.js](app/components/T/index.js)
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/components/T/index.tsx](app/components/T/index.tsx)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 ## Using antd as the component library
 
@@ -104,7 +112,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 ## Localization using react-intl
 
@@ -114,7 +122,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   - [app/translations/en.json](app/translations/en.json)
   - [app/containers/LanguageProvider/](app/containers/LanguageProvider/)
-  - [app/i18n](app/i18n.js)
+  - [app/i18n](app/i18n.ts)
 
 ## Routing using react-router
 
@@ -122,8 +130,8 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/routeConfig.js](app/routeConfig.js)
-  - [app/containers/App/index.js](app/containers/App/index.js)
+  - [app/routeConfig.ts](app/routeConfig.ts)
+  - [app/containers/App/index.tsx](app/containers/App/index.tsx)
 
 ## Creating and showcasing components individually and in isolation using Storybooks
 
@@ -152,7 +160,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [internals/webpack/webpack.dev.babel.js](internals/webpack/webpack.dev.babel.js)
+  - [internals/webpack/webpack.config.dev.js](internals/webpack/webpack.config.dev.js)
 
 ## Implementing CI/CD pipelines using Github Actions
 
@@ -183,11 +191,11 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [jest.config.js](jest.config.js)
-  - [jest.setup.js](jest.setup.js)
+  - [jest.config.ts](jest.config.ts)
+  - [jest.setup.ts](jest.setup.ts)
   - [app/containers/HomeContainer/tests](app/containers/HomeContainer/tests)
-  - [app/services/tests/repoApi.test.js](app/services/tests/repoApi.test.js)
-  - [app/components/T/tests/index.test.js](app/components/T/tests/index.test.js)
+  - [app/services/tests/repoApi.test.ts](app/services/tests/repoApi.test.ts)
+  - [app/components/T/tests/index.test.tsx](app/components/T/tests/index.test.tsx)
 
 ## Scaffolding components/containers/tests using react-floki
 
@@ -209,18 +217,18 @@ An enterprise react template application showcasing - Testing strategies, Global
 
 Take a look at the following files
 
-- [internals/webpack/webpack.base.babel.js](internals/webpack/webpack.base.babel.js)
+- [internals/webpack/webpack.config.base.js](internals/webpack/webpack.config.base.js)
 
 ### Chunkify and Lazy loading
 
 Take a look at the following files
 
-- [app/containers/HomeContainer/Loadable.js](app/containers/HomeContainer/Loadable.js)
-- [app/utils/loadable.js](app/utils/loadable.js)
+- [app/containers/HomeContainer/Loadable.ts](app/containers/HomeContainer/Loadable.ts)
+- [app/utils/loadable.ts](app/utils/loadable.ts)
 
 ### App entry point
 
-- [app/app.js](app/app.js)
+- [app/app.ts](app/app.ts)
 
 ### PWA
 
@@ -229,5 +237,36 @@ Take a look at the following files
 
 Take a look at the following files
 
-- [app/app.js](app/app.js)
+- [app/app.tsx](app/app.ts)
 - [internals/webpack/webpack.config.prod.js](internals/webpack/webpack.config.prod.js)
+
+## Syntax for adding commit messages
+
+Your commit messages have to be in this format:
+
+```
+type(category): description [flags]
+```
+
+Where `type` is one of the following:
+
+- `build`
+- `docs`
+- `feat`
+- `fix`
+- `others`
+- `perf`
+- `refactor`
+- `style`
+- `test`
+- `chore`
+- `ci`
+- `temp`
+  Where `flags` is an optional comma-separated list of one or more of the following (must be surrounded in square brackets):
+- `breaking`: alters `type` to be a breaking change
+  And `category` can be anything of your choice. If you use a type not found in the list (but it still follows the same format of the message), it'll be grouped under `other`.
+
+## Release commit
+
+- To create an alpha release via Pull Request, the PR Title must have `alpha release` or `release alpha` present.
+- To create an alpha release directly via commit, the commit message must have `alpha release` or `release alpha` present.

@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { renderWithIntl } from '@utils/testUtils';
+import { renderProvider } from '@utils/testUtils';
 import Header from '../index';
 import { fireEvent } from 'react-testing-library';
 
@@ -17,17 +17,17 @@ describe('<Header />', () => {
   });
 
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderWithIntl(<Header mobile={false} toggleSidebar={clickSpy} />);
+    const { baseElement } = renderProvider(<Header mobile={false} toggleSidebar={clickSpy} />);
     expect(baseElement).toMatchSnapshot();
   });
 
   it('should contain logo', () => {
-    const { getAllByAltText } = renderWithIntl(<Header mobile={true} toggleSidebar={clickSpy} />);
+    const { getAllByAltText } = renderProvider(<Header mobile={true} toggleSidebar={clickSpy} />);
     expect(getAllByAltText('logo').length).toBe(1);
   });
 
   it('should trigger toggleSidebar when clicked on menu icon', () => {
-    const { getByTestId } = renderWithIntl(<Header mobile={true} toggleSidebar={clickSpy} />);
+    const { getByTestId } = renderProvider(<Header mobile={true} toggleSidebar={clickSpy} />);
     fireEvent.click(getByTestId('menu-icon'));
     expect(clickSpy).toBeCalled();
   });

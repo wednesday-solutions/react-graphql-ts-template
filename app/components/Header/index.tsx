@@ -12,6 +12,7 @@ import T from '@components/T';
 import logo from '@images/icon-512x512.png';
 import If from '@components/If';
 import menuIcon from '@images/menu.svg';
+import { Link } from 'react-router-dom';
 
 const StyledHeader = styled(Layout.Header)`
   && {
@@ -70,7 +71,9 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, mobile }) => {
           icon={<MenuImg src={menuIcon} alt="menu icon" />}
         />
       </If>
-      <Logo alt="logo" src={logo} />
+      <Link to="/">
+        <Logo alt="logo" src={logo} />
+      </Link>
       <Title type="heading" id="wednesday_solutions" />
     </StyledHeader>
   );

@@ -120,20 +120,20 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
           <If condition={!isEmpty(rocket)}>
             <LaunchLabel>Rocket </LaunchLabel>
             <RocketBox>
-              <If condition={!isEmpty(rocket.rocketName)}>
+              <If condition={!isEmpty(rocket?.rocketName)}>
                 <CustomT
                   data-testid="rocket-name"
                   type="standard"
                   id="name_label"
-                  values={{ name: rocket.rocketName, b: labelRenderer }}
+                  values={{ name: rocket?.rocketName, b: labelRenderer }}
                 />
               </If>
-              <If condition={!isEmpty(rocket.rocketType)}>
+              <If condition={!isEmpty(rocket?.rocketType)}>
                 <CustomT
                   data-testid="rocket-type"
                   type="standard"
                   id="type_label"
-                  values={{ type: rocket.rocketType, b: labelRenderer }}
+                  values={{ type: rocket?.rocketType, b: labelRenderer }}
                 />
               </If>
             </RocketBox>

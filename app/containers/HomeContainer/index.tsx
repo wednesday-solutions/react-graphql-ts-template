@@ -62,9 +62,6 @@ const SortSelect = styled(Select)`
     width: 9.5rem;
     background-color: #fff;
 
-    ${media.lessThan('tablet')`
-      flex: 1;
-    `}
     .ant-select-selection-item {
       color: ${colors.secondaryText};
     }

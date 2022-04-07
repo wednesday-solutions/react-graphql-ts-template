@@ -17,7 +17,6 @@ const StyledHeader = styled(Layout.Header)`
     &.ant-layout-header {
       padding: 0 1rem;
       height: ${HEADER_HEIGHT};
-      padding-bottom: 1rem;
       align-items: center;
       justify-content: center;
       background-color: ${colors.primary};

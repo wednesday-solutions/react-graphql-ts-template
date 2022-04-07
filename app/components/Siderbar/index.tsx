@@ -12,6 +12,7 @@ import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH, MOBILE_DRAWER_BREAKPOINT } from '@app
 
 const SidebarWrapper = styled.div`
   position: relative;
+  display: flex;
 `;
 
 const SidebarDrawer = styled(Drawer)`

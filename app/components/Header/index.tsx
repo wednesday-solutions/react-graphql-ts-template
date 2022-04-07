@@ -7,7 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout, Button } from 'antd';
 import styled from 'styled-components';
-import { fonts, colors } from '@themes/index';
+import { fonts, colors, media } from '@themes/index';
 import T from '@components/T';
 import logo from '@images/icon-512x512.png';
 import If from '@components/If';
@@ -31,6 +31,9 @@ const Logo = styled.img`
   height: 5rem;
   width: auto;
   object-fit: contain;
+  ${media.lessThan('tablet')`
+    height: 4rem;
+  `}
 `;
 const Title = styled(T)`
   && {

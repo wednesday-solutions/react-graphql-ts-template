@@ -6,7 +6,7 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  *
  */
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import GlobalStyle from '@app/global-styles';
 import { routeConfig } from '@app/routeConfig';
 import { Layout } from 'antd';
@@ -19,7 +19,6 @@ import For from '@components/For';
 import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
-import useMobile from '@utils/useMobile';
 
 const theme = {
   fg: colors.primary,
@@ -32,19 +31,12 @@ const CustomLayout = styled(Layout)`
   }
 `;
 
-export const MOBILE_BREAKPOINT = 450;
-
 export function App() {
-  const [visible, setVisible] = useState(false);
-  const { mobile } = useMobile(MOBILE_BREAKPOINT);
-
-  const toggleSidebar = useCallback(() => setVisible((v) => !v), []);
-
   return (
     <ThemeProvider theme={theme}>
-      <Header mobile={mobile} toggleSidebar={toggleSidebar} />
+      <Header />
       <CustomLayout>
-        <Sidebar toggleSidebar={toggleSidebar} mobile={mobile} visible={visible} />
+        <Sidebar />
         <Layout.Content>
           <For
             ParentComponent={(props) => <Switch {...props} />}

@@ -4,15 +4,14 @@
  *
  */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Layout, Button } from 'antd';
+import { Layout } from 'antd';
 import styled from 'styled-components';
 import { fonts, colors, media } from '@themes/index';
 import T from '@components/T';
 import logo from '@images/icon-512x512.png';
-import If from '@components/If';
-import menuIcon from '@images/menu.svg';
+
 import { Link } from 'react-router-dom';
+import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
 
 const StyledHeader = styled(Layout.Header)`
   && {
@@ -22,10 +21,14 @@ const StyledHeader = styled(Layout.Header)`
       padding-bottom: 1rem;
       align-items: center;
     }
+    height: ${HEADER_HEIGHT};
     display: flex;
     justify-content: center;
     background-color: ${colors.primary};
     gap: 1rem;
+    ${media.lessThan('mobile')`
+        padding-left: calc(${MIN_SIDEBAR_WIDTH} / 2)
+    `}
   }
 `;
 const Logo = styled.img`
@@ -46,42 +49,15 @@ const Title = styled(T)`
   }
 `;
 
-const MenuImg = styled.img`
-  width: 1.7rem;
-  height: auto;
-  object-fit: contain;
-  filter: grayscale(100%);
-`;
-
-interface HeaderProps {
-  toggleSidebar: () => void;
-  mobile: boolean;
-}
-
-const Header: React.FC<HeaderProps> = ({ toggleSidebar, mobile }) => {
+const Header: React.FC = () => {
   return (
     <StyledHeader data-testid="header">
-      <If condition={mobile}>
-        <Button
-          data-testid="menu-icon"
-          type="primary"
-          size="large"
-          aria-label="toggle sidebar"
-          onClick={toggleSidebar}
-          icon={<MenuImg src={menuIcon} alt="menu icon" />}
-        />
-      </If>
       <Link to="/">
         <Logo alt="logo" src={logo} />
       </Link>
       <Title type="heading" id="wednesday_solutions" />
     </StyledHeader>
   );
-};
-
-Header.propTypes = {
-  toggleSidebar: PropTypes.func.isRequired,
-  mobile: PropTypes.bool.isRequired
 };
 
 export default Header;

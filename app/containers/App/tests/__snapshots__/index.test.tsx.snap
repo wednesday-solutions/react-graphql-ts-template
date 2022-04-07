@@ -6,11 +6,15 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     class="ant-layout-header Header__StyledHeader-a7tfu0-0 bfRGtz"
     data-testid="header"
   >
-    <img
-      alt="logo"
-      class="Header__Logo-a7tfu0-1 gRnKxJ"
-      src="IMAGE_MOCK"
-    />
+    <a
+      href="/"
+    >
+      <img
+        alt="logo"
+        class="Header__Logo-a7tfu0-1 gRnKxJ"
+        src="IMAGE_MOCK"
+      />
+    </a>
     <p
       class="T__StyledText-gcrjip-0 gjTOrr Header__Title-a7tfu0-2 fdMcFf"
       data-testid="t"

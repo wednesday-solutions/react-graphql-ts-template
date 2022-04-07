@@ -68,12 +68,14 @@ const CustomLayout = styled(Layout)`
   }
 `;
 
+export const MOBILE_BREAKPOINT = 450;
+
 export function App() {
   const [visible, setVisible] = useState(false);
-  const [mobile, setMobile] = useState(window.innerWidth < 400);
+  const [mobile, setMobile] = useState(window.innerWidth < MOBILE_BREAKPOINT);
 
   function detectMobile() {
-    if (window.innerWidth < 400) {
+    if (window.innerWidth < MOBILE_BREAKPOINT) {
       setMobile(true);
     } else {
       setMobile(false);
@@ -108,7 +110,7 @@ export function App() {
       <Header mobile={mobile} toggleSidebar={toggleSidebar} />
       <CustomLayout>
         <SidebarComponent {...sidebarProps}>
-          <Link data-testid="rocket-home-link" aria-label="home link" to="/">
+          <Link onClick={toggleSidebar} data-testid="rocket-home-link" aria-label="home link" to="/">
             <RocketLogo src={icon} alt="rocket-icon" />
           </Link>
         </SidebarComponent>

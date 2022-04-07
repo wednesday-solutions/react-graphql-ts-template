@@ -3,6 +3,8 @@ on:
   pull_request:
     branches:
       - master
+      - qa
+      - develop
 jobs:
   coverage_report:
     name: Jest Coverage Report

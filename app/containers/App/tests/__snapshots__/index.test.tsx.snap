@@ -8,7 +8,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
   >
     <img
       alt="logo"
-      class="Header__Logo-a7tfu0-1 cTOQXQ"
+      class="Header__Logo-a7tfu0-1 kaslku"
       src="IMAGE_MOCK"
     />
     <p
@@ -19,17 +19,20 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     </p>
   </header>
   <section
-    class="ant-layout App__CustomLayout-di9tar-2 edUAiy"
+    class="ant-layout App__CustomLayout-di9tar-3 fSjMBD"
   >
     <div
-      class="App__SideBar-di9tar-0 cysyFI"
+      class="App__SideBar-di9tar-1 gfcVxt"
+      data-testid="sidebar"
     >
       <a
+        aria-label="home link"
+        data-testid="rocket-home-link"
         href="/"
       >
         <img
-          alt=""
-          class="App__RocketLogo-di9tar-1 lmXCEd"
+          alt="rocket-icon"
+          class="App__RocketLogo-di9tar-2 fOHios"
           src="IMAGE_MOCK"
         />
       </a>

@@ -4,12 +4,14 @@
  *
  */
 import React from 'react';
-import { Layout } from 'antd';
+import PropTypes from 'prop-types';
+import { Layout, Button } from 'antd';
 import styled from 'styled-components';
-import { injectIntl } from 'react-intl';
 import { fonts, colors } from '@themes/index';
 import T from '@components/T';
 import logo from '@images/icon-512x512.png';
+import If from '@components/If';
+import menuIcon from '@images/menu.svg';
 
 const StyledHeader = styled(Layout.Header)`
   && {
@@ -28,6 +30,7 @@ const StyledHeader = styled(Layout.Header)`
 const Logo = styled.img`
   height: 5rem;
   width: auto;
+  object-fit: contain;
 `;
 const Title = styled(T)`
   && {
@@ -39,13 +42,40 @@ const Title = styled(T)`
   }
 `;
 
-function Header() {
+const MenuImg = styled.img`
+  width: 1.7rem;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+`;
+
+interface HeaderProps {
+  toggleSidebar: () => void;
+  mobile: boolean;
+}
+
+const Header: React.FC<HeaderProps> = ({ toggleSidebar, mobile }) => {
   return (
     <StyledHeader data-testid="header">
+      <If condition={mobile}>
+        <Button
+          data-testid="menu-icon"
+          type="primary"
+          size="large"
+          aria-label="toggle sidebar"
+          onClick={toggleSidebar}
+          icon={<MenuImg src={menuIcon} alt="menu icon" />}
+        />
+      </If>
       <Logo alt="logo" src={logo} />
       <Title type="heading" id="wednesday_solutions" />
     </StyledHeader>
   );
-}
+};
 
-export default injectIntl(Header);
+Header.propTypes = {
+  toggleSidebar: PropTypes.func.isRequired,
+  mobile: PropTypes.bool.isRequired
+};
+
+export default Header;

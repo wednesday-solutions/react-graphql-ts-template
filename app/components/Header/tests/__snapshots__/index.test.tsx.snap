@@ -9,7 +9,7 @@ exports[`<Header /> should render and match the snapshot 1`] = `
     >
       <img
         alt="logo"
-        class="Header__Logo-a7tfu0-1 cTOQXQ"
+        class="Header__Logo-a7tfu0-1 kaslku"
         src="IMAGE_MOCK"
       />
       <p

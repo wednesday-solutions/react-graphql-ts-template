@@ -10,6 +10,10 @@ import If from '@components/If';
 import useMobile from '@utils/useMobile';
 import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH, MOBILE_DRAWER_BREAKPOINT } from '@app/utils/constants';
 
+const SidebarWrapper = styled.div`
+  position: relative;
+`;
+
 const SidebarDrawer = styled(Drawer)`
   && {
     .ant-drawer-body {
@@ -47,7 +51,7 @@ const RocketLogo = styled.img`
 const MenuButton = styled(Button)`
   && {
     position: absolute;
-    top: calc(${HEADER_HEIGHT} / 2);
+    top: calc(${HEADER_HEIGHT} / -2);
     left: calc(${MIN_SIDEBAR_WIDTH} / 2);
     transform: translate(-50%, -50%);
   }
@@ -79,7 +83,7 @@ const Sidebar: React.FC = () => {
     mobile ? <SidebarDrawer {...props} /> : <SideBarStatic data-testid="sidebar" {...(props as any)} />;
 
   return (
-    <>
+    <SidebarWrapper>
       <If condition={mobile}>
         <MenuButton
           data-testid="menu-icon"
@@ -95,7 +99,7 @@ const Sidebar: React.FC = () => {
           <RocketLogo src={icon} alt="rocket-icon" />
         </Link>
       </SidebarComponent>
-    </>
+    </SidebarWrapper>
   );
 };
 

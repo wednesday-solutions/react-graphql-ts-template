@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import { fonts, colors, media } from '@themes/index';
 import T from '@components/T';
 import logo from '@images/icon-512x512.png';
-
 import { Link } from 'react-router-dom';
 import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
 
@@ -20,15 +19,16 @@ const StyledHeader = styled(Layout.Header)`
       height: ${HEADER_HEIGHT};
       padding-bottom: 1rem;
       align-items: center;
+      justify-content: center;
+      background-color: ${colors.primary};
+      gap: 1rem;
+      ${media.lessThan('mobile')`
+      padding-left: ${MIN_SIDEBAR_WIDTH}
+      `}
     }
-    height: ${HEADER_HEIGHT};
     display: flex;
-    justify-content: center;
-    background-color: ${colors.primary};
-    gap: 1rem;
-    ${media.lessThan('mobile')`
-        padding-left: calc(${MIN_SIDEBAR_WIDTH} / 2)
-    `}
+    /* height: ${HEADER_HEIGHT}; */
+    /* justify-content: center; */
   }
 `;
 const Logo = styled.img`

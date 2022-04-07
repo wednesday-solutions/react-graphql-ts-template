@@ -3,7 +3,7 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="ant-layout-header Header__StyledHeader-a7tfu0-0 jtZxHG"
+    class="ant-layout-header Header__StyledHeader-a7tfu0-0 dBYwI"
     data-testid="header"
   >
     <a
@@ -26,20 +26,24 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     class="ant-layout App__CustomLayout-di9tar-0 bLLfQc"
   >
     <div
-      class="Siderbar__SideBarStatic-qw2kux-1 jexAzu"
-      data-testid="sidebar"
+      class="Siderbar__SidebarWrapper-qw2kux-0 hpvTNW"
     >
-      <a
-        aria-label="home link"
-        data-testid="rocket-home-link"
-        href="/"
+      <div
+        class="Siderbar__SideBarStatic-qw2kux-2 eNSzjh"
+        data-testid="sidebar"
       >
-        <img
-          alt="rocket-icon"
-          class="Siderbar__RocketLogo-qw2kux-2 jcBoDU"
-          src="IMAGE_MOCK"
-        />
-      </a>
+        <a
+          aria-label="home link"
+          data-testid="rocket-home-link"
+          href="/"
+        >
+          <img
+            alt="rocket-icon"
+            class="Siderbar__RocketLogo-qw2kux-3 Vilqd"
+            src="IMAGE_MOCK"
+          />
+        </a>
+      </div>
     </div>
     <main
       class="ant-layout-content"

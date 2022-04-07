@@ -101,8 +101,11 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
   return (
     <LaunchDetailsCard data-testid="launch-details">
       <Skeleton loading={loading} active>
-        <If condition={!isEmpty(links.flickrImages)} otherwise={<CustomImage preview={false} src={placeholderImage} />}>
-          <CustomImage preview={false} src={links.flickrImages![0]} />
+        <If
+          condition={!isEmpty(links?.flickrImages)}
+          otherwise={<CustomImage preview={false} src={placeholderImage} />}
+        >
+          <CustomImage preview={false} src={links?.flickrImages![0]} />
         </If>
       </Skeleton>
       <Skeleton loading={loading} active>
@@ -117,20 +120,20 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
           <If condition={!isEmpty(rocket)}>
             <LaunchLabel>Rocket </LaunchLabel>
             <RocketBox>
-              <If condition={!isEmpty(rocket.rocketName)}>
+              <If condition={!isEmpty(rocket?.rocketName)}>
                 <CustomT
                   data-testid="rocket-name"
                   type="standard"
                   id="name_label"
-                  values={{ name: rocket.rocketName, b: labelRenderer }}
+                  values={{ name: rocket?.rocketName, b: labelRenderer }}
                 />
               </If>
-              <If condition={!isEmpty(rocket.rocketType)}>
+              <If condition={!isEmpty(rocket?.rocketType)}>
                 <CustomT
                   data-testid="rocket-type"
                   type="standard"
                   id="type_label"
-                  values={{ type: rocket.rocketType, b: labelRenderer }}
+                  values={{ type: rocket?.rocketType, b: labelRenderer }}
                 />
               </If>
             </RocketBox>

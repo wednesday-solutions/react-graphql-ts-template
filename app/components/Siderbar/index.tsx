@@ -13,7 +13,7 @@ import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH, MOBILE_DRAWER_BREAKPOINT } from '@app
 const SidebarDrawer = styled(Drawer)`
   && {
     .ant-drawer-body {
-      padding: 7rem 0 0 0;
+      padding: ${HEADER_HEIGHT} 0 0 0;
       background-color: ${colors.primary};
       width: ${MIN_SIDEBAR_WIDTH};
       text-align: center;
@@ -29,7 +29,7 @@ const SideBarStatic = styled.div`
     width: 6%;
     min-width: 4.5rem;
     max-width: 7rem;
-    min-height: calc(100vh - 7rem);
+    min-height: calc(100vh - ${HEADER_HEIGHT});
     height: auto;
     background-color: ${colors.primary};
     display: inline;

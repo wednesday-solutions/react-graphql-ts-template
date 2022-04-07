@@ -3,7 +3,7 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="ant-layout-header Header__StyledHeader-a7tfu0-0 kOieeZ"
+    class="ant-layout-header Header__StyledHeader-a7tfu0-0 jtZxHG"
     data-testid="header"
   >
     <a
@@ -26,7 +26,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     class="ant-layout App__CustomLayout-di9tar-0 bLLfQc"
   >
     <div
-      class="Siderbar__SideBarStatic-qw2kux-1 lhaIUx"
+      class="Siderbar__SideBarStatic-qw2kux-1 jexAzu"
       data-testid="sidebar"
     >
       <a

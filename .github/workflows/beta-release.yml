@@ -9,7 +9,6 @@ jobs:
   build:
     name: Create Beta Release
     runs-on: ubuntu-latest
-    if: "contains(github.event.head_commit.message, 'release beta') || contains(github.event.head_commit.message, 'Beta release')"
     steps:
       - name: Actions Ecosystem Action Get Merged Pull Request
         uses: actions-ecosystem/action-get-merged-pull-request@v1.0.1

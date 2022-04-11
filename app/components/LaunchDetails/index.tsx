@@ -28,6 +28,8 @@ const LaunchDetailsCard = styled(Card)`
 
 const CustomImage = styled.img`
   && {
+    width: 100%;
+    height: auto;
     ${media.greaterThan('tablet')`
       width: 50%;
       max-height: 698px;

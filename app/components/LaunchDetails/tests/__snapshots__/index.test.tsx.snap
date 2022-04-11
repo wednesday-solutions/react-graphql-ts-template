@@ -11,7 +11,7 @@ exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
         class="ant-card-body"
       >
         <img
-          class="LaunchDetails__CustomImage-ytnak2-1 gjpxoD"
+          class="LaunchDetails__CustomImage-ytnak2-1 cvnARl"
           src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
         />
         <div

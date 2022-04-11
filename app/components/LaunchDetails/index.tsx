@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { If, T, For } from '@components';
 import isEmpty from 'lodash-es/isEmpty';
 import { colors, media } from '@app/themes';
 import { LaunchDetails as LaunchDetailsType } from '@app/containers/LaunchDetails/saga';
-import { Card, Image, Skeleton } from 'antd';
+import { Card, Skeleton } from 'antd';
 import placeholderImage from '@images/undraw_to_the_stars_re_wq2x.svg';
 
 const LaunchDetailsCard = styled(Card)`
@@ -18,6 +18,7 @@ const LaunchDetailsCard = styled(Card)`
 
       ${media.greaterThan('tablet')`
         flex-direction: row;
+        gap: 1rem;
       `}
     }
     margin: 1.5rem;
@@ -25,19 +26,12 @@ const LaunchDetailsCard = styled(Card)`
   }
 `;
 
-const CustomImage = styled(Image)`
+const CustomImage = styled.img`
   && {
-    ${media.between('tablet', 'desktop')`
-    .ant-image-img{
-      width: 80%;
-      margin: 0;
-    }
-    `}
-    ${media.greaterThan('desktop')`
-      height: 692px;
-      width: 547px;
-      margin: 2rem;
-    `}
+    ${media.greaterThan('tablet')`
+      width: 50%;
+      max-height: 698px;
+      object-fit: cover;`}
   }
 `;
 
@@ -48,18 +42,18 @@ const DetailsCard = styled.div`
     justify-content: center;
     gap: 1rem;
     margin: 3rem 0;
-    ${media.greaterThan('desktop')`
+    ${media.greaterThan('tablet')`
       width: 50%;
-      /* margin: 13% 2%; */
    `}
   }
 `;
 
 const RocketBox = styled.div`
   && {
+    margin-left: 1rem;
     display: flex;
+    flex-direction: column;
     gap: 1rem;
-    margin-left: 1.5rem;
   }
 `;
 
@@ -67,25 +61,29 @@ const CustomT = styled(T)`
   && {
     display: block;
     font-weight: thin;
-    opacity: 0.7;
   }
 `;
 
-const LaunchLabel = styled.b`
+const launchLabelStyles = () => css`
   text-transform: uppercase;
   display: block;
-  font-size: small;
   color: ${colors.primary};
-  opacity: 1;
-  font-weight: bolder;
+  font-size: smaller;
+  font-weight: bold;
+`;
+
+const LaunchLabel = styled.b`
+  ${launchLabelStyles()}
+`;
+
+const LaunchLabelT = styled(T)`
+  ${launchLabelStyles()}
 `;
 
 const ShipContainer = styled.div`
-  margin-left: 1.5rem;
+  margin-left: 1rem;
   display: grid;
-  grid-template-columns: max-content auto;
   align-items: center;
-  column-gap: 1rem;
   row-gap: 1rem;
 `;
 
@@ -101,11 +99,8 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
   return (
     <LaunchDetailsCard data-testid="launch-details">
       <Skeleton loading={loading} active>
-        <If
-          condition={!isEmpty(links?.flickrImages)}
-          otherwise={<CustomImage preview={false} src={placeholderImage} />}
-        >
-          <CustomImage preview={false} src={links?.flickrImages![0]} />
+        <If condition={!isEmpty(links?.flickrImages)} otherwise={<CustomImage src={placeholderImage} />}>
+          <CustomImage src={links?.flickrImages![0]} />
         </If>
       </Skeleton>
       <Skeleton loading={loading} active>
@@ -118,7 +113,7 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
             <CustomT data-testid="details" type="standard" id="details" values={{ details, b: labelRenderer }} />
           </If>
           <If condition={!isEmpty(rocket)}>
-            <LaunchLabel>Rocket </LaunchLabel>
+            <LaunchLabelT type="smallBoldText" id="rocket" />
             <RocketBox>
               <If condition={!isEmpty(rocket?.rocketName)}>
                 <CustomT
@@ -139,20 +134,18 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
             </RocketBox>
           </If>
           <If condition={!isEmpty(ships)}>
-            <LaunchLabel>Ships </LaunchLabel>
+            <LaunchLabelT type="smallBoldText" id="ships" />
             <ShipContainer>
-              <CustomT marginBottom={-0.5} id="name_label" values={{ name: '', b: labelRenderer }} />
-              <CustomT marginBottom={-0.5} id="type_label" values={{ type: '', b: labelRenderer }} />
               <For
                 noParent
                 of={ships}
                 renderItem={(ship) => (
                   <>
                     <If condition={!isEmpty(ship.name)}>
-                      <CustomT data-testid="ship-name" type="standard" text={ship.name} />
+                      <CustomT data-testid="ship-name" id="name_label" values={{ name: ship.name, b: labelRenderer }} />
                     </If>
                     <If condition={!isEmpty(ship.type)}>
-                      <CustomT data-testid="ship-type" type="standard" text={ship.type} />
+                      <CustomT data-testid="ship-type" id="type_label" values={{ type: ship.type, b: labelRenderer }} />
                     </If>
                   </>
                 )}

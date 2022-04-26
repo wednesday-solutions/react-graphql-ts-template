@@ -5,7 +5,7 @@
     <img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f5879492fafecdb3e5b0e75_wednesday_logo.svg">
   </a>
   <p>
-    <h1 align="left">React Template
+    <h1 align="left">React GraphQL TypeScript Template
     </h1>
   </p>
 
@@ -54,6 +54,14 @@ An enterprise react template application showcasing - Testing strategies, Global
 - Start the dev server using `yarn start`
 
 - Go through the other scripts in `package.json`
+
+## TypeScript Configuration
+
+- Typescript Configuration using [tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
+
+  Take a look at the following files
+
+  - [app/tsconfig.json](app/tsconfig.json)
 
 ## Global state management using `@redux/toolkit`
 
@@ -214,10 +222,13 @@ An enterprise react template application showcasing - Testing strategies, Global
 - @components -> app/components/
 - @services -> app/services/
 - @utils -> app/utils/
+- @themes -> app/themes
+- @images -> app/images
 
 Take a look at the following files
 
 - [internals/webpack/webpack.config.base.js](internals/webpack/webpack.config.base.js)
+- [app/tsconfig.json](app/tsconfig.json)
 
 ### Chunkify and Lazy loading
 

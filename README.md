@@ -229,6 +229,7 @@ Take a look at the following files
 
 - [internals/webpack/webpack.config.base.js](internals/webpack/webpack.config.base.js)
 - [app/tsconfig.json](app/tsconfig.json)
+- [jest.config.json](jest.config.json)
 
 ### Chunkify and Lazy loading
 

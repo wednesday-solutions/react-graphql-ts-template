@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/wednesday-solutions/react-template/blob/master/react_template_github.svg" width="480" height="540" />
+<img align="left" src="https://github.com/wednesday-solutions/react-graphql-ts-template/blob/master/react-graphql-template.png" width="480" height="540" />
 
 <div>
   <a href="https://www.wednesday.is?utm_source=gthb&utm_medium=repo&utm_campaign=serverless" align="left" style="margin-left: 0;">
@@ -36,7 +36,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
 ### Built using [react-floki](https://github.com/wednesday-solutions/react-floki)
 
-![React Template CD](https://github.com/wednesday-solutions/react-template/workflows/React%20Template%20CD/badge.svg)
+![React GraphQL TS Template CD](https://github.com/wednesday-solutions/react-graphql-ts-template/workflows/React%20GraphQL%20TypeScript%20Template%20CD/badge.svg)
 
 <div>
 <img src='./badges/badge-statements.svg' height="20"/>
@@ -63,7 +63,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   - [app/tsconfig.json](app/tsconfig.json)
 
-## Global state management using `@redux/toolkit`
+## Global state management using @redux/toolkit
 
 - Global state management using [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
 
@@ -94,7 +94,6 @@ An enterprise react template application showcasing - Testing strategies, Global
   Take a look at the following files
 
   - [app/utils/apiUtils.ts](app/utils/apiUtils.ts)
-  - [app/services/repoApi.ts](app/services/repoApi.ts)
 
 ## GraphQL requests using Apollo Boost
 
@@ -278,7 +277,12 @@ Where `type` is one of the following:
 - `breaking`: alters `type` to be a breaking change
   And `category` can be anything of your choice. If you use a type not found in the list (but it still follows the same format of the message), it'll be grouped under `other`.
 
-## Release commit
+## Auto release
 
-- To create an alpha release via Pull Request, the PR Title must have `alpha release` or `release alpha` present.
-- To create an alpha release directly via commit, the commit message must have `alpha release` or `release alpha` present.
+- Each push into `qa` branch will produce a beta release
+- Each push into `master` branch will produce a prod release
+
+  Take a look at the following files
+
+- [.github/workflows/beta-release.yml](.github/workflows/beta-release.yml)
+- [.github/workflows/prod-release.yml](.github/workflows/prod-release.yml)

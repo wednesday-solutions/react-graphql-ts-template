@@ -1,4 +1,4 @@
-name: React Template CD
+name: React GraphQL TypeScript Template CD
 on:
   push:
     branches: [master]

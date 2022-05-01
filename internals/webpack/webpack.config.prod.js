@@ -1,13 +1,14 @@
 // Important modules this config uses
 
-const zlib = require('zlib');
+// const zlib = require('zlib');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OfflinePlugin = require('@lcdp/offline-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = require('./webpack.config.base')({
   mode: 'production',
@@ -37,7 +38,8 @@ module.exports = require('./webpack.config.base')({
           }
         },
         parallel: true
-      })
+      }),
+      new CssMinimizerPlugin()
     ],
     nodeEnv: 'production',
     sideEffects: false,
@@ -77,7 +79,7 @@ module.exports = require('./webpack.config.base')({
       },
       inject: true
     }),
-
+    // new LinkMediaHtmlWebpackPlugin(),
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     new OfflinePlugin({
@@ -110,18 +112,18 @@ module.exports = require('./webpack.config.base')({
       minRatio: 0.8
     }),
 
-    new CompressionPlugin({
-      filename: '[path][base].br',
-      algorithm: 'brotliCompress',
-      test: /\.(js|css|html|svg)$/,
-      compressionOptions: {
-        params: {
-          [zlib.constants.BROTLI_PARAM_QUALITY]: 11
-        }
-      },
-      threshold: 10240,
-      minRatio: 0.8
-    }),
+    // new CompressionPlugin({
+    //   filename: '[path][base].br',
+    //   algorithm: 'brotliCompress',
+    //   test: /\.(js|css|html|svg)$/,
+    //   compressionOptions: {
+    //     params: {
+    //       [zlib.constants.BROTLI_PARAM_QUALITY]: 11
+    //     }
+    //   },
+    //   threshold: 10240,
+    //   minRatio: 0.8
+    // }),
 
     new WebpackPwaManifest({
       name: 'React Template',
@@ -143,7 +145,7 @@ module.exports = require('./webpack.config.base')({
         }
       ]
     }),
-    new BundleAnalyzerPlugin()
+    new MiniCssExtractPlugin()
   ],
   devtool: 'source-map',
   performance: {

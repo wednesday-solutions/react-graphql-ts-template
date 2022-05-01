@@ -3,14 +3,18 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="ant-layout-header Header__StyledHeader-a7tfu0-0 bfRGtz"
+    class="ant-layout-header Header__StyledHeader-a7tfu0-0 hlRXrF"
     data-testid="header"
   >
-    <img
-      alt="logo"
-      class="Header__Logo-a7tfu0-1 cTOQXQ"
-      src="IMAGE_MOCK"
-    />
+    <a
+      href="/"
+    >
+      <img
+        alt="logo"
+        class="Header__Logo-a7tfu0-1 gRnKxJ"
+        src="IMAGE_MOCK"
+      />
+    </a>
     <p
       class="T__StyledText-gcrjip-0 gjTOrr Header__Title-a7tfu0-2 fdMcFf"
       data-testid="t"
@@ -19,20 +23,27 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     </p>
   </header>
   <section
-    class="ant-layout App__CustomLayout-di9tar-2 edUAiy"
+    class="ant-layout App__CustomLayout-di9tar-0 bLLfQc"
   >
     <div
-      class="App__SideBar-di9tar-0 cysyFI"
+      class="Siderbar__SidebarWrapper-qw2kux-0 bVxzZu"
     >
-      <a
-        href="/"
+      <div
+        class="Siderbar__SideBarStatic-qw2kux-2 eNSzjh"
+        data-testid="sidebar"
       >
-        <img
-          alt=""
-          class="App__RocketLogo-di9tar-1 lmXCEd"
-          src="IMAGE_MOCK"
-        />
-      </a>
+        <a
+          aria-label="home link"
+          data-testid="rocket-home-link"
+          href="/"
+        >
+          <img
+            alt="rocket-icon"
+            class="Siderbar__RocketLogo-qw2kux-3 Vilqd"
+            src="IMAGE_MOCK"
+          />
+        </a>
+      </div>
     </div>
     <main
       class="ant-layout-content"

@@ -58,7 +58,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
             </span>
           </button>
           <div
-            class="ant-select HomeContainer__SortSelect-wd79o1-4 jnsQrO ant-select-single ant-select-show-arrow"
+            class="ant-select HomeContainer__SortSelect-wd79o1-4 fIFOmc ant-select-single ant-select-show-arrow"
             data-testid="sort-select"
           >
             <div

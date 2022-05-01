@@ -6,28 +6,37 @@
 import React from 'react';
 import { Layout } from 'antd';
 import styled from 'styled-components';
-import { injectIntl } from 'react-intl';
-import { fonts, colors } from '@themes/index';
+import { fonts, colors, media } from '@themes/index';
 import T from '@components/T';
 import logo from '@images/icon-512x512.png';
+import { Link } from 'react-router-dom';
+import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
 
 const StyledHeader = styled(Layout.Header)`
   && {
     &.ant-layout-header {
       padding: 0 1rem;
-      height: 7rem;
-      padding-bottom: 1rem;
+      height: ${HEADER_HEIGHT};
       align-items: center;
+      justify-content: center;
+      background-color: ${colors.primary};
+      gap: 1rem;
+      ${media.lessThan('mobile')`
+      padding-left: ${MIN_SIDEBAR_WIDTH}
+      `}
     }
     display: flex;
-    justify-content: center;
-    background-color: ${colors.primary};
-    gap: 1rem;
+    /* height: ${HEADER_HEIGHT}; */
+    /* justify-content: center; */
   }
 `;
 const Logo = styled.img`
   height: 5rem;
   width: auto;
+  object-fit: contain;
+  ${media.lessThan('tablet')`
+    height: 4rem;
+  `}
 `;
 const Title = styled(T)`
   && {
@@ -39,13 +48,15 @@ const Title = styled(T)`
   }
 `;
 
-function Header() {
+const Header: React.FC = () => {
   return (
     <StyledHeader data-testid="header">
-      <Logo alt="logo" src={logo} />
+      <Link to="/">
+        <Logo alt="logo" src={logo} />
+      </Link>
       <Title type="heading" id="wednesday_solutions" />
     </StyledHeader>
   );
-}
+};
 
-export default injectIntl(Header);
+export default Header;

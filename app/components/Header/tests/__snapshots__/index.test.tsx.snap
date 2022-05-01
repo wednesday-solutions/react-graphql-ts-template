@@ -4,14 +4,18 @@ exports[`<Header /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <header
-      class="ant-layout-header Header__StyledHeader-a7tfu0-0 bfRGtz"
+      class="ant-layout-header Header__StyledHeader-a7tfu0-0 hlRXrF"
       data-testid="header"
     >
-      <img
-        alt="logo"
-        class="Header__Logo-a7tfu0-1 cTOQXQ"
-        src="IMAGE_MOCK"
-      />
+      <a
+        href="/"
+      >
+        <img
+          alt="logo"
+          class="Header__Logo-a7tfu0-1 gRnKxJ"
+          src="IMAGE_MOCK"
+        />
+      </a>
       <p
         class="T__StyledText-gcrjip-0 gjTOrr Header__Title-a7tfu0-2 fdMcFf"
         data-testid="t"

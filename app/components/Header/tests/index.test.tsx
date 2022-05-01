@@ -5,17 +5,17 @@
  */
 
 import React from 'react';
-import { renderWithIntl } from '@utils/testUtils';
+import { renderProvider } from '@utils/testUtils';
 import Header from '../index';
 
 describe('<Header />', () => {
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderWithIntl(<Header />);
+    const { baseElement } = renderProvider(<Header />);
     expect(baseElement).toMatchSnapshot();
   });
 
   it('should contain logo', () => {
-    const { getAllByAltText } = renderWithIntl(<Header />);
+    const { getAllByAltText } = renderProvider(<Header />);
     expect(getAllByAltText('logo').length).toBe(1);
   });
 });

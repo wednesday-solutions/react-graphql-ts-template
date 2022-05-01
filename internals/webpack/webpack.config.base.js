@@ -5,9 +5,12 @@ const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const colors = require('../../app/themes/colors');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
+const devMode = process.env.NODE_ENV !== 'production';
 const dotEnvFile = process.env.ENVIRONMENT_NAME === 'production' ? `.env` : `.env.${process.env.ENVIRONMENT_NAME}`;
-const env = dotenv.config({ path: dotEnvFile }).parsed;
+const env = dotenv.config({ path: dotEnvFile }).parsed || {};
 const envKeys = {
   ...Object.keys(process.env).reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(process.env[next]);
@@ -70,8 +73,7 @@ module.exports = (options) => ({
                   'input-placeholder-color': colors.primary,
                   'height-base': '40px'
                 }
-              },
-              implementation: require('less')
+              }
             }
           }
         ]
@@ -80,7 +82,7 @@ module.exports = (options) => ({
         // Preprocess 3rd party .css files located in node_modules
         test: /\.css$/,
         include: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(eot|otf|ttf|woff|woff2)$/,
@@ -100,7 +102,7 @@ module.exports = (options) => ({
         ]
       },
       {
-        test: /\.(jpg|png|gif)$/,
+        test: /\.(jpg|png|gif|svg)$/,
         use: [
           {
             loader: 'url-loader',
@@ -153,9 +155,10 @@ module.exports = (options) => ({
     // inside your code for any environment checks; Terser will automatically
     // drop any unreachable code.
     new webpack.EnvironmentPlugin({
-      NODE_ENV: 'development'
+      NODE_ENV: process.env.NODE_ENV
     }),
-    new webpack.DefinePlugin(envKeys)
+    new webpack.DefinePlugin(envKeys),
+    ...(process.env.ANALYZE_BUNDLE === 'true' ? [new BundleAnalyzerPlugin()] : [])
   ]),
   resolve: {
     modules: ['node_modules', 'app'],

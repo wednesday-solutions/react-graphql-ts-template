@@ -9,7 +9,7 @@ import isEmpty from 'lodash-es/isEmpty';
 import { colors } from '@app/themes';
 import { GlobalOutlined } from '@ant-design/icons';
 import history from '@app/utils/history';
-import { format } from 'date-fns';
+import format from 'date-fns/format';
 
 const LaunchCard = styled(Card)`
   && {

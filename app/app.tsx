@@ -4,55 +4,24 @@
  * This is the entry file for the application, only setup and boilerplate
  * code.
  */
-
-// Needed for redux-saga es6 generator support
-// Import all the third party stuff
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import history from '@utils/history';
-import 'sanitize.css/sanitize.css';
-
-// Import root app
-import App from '@containers/App';
-
-// Import Language Provider
-import LanguageProvider from '@containers/LanguageProvider';
-import ErrorBoundary from '@components/ErrorBoundary';
-import ScrollToTop from '@components/ScrollToTop';
-// Load the favicon and the .htaccess file
-/* eslint-disable import/no-unresolved, import/extensions */
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
-/* eslint-enable import/no-unresolved, import/extensions */
+import 'sanitize.css/sanitize.css';
 
-import configureStore from './configureStore';
+import Providers from '@components/Providers';
+import App from '@containers/App/loadable';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-// Import i18n messages
 import { translationMessages } from './i18n';
-import { Router } from 'react-router-dom';
 
-// Create redux store with history
-const initialState = {};
-const { store, persistor } = configureStore(initialState);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = (messages: typeof translationMessages) => {
   ReactDOM.render(
-    <ErrorBoundary>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <LanguageProvider messages={messages}>
-            <Router history={history}>
-              <ScrollToTop>
-                <App />
-              </ScrollToTop>
-            </Router>
-          </LanguageProvider>
-        </PersistGate>
-      </Provider>
-    </ErrorBoundary>,
+    <Providers messages={messages}>
+      <App />
+    </Providers>,
     MOUNT_NODE
   );
 };

@@ -48,7 +48,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
           class="HomeContainer__ButtonBox-wd79o1-3 htscFM"
         >
           <button
-            class="ant-btn"
+            class="ant-btn ant-btn-default"
             data-testid="clear-sort"
             disabled=""
             type="button"
@@ -58,7 +58,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
             </span>
           </button>
           <div
-            class="ant-select HomeContainer__SortSelect-wd79o1-4 jnsQrO ant-select-single ant-select-show-arrow"
+            class="ant-select HomeContainer__SortSelect-wd79o1-4 dPrvPO ant-select-single ant-select-show-arrow"
             data-testid="sort-select"
           >
             <div

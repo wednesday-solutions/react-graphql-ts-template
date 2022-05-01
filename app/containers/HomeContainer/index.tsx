@@ -60,7 +60,9 @@ const ButtonBox = styled.div`
 const SortSelect = styled(Select)`
   && {
     width: 9.5rem;
-    background-color: #fff;
+    .ant-select-selector {
+      background-color: ${colors.primary};
+    }
 
     ${media.lessThan('tablet')`
       flex: 1;

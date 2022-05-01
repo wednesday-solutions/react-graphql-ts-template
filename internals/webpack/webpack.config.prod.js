@@ -1,6 +1,6 @@
 // Important modules this config uses
 
-// const zlib = require('zlib');
+const zlib = require('zlib');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -112,18 +112,18 @@ module.exports = require('./webpack.config.base')({
       minRatio: 0.8
     }),
 
-    // new CompressionPlugin({
-    //   filename: '[path][base].br',
-    //   algorithm: 'brotliCompress',
-    //   test: /\.(js|css|html|svg)$/,
-    //   compressionOptions: {
-    //     params: {
-    //       [zlib.constants.BROTLI_PARAM_QUALITY]: 11
-    //     }
-    //   },
-    //   threshold: 10240,
-    //   minRatio: 0.8
-    // }),
+    new CompressionPlugin({
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
+      test: /\.(js|css|html|svg)$/,
+      compressionOptions: {
+        params: {
+          [zlib.constants.BROTLI_PARAM_QUALITY]: 11
+        }
+      },
+      threshold: 10240,
+      minRatio: 0.8
+    }),
 
     new WebpackPwaManifest({
       name: 'React Template',
@@ -145,7 +145,12 @@ module.exports = require('./webpack.config.base')({
         }
       ]
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      linkType: 'text/css',
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: true // Enable to remove warnings about conflicting order
+    })
   ],
   devtool: 'source-map',
   performance: {

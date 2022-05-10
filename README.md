@@ -5,8 +5,7 @@
     <img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f5879492fafecdb3e5b0e75_wednesday_logo.svg">
   </a>
   <p>
-    <h2 align="left">React GraphQL TypeScript Template
-    </h2>
+    <h3 align="left">React GraphQL TypeScript Template</h3>
   </p>
 
   <p>
@@ -33,8 +32,6 @@ An enterprise react template application showcasing - Testing strategies, Global
 ---
 
 </div>
-
-### Built using [react-floki](https://github.com/wednesday-solutions/react-floki)
 
 ![React GraphQL TS Template CD](https://github.com/wednesday-solutions/react-graphql-ts-template/workflows/React%20GraphQL%20TypeScript%20Template%20CD/badge.svg)
 

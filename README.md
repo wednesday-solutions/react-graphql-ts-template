@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/wednesday-solutions/react-graphql-ts-template/blob/master/react-graphql-template.png" width="480" height="540" />
+<img align="left" src="https://github.com/wednesday-solutions/react-graphql-ts-template/blob/master/react-graphql-template.png" width="480" />
 
 <div>
   <a href="https://www.wednesday.is?utm_source=gthb&utm_medium=repo&utm_campaign=serverless" align="left" style="margin-left: 0;">

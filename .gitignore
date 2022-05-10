@@ -14,4 +14,3 @@ reports/
 npm-debug.log
 .idea
 .tsconfig-lint.json
-.env.local

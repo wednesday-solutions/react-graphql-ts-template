@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { If, T, For } from '@components';
 import isEmpty from 'lodash-es/isEmpty';
 import { colors, media } from '@app/themes';
-import { LaunchDetails as LaunchDetailsType } from '@app/containers/LaunchDetails/saga';
+import { LaunchDetails as LaunchDetailsType } from '@app/containers/LaunchDetails/types';
 import { Card, Image, Skeleton } from 'antd';
 import placeholderImage from '@images/undraw_to_the_stars_re_wq2x.svg';
 

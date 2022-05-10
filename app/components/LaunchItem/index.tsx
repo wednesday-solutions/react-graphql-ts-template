@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Launch } from '@app/containers/HomeContainer';
+import { Launch } from '@app/containers/HomeContainer/types';
 import { Button, Card } from 'antd';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';

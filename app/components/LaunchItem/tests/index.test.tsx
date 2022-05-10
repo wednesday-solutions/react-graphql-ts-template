@@ -1,5 +1,5 @@
 import React from 'react';
-import { Launch } from '@app/containers/HomeContainer';
+import { Launch } from '@app/containers/HomeContainer/types';
 import { renderProvider } from '@app/utils/testUtils';
 import LaunchItem from '..';
 import { fireEvent } from 'react-testing-library';

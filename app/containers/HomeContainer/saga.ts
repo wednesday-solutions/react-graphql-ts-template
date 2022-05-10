@@ -1,20 +1,11 @@
 import { getQueryResponse, GqlQueryReponse } from '@app/utils/graphqlUtils';
 import { GET_LAUNCHES } from './queries';
 import { LAUNCH_PER_PAGE } from './usePaginate';
-import { AnyAction } from 'redux';
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { requestGetLaunchList, successGetLaunchList, failureGetLaunchList } from './reducer';
-import { Launch } from '.';
+import { Launch } from './types';
 
 type LaunchesResponse = GqlQueryReponse<{ launches?: Launch[] }>;
-
-export interface RequestLaunchesActionPayload {
-  missionName: string | null;
-  order: string | null; // 'asc' | 'desc'
-  page: number; // starts from 1
-}
-
-export type LaunchesActionCreator = (payload: RequestLaunchesActionPayload) => AnyAction;
 
 interface LaunchesAction {
   payload: { missionName: any; order: any; page: any };

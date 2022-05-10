@@ -13,15 +13,16 @@ import { selectLaunchData, selectLaunchListError, selectLoading } from './select
 import arrowUp from '@images/ArrowUp.svg';
 import arrowDown from '@images/ArrowDown.svg';
 import arrowUpDown from '@images/ArrowUpDown.svg';
-import homeContainerSaga, { LaunchesActionCreator, RequestLaunchesActionPayload } from './saga';
+import homeContainerSaga from './saga';
 import { requestGetLaunchList } from './reducer';
 import { LaunchList, ErrorHandler } from '@components';
 import { colors, media } from '@app/themes';
-import { injectIntl, IntlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import useSort from './useSort';
 import usePaginate from './usePaginate';
 import { setQueryParam } from '@app/utils';
 import history from '@app/utils/history';
+import { RequestLaunchesActionPayload, HomeContainerProps } from './types';
 
 const Container = styled.div`
   && {
@@ -73,29 +74,6 @@ const CustomFooter = styled.div`
   justify-content: flex-end;
   gap: 1rem;
 `;
-
-export interface Launch {
-  id: string;
-  missionName: string;
-  launchDateUtc: string;
-  launchDateUnix: number;
-  links: {
-    wikipedia: string;
-    flickrImages: Array<string>;
-  };
-}
-
-export interface LaunchData {
-  launches?: Launch[];
-}
-
-export interface HomeContainerProps {
-  dispatchLaunchList: LaunchesActionCreator;
-  launchData: LaunchData;
-  launchListError?: string;
-  loading: boolean;
-  intl: IntlShape;
-}
 
 export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, launchListError }: HomeContainerProps) {
   const { order, handleClearSort, handleDateSort } = useSort();

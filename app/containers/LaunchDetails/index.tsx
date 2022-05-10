@@ -5,20 +5,14 @@ import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { useParams } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
-import { AnyAction, compose } from 'redux';
+import { compose } from 'redux';
 import { injectSaga } from 'redux-injectors';
-import { selectLaunch, selectLaunchError, selectLoading } from './selectors';
-import saga, { LaunchDetails as LaunchDetailsType } from './saga';
-import { requestGetLaunch } from './reducer';
 import { ErrorHandler, If } from '@components';
 import NotFound from '@containers/NotFoundPage';
-
-export interface LaunchDetailsProps {
-  launch: LaunchDetailsType | null;
-  launchError?: string;
-  loading: boolean;
-  dispatchLaunch: (launchId: string) => AnyAction;
-}
+import { selectLaunch, selectLaunchError, selectLoading } from './selectors';
+import saga from './saga';
+import { requestGetLaunch } from './reducer';
+import { LaunchDetailsProps } from './types';
 
 export function LaunchDetails({ launch, launchError, loading, dispatchLaunch }: LaunchDetailsProps) {
   const params = useParams<{ launchId?: string }>();

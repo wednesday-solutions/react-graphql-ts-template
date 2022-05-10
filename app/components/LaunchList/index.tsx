@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Launch } from '@containers/HomeContainer';
+import { Launch } from '@containers/HomeContainer/types';
 import { get, isEmpty } from 'lodash-es';
 import { Card, Skeleton } from 'antd';
 import { If, T, For, LaunchItem } from '@components';

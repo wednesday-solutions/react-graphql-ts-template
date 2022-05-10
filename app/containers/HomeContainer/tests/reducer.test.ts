@@ -1,4 +1,4 @@
-import { LaunchData } from '..';
+import { LaunchData } from '../types';
 import homeReducer, {
   initialState,
   requestGetLaunchList,

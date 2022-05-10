@@ -1,6 +1,6 @@
 import { setQueryParam } from '@app/utils';
 import history from '@app/utils/history';
-import { LaunchData } from '.';
+import { LaunchData } from './types';
 
 export const LAUNCH_PER_PAGE = 6;
 

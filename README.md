@@ -201,13 +201,6 @@ An enterprise react template application showcasing - Testing strategies, Global
   - [app/services/tests/repoApi.test.ts](app/services/tests/repoApi.test.ts)
   - [app/components/T/tests/index.test.tsx](app/components/T/tests/index.test.tsx)
 
-## Scaffolding components/containers/tests using react-floki
-
-- Components, containers, tests and stories can be scaffolded using
-  ```
-  yarn generate
-  ```
-  For the documentation take a look at: [react-floki](https://github.com/wednesday-solutions/react-floki)
 
 ## Misc
 

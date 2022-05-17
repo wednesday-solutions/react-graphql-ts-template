@@ -7,7 +7,7 @@
  *
  */
 import React from 'react';
-import GlobalStyle from '@app/global-styles';
+
 import { routeConfig } from '@app/routeConfig';
 import { Layout } from 'antd';
 import map from 'lodash-es/map';
@@ -19,7 +19,7 @@ import For from '@components/For';
 import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
-
+import '@app/styles/index.css';
 const theme = {
   fg: colors.primary,
   bg: colors.secondaryText
@@ -37,6 +37,7 @@ export function App() {
       <Header />
       <CustomLayout>
         <Sidebar />
+        <span className="text-3xl font-bold underline">Hello world!</span>
         <Layout.Content>
           <For
             ParentComponent={(props) => <Switch {...props} />}
@@ -59,7 +60,6 @@ export function App() {
               );
             }}
           />
-          <GlobalStyle />
         </Layout.Content>
       </CustomLayout>
     </ThemeProvider>

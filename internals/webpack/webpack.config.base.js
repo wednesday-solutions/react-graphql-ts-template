@@ -5,7 +5,8 @@ const path = require('path');
 const webpack = require('webpack');
 const dotenv = require('dotenv');
 const colors = require('../../app/themes/colors');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const getCSSModuleLocalIdent  = require('./getCssModuleIndent')
 const dotEnvFile = process.env.ENVIRONMENT_NAME === 'production' ? `.env` : `.env.${process.env.ENVIRONMENT_NAME}`;
 const env = dotenv.config({ path: dotEnvFile }).parsed || {};
 const envKeys = {
@@ -47,8 +48,51 @@ module.exports = (options) => ({
         // This is the place to add your own loaders (e.g. sass/less etc.)
         // for a list of loaders, see https://webpack.js.org/loaders/#styling
         test: /\.css$/,
-        exclude: /node_modules/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: MiniCssExtractPlugin.loader,
+            // css is located in `static/css`, use '../../' to locate index.html folder
+            // in production `paths.publicUrlOrPath` can be a relative path
+            options: { publicPath: '../../' }
+          },
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: {
+                mode: 'icss'
+              }
+            }
+          },
+          {
+            // Options for PostCSS as we reference these options twice
+            // Adds vendor prefixing based on your specified browser support in
+            // package.json
+            loader: require.resolve('postcss-loader'),
+            options: {
+              postcssOptions: {
+                // Necessary for external CSS imports to work
+                // https://github.com/facebook/create-react-app/issues/2677
+                ident: 'postcss',
+                config: false,
+                plugins: [
+                  'tailwindcss',
+                  'postcss-flexbugs-fixes',
+                  [
+                    'postcss-preset-env',
+                    {
+                      autoprefixer: {
+                        flexbox: 'no-2009'
+                      },
+                      stage: 3
+                    }
+                  ]
+                ]
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.less$/,
@@ -152,6 +196,12 @@ module.exports = (options) => ({
     // Always expose NODE_ENV to webpack, in order to use `process.env.NODE_ENV`
     // inside your code for any environment checks; Terser will automatically
     // drop any unreachable code.
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: 'static/css/[name].[contenthash:8].css',
+      chunkFilename: 'static/css/[name].[contenthash:8].chunk.css'
+    }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
     }),

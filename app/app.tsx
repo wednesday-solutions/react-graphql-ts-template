@@ -12,7 +12,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import history from '@utils/history';
-import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from '@containers/App';

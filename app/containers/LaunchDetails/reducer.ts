@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import get from 'lodash-es/get';
+import { prepare } from '@app/utils';
 
 export const initialState = {
   launch: {},
@@ -15,7 +16,7 @@ const launchDetailsSlice = createSlice({
       reducer: (state) => {
         state.loading = true;
       },
-      prepare: (payload) => ({ payload })
+      prepare
     },
     successGetLaunch(state, action) {
       state.loading = false;

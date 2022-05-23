@@ -1,16 +1,9 @@
-import { getQueryResponse, GqlQueryReponse } from '@app/utils/graphqlUtils';
+import { getQueryResponse } from '@app/utils/graphqlUtils';
 import { GET_LAUNCHES } from './queries';
 import { LAUNCH_PER_PAGE } from './usePaginate';
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { requestGetLaunchList, successGetLaunchList, failureGetLaunchList } from './reducer';
-import { Launch } from './types';
-
-type LaunchesResponse = GqlQueryReponse<{ launches?: Launch[] }>;
-
-interface LaunchesAction {
-  payload: { missionName: any; order: any; page: any };
-  type: string;
-}
+import { LaunchesResponse, LaunchesAction } from './types';
 
 export function* getLaunchList(action: LaunchesAction): Generator<any, any, LaunchesResponse> {
   const { missionName, order, page } = action.payload;

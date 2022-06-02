@@ -1,12 +1,11 @@
-<img align="left" src="https://github.com/wednesday-solutions/react-template/blob/master/react_template_github.svg" width="480" height="540" />
+<img align="left" src="https://github.com/wednesday-solutions/react-graphql-ts-template/blob/master/react-graphql-template.png" width="420" />
 
 <div>
   <a href="https://www.wednesday.is?utm_source=gthb&utm_medium=repo&utm_campaign=serverless" align="left" style="margin-left: 0;">
     <img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f5879492fafecdb3e5b0e75_wednesday_logo.svg">
   </a>
   <p>
-    <h1 align="left">React Template
-    </h1>
+    <h3 align="left">React GraphQL TypeScript Template</h3>
   </p>
 
   <p>
@@ -34,9 +33,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
 </div>
 
-### Built using [react-floki](https://github.com/wednesday-solutions/react-floki)
-
-![React Template CD](https://github.com/wednesday-solutions/react-template/workflows/React%20Template%20CD/badge.svg)
+![React GraphQL TS Template CD](https://github.com/wednesday-solutions/react-graphql-ts-template/workflows/React%20GraphQL%20TypeScript%20Template%20CD/badge.svg)
 
 <div>
 <img src='./badges/badge-statements.svg' height="20"/>
@@ -55,20 +52,28 @@ An enterprise react template application showcasing - Testing strategies, Global
 
 - Go through the other scripts in `package.json`
 
-## Global state management using reduxSauce
+## TypeScript Configuration
 
-- Global state management using [Redux Sauce](https://github.com/infinitered/reduxsauce)
+- Typescript Configuration using [tsconfig.json](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html)
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/reducer.js](app/containers/HomeContainer/reducer.js)
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/tsconfig.json](app/tsconfig.json)
+
+## Global state management using @redux/toolkit
+
+- Global state management using [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
+
+  Take a look at the following files
+
+  - [app/containers/HomeContainer/reducer.ts](app/containers/HomeContainer/reducer.ts)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 - Computing and getting state from the redux store using [Reselect](https://github.com/reduxjs/reselect)
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/selectors.js](app/containers/HomeContainer/selectors.js)
+  - [app/containers/HomeContainer/selectors.ts](app/containers/HomeContainer/selectors.ts)
 
 ## Implementing a Redux middleware using redux-sagas
 
@@ -76,8 +81,8 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/saga.js](app/containers/HomeContainer/saga.js)
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/containers/HomeContainer/saga.ts](app/containers/HomeContainer/saga.ts)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 ## Network requests using apisauce
 
@@ -85,9 +90,16 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/utils/apiUtils.js](app/utils/apiUtils.js)
-  - [app/services/repoApi.js](app/services/repoApi.js)
-  - [app/containers/HomeContainer/saga.js](app/containers/HomeContainer/saga.js)
+  - [app/utils/apiUtils.ts](app/utils/apiUtils.ts)
+
+## GraphQL requests using Apollo Boost
+
+- GraphQL queries using [Apollo Boost](https://www.npmjs.com/package/apollo-boost)
+
+  Take a look at the following files
+
+  - [app/utils/graphqlUtils.ts](app/utils/graphqlUtils.ts)
+  - [app/containers/HomeContainer/saga.ts](app/containers/HomeContainer/saga.ts)
 
 ## Styling using styled-components
 
@@ -95,8 +107,8 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/components/T/index.js](app/components/T/index.js)
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/components/T/index.tsx](app/components/T/index.tsx)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 ## Using antd as the component library
 
@@ -104,7 +116,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/containers/HomeContainer/index.js](app/containers/HomeContainer/index.js)
+  - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
 ## Localization using react-intl
 
@@ -114,7 +126,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   - [app/translations/en.json](app/translations/en.json)
   - [app/containers/LanguageProvider/](app/containers/LanguageProvider/)
-  - [app/i18n](app/i18n.js)
+  - [app/i18n](app/i18n.ts)
 
 ## Routing using react-router
 
@@ -122,8 +134,8 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [app/routeConfig.js](app/routeConfig.js)
-  - [app/containers/App/index.js](app/containers/App/index.js)
+  - [app/routeConfig.ts](app/routeConfig.ts)
+  - [app/containers/App/index.tsx](app/containers/App/index.tsx)
 
 ## Creating and showcasing components individually and in isolation using Storybooks
 
@@ -152,7 +164,7 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [internals/webpack/webpack.dev.babel.js](internals/webpack/webpack.dev.babel.js)
+  - [internals/webpack/webpack.config.dev.js](internals/webpack/webpack.config.dev.js)
 
 ## Implementing CI/CD pipelines using Github Actions
 
@@ -183,19 +195,12 @@ An enterprise react template application showcasing - Testing strategies, Global
 
   Take a look at the following files
 
-  - [jest.config.js](jest.config.js)
+  - [jest.config.json](jest.config.json)
   - [jest.setup.js](jest.setup.js)
   - [app/containers/HomeContainer/tests](app/containers/HomeContainer/tests)
-  - [app/services/tests/repoApi.test.js](app/services/tests/repoApi.test.js)
-  - [app/components/T/tests/index.test.js](app/components/T/tests/index.test.js)
+  - [app/services/tests/repoApi.test.ts](app/services/tests/repoApi.test.ts)
+  - [app/components/T/tests/index.test.tsx](app/components/T/tests/index.test.tsx)
 
-## Scaffolding components/containers/tests using react-floki
-
-- Components, containers, tests and stories can be scaffolded using
-  ```
-  yarn generate
-  ```
-  For the documentation take a look at: [react-floki](https://github.com/wednesday-solutions/react-floki)
 
 ## Misc
 
@@ -206,21 +211,25 @@ An enterprise react template application showcasing - Testing strategies, Global
 - @components -> app/components/
 - @services -> app/services/
 - @utils -> app/utils/
+- @themes -> app/themes
+- @images -> app/images
 
 Take a look at the following files
 
-- [internals/webpack/webpack.base.babel.js](internals/webpack/webpack.base.babel.js)
+- [internals/webpack/webpack.config.base.js](internals/webpack/webpack.config.base.js)
+- [app/tsconfig.json](app/tsconfig.json)
+- [jest.config.json](jest.config.json)
 
 ### Chunkify and Lazy loading
 
 Take a look at the following files
 
-- [app/containers/HomeContainer/Loadable.js](app/containers/HomeContainer/Loadable.js)
-- [app/utils/loadable.js](app/utils/loadable.js)
+- [app/containers/HomeContainer/Loadable.ts](app/containers/HomeContainer/Loadable.ts)
+- [app/utils/loadable.ts](app/utils/loadable.ts)
 
 ### App entry point
 
-- [app/app.js](app/app.js)
+- [app/app.ts](app/app.ts)
 
 ### PWA
 
@@ -229,16 +238,41 @@ Take a look at the following files
 
 Take a look at the following files
 
-- [app/app.js](app/app.js)
+- [app/app.tsx](app/app.ts)
 - [internals/webpack/webpack.config.prod.js](internals/webpack/webpack.config.prod.js)
 
-## Gotchas
+## Syntax for adding commit messages
 
-- For github pages to work on an [arbitrary route](https://wednesday-solutions.github.io/react-template/) we have used some workarounds.
-  For production builds deployed directly on `/` you need to make the following changes
-  1. [publicPath: process.env.NODE_ENV === 'production' ? '/react-template/' : '/'](https://github.com/wednesday-solutions/react-template/blob/master/internals/webpack/webpack.config.base.js#L29)
-     should be: `publicPath: '/'`
-  2. [relativePaths: process.env.NODE_ENV === 'production'](https://github.com/wednesday-solutions/react-template/blob/master/internals/webpack/webpack.config.prod.js#L85)
-     should be: `relativePaths: false,`
-  3. [const history = createBrowserHistory({ basename: baseUrl });](https://github.com/wednesday-solutions/react-template/blob/master/app/utils/history.js#L3)
-     should be: `const history = createBrowserHistory();`
+Your commit messages have to be in this format:
+
+```
+type(category): description [flags]
+```
+
+Where `type` is one of the following:
+
+- `build`
+- `docs`
+- `feat`
+- `fix`
+- `others`
+- `perf`
+- `refactor`
+- `style`
+- `test`
+- `chore`
+- `ci`
+- `temp`
+  Where `flags` is an optional comma-separated list of one or more of the following (must be surrounded in square brackets):
+- `breaking`: alters `type` to be a breaking change
+  And `category` can be anything of your choice. If you use a type not found in the list (but it still follows the same format of the message), it'll be grouped under `other`.
+
+## Auto release
+
+- Each push into `qa` branch will produce a beta release
+- Each push into `master` branch will produce a prod release
+
+  Take a look at the following files
+
+- [.github/workflows/beta-release.yml](.github/workflows/beta-release.yml)
+- [.github/workflows/prod-release.yml](.github/workflows/prod-release.yml)

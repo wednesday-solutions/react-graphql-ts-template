@@ -1,7 +1,7 @@
 import { selectHomeContainerDomain, selectLaunchData, selectLaunchListError, selectLoading } from '../selectors';
 import { initialState } from '../reducer';
 import { RootState } from '@app/configureStore';
-import { Launch } from '..';
+import { Launch } from '../types';
 describe('HomeContainer selector tests', () => {
   let mockedState: RootState;
   let launchData: { launches?: Partial<Launch>[] };

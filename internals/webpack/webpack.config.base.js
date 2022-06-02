@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 const colors = require('../../app/themes/colors');
 
 const dotEnvFile = process.env.ENVIRONMENT_NAME === 'production' ? `.env` : `.env.${process.env.ENVIRONMENT_NAME}`;
-const env = dotenv.config({ path: dotEnvFile }).parsed;
+const env = dotenv.config({ path: dotEnvFile }).parsed || {};
 const envKeys = {
   ...Object.keys(process.env).reduce((prev, next) => {
     prev[`process.env.${next}`] = JSON.stringify(process.env[next]);

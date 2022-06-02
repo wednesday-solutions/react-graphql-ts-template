@@ -7,7 +7,7 @@
 import React from 'react';
 import { renderProvider } from '@utils/testUtils';
 import LaunchList from '../index';
-import { LaunchData } from '@app/containers/HomeContainer';
+import { LaunchData } from '@app/containers/HomeContainer/types';
 
 describe('<LaunchList />', () => {
   const loading = false;

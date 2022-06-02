@@ -60,3 +60,5 @@ export const setQueryParam = ({ param, value, deleteParam, historyOp = 'push' }:
     throw new Error('Invalid history operation');
   }
 };
+
+export const prepare = (payload: any) => ({ payload });

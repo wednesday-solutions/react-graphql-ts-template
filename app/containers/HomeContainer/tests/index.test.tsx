@@ -1,6 +1,7 @@
 import React from 'react';
 import { timeout, renderProvider } from '@utils/testUtils';
-import { HomeContainerProps, HomeContainerTest as HomeContainer, LaunchData, mapDispatchToProps } from '../index';
+import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
+import { HomeContainerProps, LaunchData } from '../types';
 import { fireEvent } from 'react-testing-library';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';

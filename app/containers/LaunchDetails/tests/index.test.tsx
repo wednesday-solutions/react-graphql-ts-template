@@ -8,7 +8,8 @@
 import React from 'react';
 import { renderProvider, timeout } from '@utils/testUtils';
 // import { fireEvent } from '@testing-library/dom'
-import { LaunchDetailsProps, LaunchDetailsTest as LaunchDetails, mapDispatchToProps } from '..';
+import { LaunchDetailsTest as LaunchDetails, mapDispatchToProps } from '..';
+import { LaunchDetailsProps } from '../types';
 import history from '@app/utils/history';
 import { requestGetLaunch } from '../reducer';
 

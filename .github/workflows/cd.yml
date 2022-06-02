@@ -1,4 +1,4 @@
-name: React Template CD
+name: React GraphQL TypeScript Template CD
 on:
   push:
     branches: [master]
@@ -41,7 +41,9 @@ jobs:
           message: 'Update badges'
           add: 'badges/'
           push: false
-
+      - name: Git pull origin
+        run: |
+          git pull origin ${{ github.ref }}
       - name: Pushing to a protected branch
         uses: CasperWA/push-protected@v2
         with:

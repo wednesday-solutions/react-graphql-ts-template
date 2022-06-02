@@ -7,8 +7,8 @@ import { CloseOutlined } from '@ant-design/icons';
 import icon from '@images/ion_rocket-sharp.svg';
 import menuIcon from '@images/menu.svg';
 import If from '@components/If';
-import useMobile from '@utils/useMobile';
-import { MOBILE_DRAWER_BREAKPOINT } from '@app/utils/constants';
+import useScreenType from 'react-screentype-hook';
+import { screenBreakPoints } from '@app/themes/media';
 
 const SidebarWrapper = styled.div`
   position: relative;
@@ -66,10 +66,15 @@ const MenuImg = styled.img`
 
 const Sidebar: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const { mobile } = useMobile(MOBILE_DRAWER_BREAKPOINT);
+  const { isMobile } = useScreenType({
+    mobile: screenBreakPoints.MOBILE,
+    tablet: screenBreakPoints.TABLET,
+    desktop: screenBreakPoints.DESKTOP,
+    largeDesktop: screenBreakPoints.LARGE_DESKTOP
+  });
 
   const toggleSidebar = useCallback(() => setVisible((v) => !v), []);
-  const sidebarProps: DrawerProps = mobile
+  const sidebarProps: DrawerProps = isMobile
     ? {
         closeIcon: <CloseOutlined style={{ color: colors.secondary, fontSize: '1.9rem' }} />,
         placement: 'left',
@@ -81,11 +86,11 @@ const Sidebar: React.FC = () => {
     : {};
 
   const SidebarComponent = (props: DrawerProps) =>
-    mobile ? <SidebarDrawer {...props} /> : <SideBarStatic data-testid="sidebar" {...(props as any)} />;
+    isMobile ? <SidebarDrawer {...props} /> : <SideBarStatic data-testid="sidebar" {...(props as any)} />;
 
   return (
     <SidebarWrapper>
-      <If condition={mobile}>
+      <If condition={isMobile}>
         <MenuButton
           data-testid="menu-icon"
           type="primary"

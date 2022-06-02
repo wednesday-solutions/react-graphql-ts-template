@@ -16245,11 +16245,6 @@ react-router@5.2.0:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
-react-screentype-hook@^1.0.18:
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/react-screentype-hook/-/react-screentype-hook-1.0.18.tgz#efb0cf5e8a7d6348410d37b61b34de2c52c8c933"
-  integrity sha512-YljZeszHKvTmwGtOCg+GnA8mB6GR58FQ+PLvIQnMLwiip+Gndno4vvREaK1YNnDfOsy8OzXd+wxs9eyhVD8umw==
-
 react-select@^3.0.8:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/react-select/-/react-select-3.2.0.tgz#de9284700196f5f9b5277c5d850a9ce85f5c72fe"

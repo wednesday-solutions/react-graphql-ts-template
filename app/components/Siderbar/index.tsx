@@ -7,8 +7,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import icon from '@images/ion_rocket-sharp.svg';
 import menuIcon from '@images/menu.svg';
 import If from '@components/If';
-import useScreenType from 'react-screentype-hook';
-import { screenBreakPoints } from '@app/themes/media';
+import useMedia from '@utils/useMedia';
 
 const SidebarWrapper = styled.div`
   position: relative;
@@ -66,12 +65,7 @@ const MenuImg = styled.img`
 
 const Sidebar: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const { isMobile } = useScreenType({
-    mobile: screenBreakPoints.MOBILE,
-    tablet: screenBreakPoints.TABLET,
-    desktop: screenBreakPoints.DESKTOP,
-    largeDesktop: screenBreakPoints.LARGE_DESKTOP
-  });
+  const { isMobile } = useMedia();
 
   const toggleSidebar = useCallback(() => setVisible((v) => !v), []);
   const sidebarProps: DrawerProps = isMobile

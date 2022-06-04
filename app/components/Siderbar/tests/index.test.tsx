@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from '..';
-import { renderProvider } from '@app/utils/testUtils';
+import { renderProvider } from '@utils/testUtils';
 import { fireEvent, waitFor } from '@testing-library/react';
 import useScreenType from 'react-screentype-hook';
 

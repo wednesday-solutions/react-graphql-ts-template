@@ -7,8 +7,7 @@ import { CloseOutlined } from '@ant-design/icons';
 import icon from '@images/ion_rocket-sharp.svg';
 import menuIcon from '@images/menu.svg';
 import If from '@components/If';
-import useMobile from '@utils/useMobile';
-import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH, MOBILE_DRAWER_BREAKPOINT } from '@app/utils/constants';
+import useMedia from '@utils/useMedia';
 
 const SidebarWrapper = styled.div`
   position: relative;
@@ -18,9 +17,9 @@ const SidebarWrapper = styled.div`
 const SidebarDrawer = styled(Drawer)`
   && {
     .ant-drawer-body {
-      padding: ${HEADER_HEIGHT} 0 0 0;
+      padding: ${(props) => props.theme.headerHeight} 0 0 0;
       background-color: ${colors.primary};
-      width: ${MIN_SIDEBAR_WIDTH};
+      width: ${(props) => props.theme.sidebarWidth};
       text-align: center;
     }
     .ant-drawer-close {
@@ -34,7 +33,7 @@ const SideBarStatic = styled.div`
     width: 6%;
     min-width: 4.5rem;
     max-width: 7rem;
-    min-height: calc(100vh - ${HEADER_HEIGHT});
+    min-height: calc(100vh - ${(props) => props.theme.headerHeight});
     height: auto;
     background-color: ${colors.primary};
     display: inline;
@@ -52,8 +51,8 @@ const RocketLogo = styled.img`
 const MenuButton = styled(Button)`
   && {
     position: absolute;
-    top: calc(${HEADER_HEIGHT} / -2);
-    left: calc(${MIN_SIDEBAR_WIDTH} / 2);
+    top: calc(${(props) => props.theme.headerHeight} / -2);
+    left: calc(${(props) => props.theme.sidebarWidth} / 2);
     transform: translate(-50%, -50%);
   }
 `;
@@ -66,10 +65,10 @@ const MenuImg = styled.img`
 
 const Sidebar: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const { mobile } = useMobile(MOBILE_DRAWER_BREAKPOINT);
+  const { isMobile } = useMedia();
 
   const toggleSidebar = useCallback(() => setVisible((v) => !v), []);
-  const sidebarProps: DrawerProps = mobile
+  const sidebarProps: DrawerProps = isMobile
     ? {
         closeIcon: <CloseOutlined style={{ color: colors.secondary, fontSize: '1.9rem' }} />,
         placement: 'left',
@@ -81,11 +80,11 @@ const Sidebar: React.FC = () => {
     : {};
 
   const SidebarComponent = (props: DrawerProps) =>
-    mobile ? <SidebarDrawer {...props} /> : <SideBarStatic data-testid="sidebar" {...(props as any)} />;
+    isMobile ? <SidebarDrawer {...props} /> : <SideBarStatic data-testid="sidebar" {...(props as any)} />;
 
   return (
     <SidebarWrapper>
-      <If condition={mobile}>
+      <If condition={isMobile}>
         <MenuButton
           data-testid="menu-icon"
           type="primary"

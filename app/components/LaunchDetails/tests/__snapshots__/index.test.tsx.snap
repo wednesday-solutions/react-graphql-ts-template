@@ -4,112 +4,98 @@ exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered LaunchDetails__LaunchDetailsCard-ytnak2-0 icITYs"
+      class="ant-card ant-card-bordered LaunchDetails__LaunchDetailsCard-ytnak2-0 diIhJW"
       data-testid="launch-details"
     >
       <div
         class="ant-card-body"
       >
+        <img
+          class="LaunchDetails__CustomImage-ytnak2-1 cvnARl"
+          src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
+        />
         <div
-          class="ant-image"
-        >
-          <img
-            class="ant-image-img LaunchDetails__CustomImage-ytnak2-1 jvwxVq"
-            src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
-          />
-        </div>
-        <div
-          class="LaunchDetails__DetailsCard-ytnak2-2 dIJvjM"
+          class="LaunchDetails__DetailsCard-ytnak2-2 fSBLBB"
         >
           <p
-            class="T__StyledText-gcrjip-0 kPLUDf LaunchDetails__CustomT-ytnak2-4 guCdjX"
+            class="T__StyledText-gcrjip-0 kPLUDf LaunchDetails__CustomT-ytnak2-4 OzFVO"
             data-testid="mission-name"
           >
             CRS-21
           </p>
           <p
-            class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
+            class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 OzFVO"
             data-testid="details"
           >
             <b
-              class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+              class="LaunchDetails__LaunchLabel-ytnak2-5 cMgOxy"
             >
               Details
             </b>
              SpaceX's 21st ISS resupply mission.
           </p>
-          <b
-            class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+          <p
+            class="T__StyledText-gcrjip-0 gWdzqB LaunchDetails__LaunchLabelT-ytnak2-6 cuMxwl"
+            data-testid="t"
           >
             Rocket 
-          </b>
+          </p>
           <div
-            class="LaunchDetails__RocketBox-ytnak2-3 hijyAI"
+            class="LaunchDetails__RocketBox-ytnak2-3 kQjTjv"
           >
             <p
-              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 OzFVO"
               data-testid="rocket-name"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+                class="LaunchDetails__LaunchLabel-ytnak2-5 cMgOxy"
               >
                 Name
               </b>
                Falcon 9
             </p>
             <p
-              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 OzFVO"
               data-testid="rocket-type"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+                class="LaunchDetails__LaunchLabel-ytnak2-5 cMgOxy"
               >
                 Type
               </b>
                FT
             </p>
           </div>
-          <b
-            class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+          <p
+            class="T__StyledText-gcrjip-0 gWdzqB LaunchDetails__LaunchLabelT-ytnak2-6 cuMxwl"
+            data-testid="t"
           >
             Ships 
-          </b>
+          </p>
           <div
-            class="LaunchDetails__ShipContainer-ytnak2-6 iQytZb"
+            class="LaunchDetails__ShipContainer-ytnak2-7 fAKuKZ"
           >
             <p
-              class="T__StyledText-gcrjip-0 kiETvv LaunchDetails__CustomT-ytnak2-4 guCdjX"
-              data-testid="t"
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 OzFVO"
+              data-testid="ship-name"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+                class="LaunchDetails__LaunchLabel-ytnak2-5 cMgOxy"
               >
                 Name
               </b>
-               
+               Ship 1
             </p>
             <p
-              class="T__StyledText-gcrjip-0 kiETvv LaunchDetails__CustomT-ytnak2-4 guCdjX"
-              data-testid="t"
+              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 OzFVO"
+              data-testid="ship-type"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 kjoGDj"
+                class="LaunchDetails__LaunchLabel-ytnak2-5 cMgOxy"
               >
                 Type
               </b>
-               
-            </p>
-            <p
-              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
-              data-testid="ship-name"
-            >
-              Ship 1
-            </p>
-            <p
-              class="T__StyledText-gcrjip-0 cSxVIW LaunchDetails__CustomT-ytnak2-4 guCdjX"
-              data-testid="ship-type"
-            >
-              Type 1
+               Type 1
             </p>
           </div>
         </div>

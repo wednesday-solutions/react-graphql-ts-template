@@ -1,9 +1,10 @@
 import { generateMedia } from 'styled-media-query';
 
-const screenBreakPoints = {
+export const screenBreakPoints = {
   MOBILE: 390,
   TABLET: 768,
-  DESKTOP: 992
+  DESKTOP: 992,
+  LARGE_DESKTOP: 1400
 };
 
 const media = generateMedia({

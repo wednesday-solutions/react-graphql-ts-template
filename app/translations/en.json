@@ -9,5 +9,7 @@
   "placeholder_text": "SEARCH BY MISSION NAME",
   "details": "<b>Details</b> {details}",
   "name_label": "<b>Name</b> {name}",
-  "type_label": "<b>Type</b> {type}"
+  "type_label": "<b>Type</b> {type}",
+  "ships": "Ships ",
+  "rocket": "Rocket "
 }

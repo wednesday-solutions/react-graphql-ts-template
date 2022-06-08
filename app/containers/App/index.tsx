@@ -19,10 +19,13 @@ import For from '@components/For';
 import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
+import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
 
 const theme = {
   fg: colors.primary,
-  bg: colors.secondaryText
+  bg: colors.secondaryText,
+  headerHeight: HEADER_HEIGHT,
+  sidebarWidth: MIN_SIDEBAR_WIDTH
 };
 
 const CustomLayout = styled(Layout)`

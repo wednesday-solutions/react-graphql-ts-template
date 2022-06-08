@@ -55,6 +55,11 @@ const subheading = () => css`
   ${bold()}
 `;
 
+const smallBoldText = () => css`
+  ${small()}
+  ${bold()}
+`;
+
 const standard = () => css`
   ${regular()}
   ${normal()}
@@ -79,7 +84,8 @@ export default {
     heading,
     subheading,
     standard,
-    subText
+    subText,
+    smallBoldText
   },
   weights: {
     light,

@@ -10,26 +10,24 @@ import { fonts, colors, media } from '@themes/index';
 import T from '@components/T';
 import logo from '@images/icon-512x512.png';
 import { Link } from 'react-router-dom';
-import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
 
 const StyledHeader = styled(Layout.Header)`
   && {
     &.ant-layout-header {
       padding: 0 1rem;
-      height: ${HEADER_HEIGHT};
+      height: ${(props) => props.theme.headerHeight};
       align-items: center;
       justify-content: center;
       background-color: ${colors.primary};
       gap: 1rem;
       ${media.lessThan('mobile')`
-      padding-left: ${MIN_SIDEBAR_WIDTH}
+      padding-left: ${(props) => props.theme.sidebarWidth}
       `}
     }
     display: flex;
-    /* height: ${HEADER_HEIGHT}; */
-    /* justify-content: center; */
   }
 `;
+
 const Logo = styled.img`
   height: 5rem;
   width: auto;
@@ -38,6 +36,7 @@ const Logo = styled.img`
     height: 4rem;
   `}
 `;
+
 const Title = styled(T)`
   && {
     margin-bottom: 0;

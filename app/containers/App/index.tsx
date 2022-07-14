@@ -20,7 +20,6 @@ import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
 import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
-
 const theme = {
   fg: colors.primary,
   bg: colors.secondaryText,

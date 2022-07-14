@@ -3,7 +3,7 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="ant-layout-header Header__StyledHeader-a7tfu0-0 hlRXrF"
+    class="ant-layout-header Header__StyledHeader-a7tfu0-0 eDpQQE"
     data-testid="header"
   >
     <a
@@ -11,25 +11,25 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     >
       <img
         alt="logo"
-        class="Header__Logo-a7tfu0-1 gRnKxJ"
+        class="Header__Logo-a7tfu0-1 hbWjcY"
         src="IMAGE_MOCK"
       />
     </a>
     <p
-      class="T__StyledText-gcrjip-0 gjTOrr Header__Title-a7tfu0-2 fdMcFf"
+      class="T__StyledText-gcrjip-0 emthK Header__Title-a7tfu0-2 elUMIm"
       data-testid="t"
     >
       Wednesday Solutions
     </p>
   </header>
   <section
-    class="ant-layout App__CustomLayout-di9tar-0 bLLfQc"
+    class="ant-layout App__CustomLayout-di9tar-0 gvzqHR"
   >
     <div
-      class="Siderbar__SidebarWrapper-qw2kux-0 bVxzZu"
+      class="Siderbar__SidebarWrapper-qw2kux-0 gaTYUT"
     >
       <div
-        class="Siderbar__SideBarStatic-qw2kux-2 eNSzjh"
+        class="Siderbar__SideBarStatic-qw2kux-2 lhyiGU"
         data-testid="sidebar"
       >
         <a
@@ -39,7 +39,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
         >
           <img
             alt="rocket-icon"
-            class="Siderbar__RocketLogo-qw2kux-3 Vilqd"
+            class="Siderbar__RocketLogo-qw2kux-3 iVxHgo"
             src="IMAGE_MOCK"
           />
         </a>

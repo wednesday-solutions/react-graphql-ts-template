@@ -2,7 +2,7 @@ import React from 'react';
 import { Launch } from '@app/containers/HomeContainer/types';
 import { renderProvider } from '@app/utils/testUtils';
 import LaunchItem from '..';
-import { fireEvent } from 'react-testing-library';
+import { fireEvent } from '@testing-library/react';
 import history from '@app/utils/history';
 
 describe('<LaunchItem />', () => {

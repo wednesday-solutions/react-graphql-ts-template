@@ -4,13 +4,13 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="HomeContainer__Container-wd79o1-0 ikliEb"
+      class="HomeContainer__Container-wd79o1-0 gPuIaC"
     >
       <div
-        class="HomeContainer__CustomHeader-wd79o1-1 euKLTj"
+        class="HomeContainer__CustomHeader-wd79o1-1 dpKNJS"
       >
         <span
-          class="ant-input-affix-wrapper ant-input-affix-wrapper-focused HomeContainer__CustomSearch-wd79o1-2 iORBao"
+          class="ant-input-affix-wrapper ant-input-affix-wrapper-focused HomeContainer__CustomSearch-wd79o1-2 jUUWQt"
         >
           <span
             class="ant-input-prefix"
@@ -45,7 +45,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
           />
         </span>
         <div
-          class="HomeContainer__ButtonBox-wd79o1-3 htscFM"
+          class="HomeContainer__ButtonBox-wd79o1-3 jIUvfd"
         >
           <button
             class="ant-btn"
@@ -58,7 +58,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
             </span>
           </button>
           <div
-            class="ant-select HomeContainer__SortSelect-wd79o1-4 fIFOmc ant-select-single ant-select-show-arrow"
+            class="ant-select HomeContainer__SortSelect-wd79o1-4 SiddR ant-select-single ant-select-show-arrow"
             data-testid="sort-select"
           >
             <div
@@ -127,7 +127,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class="HomeContainer__CustomFooter-wd79o1-5 kKgmkD"
+        class="HomeContainer__CustomFooter-wd79o1-5 frgUSq"
       >
         <button
           class="ant-btn ant-btn-primary"

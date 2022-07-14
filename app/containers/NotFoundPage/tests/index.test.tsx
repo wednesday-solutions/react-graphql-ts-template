@@ -1,9 +1,8 @@
 import React from 'react';
-import { render } from 'react-testing-library';
+import { render, fireEvent } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 
 import NotFoundPage from '../index';
-import { fireEvent } from '@testing-library/react';
 import history from '@app/utils/history';
 
 describe('<NotFoundPage /> tests', () => {

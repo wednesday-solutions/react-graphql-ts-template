@@ -2,7 +2,7 @@ import React from 'react';
 import { timeout, renderProvider } from '@utils/testUtils';
 import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
 import { HomeContainerProps, LaunchData } from '../types';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';
 import history from '@app/utils/history';
@@ -227,11 +227,13 @@ describe('<HomeContainer /> tests', () => {
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('ASC'));
     expect(history.location.search).toContain('order=asc');
-    renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-      undefined,
-      rerender as any
-    );
+    await waitFor(() => {
+      renderProvider(
+        <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+        undefined,
+        rerender as any
+      );
+    });
   });
 
   it('should sort the launches by date in DESC', async () => {
@@ -241,11 +243,13 @@ describe('<HomeContainer /> tests', () => {
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('DESC'));
     expect(history.location.search).toContain('order=desc');
-    renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-      undefined,
-      rerender as any
-    );
+    await waitFor(() => {
+      renderProvider(
+        <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
+        undefined,
+        rerender as any
+      );
+    });
   });
 
   it('should push to first page if no data found in the current page', async () => {
@@ -273,13 +277,15 @@ describe('<HomeContainer /> tests', () => {
     expect(history.location.search).toContain('page=1');
   });
 
-  it('should clear sort when clicked on clear sort button', () => {
+  it('should clear sort when clicked on clear sort button', async () => {
     const { getByText, getByRole, getByTestId, rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('DESC'));
-    renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
+    await waitFor(() => {
+      renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
+    });
     fireEvent.click(getByTestId('clear-sort'));
     expect(history.location.search).not.toContain('order=desc');
   });

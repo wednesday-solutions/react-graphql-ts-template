@@ -1,5 +1,5 @@
 import React from 'react';
-import { timeout, renderProvider } from '@utils/testUtils';
+import { renderProvider } from '@utils/testUtils';
 import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
 import { HomeContainerProps, LaunchData } from '../types';
 import { fireEvent, waitFor } from '@testing-library/react';
@@ -143,8 +143,7 @@ describe('<HomeContainer /> tests', () => {
 
   it('should call dispatchLaunchList on page reload', async () => {
     renderProvider(<HomeContainer {...defaultProps} />);
-    await timeout(500);
-    expect(submitSpy).toBeCalled();
+    await waitFor(() => expect(submitSpy).toBeCalled());
   });
 
   it('should validate mapDispatchToProps actions', () => {
@@ -199,24 +198,22 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should delete mission_name query param from search on empty change', async () => {
-    const { getByTestId } = renderProvider(
+    const { findByTestId } = renderProvider(
       <HomeContainer {...defaultProps} dispatchLaunchList={submitSpy} loading={false} />
     );
-    fireEvent.change(getByTestId('search-bar'), {
+    fireEvent.change(await findByTestId('search-bar'), {
       target: { value: 'a' }
     });
-    await timeout(500);
-    expect(history.location.search).toContain('mission_name=a');
-    fireEvent.change(getByTestId('search-bar'), {
+    await waitFor(() => expect(history.location.search).toContain('mission_name=a'));
+    fireEvent.change(await findByTestId('search-bar'), {
       target: { value: '' }
     });
-    await timeout(500);
-    expect(history.location.search).not.toContain('mission=');
+    await waitFor(() => expect(history.location.search).not.toContain('mission='));
   });
+
   it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {
     renderProvider(<HomeContainer {...defaultProps} launchData={{}} />);
-    await timeout(500);
-    expect(submitSpy).toBeCalled();
+    await waitFor(() => expect(submitSpy).toBeCalled());
   });
 
   it('should sort the launches by date in ASC', async () => {
@@ -257,10 +254,9 @@ describe('<HomeContainer /> tests', () => {
     const { rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={{ launches: [] }} loading={false} />
     );
-    expect(history.location.search).toContain('page=1');
+    await waitFor(() => expect(history.location.search).toContain('page=1'));
     renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
-    await timeout(500);
-    expect(history.location.search).toContain('page=1');
+    await waitFor(() => expect(history.location.search).toContain('page=1'));
   });
 
   it('should push the user to next page when clicked on NEXT button', () => {

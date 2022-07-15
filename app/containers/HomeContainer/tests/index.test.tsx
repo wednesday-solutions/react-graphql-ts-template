@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderProvider } from '@utils/testUtils';
+import { renderProvider, timeout } from '@utils/testUtils';
 import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
 import { HomeContainerProps, LaunchData } from '../types';
 import { fireEvent, waitFor } from '@testing-library/react';
@@ -198,17 +198,19 @@ describe('<HomeContainer /> tests', () => {
   });
 
   it('should delete mission_name query param from search on empty change', async () => {
-    const { findByTestId } = renderProvider(
+    const { getByTestId } = renderProvider(
       <HomeContainer {...defaultProps} dispatchLaunchList={submitSpy} loading={false} />
     );
-    fireEvent.change(await findByTestId('search-bar'), {
+    fireEvent.change(getByTestId('search-bar'), {
       target: { value: 'a' }
     });
-    await waitFor(() => expect(history.location.search).toContain('mission_name=a'));
-    fireEvent.change(await findByTestId('search-bar'), {
+    await waitFor(() => timeout(500));
+    expect(history.location.search).toContain('mission_name=a');
+    fireEvent.change(getByTestId('search-bar'), {
       target: { value: '' }
     });
-    await waitFor(() => expect(history.location.search).not.toContain('mission='));
+    await waitFor(() => timeout(500));
+    expect(history.location.search).not.toContain('mission=');
   });
 
   it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {

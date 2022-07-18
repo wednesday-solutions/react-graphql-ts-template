@@ -112,7 +112,7 @@
     "prop-types": "15.7.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-helmet": "^6.1.0",
+    "react-helmet": "6.0.0-beta",
     "react-intl": "5.20.3",
     "react-redux": "7.0.2",
     "react-router-dom": "^5.1.2",

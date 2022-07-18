@@ -1,5 +1,5 @@
 import React from 'react';
-import { timeout, renderProvider } from '@utils/testUtils';
+import { renderProvider, timeout } from '@utils/testUtils';
 import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
 import { HomeContainerProps, LaunchData } from '../types';
 import { fireEvent, waitFor } from '@testing-library/react';
@@ -143,8 +143,7 @@ describe('<HomeContainer /> tests', () => {
 
   it('should call dispatchLaunchList on page reload', async () => {
     renderProvider(<HomeContainer {...defaultProps} />);
-    await timeout(500);
-    expect(submitSpy).toBeCalled();
+    await waitFor(() => expect(submitSpy).toBeCalled());
   });
 
   it('should validate mapDispatchToProps actions', () => {
@@ -211,6 +210,7 @@ describe('<HomeContainer /> tests', () => {
     });
     await waitFor(() => expect(history.location.search).not.toContain('mission='));
   });
+
   it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {
     renderProvider(<HomeContainer {...defaultProps} launchData={{}} />);
     await waitFor(() => expect(submitSpy).toBeCalled());
@@ -240,7 +240,7 @@ describe('<HomeContainer /> tests', () => {
     const { rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={{ launches: [] }} loading={false} />
     );
-    expect(history.location.search).toContain('page=1');
+    await waitFor(() => expect(history.location.search).toContain('page=1'));
     renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
     await waitFor(() => timeout(500));
     expect(history.location.search).toContain('page=1');

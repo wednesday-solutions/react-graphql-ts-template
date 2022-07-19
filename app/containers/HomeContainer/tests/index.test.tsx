@@ -204,13 +204,11 @@ describe('<HomeContainer /> tests', () => {
     fireEvent.change(getByTestId('search-bar'), {
       target: { value: 'a' }
     });
-    await waitFor(() => timeout(500));
-    expect(history.location.search).toContain('mission_name=a');
+    await waitFor(() => expect(history.location.search).toContain('mission_name=a'));
     fireEvent.change(getByTestId('search-bar'), {
       target: { value: '' }
     });
-    await waitFor(() => timeout(500));
-    expect(history.location.search).not.toContain('mission=');
+    await waitFor(() => expect(history.location.search).not.toContain('mission='));
   });
 
   it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {
@@ -220,35 +218,21 @@ describe('<HomeContainer /> tests', () => {
 
   it('should sort the launches by date in ASC', async () => {
     history.location.search = '?order=unknown';
-    const { getByText, getByRole, rerender } = renderProvider(
+    const { getByText, getByRole } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('ASC'));
-    expect(history.location.search).toContain('order=asc');
-    await waitFor(() => {
-      renderProvider(
-        <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-        undefined,
-        rerender as any
-      );
-    });
+    await waitFor(() => expect(history.location.search).toContain('order=asc'));
   });
 
   it('should sort the launches by date in DESC', async () => {
-    const { getByText, getByRole, rerender } = renderProvider(
+    const { getByText, getByRole } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
     fireEvent.mouseDown(getByRole('combobox')!);
     fireEvent.click(getByText('DESC'));
-    expect(history.location.search).toContain('order=desc');
-    await waitFor(() => {
-      renderProvider(
-        <HomeContainer {...defaultProps} launchData={launchData} loading={false} />,
-        undefined,
-        rerender as any
-      );
-    });
+    await waitFor(() => expect(history.location.search).toContain('order=desc'));
   });
 
   it('should push to first page if no data found in the current page', async () => {
@@ -258,7 +242,8 @@ describe('<HomeContainer /> tests', () => {
     );
     await waitFor(() => expect(history.location.search).toContain('page=1'));
     renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
-    await waitFor(() => expect(history.location.search).toContain('page=1'));
+    await waitFor(() => timeout(500));
+    expect(history.location.search).toContain('page=1');
   });
 
   it('should push the user to next page when clicked on NEXT button', () => {

@@ -26,7 +26,7 @@ module.exports = {
     'import/no-webpack-loader-syntax': 0,
     'react/display-name': 0,
     curly: ['error', 'all'],
-    'no-console': ['error', { allow: ['error'] }],
+    // 'no-console': ['error', { allow: ['error'] }],
     'prettier/prettier': ['error', prettierOptions],
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-empty-function': 'off',

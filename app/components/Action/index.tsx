@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import { create, ApisauceInstance } from 'apisauce';
 
-const SumComponent = () => {
+const api = create({ baseURL: 'https://itunes.apple.com' });
+
+const ItunesApiComponent = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [data, setData] = useState<AxiosResponse | {}>({});
+  const [data, setData] = useState<ApisauceInstance | {}>({});
   const [searchItem, setSearchItem] = useState('');
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,14 +14,10 @@ const SumComponent = () => {
 
   const handleApiCall = async () => {
     try {
-      const res = await axios({
-        method: 'get',
-        url: `https://itunes.apple.com/search?term=${searchItem}`,
-        withCredentials: false
-      });
+      const res = await api.any({ method: 'GET', url: `/search?term=${searchItem}` });
       setData(res);
     } catch (error) {
-      //   console.log(error)
+      console.log(error);
     }
     setSearchItem('');
   };
@@ -34,4 +32,4 @@ const SumComponent = () => {
   );
 };
 
-export default SumComponent;
+export default ItunesApiComponent;

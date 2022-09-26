@@ -20,7 +20,7 @@ import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
 import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
-import SumComponent from '@components/Action';
+import ItunesApiComponent from '@app/components/Action';
 const theme = {
   fg: colors.primary,
   bg: colors.secondaryText,
@@ -41,7 +41,7 @@ export function App() {
       <CustomLayout>
         <Sidebar />
         <Layout.Content>
-          <SumComponent />
+          <ItunesApiComponent />
           <For
             ParentComponent={(props) => <Switch {...props} />}
             of={map(Object.keys(routeConfig))}

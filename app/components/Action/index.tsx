@@ -1,35 +1,14 @@
-import React, { useState } from 'react';
-import { create, ApisauceInstance } from 'apisauce';
+import React from 'react';
 
-const api = create({ baseURL: 'https://itunes.apple.com' });
+// const api = create({ baseURL: 'https://itunes.apple.com' });
+interface InputSearchBoxProps {
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+}
 
-const ItunesApiComponent = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [data, setData] = useState<ApisauceInstance | {}>({});
-  const [searchItem, setSearchItem] = useState('');
-
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchItem(e.currentTarget.value);
-  };
-
-  const handleApiCall = async () => {
-    try {
-      const res = await api.any({ method: 'GET', url: `/search?term=${searchItem}` });
-      setData(res);
-    } catch (error) {
-      console.log(error);
-    }
-    setSearchItem('');
-  };
-
-  console.log(data);
-
+export const InputSearchBox = ({ onChange }: InputSearchBoxProps) => {
   return (
     <div>
-      <input onChange={handleOnChange} value={searchItem} />
-      <button onClick={handleApiCall}>Submit Data</button>
+      <input onChange={onChange} type="text" />
     </div>
   );
 };
-
-export default ItunesApiComponent;

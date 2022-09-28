@@ -10,7 +10,7 @@
 import React from 'react';
 import { createRoot, Root } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
+// import { PersistGate } from 'redux-persist/integration/react';
 import history from '@utils/history';
 import 'sanitize.css/sanitize.css';
 
@@ -27,15 +27,15 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
-import configureStore from './configureStore';
-
 // Import i18n messages
 import { translationMessages } from './i18n';
 import { Router } from 'react-router-dom';
+// eslint-disable-next-line import/no-duplicates
+import store from './configureStore';
 
 // Create redux store with history
-const initialState = {};
-const { store, persistor } = configureStore(initialState);
+// const initialState = {};
+// const { store } = configureStore(initialState);
 const MOUNT_NODE = document.getElementById('app');
 let root: Root;
 const render = (messages: typeof translationMessages) => {
@@ -43,15 +43,15 @@ const render = (messages: typeof translationMessages) => {
   root.render(
     <ErrorBoundary>
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <LanguageProvider messages={messages}>
-            <Router history={history}>
-              <ScrollToTop>
-                <App />
-              </ScrollToTop>
-            </Router>
-          </LanguageProvider>
-        </PersistGate>
+        {/* <PersistGate loading={null} persistor={persistor}> */}
+        <LanguageProvider messages={messages}>
+          <Router history={history}>
+            <ScrollToTop>
+              <App />
+            </ScrollToTop>
+          </Router>
+        </LanguageProvider>
+        {/* </PersistGate> */}
       </Provider>
     </ErrorBoundary>
   );

@@ -2,7 +2,7 @@ import { create } from 'apisauce';
 
 const api = create({ baseURL: 'https://itunes.apple.com' });
 
-const useAxios = () => {
+const useApiSauce = () => {
   const apiCall = async (param: any) => {
     console.log(param);
     try {
@@ -16,4 +16,4 @@ const useAxios = () => {
   return apiCall;
 };
 
-export default useAxios;
+export default useApiSauce;

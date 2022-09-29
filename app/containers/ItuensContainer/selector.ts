@@ -4,6 +4,7 @@ import { initialState } from './reducer';
 
 const selectItuneState = (state: any) => state.Itune || initialState;
 
-const selectSearchTerm = createSelector(selectItuneState, (substate) => get(substate, 'searchTerm'));
-
-export default selectSearchTerm;
+export const selectSearchTerm = () => createSelector(selectItuneState, (substate) => get(substate, 'searchTerm'));
+export const selectLoading = () => createSelector(selectItuneState, (substate) => get(substate, 'loading'));
+export const selectDataToShow = () => createSelector(selectItuneState, (substate) => get(substate, 'dataToShow'));
+export const selectError = () => createSelector(selectItuneState, (substate) => get(substate, 'error'));

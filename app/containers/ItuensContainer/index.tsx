@@ -1,14 +1,23 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect } from 'react';
 import { InputSearchBox } from '@app/components/Action';
+import { createStructuredSelector } from 'reselect';
 import { getSearchTerm } from './reducer';
 import { useDispatch, connect } from 'react-redux';
 import ituneCallSaga from './saga';
 import { injectSaga } from 'redux-injectors';
-import { compose } from '@reduxjs/toolkit';
-// import { initialState } from './reducer';
+import { AnyAction, compose } from '@reduxjs/toolkit';
+import { setQueryParam } from '@app/utils';
+import history from '@app/utils/history';
+import { selectError, selectLoading, selectDataToShow } from './selector';
+import { isEmpty } from 'lodash-es';
 
-// const api = create({ baseURL: 'https://itunes.apple.com' });
-const ItunesApiComponent = () => {
+const ItunesApiComponent = ({ dispatchArtistName }: any) => {
+  const artistName = new URLSearchParams(history.location.search).get('artist_name');
+  const setArtistName = (artistName: string) => setQueryParam({ param: 'artist_name', value: artistName });
+
+  useEffect(() => {
+    dispatchArtistName({ artistName });
+  }, []);
   const dispatch = useDispatch();
   const debounce = (func: any) => {
     let timer: NodeJS.Timeout;
@@ -25,7 +34,11 @@ const ItunesApiComponent = () => {
   };
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(getSearchTerm(e.target.value));
+    const artistSearch = e.target.value;
+    if (!isEmpty(artistSearch)) {
+      setArtistName(artistSearch);
+      dispatch(getSearchTerm(e.target.value));
+    }
   };
 
   const debouncedOnChange = React.useCallback(debounce(handleOnChange), []);
@@ -36,14 +49,19 @@ const ItunesApiComponent = () => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return state;
-};
+const mapStateToProps = createStructuredSelector({
+  loading: selectLoading(),
+  dataToShow: selectDataToShow(),
+  error: selectError()
+});
 
-const mapDispatchToProps = (dispatch: (arg0: { type: string }) => void) => {
-  console.log('in dispatch');
+const mapDispatchToProps = (dispatch: (arg0: { type: AnyAction }) => void) => {
   // eslint-disable-next-line no-unused-expressions
-  (payload: any) => dispatch(getSearchTerm(payload));
+  return {
+    dispatchArtistName: (payload: any) => {
+      dispatch(getSearchTerm(payload.artistName));
+    }
+  };
 };
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);

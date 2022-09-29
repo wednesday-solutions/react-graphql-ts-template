@@ -14,9 +14,7 @@ function* fetchData(action: any): Generator<any, any> {
 }
 
 function* ituneCallSaga() {
-  console.log('in saga');
   yield takeLatest(getSearchTerm.toString(), fetchData);
-  console.log('after fetch data');
 }
 
 export default ituneCallSaga;

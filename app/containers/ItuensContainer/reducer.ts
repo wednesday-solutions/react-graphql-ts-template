@@ -22,7 +22,7 @@ const ituneSlice = createSlice({
       state.searchTerm = action.payload;
       state.dataToShow = [];
       state.error = null;
-      state.loading = true;
+      state.loading = false;
     },
     getDataToShow: (state, action) => {
       state.dataToShow = action.payload;
@@ -34,10 +34,14 @@ const ituneSlice = createSlice({
       state.searchTerm = '';
       state.loading = true;
       state.error = action.payload;
+    },
+    deleteResponse: (state) => {
+      state.dataToShow = [];
+      state.loading = false;
     }
   }
 });
 
-export const { getSearchTerm, getDataToShow, getErrorFromResponse } = ituneSlice.actions;
+export const { getSearchTerm, getDataToShow, getErrorFromResponse, deleteResponse } = ituneSlice.actions;
 
 export default ituneSlice.reducer;

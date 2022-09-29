@@ -36,10 +36,7 @@ const CustomLayout = styled(Layout)`
 
 export function App() {
   return (
-    <CustomLayout>
-      <Header />
-      <ItunesApiComponent />
-    </CustomLayout>
+    <ItunesApiComponent />
     // <ThemeProvider theme={theme}>
     //   <Header />
     //   <CustomLayout>

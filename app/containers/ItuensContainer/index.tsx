@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect } from 'react';
 import { InputSearchBox } from '@app/components/Action';
 import { createStructuredSelector } from 'reselect';
-import { getSearchTerm } from './reducer';
+import { getSearchTerm, deleteResponse } from './reducer';
 import { useDispatch, connect } from 'react-redux';
 import ituneCallSaga from './saga';
 import { injectSaga } from 'redux-injectors';
@@ -10,8 +10,9 @@ import { setQueryParam } from '@app/utils';
 import history from '@app/utils/history';
 import { selectError, selectLoading, selectDataToShow } from './selector';
 import { isEmpty } from 'lodash-es';
+import LoadAbleCard from '@app/components/Card';
 
-const ItunesApiComponent = ({ dispatchArtistName }: any) => {
+const ItunesApiComponent = ({ dispatchArtistName, dataToShow, loading }: any) => {
   const artistName = new URLSearchParams(history.location.search).get('artist_name');
   const setArtistName = (artistName: string) => setQueryParam({ param: 'artist_name', value: artistName });
 
@@ -38,6 +39,9 @@ const ItunesApiComponent = ({ dispatchArtistName }: any) => {
     if (!isEmpty(artistSearch)) {
       setArtistName(artistSearch);
       dispatch(getSearchTerm(e.target.value));
+    } else {
+      console.log('in else block');
+      dispatch(deleteResponse());
     }
   };
 
@@ -45,6 +49,7 @@ const ItunesApiComponent = ({ dispatchArtistName }: any) => {
   return (
     <div>
       <InputSearchBox onChange={(e) => debouncedOnChange(e)} />
+      <LoadAbleCard dataToShow={dataToShow} loading={loading} />
     </div>
   );
 };
@@ -55,14 +60,14 @@ const mapStateToProps = createStructuredSelector({
   error: selectError()
 });
 
-const mapDispatchToProps = (dispatch: (arg0: { type: AnyAction }) => void) => {
+export function mapDispatchToProps(dispatch: (arg0: { type: AnyAction }) => void) {
   // eslint-disable-next-line no-unused-expressions
   return {
     dispatchArtistName: (payload: any) => {
       dispatch(getSearchTerm(payload.artistName));
     }
   };
-};
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 

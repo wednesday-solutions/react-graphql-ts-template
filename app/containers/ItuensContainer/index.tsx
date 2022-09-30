@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { useDispatch, connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
-import { AnyAction, compose } from '@reduxjs/toolkit';
+import { compose } from '@reduxjs/toolkit';
 import { setQueryParam } from '@app/utils';
 import history from '@app/utils/history';
 import { isEmpty } from 'lodash-es';

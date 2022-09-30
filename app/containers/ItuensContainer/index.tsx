@@ -5,7 +5,7 @@ import { getSearchTerm, deleteResponse } from './reducer';
 import { useDispatch, connect } from 'react-redux';
 import ituneCallSaga from './saga';
 import { injectSaga } from 'redux-injectors';
-import { AnyAction, compose } from '@reduxjs/toolkit';
+import { compose } from '@reduxjs/toolkit';
 import { selectError, selectLoading, selectDataToShow } from './selector';
 import { isEmpty } from 'lodash-es';
 import LoadAbleCard from '@app/components/Card';
@@ -50,7 +50,7 @@ const mapStateToProps = createStructuredSelector({
   error: selectError()
 });
 
-export function mapDispatchToProps(dispatch: (arg0: { type: AnyAction }) => void) {
+export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {
   // eslint-disable-next-line no-unused-expressions
   return {
     dispatchArtistName: (payload: any) => {

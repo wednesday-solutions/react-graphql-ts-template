@@ -4,7 +4,12 @@ import styled from 'styled-components';
 const { Meta } = Card;
 
 interface LoadAbleCardProps {
-  dataToShow: [];
+  dataToShow: {
+    trackId: number;
+    artistName: string;
+    artworkUrl100: string;
+    collectionName: string;
+  }[];
 }
 
 const H1 = styled.h1`

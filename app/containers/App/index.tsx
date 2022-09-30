@@ -7,36 +7,13 @@
  *
  */
 import React from 'react';
-// import GlobalStyle from '@app/global-styles';
-// import { routeConfig } from '@app/routeConfig';
-import { Layout } from 'antd';
-// import map from 'lodash-es/map';
 import { withRouter } from 'react-router';
-// import { Route, Switch } from 'react-router-dom';
 import { compose } from 'redux';
-import styled from 'styled-components';
-// import For from '@components/For';
-import Header from '@components/Header';
-// import { colors } from '@themes/index';
-// import Sidebar from '@app/components/Siderbar';
-// import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
-import ItunesApiComponent from '../ItuensContainer';
-// const theme = {
-//   fg: colors.primary,
-//   bg: colors.secondaryText,
-//   headerHeight: HEADER_HEIGHT,
-//   sidebarWidth: MIN_SIDEBAR_WIDTH
-// };
-
-const CustomLayout = styled(Layout)`
-  && {
-    flex-direction: row;
-  }
-`;
+import ItunesContainer from '../ItuensContainer';
 
 export function App() {
   return (
-    <ItunesApiComponent />
+    <ItunesContainer />
     // <ThemeProvider theme={theme}>
     //   <Header />
     //   <CustomLayout>

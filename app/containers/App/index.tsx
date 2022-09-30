@@ -7,23 +7,15 @@
  *
  */
 import React from 'react';
-import { Layout } from 'antd';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
-import styled from 'styled-components';
-import ItunesApiComponent from '../ItuensContainer';
-
-const CustomLayout = styled(Layout)`
-  && {
-    flex-direction: row;
-  }
-`;
+import ItunesContainer from '../ItuensContainer';
 
 export function App() {
   return (
-    <CustomLayout>
-      <ItunesApiComponent />
-    </CustomLayout>
+    <>
+      <ItunesContainer />
+    </>
   );
 }
 

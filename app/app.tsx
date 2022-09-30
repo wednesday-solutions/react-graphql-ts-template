@@ -30,7 +30,6 @@ import 'file-loader?name=.htaccess!./.htaccess';
 // Import i18n messages
 import { translationMessages } from './i18n';
 import { Router } from 'react-router-dom';
-// eslint-disable-next-line import/no-duplicates
 import configureStore from './configureStore';
 
 // Create redux store with history

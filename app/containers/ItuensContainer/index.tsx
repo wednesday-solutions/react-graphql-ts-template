@@ -1,25 +1,17 @@
-import React, { ChangeEvent, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
+import { InputSearchBox } from '@app/components/Action';
 import { createStructuredSelector } from 'reselect';
 import { useDispatch, connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
 import { compose } from '@reduxjs/toolkit';
-import { setQueryParam } from '@app/utils';
-import history from '@app/utils/history';
 import { isEmpty } from 'lodash-es';
-import { InputSearchBox } from '@app/components/Action';
-import { getSearchTerm } from './reducer';
-import ituneCallSaga from './saga';
+import LoadAbleCard from '@app/components/Card';
 import { selectError, selectLoading, selectDataToShow } from './selector';
+import { getSearchTerm, deleteResponse } from './reducer';
+import ituneCallSaga from './saga';
 
-const ItunesApiComponent = ({ dispatchArtistName }: any) => {
+const ItunesContainer = ({ dispatchArtistName, dataToShow }: any) => {
   const dispatch = useDispatch();
-  const artistName = new URLSearchParams(history.location.search).get('artist_name');
-  const setArtistName = (artistName: string) => setQueryParam({ param: 'artist_name', value: artistName });
-
-  useEffect(() => {
-    dispatchArtistName({ artistName });
-  }, []);
-
   const debounce = (func: any) => {
     let timer: NodeJS.Timeout;
     return function (...args: any[]) {
@@ -37,8 +29,9 @@ const ItunesApiComponent = ({ dispatchArtistName }: any) => {
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     const artistSearch = e.target.value;
     if (!isEmpty(artistSearch)) {
-      setArtistName(artistSearch);
-      dispatch(getSearchTerm(e.target.value));
+      dispatchArtistName(artistSearch);
+    } else {
+      dispatch(deleteResponse());
     }
   };
 
@@ -46,6 +39,7 @@ const ItunesApiComponent = ({ dispatchArtistName }: any) => {
   return (
     <div>
       <InputSearchBox onChange={(e) => debouncedOnChange(e)} />
+      <LoadAbleCard dataToShow={dataToShow} />
     </div>
   );
 };
@@ -56,15 +50,15 @@ const mapStateToProps = createStructuredSelector({
   error: selectError()
 });
 
-const mapDispatchToProps = (dispatch: (arg0: { type: string }) => void) => {
+export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {
   // eslint-disable-next-line no-unused-expressions
   return {
     dispatchArtistName: (payload: any) => {
-      dispatch(getSearchTerm(payload.artistName));
+      dispatch(getSearchTerm(payload));
     }
   };
-};
+}
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect, injectSaga({ key: 'ituneComponent', saga: ituneCallSaga }))(ItunesApiComponent);
+export default compose(withConnect, injectSaga({ key: 'ituneComponent', saga: ituneCallSaga }))(ItunesContainer);

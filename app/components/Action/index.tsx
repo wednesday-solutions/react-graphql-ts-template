@@ -1,4 +1,5 @@
 import React from 'react';
+
 interface InputSearchBoxProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }

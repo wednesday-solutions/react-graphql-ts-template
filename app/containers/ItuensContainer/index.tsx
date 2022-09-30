@@ -1,24 +1,25 @@
 import React, { ChangeEvent, useEffect } from 'react';
-import { InputSearchBox } from '@app/components/Action';
 import { createStructuredSelector } from 'reselect';
-import { getSearchTerm } from './reducer';
 import { useDispatch, connect } from 'react-redux';
-import ituneCallSaga from './saga';
 import { injectSaga } from 'redux-injectors';
 import { AnyAction, compose } from '@reduxjs/toolkit';
 import { setQueryParam } from '@app/utils';
 import history from '@app/utils/history';
-import { selectError, selectLoading, selectDataToShow } from './selector';
 import { isEmpty } from 'lodash-es';
+import { InputSearchBox } from '@app/components/Action';
+import { getSearchTerm } from './reducer';
+import ituneCallSaga from './saga';
+import { selectError, selectLoading, selectDataToShow } from './selector';
 
 const ItunesApiComponent = ({ dispatchArtistName }: any) => {
+  const dispatch = useDispatch();
   const artistName = new URLSearchParams(history.location.search).get('artist_name');
   const setArtistName = (artistName: string) => setQueryParam({ param: 'artist_name', value: artistName });
 
   useEffect(() => {
     dispatchArtistName({ artistName });
   }, []);
-  const dispatch = useDispatch();
+
   const debounce = (func: any) => {
     let timer: NodeJS.Timeout;
     return function (...args: any[]) {
@@ -55,7 +56,7 @@ const mapStateToProps = createStructuredSelector({
   error: selectError()
 });
 
-const mapDispatchToProps = (dispatch: (arg0: { type: AnyAction }) => void) => {
+const mapDispatchToProps = (dispatch: (arg0: { type: string }) => void) => {
   // eslint-disable-next-line no-unused-expressions
   return {
     dispatchArtistName: (payload: any) => {

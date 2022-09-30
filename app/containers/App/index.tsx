@@ -13,37 +13,9 @@ import ItunesContainer from '../ItuensContainer';
 
 export function App() {
   return (
-    <ItunesContainer />
-    // <ThemeProvider theme={theme}>
-    //   <Header />
-    //   <CustomLayout>
-    //     <Sidebar />
-    //     <Layout.Content>
-    //       <For
-    //         ParentComponent={(props) => <Switch {...props} />}
-    //         of={map(Object.keys(routeConfig))}
-    //         renderItem={(routeKey, index) => {
-    //           const Component = routeConfig[routeKey].component;
-    //           return (
-    //             <Route
-    //               exact={routeConfig[routeKey].exact}
-    //               key={index}
-    //               path={routeConfig[routeKey].route}
-    //               render={(props) => {
-    //                 const updatedProps = {
-    //                   ...props,
-    //                   ...routeConfig[routeKey].props
-    //                 };
-    //                 return <Component {...updatedProps} />;
-    //               }}
-    //             />
-    //           );
-    //         }}
-    //       />
-    //       <GlobalStyle />
-    //     </Layout.Content>
-    //   </CustomLayout>
-    // </ThemeProvider>
+    <>
+      <ItunesContainer />
+    </>
   );
 }
 

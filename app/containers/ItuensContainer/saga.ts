@@ -3,7 +3,7 @@ import { getSearchTerm, getDataToShow, getErrorFromResponse } from './reducer';
 import useApiSauce from '../../services/apiUtils';
 const apiCall = useApiSauce();
 
-function* fetchData(action: any): Generator<any, any> {
+function* fetchDataFromItune(action: any): Generator<any, any> {
   const res: any = yield call(apiCall, action.payload);
   const { data, error, ok } = res;
   if (ok) {
@@ -14,7 +14,7 @@ function* fetchData(action: any): Generator<any, any> {
 }
 
 function* ituneCallSaga() {
-  yield takeLatest(getSearchTerm.toString(), fetchData);
+  yield takeLatest(getSearchTerm.toString(), fetchDataFromItune);
 }
 
 export default ituneCallSaga;

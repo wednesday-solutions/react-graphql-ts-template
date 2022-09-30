@@ -2,7 +2,6 @@ import React from 'react';
 import { Input } from 'antd';
 import styled from 'styled-components';
 
-// const App: React.FC = () =>
 interface InputSearchBoxProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }

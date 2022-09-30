@@ -1,14 +1,14 @@
 import React, { ChangeEvent } from 'react';
 import { InputSearchBox } from '@app/components/Action';
 import { createStructuredSelector } from 'reselect';
-import { getSearchTerm, deleteResponse } from './reducer';
 import { useDispatch, connect } from 'react-redux';
-import ituneCallSaga from './saga';
 import { injectSaga } from 'redux-injectors';
 import { compose } from '@reduxjs/toolkit';
-import { selectError, selectLoading, selectDataToShow } from './selector';
 import { isEmpty } from 'lodash-es';
 import LoadAbleCard from '@app/components/Card';
+import { selectError, selectLoading, selectDataToShow } from './selector';
+import { getSearchTerm, deleteResponse } from './reducer';
+import ituneCallSaga from './saga';
 
 const ItunesContainer = ({ dispatchArtistName, dataToShow }: any) => {
   const dispatch = useDispatch();

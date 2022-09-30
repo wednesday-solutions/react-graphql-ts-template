@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { getSearchTerm, getDataToShow, getErrorFromResponse } from './reducer';
-import useApiSauce from './apiUtils';
+import useApiSauce from '../../services/apiUtils';
 const apiCall = useApiSauce();
 
 function* fetchData(action: any): Generator<any, any> {

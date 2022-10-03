@@ -1,16 +1,21 @@
 import React from 'react';
 import { Card, Row } from 'antd';
 import styled from 'styled-components';
+import { Song } from '@app/containers/ItuensContainer/types';
 const { Meta } = Card;
 
-interface LoadAbleCardProps {
-  dataToShow: {
-    trackId: number;
-    artistName: string;
-    artworkUrl100: string;
-    collectionName: string;
-  }[];
+export interface LoadAbleCardProps {
+  dataToShow: Song[];
 }
+
+const CustomRow = styled(Row)`
+  background-color: antiquewhite;
+  gap: 2rem;
+
+  @media (max-width: 320px) {
+    justify-content: center;
+  }
+`;
 
 const H1 = styled.h1`
   font-size: 1rem;
@@ -19,18 +24,24 @@ const H1 = styled.h1`
 const CustomCard = styled(Card)`
   padding: 5px;
   margin: 1rem;
+  width: 17rem;
+
+  @media (max-width: 320px) {
+    width: 12rem;
+    margin: 0.5rem;
+  }
 `;
 
 const LoadAbleCard = ({ dataToShow }: LoadAbleCardProps) => {
   return (
-    <Row>
+    <CustomRow>
       {dataToShow.map(({ trackId, artistName, artworkUrl100, collectionName }) => (
-        <CustomCard hoverable style={{ width: 300 }} key={trackId} cover={<img src={artworkUrl100} />}>
+        <CustomCard hoverable key={trackId} cover={<img src={artworkUrl100} loading="lazy" />}>
           <H1>Artist Name: {artistName}</H1>
           <Meta title={collectionName} />
         </CustomCard>
       ))}
-    </Row>
+    </CustomRow>
   );
 };
 

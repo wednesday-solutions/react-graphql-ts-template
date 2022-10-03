@@ -8,16 +8,29 @@ interface InputSearchBoxProps {
 
 const InputContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.5rem auto;
+`;
+
+const CustomLabel = styled.label`
+  display: block;
+  font-size: 1.5rem;
 `;
 
 const CustomInput = styled(Input)`
   width: 30%;
-  margin: 1rem auto;
+  display: block;
+
+  @media (max-width: 320px) {
+    width: 80%;
+  }
 `;
 
 export const InputSearchBox = ({ onChange }: InputSearchBoxProps) => {
   return (
     <InputContainer>
+      <CustomLabel>Search your favourite singer</CustomLabel>
       <CustomInput onChange={onChange} type="text" placeholder="search here" />
     </InputContainer>
   );

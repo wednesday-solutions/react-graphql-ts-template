@@ -6,8 +6,9 @@ const apiCall = useApiSauce();
 function* fetchDataFromItune(action: any): Generator<any, any> {
   const res: any = yield call(apiCall, action.payload);
   const { data, error, ok } = res;
+  const { results } = data;
   if (ok) {
-    yield put(getDataToShow(data.results));
+    yield put(getDataToShow(results));
   } else {
     yield put(getErrorFromResponse(error));
   }

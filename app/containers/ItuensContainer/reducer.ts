@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { Song } from './types';
 
 export interface ApiResponseState {
   loading: boolean;
-  dataToShow: [];
+  dataToShow: Song[];
   error: null;
   searchTerm: string;
 }
@@ -22,7 +23,7 @@ const ituneSlice = createSlice({
       state.searchTerm = action.payload;
       state.dataToShow = [];
       state.error = null;
-      state.loading = false;
+      state.loading = true;
     },
     getDataToShow: (state, action) => {
       state.dataToShow = action.payload;
@@ -32,7 +33,7 @@ const ituneSlice = createSlice({
     getErrorFromResponse: (state, action) => {
       state.dataToShow = [];
       state.searchTerm = '';
-      state.loading = true;
+      state.loading = false;
       state.error = action.payload;
     },
     deleteResponse: (state) => {

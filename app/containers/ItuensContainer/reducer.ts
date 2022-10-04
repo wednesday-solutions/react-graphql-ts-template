@@ -4,14 +4,14 @@ import { Song } from './types';
 export interface ApiResponseState {
   loading: boolean;
   dataToShow: Song[];
-  error: null;
+  error: string;
   searchTerm: string;
 }
 
 export const initialState: ApiResponseState = {
   loading: false,
   dataToShow: [],
-  error: null,
+  error: '',
   searchTerm: ''
 };
 
@@ -22,12 +22,12 @@ const ituneSlice = createSlice({
     getSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
       state.dataToShow = [];
-      state.error = null;
+      state.error = '';
       state.loading = true;
     },
     getDataToShow: (state, action) => {
       state.dataToShow = action.payload;
-      state.error = null;
+      state.error = '';
       state.loading = false;
     },
     getErrorFromResponse: (state, action) => {

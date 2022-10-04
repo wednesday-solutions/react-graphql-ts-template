@@ -3,15 +3,18 @@ import { Song } from './types';
 
 export interface ApiResponseState {
   loading: boolean;
-  dataToShow: Song[];
-  error: null;
+  dataToShow: {
+    resultCount: number;
+    results: Song[];
+  };
+  error: string;
   searchTerm: string;
 }
 
 export const initialState: ApiResponseState = {
   loading: false,
-  dataToShow: [],
-  error: null,
+  dataToShow: { resultCount: 0, results: [] },
+  error: '',
   searchTerm: ''
 };
 
@@ -21,23 +24,26 @@ const ituneSlice = createSlice({
   reducers: {
     getSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
-      state.dataToShow = [];
-      state.error = null;
+      state.dataToShow.resultCount = 0;
+      state.dataToShow.results = [];
+      state.error = '';
       state.loading = true;
     },
     getDataToShow: (state, action) => {
       state.dataToShow = action.payload;
-      state.error = null;
+      state.error = '';
       state.loading = false;
     },
     getErrorFromResponse: (state, action) => {
-      state.dataToShow = [];
+      state.dataToShow.resultCount = 0;
+      state.dataToShow.results = [];
       state.searchTerm = '';
       state.loading = false;
       state.error = action.payload;
     },
     deleteResponse: (state) => {
-      state.dataToShow = [];
+      state.dataToShow.resultCount = 0;
+      state.dataToShow.results = [];
       state.loading = false;
     }
   }

@@ -36,6 +36,7 @@ const ItunesContainer = ({ dispatchArtistName, dataToShow }: any) => {
   };
 
   const debouncedOnChange = React.useCallback(debounce(handleOnChange), []);
+  console.log(dataToShow);
   return (
     <div>
       <InputSearchBox onChange={(e) => debouncedOnChange(e)} />

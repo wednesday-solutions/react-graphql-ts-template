@@ -3,22 +3,21 @@ import { getSearchTerm, getDataToShow, getErrorFromResponse } from './reducer';
 import { getItune } from '../../services/apiUtils';
 
 export function* fetchDataFromItune(action: any): Generator<any, any> {
+  console.log('in fetch call');
   console.log('action', action);
   const { payload } = action;
   const res: any = yield call(getItune, payload);
   const { data, error, ok } = res;
-  console.log(put(getDataToShow(data.results)));
+  console.log(data, 'is saga');
   if (ok) {
-    yield put(getDataToShow(data.results));
+    yield put(getDataToShow(data));
   } else {
-    console.log(error, res);
-    console.log(getErrorFromResponse(error));
     yield put(getErrorFromResponse(error));
   }
 }
 
 function* ituneCallSaga() {
-  console.log(fetchDataFromItune({ payload: 'Arijit Singh' }).next().value);
+  console.log('before fetch call function');
   yield takeLatest(getSearchTerm.toString(), fetchDataFromItune);
 }
 

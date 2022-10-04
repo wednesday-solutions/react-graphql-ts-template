@@ -5,7 +5,10 @@ import { Song } from '@app/containers/ItuensContainer/types';
 const { Meta } = Card;
 
 export interface LoadAbleCardProps {
-  dataToShow: Song[];
+  dataToShow: {
+    resultCount: number;
+    results: Song[];
+  };
 }
 
 const CustomRow = styled(Row)`
@@ -33,14 +36,16 @@ const CustomCard = styled(Card)`
 `;
 
 const LoadAbleCard = ({ dataToShow }: LoadAbleCardProps) => {
+  const { results } = dataToShow;
   return (
     <CustomRow>
-      {dataToShow.map(({ trackId, artistName, artworkUrl100, collectionName }) => (
-        <CustomCard hoverable key={trackId} cover={<img src={artworkUrl100} loading="lazy" />}>
-          <H1>Artist Name: {artistName}</H1>
-          <Meta title={collectionName} />
-        </CustomCard>
-      ))}
+      {results &&
+        results.map(({ trackId, artistName, artworkUrl100, collectionName }) => (
+          <CustomCard hoverable key={trackId} cover={<img src={artworkUrl100} loading="lazy" />}>
+            <H1>Artist Name: {artistName}</H1>
+            <Meta title={collectionName} />
+          </CustomCard>
+        ))}
     </CustomRow>
   );
 };

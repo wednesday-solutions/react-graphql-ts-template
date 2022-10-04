@@ -3,14 +3,17 @@ import { Song } from './types';
 
 export interface ApiResponseState {
   loading: boolean;
-  dataToShow: Song[];
+  dataToShow: {
+    resultCount: number;
+    results: Song[];
+  };
   error: null;
   searchTerm: string;
 }
 
 export const initialState: ApiResponseState = {
   loading: false,
-  dataToShow: [],
+  dataToShow: { resultCount: 0, results: [] },
   error: null,
   searchTerm: ''
 };
@@ -21,7 +24,8 @@ const ituneSlice = createSlice({
   reducers: {
     getSearchTerm: (state, action) => {
       state.searchTerm = action.payload;
-      state.dataToShow = [];
+      state.dataToShow.resultCount = 0;
+      state.dataToShow.results = [];
       state.error = null;
       state.loading = true;
     },
@@ -31,13 +35,15 @@ const ituneSlice = createSlice({
       state.loading = false;
     },
     getErrorFromResponse: (state, action) => {
-      state.dataToShow = [];
+      state.dataToShow.resultCount = 0;
+      state.dataToShow.results = [];
       state.searchTerm = '';
       state.loading = false;
       state.error = action.payload;
     },
     deleteResponse: (state) => {
-      state.dataToShow = [];
+      state.dataToShow.resultCount = 0;
+      state.dataToShow.results = [];
       state.loading = false;
     }
   }

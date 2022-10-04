@@ -1,18 +1,4 @@
-import { create } from 'apisauce';
+import { generateApiClient } from '@app/utils/apiUtils';
+const ituneApi = generateApiClient('itune');
 
-const api = create({ baseURL: 'https://itunes.apple.com' });
-
-const useApiSauce = () => {
-  const apiCall = async (param: any) => {
-    try {
-      const res = await api.get(`/search?term=${param}`);
-      return res;
-    } catch (error) {
-      return error;
-    }
-  };
-
-  return apiCall;
-};
-
-export default useApiSauce;
+export const useApiSauce = (param: any) => ituneApi.get(`/search?term=${param}`);

@@ -7,14 +7,14 @@ export interface ApiResponseState {
     resultCount: number;
     results: Song[];
   };
-  error: null;
+  error: string;
   searchTerm: string;
 }
 
 export const initialState: ApiResponseState = {
   loading: false,
   dataToShow: { resultCount: 0, results: [] },
-  error: null,
+  error: '',
   searchTerm: ''
 };
 
@@ -26,12 +26,12 @@ const ituneSlice = createSlice({
       state.searchTerm = action.payload;
       state.dataToShow.resultCount = 0;
       state.dataToShow.results = [];
-      state.error = null;
+      state.error = '';
       state.loading = true;
     },
     getDataToShow: (state, action) => {
       state.dataToShow = action.payload;
-      state.error = null;
+      state.error = '';
       state.loading = false;
     },
     getErrorFromResponse: (state, action) => {

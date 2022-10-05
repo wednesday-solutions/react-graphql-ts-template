@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 interface InputSearchBoxProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  searchLabel: string;
 }
 
 const InputContainer = styled.div`
@@ -27,10 +28,10 @@ const CustomInput = styled(Input)`
   }
 `;
 
-export const InputSearchBox = ({ onChange }: InputSearchBoxProps) => {
+export const InputSearchBox = ({ onChange, searchLabel }: InputSearchBoxProps) => {
   return (
     <InputContainer>
-      <CustomLabel>Search your favourite singer</CustomLabel>
+      <CustomLabel>{searchLabel}</CustomLabel>
       <CustomInput onChange={onChange} type="text" placeholder="search here" />
     </InputContainer>
   );

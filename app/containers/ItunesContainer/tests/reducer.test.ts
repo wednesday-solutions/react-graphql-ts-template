@@ -1,14 +1,14 @@
-import { SongData } from '../types';
+import { songData } from '../types';
 import ituneReducer, {
-  ApiResponseState,
+  ituneResponseState,
   initialState,
-  getSearchTerm,
-  getDataToShow,
-  getErrorFromResponse
+  requestGetSongList,
+  successGetSongList,
+  failureGetSongList
 } from '../reducer';
 
 describe('ItuneContainer reducer test', () => {
-  let state: ApiResponseState;
+  let state: ituneResponseState;
   beforeEach(() => {
     state = initialState;
   });
@@ -21,15 +21,15 @@ describe('ItuneContainer reducer test', () => {
     ).toEqual(state);
   });
 
-  it('should return the initial state when an actual action of type REQUEST_GET_SEARCH_TERM is dispatch', () => {
+  it('should return the initial state when an actual action of type REQUEST_GET_SONG_LIST is dispatch', () => {
     const payload = 'Arijit Singh';
     const expectedState = { ...state, loading: true, searchTerm: 'Arijit Singh' };
-    expect(ituneReducer(state, getSearchTerm(payload))).toEqual(expectedState);
+    expect(ituneReducer(state, requestGetSongList(payload))).toEqual(expectedState);
   });
 
-  it('should ensure that the search data is present when SUCCESS_GET_SEARCH_TERM', () => {
-    const dataToShow: SongData = {
-      Songs: [
+  it('should ensure that the search data is present when SUCCESS_GET_SONG_LIST', () => {
+    const songData: songData = {
+      songList: [
         {
           trackId: 1,
           artistName: 'Yung Xiety',
@@ -39,14 +39,14 @@ describe('ItuneContainer reducer test', () => {
         }
       ]
     };
-    const expectedState = { ...state, dataToShow };
-    expect(ituneReducer(state, getDataToShow(dataToShow))).toEqual(expectedState);
+    const expectedState = { ...state, songData };
+    expect(ituneReducer(state, successGetSongList(songData))).toEqual(expectedState);
   });
 
-  it('should ensure that the error has some data when getErrorFromResponse is dispatch', () => {
+  it('should ensure that the error has some data when FALIURE_GET_SONG_LIST is dispatch', () => {
     const payload = 'Something went wrong';
     const error = 'Something went wrong';
-    const expectedState = { ...state, error: error };
-    expect(ituneReducer(state, getErrorFromResponse(payload))).toEqual(expectedState);
+    const expectedState = { ...state, songListError: error };
+    expect(ituneReducer(state, failureGetSongList(payload))).toEqual(expectedState);
   });
 });

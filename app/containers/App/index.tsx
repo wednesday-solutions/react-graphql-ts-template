@@ -9,7 +9,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
-import ItunesContainer from '../ItuensContainer';
+import ItunesContainer from '../ItunesContainer';
 
 export function App() {
   return (

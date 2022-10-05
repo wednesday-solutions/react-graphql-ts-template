@@ -4,22 +4,22 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <div>
     <div
-      class="Action__InputContainer-sc-1c25wwj-0 iksVcA"
+      class="InputSearchBox__InputContainer-d9b2by-0 dyBeIT"
     >
       <label
-        class="Action__CustomLabel-sc-1c25wwj-1 kpvyjY"
+        class="InputSearchBox__CustomLabel-d9b2by-1 jtkrxL"
       >
         Search your favourite singer
       </label>
       <input
-        class="ant-input Action__CustomInput-sc-1c25wwj-2 ggvHIZ"
+        class="ant-input InputSearchBox__CustomInput-d9b2by-2 boVLHO"
         placeholder="search here"
         type="text"
         value=""
       />
     </div>
     <div
-      class="ant-row Card__CustomRow-w109gv-0 ezJsYM"
+      class="ant-row ItuneCard__CustomRow-sc-1g3ywlw-0 giGlkM"
     />
   </div>
 </div>

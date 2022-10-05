@@ -1,14 +1,15 @@
 import React from 'react';
 import { Card, Row } from 'antd';
 import styled from 'styled-components';
-import { Song } from '@app/containers/ItuensContainer/types';
+import { song } from '@app/containers/ItunesContainer/types';
 const { Meta } = Card;
 
-export interface LoadAbleCardProps {
-  dataToShow: {
+export interface ItuneCardProps {
+  songData: {
     resultCount: number;
-    results: Song[];
+    results: song[];
   };
+  cardTitle: string;
 }
 
 const CustomRow = styled(Row)`
@@ -35,14 +36,17 @@ const CustomCard = styled(Card)`
   }
 `;
 
-const LoadAbleCard = ({ dataToShow }: LoadAbleCardProps) => {
-  const { results } = dataToShow;
+const ItuneCard = ({ songData, cardTitle }: ItuneCardProps) => {
+  console.log(songData);
+  const { results } = songData;
   return (
     <CustomRow>
-      {results &&
+      {results.length > 0 &&
         results.map(({ trackId, artistName, artworkUrl100, collectionName }) => (
           <CustomCard hoverable key={trackId} cover={<img src={artworkUrl100} loading="lazy" />}>
-            <H1>Artist Name: {artistName}</H1>
+            <H1>
+              {cardTitle}: {artistName}
+            </H1>
             <Meta title={collectionName} />
           </CustomCard>
         ))}
@@ -50,4 +54,4 @@ const LoadAbleCard = ({ dataToShow }: LoadAbleCardProps) => {
   );
 };
 
-export default LoadAbleCard;
+export default ItuneCard;

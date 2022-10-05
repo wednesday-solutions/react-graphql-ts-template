@@ -1,3 +1,5 @@
+import { AnyAction } from '@reduxjs/toolkit';
+
 export interface song {
   trackId: number;
   artistName: string;
@@ -9,7 +11,17 @@ export interface songData {
   songList: song[];
 }
 
-export const ituneResponseGenerator = <Data>(ok: boolean, data: Data, error?: object) => ({
+export type SongActionCreator = (payload: string) => AnyAction;
+
+export interface ItuneContainerProps {
+  dispatchArtistName: SongActionCreator;
+  songData: {
+    resultCount: number;
+    results: song[];
+  };
+}
+
+export const ituneResponseGenerator = <Data>(ok: boolean, data: Data, error: object) => ({
   ok,
   data,
   error

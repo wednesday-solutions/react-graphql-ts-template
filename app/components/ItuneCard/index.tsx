@@ -37,7 +37,6 @@ const CustomCard = styled(Card)`
 `;
 
 const ItuneCard = ({ songData, cardTitle }: ItuneCardProps) => {
-  console.log(songData);
   const { results } = songData;
   return (
     <CustomRow>

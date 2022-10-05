@@ -5,17 +5,16 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
 import { compose } from '@reduxjs/toolkit';
-import LoadAbleCard from '@app/components/ItuneCard';
-import { selectError, selectLoading, selectDataToShow } from './selector';
+import ItuneCard from '@app/components/ItuneCard';
+import { selectSongListError, selectLoading, selectSongData } from './selector';
 import { requestGetSongList } from './reducer';
 import ituneCallSaga from './saga';
+import { ItuneContainerProps } from './types';
 
-const ItunesContainer = ({ dispatchArtistName, songData }: any) => {
-  console.log(songData, 'in ItuneContainer');
+const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) => {
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const artistSearch = e.target.value;
     if (artistSearch.trim()) {
-      console.log(artistSearch);
       dispatchArtistName(artistSearch);
     }
   }, 500);
@@ -23,15 +22,15 @@ const ItunesContainer = ({ dispatchArtistName, songData }: any) => {
   return (
     <div>
       <InputSearchBox onChange={(e) => handleOnChange(e)} searchLabel={'Search your favourite singer'} />
-      <LoadAbleCard songData={songData} cardTitle={'Artist Name'} />
+      <ItuneCard songData={songData} cardTitle={'Artist Name'} />
     </div>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
   loading: selectLoading(),
-  songData: selectDataToShow(),
-  error: selectError()
+  songData: selectSongData(),
+  error: selectSongListError()
 });
 
 export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {

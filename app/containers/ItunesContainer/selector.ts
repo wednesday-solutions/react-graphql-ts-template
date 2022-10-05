@@ -5,5 +5,5 @@ import { initialState } from './reducer';
 const selectItuneState = (state: any) => state.ituneReducer || initialState;
 
 export const selectLoading = () => createSelector(selectItuneState, (substate) => get(substate, 'loading'));
-export const selectDataToShow = () => createSelector(selectItuneState, (substate) => get(substate, 'songData'));
-export const selectError = () => createSelector(selectItuneState, (substate) => get(substate, 'error'));
+export const selectSongData = () => createSelector(selectItuneState, (substate) => get(substate, 'songData'));
+export const selectSongListError = () => createSelector(selectItuneState, (substate) => get(substate, 'error'));

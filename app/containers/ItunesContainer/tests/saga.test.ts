@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { getSearchTerm, getDataToShow } from '../reducer';
-import { apiResponseGenerator } from '../types';
 import { getItune } from '@app/services/apiUtils';
+import { requestGetSongList, successGetSongList } from '../reducer';
+import { ituneResponseGenerator } from '../types';
 import ituneCallSaga, { fetchDataFromItune } from '../saga';
 
 describe('ItuneContainer saga tests', () => {
@@ -9,7 +9,7 @@ describe('ItuneContainer saga tests', () => {
   const getSongListGenerator = fetchDataFromItune({ payload: null });
 
   it('should start the task to watch for GET_SEARCH_TERM action', () => {
-    expect(generator.next().value).toEqual(takeLatest(getSearchTerm.toString(), fetchDataFromItune));
+    expect(generator.next().value).toEqual(takeLatest(requestGetSongList.toString(), fetchDataFromItune));
   });
 
   it('should ensure that the action FAILURE_GET_SEARCH_TERM is dispatched when the api calls fails', () => {
@@ -31,8 +31,8 @@ describe('ItuneContainer saga tests', () => {
         collectionName: 'Arijit Singh (Mashup) - Single'
       }
     ];
-    expect(getSongListGenerator.next(apiResponseGenerator(true, apiResponse)).value).toEqual(
-      put(getDataToShow(apiResponse))
+    expect(getSongListGenerator.next(ituneResponseGenerator(true, apiResponse, {})).value).toEqual(
+      put(successGetSongList(apiResponse))
     );
   });
 });

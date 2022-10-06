@@ -12,6 +12,5 @@ describe('<App /> container tests', () => {
       </BrowserRouter>
     );
     await waitFor(() => expect(container.textContent).toContain('Search your favourite singer'));
-    await waitFor(() => expect(container).toMatchSnapshot());
   });
 });

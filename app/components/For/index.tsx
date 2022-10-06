@@ -8,6 +8,7 @@ import React, { PropsWithChildren } from 'react';
 import Proptypes from 'prop-types';
 import styled from 'styled-components';
 import { Property } from 'csstype';
+import { Song } from '@app/containers/ItunesContainer/types';
 
 type FlexContainerProps = {
   orientation?: Property.FlexDirection;
@@ -20,8 +21,8 @@ const FlexContainer = styled.div<FlexContainerProps>`
 `;
 
 type ForProps<T> = {
-  of?: T[];
-  renderItem: (item: T, index: number) => React.ReactElement;
+  of?: T[] | Song[];
+  renderItem: (item: T | Song, index: number) => React.ReactElement;
   ParentComponent?: React.FC;
   noParent?: boolean;
 };

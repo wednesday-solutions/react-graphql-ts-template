@@ -5,11 +5,11 @@ import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
 import { compose } from '@reduxjs/toolkit';
-import ItuneCard from '@app/components/ItuneCard';
 import { selectSongListError, selectLoading, selectSongData } from './selector';
 import { requestGetSongList } from './reducer';
 import ituneCallSaga from './saga';
 import { ItuneContainerProps } from './types';
+import ItuneSongList from '@app/components/ItuneSongList';
 
 const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) => {
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,7 @@ const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) 
         searchLabel={'Search your favourite singer'}
         placeholder={'search here'}
       />
-      <ItuneCard songData={songData} cardTitle={'Artist Name'} />
+      <ItuneSongList songData={songData} />
     </div>
   );
 };

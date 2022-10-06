@@ -5,11 +5,9 @@ import { media } from '@app/themes';
 
 interface InputSearchBoxProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder: string;
+  searchLabel: string;
 }
-
-const defaultProps = {
-  searchLabel: 'Search here'
-};
 
 const InputContainer = styled.div`
   && {
@@ -37,16 +35,11 @@ const CustomInput = styled(Input)`
   }
 `;
 
-export const InputSearchBox = ({ onChange, searchLabel }: InputSearchBoxProps & typeof defaultProps) => {
-  console.log(searchLabel, 'in InputSearchBox');
+export const InputSearchBox = ({ onChange, searchLabel = 'Search here', placeholder }: InputSearchBoxProps) => {
   return (
     <InputContainer>
       <CustomLabel>{searchLabel}</CustomLabel>
-      <CustomInput onChange={onChange} type="text" placeholder="search here" />
+      <CustomInput onChange={onChange} type="text" placeholder={placeholder} />
     </InputContainer>
   );
-};
-
-InputSearchBox.defaultProps = {
-  searchLabel: 'Search here'
 };

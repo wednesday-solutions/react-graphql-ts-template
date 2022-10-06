@@ -1,6 +1,6 @@
 import { AnyAction } from '@reduxjs/toolkit';
 
-export interface song {
+export interface Song {
   trackId: number;
   artistName: string;
   artworkUrl100: string;
@@ -8,7 +8,7 @@ export interface song {
 }
 
 export interface songData {
-  songList: song[];
+  songList: Song[];
 }
 
 export type SongActionCreator = (payload: string) => AnyAction;
@@ -17,7 +17,7 @@ export interface ItuneContainerProps {
   dispatchArtistName: SongActionCreator;
   songData: {
     resultCount: number;
-    results: song[];
+    results: Song[];
   };
 }
 

@@ -21,7 +21,11 @@ const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) 
 
   return (
     <div>
-      <InputSearchBox onChange={(e) => handleOnChange(e)} searchLabel={'Search your favourite singer'} />
+      <InputSearchBox
+        onChange={(e) => handleOnChange(e)}
+        searchLabel={'Search your favourite singer'}
+        placeholder={'search here'}
+      />
       <ItuneCard songData={songData} cardTitle={'Artist Name'} />
     </div>
   );

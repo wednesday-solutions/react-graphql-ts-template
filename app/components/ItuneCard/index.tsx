@@ -1,20 +1,17 @@
 import React from 'react';
 import { Card, Row } from 'antd';
 import styled from 'styled-components';
-import { song } from '@app/containers/ItunesContainer/types';
+import { Song } from '@app/containers/ItunesContainer/types';
 import { colors, media } from '@app/themes';
 const { Meta } = Card;
 
 export interface ItuneCardProps {
   songData: {
     resultCount: number;
-    results: song[];
+    results: Song[];
   };
+  cardTitle: string;
 }
-
-const defaultProps = {
-  cardTitle: 'Card Title'
-};
 
 const CustomRow = styled(Row)`
   && {
@@ -52,8 +49,7 @@ const StyledImg = styled.img`
   }
 `;
 
-const ItuneCard = ({ songData, cardTitle }: ItuneCardProps & typeof defaultProps) => {
-  console.log(cardTitle, 'in Itune Card');
+const ItuneCard = ({ songData, cardTitle = 'Card Title' }: ItuneCardProps) => {
   const { results } = songData;
   return (
     <CustomRow>
@@ -71,5 +67,3 @@ const ItuneCard = ({ songData, cardTitle }: ItuneCardProps & typeof defaultProps
 };
 
 export default ItuneCard;
-
-ItuneCard.defaultProps = defaultProps;

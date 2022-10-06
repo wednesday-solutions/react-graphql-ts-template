@@ -13,6 +13,7 @@ const success = '#28a745';
 const error = '#dc3545';
 const gotoStories = '#1890ff';
 const cardBg = '#d8d8d8';
+const cardContainerBg = '#faebd7';
 
 const colors = {
   transparent: 'rgba(0,0,0,0)',
@@ -25,6 +26,7 @@ const colors = {
   secondaryText,
   gotoStories,
   cardBg,
+  cardContainerBg,
   theme: {
     lightMode: {
       primary,

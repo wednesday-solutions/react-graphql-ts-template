@@ -1,12 +1,12 @@
 import { prepare } from '@app/utils';
 import { createSlice } from '@reduxjs/toolkit';
-import { song } from './types';
+import { Song } from './types';
 
 export interface ituneResponseState {
   loading: boolean;
   songData: {
     resultCount: number;
-    results: song[];
+    results: Song[];
   };
   songListError: string;
 }

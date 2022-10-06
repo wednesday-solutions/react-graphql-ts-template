@@ -35,9 +35,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {
   return {
-    dispatchArtistName: (payload: string) => {
-      dispatch(requestGetSongList(payload));
-    }
+    dispatchArtistName: (payload: string) => dispatch(requestGetSongList(payload))
   };
 }
 

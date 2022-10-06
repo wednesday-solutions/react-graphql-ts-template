@@ -1,3 +1,4 @@
+import { prepare } from '@app/utils';
 import { createSlice } from '@reduxjs/toolkit';
 import { song } from './types';
 
@@ -8,24 +9,23 @@ export interface ituneResponseState {
     results: song[];
   };
   songListError: string;
-  searchTerm: string;
 }
 
 export const initialState: ituneResponseState = {
   loading: false,
   songData: { resultCount: 0, results: [] },
-  songListError: '',
-  searchTerm: ''
+  songListError: ''
 };
 
 const ituneSlice = createSlice({
   name: 'Itune',
   initialState,
   reducers: {
-    requestGetSongList: (state, action) => {
-      state.searchTerm = action.payload;
-      state.songListError = '';
-      state.loading = true;
+    requestGetSongList: {
+      reducer: (state) => {
+        state.loading = true;
+      },
+      prepare
     },
     successGetSongList: (state, action) => {
       state.songData = action.payload;

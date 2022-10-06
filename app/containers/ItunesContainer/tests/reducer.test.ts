@@ -23,7 +23,7 @@ describe('ItuneContainer reducer test', () => {
 
   it('should return the initial state when an actual action of type REQUEST_GET_SONG_LIST is dispatch', () => {
     const payload = 'Arijit Singh';
-    const expectedState = { ...state, loading: true, searchTerm: 'Arijit Singh' };
+    const expectedState = { ...state, loading: true };
     expect(ituneReducer(state, requestGetSongList(payload))).toEqual(expectedState);
   });
 

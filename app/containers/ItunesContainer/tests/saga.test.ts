@@ -31,7 +31,7 @@ describe('ItuneContainer saga tests', () => {
         collectionName: 'Arijit Singh (Mashup) - Single'
       }
     ];
-    expect(getSongListGenerator.next(ituneResponseGenerator(true, apiResponse)).value).toEqual(
+    expect(getSongListGenerator.next(ituneResponseGenerator(true, apiResponse, {})).value).toEqual(
       put(successGetSongList(apiResponse))
     );
   });

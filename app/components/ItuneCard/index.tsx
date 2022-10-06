@@ -37,6 +37,10 @@ const CustomCard = styled(Card)`
 `;
 
 const ItuneCard = ({ songData, cardTitle }: ItuneCardProps) => {
+  if (cardTitle === '') {
+    cardTitle = 'Card Title';
+  }
+  console.log(cardTitle);
   const { results } = songData;
   return (
     <CustomRow>

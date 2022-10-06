@@ -29,6 +29,9 @@ const CustomInput = styled(Input)`
 `;
 
 export const InputSearchBox = ({ onChange, searchLabel }: InputSearchBoxProps) => {
+  if (searchLabel === '') {
+    searchLabel = 'Search here';
+  }
   return (
     <InputContainer>
       <CustomLabel>{searchLabel}</CustomLabel>

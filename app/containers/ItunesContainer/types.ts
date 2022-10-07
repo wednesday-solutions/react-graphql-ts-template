@@ -7,8 +7,8 @@ export interface Song {
   collectionName: string;
 }
 
-export interface songData {
-  songList: Song[];
+export interface SongData {
+  results: Song[];
 }
 
 export type SongActionCreator = (payload: string) => AnyAction;

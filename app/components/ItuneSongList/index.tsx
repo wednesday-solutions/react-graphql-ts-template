@@ -9,7 +9,6 @@ import ItuneCard from '../ItuneCard';
 
 interface ItuneSongListProps {
   songData: {
-    resultCount: number;
     results?: Song[];
   };
 }

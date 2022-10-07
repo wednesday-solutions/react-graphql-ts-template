@@ -5,7 +5,6 @@ import { Song } from './types';
 export interface ituneResponseState {
   loading: boolean;
   songData: {
-    resultCount: number;
     results: Song[];
   };
   songListError: string;
@@ -13,7 +12,7 @@ export interface ituneResponseState {
 
 export const initialState: ituneResponseState = {
   loading: false,
-  songData: { resultCount: 0, results: [] },
+  songData: { results: [] },
   songListError: ''
 };
 
@@ -28,12 +27,11 @@ const ituneSlice = createSlice({
       prepare
     },
     successGetSongList: (state, action) => {
-      state.songData = action.payload;
+      state.songData.results = action.payload.results;
       state.songListError = '';
       state.loading = false;
     },
     failureGetSongList: (state, action) => {
-      state.songData.resultCount = 0;
       state.songData.results = [];
       state.loading = false;
       state.songListError = action.payload;

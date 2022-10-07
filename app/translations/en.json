@@ -11,5 +11,6 @@
   "name_label": "<b>Name</b> {name}",
   "type_label": "<b>Type</b> {type}",
   "ships": "Ships ",
-  "rocket": "Rocket "
+  "rocket": "Rocket ",
+  "song_search_default": "Search your favourite singer"
 }

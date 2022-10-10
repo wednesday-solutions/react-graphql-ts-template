@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card } from 'antd';
 import styled from 'styled-components';
-import { fonts, media } from '@app/themes';
+import { media } from '@app/themes';
+import If from '../If';
+import { isEmpty } from 'lodash-es';
 const { Meta } = Card;
 
 export interface ItuneCardProps {
@@ -9,14 +11,7 @@ export interface ItuneCardProps {
   artistName: string;
   artworkUrl100: string;
   collectionName: string;
-  cardTitle?: string;
 }
-
-const H1 = styled.h1`
-  && {
-    ${fonts.size.regular}
-  }
-`;
 
 const CustomCard = styled(Card)`
   && {
@@ -38,20 +33,22 @@ const StyledImg = styled.img`
   }
 `;
 
-const ItuneCard = ({
-  trackId,
-  artistName,
-  artworkUrl100,
-  collectionName,
-  cardTitle = 'Card Title'
-}: ItuneCardProps) => {
+const ItuneCard = ({ trackId, artistName, artworkUrl100, collectionName }: ItuneCardProps) => {
   return (
-    <CustomCard hoverable key={trackId} cover={<StyledImg src={artworkUrl100} loading="lazy" />}>
-      <H1>
-        {cardTitle}: {artistName}
-      </H1>
-      <Meta title={collectionName} />
-    </CustomCard>
+    <If
+      condition={isEmpty(trackId)}
+      otherwise={
+        <CustomCard hoverable cover={<StyledImg src={artworkUrl100} loading="lazy" />}>
+          <Meta data-testid="artist-name" title={artistName} description={collectionName} />
+        </CustomCard>
+      }
+    >
+      <CustomCard hoverable key={trackId} cover={<StyledImg src={artworkUrl100} loading="lazy" />}>
+        <If condition={!isEmpty(artistName)} otherwise={<Meta data-testid="artist-name" />}>
+          <Meta data-testid="artist-name" title={artistName} description={collectionName} />
+        </If>
+      </CustomCard>
+    </If>
   );
 };
 

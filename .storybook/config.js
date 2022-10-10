@@ -7,7 +7,7 @@ import { withKnobs } from '@storybook/addon-knobs';
 import StoryRouter from 'storybook-router';
 import { withSmartKnobs } from 'storybook-addon-smart-knobs';
 import { setIntlConfig, withIntl } from 'storybook-addon-intl';
-// import enLocaleData from 'react-intl/locale-data/en';
+import enLocaleData from 'react-intl/locale-data/en';
 import { translationMessages, appLocales, DEFAULT_LOCALE } from '../app/i18n.js';
 
 Object.values = (obj) => Object.keys(obj).map((key) => obj[key]);

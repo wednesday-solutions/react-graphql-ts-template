@@ -1,7 +1,8 @@
 import React from 'react';
-import { renderProvider } from '@app/utils/testUtils';
 import ItuneSongList from '..';
 import { SongData } from '@app/containers/ItunesContainer/types';
+import { render } from '@testing-library/react';
+import { renderWithIntl } from '@app/utils/testUtils';
 
 describe('<ItuneSongList/> ', () => {
   const songData: SongData = {
@@ -17,7 +18,17 @@ describe('<ItuneSongList/> ', () => {
   };
 
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderProvider(<ItuneSongList songData={songData} />);
+    const { baseElement } = render(<ItuneSongList songData={songData} />);
     expect(baseElement).toMatchSnapshot();
+  });
+
+  it('should show the fallbackMessage if the songData is empty', () => {
+    const { getByTestId } = renderWithIntl(<ItuneSongList songData={{}} />);
+    expect(getByTestId('default-message')).toBeInTheDocument();
+  });
+
+  it('should render the list for the song when the data is available', () => {
+    const { getByTestId } = render(<ItuneSongList songData={songData} />);
+    expect(getByTestId('artist-name')).toBeInTheDocument();
   });
 });

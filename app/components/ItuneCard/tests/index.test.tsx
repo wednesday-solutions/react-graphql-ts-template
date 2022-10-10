@@ -1,7 +1,7 @@
 import React from 'react';
-import { renderProvider } from '@app/utils/testUtils';
 import ItuneCard from '..';
 import { Song } from '@app/containers/ItunesContainer/types';
+import { render } from '@testing-library/react';
 
 describe('<ItuneCard />', () => {
   let song: Song;
@@ -17,7 +17,13 @@ describe('<ItuneCard />', () => {
   });
 
   it('should render and match the snapshot', () => {
-    const { baseElement } = renderProvider(<ItuneCard {...song} />);
+    const { baseElement } = render(<ItuneCard {...song} />);
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it('should render and match the snapshot when song object is empty', () => {
+    const song = {};
+    const { baseElement } = render(<ItuneCard {...song} />);
     expect(baseElement).toMatchSnapshot();
   });
 });

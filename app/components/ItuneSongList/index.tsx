@@ -1,11 +1,13 @@
 import React from 'react';
-import { Row } from 'antd';
-import { get } from 'lodash-es';
+import { Card, Row } from 'antd';
+import { get, isEmpty } from 'lodash-es';
 import styled from 'styled-components';
 import { Song } from '@app/containers/ItunesContainer/types';
 import { colors, media } from '@app/themes';
-import { For } from '../For';
 import ItuneCard from '../ItuneCard';
+import If from '../If';
+import { T } from '../T';
+import For from '../For';
 
 interface ItuneSongListProps {
   songData: {
@@ -23,11 +25,36 @@ const CustomRow = styled(Row)`
   }
 `;
 
+const CustomError = styled(Card)`
+  && {
+    color: ${colors.secondary};
+    margin: 2rem;
+    width: 
+    background-color: ${colors.secondaryText};
+    display: flex;
+    justify-content: center;
+  }
+`;
+
 const ItuneSongList = ({ songData }: ItuneSongListProps) => {
   const results = get(songData, 'results', []);
   return (
     <>
-      <For ParentComponent={CustomRow} renderItem={(song: Song) => <ItuneCard {...song} />} of={results} />
+      <If
+        condition={!isEmpty(results)}
+        otherwise={
+          <CustomError>
+            <T data-testid="default-message" id="fallback" />
+          </CustomError>
+        }
+      >
+        <For
+          ParentComponent={CustomRow}
+          renderItem={(song: Song) => <ItuneCard {...song} />}
+          of={results}
+          noParent={false}
+        />
+      </If>
     </>
   );
 };

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ItuneContainer /> test should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="ItunesContainer__InputContainer-sc-1mn0u29-0 cWHxEw"
+      >
+        <p
+          class="T__StyledText-gcrjip-0 gIxZML"
+          data-testid="search-label"
+        >
+          Search your favourite singer
+        </p>
+        <input
+          aria-label="input-element"
+          class="ant-input ItunesContainer__CustomInput-sc-1mn0u29-1 gSSPZi"
+          data-testid="search-bar"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="ant-card ant-card-bordered ItuneSongList__CustomError-sc-1kmczkg-1 goJOMR"
+      >
+        <div
+          class="ant-card-body"
+        >
+          <p
+            class="T__StyledText-gcrjip-0 gIxZML"
+            data-testid="default-message"
+          >
+            No results found for the search term.
+          </p>
+        </div>
+      </div>
+      <p
+        class="T__StyledText-gcrjip-0 gIxZML"
+        data-testid="default-message"
+      />
+    </div>
+  </div>
+</body>
+`;

@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getItune } from '@app/services/apiUtils';
+import { apiResponseGenerator } from '@app/utils/testUtils';
 import { requestGetSongList, successGetSongList } from '../reducer';
-import { ituneResponseGenerator } from '../types';
 import ituneCallSaga, { fetchDataFromItune } from '../saga';
 
 describe('ItuneContainer saga tests', () => {
@@ -31,7 +31,7 @@ describe('ItuneContainer saga tests', () => {
         collectionName: 'Arijit Singh (Mashup) - Single'
       }
     ];
-    expect(getSongListGenerator.next(ituneResponseGenerator(true, apiResponse, {})).value).toEqual(
+    expect(getSongListGenerator.next(apiResponseGenerator(true, apiResponse, {})).value).toEqual(
       put(successGetSongList(apiResponse))
     );
   });

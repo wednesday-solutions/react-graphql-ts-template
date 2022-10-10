@@ -34,7 +34,6 @@ const CustomInput = styled(Input)`
 `;
 
 const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError }: ItuneContainerProps) => {
-  console.log(<ErrorHandler loading={loading} launchListError={songListError} />);
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const artistSearch = e.target.value;
     if (artistSearch.trim()) {

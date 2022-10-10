@@ -12,7 +12,7 @@ import ItuneSongList from '@app/components/ItuneSongList';
 import styled from 'styled-components';
 import { Input } from 'antd';
 import { media } from '@app/themes';
-import { T } from '@app/components';
+import { ErrorHandler, T } from '@app/components';
 
 const InputContainer = styled.div`
   && {
@@ -22,13 +22,6 @@ const InputContainer = styled.div`
     margin: 0.5rem auto;
   }
 `;
-
-// const CustomLabel = styled.label`
-//   && {
-//     display: block;
-//     font-size: 1.5rem;
-//   }
-// `;
 
 const CustomInput = styled(Input)`
   && {
@@ -40,7 +33,7 @@ const CustomInput = styled(Input)`
   }
 `;
 
-const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) => {
+const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError }: ItuneContainerProps) => {
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const artistSearch = e.target.value;
     if (artistSearch.trim()) {
@@ -51,10 +44,11 @@ const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) 
   return (
     <div>
       <InputContainer>
-        <T id="song_search_default" />
-        <CustomInput onChange={(e) => handleOnChange(e)} type="text" />
+        <T data-testid="search-label" id="song_search_default" />
+        <CustomInput data-testid="search-bar" onChange={(e) => handleOnChange(e)} type="text" />
       </InputContainer>
       <ItuneSongList songData={songData} />
+      <ErrorHandler loading={loading} launchListError={songListError} />
     </div>
   );
 };
@@ -62,7 +56,7 @@ const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) 
 const mapStateToProps = createStructuredSelector({
   loading: selectLoading(),
   songData: selectSongData(),
-  error: selectSongListError()
+  songListError: selectSongListError()
 });
 
 export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {

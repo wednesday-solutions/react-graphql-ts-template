@@ -23,8 +23,10 @@ describe('<ItuneSongList/> ', () => {
   });
 
   it('should show the fallbackMessage if the songData is empty', () => {
+    const defaultMessage = 'No results found for the search term.';
     const { getByTestId } = renderWithIntl(<ItuneSongList songData={{}} />);
     expect(getByTestId('default-message')).toBeInTheDocument();
+    expect(getByTestId('default-message').textContent).toBe(defaultMessage);
   });
 
   it('should render the list for the song when the data is available', () => {

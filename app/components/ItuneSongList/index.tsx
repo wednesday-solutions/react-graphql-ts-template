@@ -39,23 +39,21 @@ const CustomError = styled(Card)`
 const ItuneSongList = ({ songData }: ItuneSongListProps) => {
   const results = get(songData, 'results', []);
   return (
-    <>
-      <If
-        condition={!isEmpty(results)}
-        otherwise={
-          <CustomError>
-            <T data-testid="default-message" id="fallback" />
-          </CustomError>
-        }
-      >
-        <For
-          ParentComponent={CustomRow}
-          renderItem={(song: Song) => <ItuneCard {...song} />}
-          of={results}
-          noParent={false}
-        />
-      </If>
-    </>
+    <If
+      condition={!isEmpty(results)}
+      otherwise={
+        <CustomError>
+          <T data-testid="default-message" id="fallback" />
+        </CustomError>
+      }
+    >
+      <For
+        ParentComponent={CustomRow}
+        renderItem={(song: Song) => <ItuneCard {...song} />}
+        of={results}
+        noParent={false}
+      />
+    </If>
   );
 };
 

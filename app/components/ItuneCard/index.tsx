@@ -38,13 +38,17 @@ const ItuneCard = ({ trackId, artistName, artworkUrl100, collectionName }: Itune
     <If
       condition={isEmpty(trackId)}
       otherwise={
-        <CustomCard hoverable cover={<StyledImg src={artworkUrl100} loading="lazy" />}>
+        <CustomCard hoverable cover={<StyledImg src={artworkUrl100} data-testid="cover-img" />}>
           <Meta data-testid="artist-name" title={artistName} description={collectionName} />
         </CustomCard>
       }
     >
-      <CustomCard hoverable key={trackId} cover={<StyledImg src={artworkUrl100} loading="lazy" />}>
-        <If condition={!isEmpty(artistName)} otherwise={<Meta data-testid="artist-name" />}>
+      <CustomCard
+        hoverable
+        key={trackId}
+        cover={<StyledImg src={artworkUrl100} loading="lazy" data-testid="cover-img" />}
+      >
+        <If condition={!isEmpty(artistName)} otherwise={<Meta />}>
           <Meta data-testid="artist-name" title={artistName} description={collectionName} />
         </If>
       </CustomCard>

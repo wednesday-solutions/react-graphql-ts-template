@@ -11,6 +11,7 @@ exports[`<ItuneCard /> should render and match the snapshot 1`] = `
       >
         <img
           class="ItuneCard__StyledImg-sc-1g3ywlw-1 dHbSaT"
+          data-testid="cover-img"
           loading="lazy"
           src="https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/3b/cc/31/3bcc315a-e58f-c678-8d05-b7d62346070f/1d724fe3-daaa-4825-91f0-a47e70a438bd.jpg/100x100bb.jpg"
         />
@@ -54,6 +55,7 @@ exports[`<ItuneCard /> should render and match the snapshot when song object is 
       >
         <img
           class="ItuneCard__StyledImg-sc-1g3ywlw-1 dHbSaT"
+          data-testid="cover-img"
           loading="lazy"
         />
       </div>
@@ -62,7 +64,6 @@ exports[`<ItuneCard /> should render and match the snapshot when song object is 
       >
         <div
           class="ant-card-meta"
-          data-testid="artist-name"
         />
       </div>
     </div>

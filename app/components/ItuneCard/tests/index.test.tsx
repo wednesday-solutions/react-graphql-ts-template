@@ -1,7 +1,7 @@
 import React from 'react';
 import ItuneCard from '..';
 import { Song } from '@app/containers/ItunesContainer/types';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 describe('<ItuneCard />', () => {
   let song: Song;
@@ -25,6 +25,8 @@ describe('<ItuneCard />', () => {
     const song = {};
     const { baseElement, getByTestId } = render(<ItuneCard {...song} />);
     expect(baseElement).toMatchSnapshot();
+    expect(screen.getByRole('img')).not.toHaveAttribute('src');
+    expect(screen.getByRole('img')).not.toHaveAttribute('alt');
     expect(getByTestId('cover-img')).toBeInTheDocument();
   });
 });

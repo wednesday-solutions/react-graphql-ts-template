@@ -35,22 +35,13 @@ const StyledImg = styled.img`
 
 const ItuneCard = ({ trackId, artistName, artworkUrl100, collectionName }: ItuneCardProps) => {
   return (
-    <If
-      condition={isEmpty(trackId)}
-      otherwise={
-        <CustomCard hoverable cover={<StyledImg src={artworkUrl100} data-testid="cover-img" />}>
-          <Meta data-testid="artist-name" title={artistName} description={collectionName} />
-        </CustomCard>
-      }
-    >
+    <If condition={isEmpty(trackId)}>
       <CustomCard
         hoverable
         key={trackId}
         cover={<StyledImg src={artworkUrl100} loading="lazy" data-testid="cover-img" />}
       >
-        <If condition={!isEmpty(artistName)} otherwise={<Meta />}>
-          <Meta data-testid="artist-name" title={artistName} description={collectionName} />
-        </If>
+        <Meta data-testid="artist-name" title={artistName} description={collectionName} />
       </CustomCard>
     </If>
   );

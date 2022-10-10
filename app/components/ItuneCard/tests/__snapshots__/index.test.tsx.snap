@@ -64,6 +64,7 @@ exports[`<ItuneCard /> should render and match the snapshot when song object is 
       >
         <div
           class="ant-card-meta"
+          data-testid="artist-name"
         />
       </div>
     </div>

@@ -52,7 +52,7 @@ const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError 
           type="text"
         />
       </InputContainer>
-      <ItuneSongList songData={songData} />
+      <ItuneSongList loading={loading} songData={songData} />
       <ErrorHandler loading={loading} launchListError={songListError} />
     </div>
   );

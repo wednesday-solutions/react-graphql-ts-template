@@ -33,13 +33,11 @@ describe('<ItuneSongList/> ', () => {
     const {
       results: [{ artistName, artworkUrl100, collectionName }]
     } = songData;
-    const { getByTestId } = render(<ItuneSongList loading={false} songData={songData} />);
+    render(<ItuneSongList loading={false} songData={songData} />);
     expect(screen.getByRole('img')).toHaveAttribute('src', artworkUrl100);
     expect(screen.getByRole('heading')).toBeInTheDocument();
     expect(screen.getByText(artistName)).toBeVisible();
     expect(screen.getByText(collectionName)).toBeVisible();
-    expect(getByTestId('artist-name').textContent).toBe(artistName);
-    expect(getByTestId('collection-name').textContent).toBe(collectionName);
   });
 
   it('should render the Skeleton Component when loading is true', async () => {

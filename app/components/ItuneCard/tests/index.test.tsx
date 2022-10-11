@@ -23,10 +23,9 @@ describe('<ItuneCard />', () => {
 
   it('should render and match the snapshot when song object is empty', () => {
     const song = {};
-    const { baseElement, getByTestId } = render(<ItuneCard {...song} />);
+    const { baseElement } = render(<ItuneCard {...song} />);
     expect(baseElement).toMatchSnapshot();
-    expect(screen.getByRole('img')).not.toHaveAttribute('src');
-    expect(screen.getByRole('img')).not.toHaveAttribute('alt');
-    expect(getByTestId('cover-img')).toBeInTheDocument();
+    expect(screen.queryByRole('img')).toBe(null);
+    expect(screen.queryByRole('Yung Xiety')).toBe(null);
   });
 });

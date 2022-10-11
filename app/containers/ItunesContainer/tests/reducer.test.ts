@@ -1,4 +1,4 @@
-import { songData } from '../types';
+import { SongData } from '../types';
 import ituneReducer, {
   ituneResponseState,
   initialState,
@@ -28,8 +28,8 @@ describe('ItuneContainer reducer test', () => {
   });
 
   it('should ensure that the search data is present when SUCCESS_GET_SONG_LIST', () => {
-    const songData: songData = {
-      songList: [
+    const songData: SongData = {
+      results: [
         {
           trackId: 1,
           artistName: 'Yung Xiety',

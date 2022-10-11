@@ -1,17 +1,39 @@
 import React, { ChangeEvent } from 'react';
 import debounce from 'lodash-es/debounce';
-import { InputSearchBox } from '@app/components/InputSearchBox';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
 import { compose } from '@reduxjs/toolkit';
-import ItuneCard from '@app/components/ItuneCard';
 import { selectSongListError, selectLoading, selectSongData } from './selector';
 import { requestGetSongList } from './reducer';
 import ituneCallSaga from './saga';
 import { ItuneContainerProps } from './types';
+import ItuneSongList from '@app/components/ItuneSongList';
+import styled from 'styled-components';
+import { Input } from 'antd';
+import { media } from '@app/themes';
+import { ErrorHandler, T } from '@app/components';
 
-const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) => {
+const InputContainer = styled.div`
+  && {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.5rem auto;
+  }
+`;
+
+const CustomInput = styled(Input)`
+  && {
+    width: 30%;
+    display: block;
+
+    ${media.lessThan('tablet')`
+    width: 80%;`}
+  }
+`;
+
+const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError }: ItuneContainerProps) => {
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const artistSearch = e.target.value;
     if (artistSearch.trim()) {
@@ -21,12 +43,12 @@ const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) 
 
   return (
     <div>
-      <InputSearchBox
-        onChange={(e) => handleOnChange(e)}
-        searchLabel={'Search your favourite singer'}
-        placeholder={'search here'}
-      />
-      <ItuneCard songData={songData} cardTitle={'Artist Name'} />
+      <InputContainer>
+        <T data-testid="search-label" id="song_search_default" />
+        <CustomInput data-testid="search-bar" onChange={(e) => handleOnChange(e)} type="text" />
+      </InputContainer>
+      <ItuneSongList loading={loading} songData={songData} />
+      <ErrorHandler loading={loading} launchListError={songListError} />
     </div>
   );
 };
@@ -34,7 +56,7 @@ const ItunesContainer = ({ dispatchArtistName, songData }: ItuneContainerProps) 
 const mapStateToProps = createStructuredSelector({
   loading: selectLoading(),
   songData: selectSongData(),
-  error: selectSongListError()
+  songListError: selectSongListError()
 });
 
 export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {

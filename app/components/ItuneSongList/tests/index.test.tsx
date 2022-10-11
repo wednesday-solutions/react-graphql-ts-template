@@ -18,19 +18,19 @@ describe('<ItuneSongList/> ', () => {
   };
 
   it('should render and match the snapshot', () => {
-    const { baseElement } = render(<ItuneSongList songData={songData} />);
+    const { baseElement } = render(<ItuneSongList loading={false} songData={songData} />);
     expect(baseElement).toMatchSnapshot();
   });
 
   it('should show the fallbackMessage if the songData is empty', () => {
     const defaultMessage = 'No results found for the search term.';
-    const { getByTestId } = renderWithIntl(<ItuneSongList songData={{}} />);
+    const { getByTestId } = renderWithIntl(<ItuneSongList loading={false} songData={{}} />);
     expect(getByTestId('default-message')).toBeInTheDocument();
     expect(getByTestId('default-message').textContent).toBe(defaultMessage);
   });
 
   it('should render the list for the song when the data is available', () => {
-    const { getByTestId } = render(<ItuneSongList songData={songData} />);
+    const { getByTestId } = render(<ItuneSongList loading={false} songData={songData} />);
     expect(getByTestId('artist-name')).toBeInTheDocument();
   });
 });

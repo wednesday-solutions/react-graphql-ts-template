@@ -1,7 +1,7 @@
 import React from 'react';
 import ItuneSongList from '..';
 import { SongData } from '@app/containers/ItunesContainer/types';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { renderWithIntl } from '@app/utils/testUtils';
 
 describe('<ItuneSongList/> ', () => {
@@ -30,7 +30,17 @@ describe('<ItuneSongList/> ', () => {
   });
 
   it('should render the list for the song when the data is available', () => {
-    const { getByTestId } = render(<ItuneSongList loading={false} songData={songData} />);
-    expect(getByTestId('artist-name')).toBeInTheDocument();
+    const {
+      results: [{ artistName, artworkUrl100, collectionName }]
+    } = songData;
+    render(<ItuneSongList loading={false} songData={songData} />);
+    expect(screen.getByRole('img')).toHaveAttribute('src', artworkUrl100);
+    expect(screen.getByText(artistName)).toBeVisible();
+    expect(screen.getByText(collectionName)).toBeVisible();
+  });
+
+  it('should render the Skeleton Component when loading is true', async () => {
+    const { baseElement } = render(<ItuneSongList songData={songData} loading={true} />);
+    expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
   });
 });

@@ -26,7 +26,6 @@ exports[`<ItuneSongList/>  should render and match the snapshot 1`] = `
         >
           <div
             class="ant-card-meta"
-            data-testid="artist-name"
           >
             <div
               class="ant-card-meta-detail"

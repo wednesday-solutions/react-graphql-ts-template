@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import styled from 'styled-components';
 import { media } from '@app/themes';
 import If from '../If';
-import { isEmpty } from 'lodash-es';
+
 const { Meta } = Card;
 
 export interface ItuneCardProps {
@@ -35,13 +35,13 @@ const StyledImg = styled.img`
 
 const ItuneCard = ({ trackId, artistName, artworkUrl100, collectionName }: ItuneCardProps) => {
   return (
-    <If condition={isEmpty(trackId)}>
+    <If condition={trackId}>
       <CustomCard
         hoverable
         key={trackId}
         cover={<StyledImg src={artworkUrl100} loading="lazy" data-testid="cover-img" />}
       >
-        <Meta data-testid="artist-name" title={artistName} description={collectionName} />
+        <Meta title={artistName} description={collectionName} />
       </CustomCard>
     </If>
   );

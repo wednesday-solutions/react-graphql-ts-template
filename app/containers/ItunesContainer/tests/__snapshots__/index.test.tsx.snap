@@ -22,23 +22,26 @@ exports[`<ItuneContainer /> test should render and match the snapshot 1`] = `
         />
       </div>
       <div
-        class="ant-card ant-card-bordered ItuneSongList__CustomError-sc-1kmczkg-1 goJOMR"
+        class="ant-skeleton ant-skeleton-active"
       >
         <div
-          class="ant-card-body"
+          class="ant-skeleton-content"
         >
-          <p
-            class="T__StyledText-gcrjip-0 gIxZML"
-            data-testid="default-message"
+          <h3
+            class="ant-skeleton-title"
+            style="width: 38%;"
+          />
+          <ul
+            class="ant-skeleton-paragraph"
           >
-            No results found for the search term.
-          </p>
+            <li />
+            <li />
+            <li
+              style="width: 61%;"
+            />
+          </ul>
         </div>
       </div>
-      <p
-        class="T__StyledText-gcrjip-0 gIxZML"
-        data-testid="default-message"
-      />
     </div>
   </div>
 </body>

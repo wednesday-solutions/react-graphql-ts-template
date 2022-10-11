@@ -5,6 +5,7 @@ import { getItune } from '@services/apiUtils';
 export function* fetchDataFromItune(action: any): Generator<any, any> {
   const res: any = yield call(getItune, action.payload);
   const { data, ok, error } = res;
+  console.log(res);
   if (ok) {
     yield put(successGetSongList(data));
   } else {

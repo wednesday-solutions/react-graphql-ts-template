@@ -73,3 +73,5 @@ export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect, injectSaga({ key: 'ituneComponent', saga: ituneCallSaga }))(ItunesContainer);
+
+export const ItunesContainerTest = ItunesContainer;

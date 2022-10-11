@@ -1,8 +1,9 @@
 import React from 'react';
-import { renderProvider } from '@app/utils/testUtils';
+import { renderProvider, timeout } from '@app/utils/testUtils';
 import { ItunesContainerTest as ItunesContainer, mapDispatchToProps } from '..';
 import { requestGetSongList } from '../reducer';
 import { ItuneContainerProps } from '../types';
+import { fireEvent } from '@testing-library/react';
 
 describe('<ItuneContainer /> test', () => {
   let submitSpy: jest.Mock;
@@ -33,7 +34,7 @@ describe('<ItuneContainer /> test', () => {
     expect(getByTestId('search-label')).toBeInTheDocument();
   });
 
-  it('should call the dispatchArtistName onChange', () => {
+  it('should validate the dispatchArtistName action', () => {
     const dispatchArtistNameSpy = jest.fn();
     const artistName = 'Arijit Singh';
     const action = {
@@ -42,5 +43,16 @@ describe('<ItuneContainer /> test', () => {
     const props = mapDispatchToProps(dispatchArtistNameSpy);
     props.dispatchArtistName(artistName);
     expect(dispatchArtistNameSpy).toHaveBeenCalledWith(action.dispatchArtistName);
+  });
+
+  it('should call the dispatchArtistName on change', async () => {
+    const { getByTestId } = renderProvider(
+      <ItunesContainer {...defaultProps} dispatchArtistName={submitSpy} loading={false} />
+    );
+    fireEvent.change(getByTestId('search-bar'), {
+      target: { value: 'Arijit Singh' }
+    });
+    await timeout(500);
+    expect(submitSpy).toBeCalledWith('Arijit Singh');
   });
 });

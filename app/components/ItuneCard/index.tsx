@@ -41,7 +41,10 @@ const ItuneCard = ({ trackId, artistName, artworkUrl100, collectionName }: Itune
         key={trackId}
         cover={<StyledImg src={artworkUrl100} loading="lazy" data-testid="cover-img" />}
       >
-        <Meta data-testid="artist-name" title={artistName} description={collectionName} />
+        <Meta
+          title={<h1 data-testid="artist-name">{artistName}</h1>}
+          description={<p data-testid="collection-name">{collectionName}</p>}
+        />
       </CustomCard>
     </If>
   );

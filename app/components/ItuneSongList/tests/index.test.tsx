@@ -1,7 +1,7 @@
 import React from 'react';
 import ItuneSongList from '..';
 import { SongData } from '@app/containers/ItunesContainer/types';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { renderWithIntl } from '@app/utils/testUtils';
 
 describe('<ItuneSongList/> ', () => {
@@ -18,19 +18,30 @@ describe('<ItuneSongList/> ', () => {
   };
 
   it('should render and match the snapshot', () => {
-    const { baseElement } = render(<ItuneSongList songData={songData} />);
+    const { baseElement } = render(<ItuneSongList loading={false} songData={songData} />);
     expect(baseElement).toMatchSnapshot();
   });
 
   it('should show the fallbackMessage if the songData is empty', () => {
     const defaultMessage = 'No results found for the search term.';
-    const { getByTestId } = renderWithIntl(<ItuneSongList songData={{}} />);
+    const { getByTestId } = renderWithIntl(<ItuneSongList loading={false} songData={{}} />);
     expect(getByTestId('default-message')).toBeInTheDocument();
     expect(getByTestId('default-message').textContent).toBe(defaultMessage);
   });
 
   it('should render the list for the song when the data is available', () => {
-    const { getByTestId } = render(<ItuneSongList songData={songData} />);
-    expect(getByTestId('artist-name')).toBeInTheDocument();
+    const {
+      results: [{ artistName, artworkUrl100, collectionName }]
+    } = songData;
+    const { getByTestId } = render(<ItuneSongList loading={false} songData={songData} />);
+    expect(screen.getByRole('img')).toHaveAttribute('src', artworkUrl100);
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+    expect(getByTestId('artist-name').textContent).toBe(artistName);
+    expect(getByTestId('collection-name').textContent).toBe(collectionName);
+  });
+
+  it('should render the Skeleton Component when loading is true', async () => {
+    const { baseElement } = render(<ItuneSongList songData={songData} loading={true} />);
+    expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
   });
 });

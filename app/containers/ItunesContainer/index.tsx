@@ -47,7 +47,7 @@ const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError 
         <T data-testid="search-label" id="song_search_default" />
         <CustomInput data-testid="search-bar" onChange={(e) => handleOnChange(e)} type="text" />
       </InputContainer>
-      <ItuneSongList songData={songData} />
+      <ItuneSongList loading songData={songData} />
       <ErrorHandler loading={loading} launchListError={songListError} />
     </div>
   );

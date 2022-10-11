@@ -21,7 +21,6 @@ exports[`<ItuneCard /> should render and match the snapshot 1`] = `
       >
         <div
           class="ant-card-meta"
-          data-testid="artist-name"
         >
           <div
             class="ant-card-meta-detail"
@@ -29,12 +28,20 @@ exports[`<ItuneCard /> should render and match the snapshot 1`] = `
             <div
               class="ant-card-meta-title"
             >
-              Yung Xiety
+              <h1
+                data-testid="artist-name"
+              >
+                Yung Xiety
+              </h1>
             </div>
             <div
               class="ant-card-meta-description"
             >
-              Arijit Singh (Mashup) - Single
+              <p
+                data-testid="collection-name"
+              >
+                Arijit Singh (Mashup) - Single
+              </p>
             </div>
           </div>
         </div>
@@ -64,8 +71,26 @@ exports[`<ItuneCard /> should render and match the snapshot when song object is 
       >
         <div
           class="ant-card-meta"
-          data-testid="artist-name"
-        />
+        >
+          <div
+            class="ant-card-meta-detail"
+          >
+            <div
+              class="ant-card-meta-title"
+            >
+              <h1
+                data-testid="artist-name"
+              />
+            </div>
+            <div
+              class="ant-card-meta-description"
+            >
+              <p
+                data-testid="collection-name"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

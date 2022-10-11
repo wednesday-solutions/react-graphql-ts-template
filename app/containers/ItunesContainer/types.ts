@@ -19,6 +19,8 @@ export interface ItuneContainerProps {
     resultCount: number;
     results: Song[];
   };
+  loading: boolean;
+  songListError?: string;
 }
 
 export const ituneResponseGenerator = <Data>(ok: boolean, data: Data, error: object) => ({

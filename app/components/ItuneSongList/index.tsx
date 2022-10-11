@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Row } from 'antd';
+import { Card, Row, Skeleton } from 'antd';
 import { get, isEmpty } from 'lodash-es';
 import styled from 'styled-components';
 import { Song } from '@app/containers/ItunesContainer/types';
@@ -13,6 +13,7 @@ interface ItuneSongListProps {
   songData: {
     results?: Song[];
   };
+  loading: boolean;
 }
 
 const CustomRow = styled(Row)`
@@ -36,7 +37,7 @@ const CustomError = styled(Card)`
   }
 `;
 
-const ItuneSongList = ({ songData }: ItuneSongListProps) => {
+const ItuneSongList = ({ songData, loading }: ItuneSongListProps) => {
   const results = get(songData, 'results', []);
   return (
     <If
@@ -47,12 +48,14 @@ const ItuneSongList = ({ songData }: ItuneSongListProps) => {
         </CustomError>
       }
     >
-      <For
-        ParentComponent={CustomRow}
-        renderItem={(song: Song) => <ItuneCard {...song} />}
-        of={results}
-        noParent={false}
-      />
+      <Skeleton loading={loading} active>
+        <For
+          ParentComponent={CustomRow}
+          renderItem={(song: Song) => <ItuneCard {...song} />}
+          of={results}
+          noParent={false}
+        />
+      </Skeleton>
     </If>
   );
 };

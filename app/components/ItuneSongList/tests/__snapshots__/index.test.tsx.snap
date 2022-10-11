@@ -33,20 +33,12 @@ exports[`<ItuneSongList/>  should render and match the snapshot 1`] = `
               <div
                 class="ant-card-meta-title"
               >
-                <h1
-                  data-testid="artist-name"
-                >
-                  Yung Xiety
-                </h1>
+                Yung Xiety
               </div>
               <div
                 class="ant-card-meta-description"
               >
-                <p
-                  data-testid="collection-name"
-                >
-                  Arijit Singh (Mashup) - Single
-                </p>
+                Arijit Singh (Mashup) - Single
               </div>
             </div>
           </div>

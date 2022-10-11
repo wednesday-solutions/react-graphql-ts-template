@@ -35,7 +35,6 @@ describe('<ItuneSongList/> ', () => {
     } = songData;
     render(<ItuneSongList loading={false} songData={songData} />);
     expect(screen.getByRole('img')).toHaveAttribute('src', artworkUrl100);
-    expect(screen.getByRole('heading')).toBeInTheDocument();
     expect(screen.getByText(artistName)).toBeVisible();
     expect(screen.getByText(collectionName)).toBeVisible();
   });

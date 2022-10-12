@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Card, Row, Skeleton } from 'antd';
 import { get, isEmpty } from 'lodash-es';
 import styled from 'styled-components';
@@ -40,6 +40,7 @@ const CustomError = styled(Card)`
 const ItuneSongList = ({ songData, loading }: ItuneSongListProps) => {
   const [currentTrackId, setCurrentTrackId] = useState(0);
   const results = get(songData, 'results', []);
+  const handleOnPlay = useCallback((trackId) => setCurrentTrackId(trackId), [currentTrackId]);
   return (
     <If
       condition={!isEmpty(results)}
@@ -53,7 +54,7 @@ const ItuneSongList = ({ songData, loading }: ItuneSongListProps) => {
         <For
           ParentComponent={CustomRow}
           renderItem={(song: Song) => (
-            <ItuneCard {...song} currentTrackId={currentTrackId} setCurrentTrackId={setCurrentTrackId} />
+            <ItuneCard {...song} currentTrackId={currentTrackId} handleOnPlay={handleOnPlay} />
           )}
           of={results}
           noParent={false}

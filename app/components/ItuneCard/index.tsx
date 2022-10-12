@@ -13,7 +13,7 @@ export interface ItuneCardProps {
   collectionName: string;
   previewUrl: string;
   currentTrackId: number;
-  setCurrentTrackId: (number: any) => any;
+  handleOnPlay: (number: any) => any;
 }
 
 const CustomCard = styled(Card)`
@@ -56,15 +56,14 @@ const ItuneCard = ({
   collectionName,
   previewUrl,
   currentTrackId,
-  setCurrentTrackId
+  handleOnPlay
 }: ItuneCardProps) => {
-  const audioRef = useRef(new Audio(previewUrl));
-
+  const audioRef = useRef(null);
   useEffect(() => {
-    if (currentTrackId === trackId) {
-      audioRef.current.play();
-    } else {
-      audioRef.current.pause();
+    if (audioRef.current) {
+      if (currentTrackId !== trackId) {
+        audioRef.current?.pause();
+      }
     }
   }, [currentTrackId]);
   return (
@@ -76,7 +75,13 @@ const ItuneCard = ({
         cover={<StyledImg src={artworkUrl100} loading="lazy" data-testid="cover-img" />}
       >
         <StyledMeta title={artistName} description={collectionName} />
-        <StyledAudio onPlay={() => setCurrentTrackId(trackId)} ref={audioRef} controls src={previewUrl}>
+        <StyledAudio
+          data-testid="audio-element"
+          onPlay={() => handleOnPlay(trackId)}
+          ref={audioRef}
+          controls
+          src={previewUrl}
+        >
           <a href={previewUrl}>Audio Preview</a>
         </StyledAudio>
       </CustomCard>
@@ -84,4 +89,4 @@ const ItuneCard = ({
   );
 };
 
-export default ItuneCard;
+export default React.memo(ItuneCard);

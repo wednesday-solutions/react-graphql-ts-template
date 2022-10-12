@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Skeleton } from 'antd';
 import { get, isEmpty } from 'lodash-es';
 import styled from 'styled-components';
@@ -38,6 +38,7 @@ const CustomError = styled(Card)`
 `;
 
 const ItuneSongList = ({ songData, loading }: ItuneSongListProps) => {
+  const [currentTrackId, setCurrentTrackId] = useState(0);
   const results = get(songData, 'results', []);
   return (
     <If
@@ -51,7 +52,9 @@ const ItuneSongList = ({ songData, loading }: ItuneSongListProps) => {
       <Skeleton loading={loading} active>
         <For
           ParentComponent={CustomRow}
-          renderItem={(song: Song) => <ItuneCard {...song} />}
+          renderItem={(song: Song) => (
+            <ItuneCard {...song} currentTrackId={currentTrackId} setCurrentTrackId={setCurrentTrackId} />
+          )}
           of={results}
           noParent={false}
         />

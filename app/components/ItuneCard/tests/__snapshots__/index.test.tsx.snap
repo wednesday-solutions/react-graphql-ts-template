@@ -18,9 +18,10 @@ exports[`<ItuneCard /> should render and match the snapshot 1`] = `
       </div>
       <div
         class="ant-card-body"
+        style="padding: 10px;"
       >
         <div
-          class="ant-card-meta"
+          class="ant-card-meta ItuneCard__StyledMeta-sc-1g3ywlw-3 gbJaIc"
         >
           <div
             class="ant-card-meta-detail"
@@ -37,6 +38,14 @@ exports[`<ItuneCard /> should render and match the snapshot 1`] = `
             </div>
           </div>
         </div>
+        <audio
+          class="ItuneCard__StyledAudio-sc-1g3ywlw-2 eNEDhx"
+          controls=""
+        >
+          <a>
+            Audio Preview
+          </a>
+        </audio>
       </div>
     </div>
   </div>

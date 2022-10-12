@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ItuneContainer /> test should render and match the snapshot 1`] = `
+<body>
+  <div>
+    <div>
+      <div
+        class="ItunesContainer__InputContainer-sc-1mn0u29-0 cWHxEw"
+      >
+        <p
+          class="T__StyledText-gcrjip-0 gIxZML"
+          data-testid="search-label"
+        >
+          Search your favourite singer
+        </p>
+        <input
+          aria-label="input-element"
+          class="ant-input ItunesContainer__CustomInput-sc-1mn0u29-1 gSSPZi"
+          data-testid="search-bar"
+          type="text"
+          value=""
+        />
+      </div>
+      <div
+        class="ant-skeleton ant-skeleton-active"
+      >
+        <div
+          class="ant-skeleton-content"
+        >
+          <h3
+            class="ant-skeleton-title"
+            style="width: 38%;"
+          />
+          <ul
+            class="ant-skeleton-paragraph"
+          >
+            <li />
+            <li />
+            <li
+              style="width: 61%;"
+            />
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;

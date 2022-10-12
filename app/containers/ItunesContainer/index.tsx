@@ -45,7 +45,12 @@ const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError 
     <div>
       <InputContainer>
         <T data-testid="search-label" id="song_search_default" />
-        <CustomInput data-testid="search-bar" onChange={(e) => handleOnChange(e)} type="text" />
+        <CustomInput
+          data-testid="search-bar"
+          aria-label="input-element"
+          onChange={(e) => handleOnChange(e)}
+          type="text"
+        />
       </InputContainer>
       <ItuneSongList loading={loading} songData={songData} />
       <ErrorHandler loading={loading} launchListError={songListError} />
@@ -68,3 +73,5 @@ export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect, injectSaga({ key: 'ituneComponent', saga: ituneCallSaga }))(ItunesContainer);
+
+export const ItunesContainerTest = ItunesContainer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import ItuneCard from '..';
 import { Song } from '@app/containers/ItunesContainer/types';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 const mockPause = jest.fn();
 jest.mock('react', () => ({
@@ -53,8 +53,9 @@ describe('<ItuneCard />', () => {
   });
 
   it('should check that song pause when pause() is trigger', () => {
-    const { getByTestId } = render(<ItuneCard {...song} currentTrackId={1} handleOnPlay={submitSpy} />);
+    const { rerender, getByTestId } = render(<ItuneCard {...song} currentTrackId={1} handleOnPlay={submitSpy} />);
+    rerender(<ItuneCard {...song} currentTrackId={2} handleOnPlay={submitSpy} />);
     fireEvent.pause(getByTestId('audio-element'));
-    expect(mockPause).toHaveBeenCalledTimes(0);
+    waitFor(() => expect(mockPause).toHaveBeenCalledTimes(1));
   });
 });

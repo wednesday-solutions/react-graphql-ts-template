@@ -3,6 +3,18 @@ import ItuneCard from '..';
 import { Song } from '@app/containers/ItunesContainer/types';
 import { fireEvent, render, screen } from '@testing-library/react';
 
+const mockPause = jest.fn();
+jest.mock('react', () => ({
+  ...jest.requireActual('react'),
+  useRef: () => ({
+    ref: {
+      current: {
+        pause: mockPause
+      }
+    }
+  })
+}));
+
 describe('<ItuneCard />', () => {
   let submitSpy: jest.Mock;
   let song: Song;
@@ -40,9 +52,9 @@ describe('<ItuneCard />', () => {
     expect(submitSpy).toBeCalledWith(1);
   });
 
-  it('should call the handleOnPlay function and pause song', () => {
+  it('should check that song pause when pause() is trigger', () => {
     const { getByTestId } = render(<ItuneCard {...song} currentTrackId={1} handleOnPlay={submitSpy} />);
     fireEvent.pause(getByTestId('audio-element'));
-    expect(submitSpy).not.toBeCalledWith(0);
+    expect(mockPause).toHaveBeenCalledTimes(0);
   });
 });

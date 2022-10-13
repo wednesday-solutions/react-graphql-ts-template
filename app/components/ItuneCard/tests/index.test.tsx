@@ -3,17 +3,23 @@ import ItuneCard from '..';
 import { Song } from '@app/containers/ItunesContainer/types';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
-const mockPause = jest.fn();
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useRef: () => ({
-    ref: {
-      current: {
-        pause: mockPause
-      }
-    }
-  })
-}));
+let mockPause: jest.Mock<any, any>;
+jest.mock('styled-components', () => {
+  const actualStyled = jest.requireActual('styled-components');
+  const react = jest.requireActual('react');
+  mockPause = jest.fn();
+  actualStyled.default.audio.withConfig = function () {
+    return () => {
+      return react.forwardRef((props: any, ref: any) => {
+        ref.current = {
+          pause: mockPause
+        };
+        return <audio {...props} />;
+      });
+    };
+  };
+  return actualStyled;
+});
 
 describe('<ItuneCard />', () => {
   let submitSpy: jest.Mock;
@@ -52,10 +58,10 @@ describe('<ItuneCard />', () => {
     expect(submitSpy).toBeCalledWith(1);
   });
 
-  it('should check that song pause when pause() is trigger', () => {
+  it('should check that song pause when pause() is trigger', async () => {
     const { rerender, getByTestId } = render(<ItuneCard {...song} currentTrackId={1} handleOnPlay={submitSpy} />);
     rerender(<ItuneCard {...song} currentTrackId={2} handleOnPlay={submitSpy} />);
     fireEvent.pause(getByTestId('audio-element'));
-    waitFor(() => expect(mockPause).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(mockPause).toHaveBeenCalledTimes(2));
   });
 });

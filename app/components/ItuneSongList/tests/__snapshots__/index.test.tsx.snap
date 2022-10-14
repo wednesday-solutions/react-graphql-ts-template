@@ -23,9 +23,10 @@ exports[`<ItuneSongList/>  should render and match the snapshot 1`] = `
         </div>
         <div
           class="ant-card-body"
+          style="padding: 10px;"
         >
           <div
-            class="ant-card-meta"
+            class="ant-card-meta ItuneCard__StyledMeta-sc-1g3ywlw-3 gbJaIc"
           >
             <div
               class="ant-card-meta-detail"
@@ -42,6 +43,18 @@ exports[`<ItuneSongList/>  should render and match the snapshot 1`] = `
               </div>
             </div>
           </div>
+          <audio
+            class="ItuneCard__StyledAudio-sc-1g3ywlw-2 eNEDhx"
+            controls=""
+            data-testid="audio-element"
+            src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/90/d6/0d/90d60d3b-2b95-8c84-f9aa-f69a2793d22c/mzaf_17815855687762407827.plus.aac.p.m4a"
+          >
+            <a
+              href="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview122/v4/90/d6/0d/90d60d3b-2b95-8c84-f9aa-f69a2793d22c/mzaf_17815855687762407827.plus.aac.p.m4a"
+            >
+              Audio Preview
+            </a>
+          </audio>
         </div>
       </div>
     </div>

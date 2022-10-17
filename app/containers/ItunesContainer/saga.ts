@@ -3,12 +3,15 @@ import { requestGetSongList, successGetSongList, failureGetSongList } from './re
 import { getItune } from '@services/apiUtils';
 
 export function* fetchDataFromItune(action: any): Generator<any, any> {
-  const res: any = yield call(getItune, action.payload);
-  const { data, ok, error } = res;
-  if (ok) {
-    yield put(successGetSongList(data));
-  } else {
-    yield put(failureGetSongList(error));
+  const { artistName, pageNumber, pageSize } = action.payload;
+  if (artistName !== null) {
+    const res: any = yield call(getItune, { artistName, pageNumber, pageSize });
+    const { data, ok, error } = res;
+    if (ok) {
+      yield put(successGetSongList(data));
+    } else {
+      yield put(failureGetSongList(error));
+    }
   }
 }
 

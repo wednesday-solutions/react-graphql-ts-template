@@ -55,6 +55,6 @@ describe('<ItuneContainer /> test', () => {
       target: { value: 'Arijit Singh' }
     });
     await timeout(500);
-    expect(submitSpy).toBeCalledWith('Arijit Singh');
+    expect(submitSpy).toBeCalledWith({ artistName: 'Arijit Singh' });
   });
 });

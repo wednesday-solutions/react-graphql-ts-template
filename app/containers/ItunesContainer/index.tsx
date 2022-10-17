@@ -3,16 +3,18 @@ import debounce from 'lodash-es/debounce';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
-import { compose } from '@reduxjs/toolkit';
+import { AnyAction, compose } from '@reduxjs/toolkit';
 import { selectSongListError, selectLoading, selectSongData } from './selector';
 import { requestGetSongList } from './reducer';
 import ituneCallSaga from './saga';
 import { ItuneContainerProps } from './types';
 import ItuneSongList from '@app/components/ItuneSongList';
 import styled from 'styled-components';
-import { Input } from 'antd';
+import { Input, Pagination, PaginationProps } from 'antd';
 import { media } from '@app/themes';
 import { ErrorHandler, T } from '@app/components';
+import history from '@app/utils/history';
+import { setQueryParam } from '@app/utils';
 
 const InputContainer = styled.div`
   && {
@@ -34,10 +36,17 @@ const CustomInput = styled(Input)`
 `;
 
 const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError }: ItuneContainerProps) => {
+  const artistName = new URLSearchParams(history.location.search).get('artist_name');
+  const setArtistName = (artistName: string) => setQueryParam({ param: 'artist_name', value: artistName });
+
+  const handlePaginationOnChange: PaginationProps['onChange'] = (pageNumber: number, pageSize) => {
+    dispatchArtistName({ artistName, pageNumber, pageSize });
+  };
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
-    const artistSearch = e.target.value;
-    if (artistSearch.trim()) {
-      dispatchArtistName(artistSearch);
+    const artistName = e.target.value;
+    if (artistName.trim()) {
+      setArtistName(artistName);
+      dispatchArtistName({ artistName });
     }
   }, 500);
 
@@ -54,6 +63,7 @@ const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError 
       </InputContainer>
       <ItuneSongList loading={loading} songData={songData} />
       <ErrorHandler loading={loading} launchListError={songListError} />
+      <Pagination onChange={handlePaginationOnChange} defaultCurrent={1} total={50} />
     </div>
   );
 };
@@ -64,7 +74,7 @@ const mapStateToProps = createStructuredSelector({
   songListError: selectSongListError()
 });
 
-export function mapDispatchToProps(dispatch: (arg0: { type: string }) => void) {
+export function mapDispatchToProps(dispatch: (arg0: AnyAction) => void) {
   return {
     dispatchArtistName: (payload: string) => dispatch(requestGetSongList(payload))
   };

@@ -14,14 +14,22 @@ describe('ItuneContainer saga tests', () => {
 
   it('should ensure that the action FAILURE_GET_SEARCH_TERM is dispatched when the api calls fails', () => {
     const res = getSongListGenerator.next().value;
-    expect(res).toEqual(call(getItune, null));
+    const requestObj = {
+      artistName: '',
+      pageNumber: 0,
+      pageSize: 0
+    };
+    const { artistName, pageNumber, pageSize } = requestObj;
+    expect(res).toEqual(call(getItune, { artistName, pageNumber, pageSize }));
   });
 
   it('should ensure that the action SUCCESS_GET_SEARCH_TEERM is dispatched when the api calls succeeds', () => {
     const artistName = 'Arijit Singh';
-    const getSongListGenerator = fetchDataFromItune({ payload: artistName });
+    const getSongListGenerator = fetchDataFromItune({
+      payload: { artistName: artistName, pageNumber: 1, pageSize: 10 }
+    });
     const res = getSongListGenerator.next().value;
-    expect(res).toEqual(call(getItune, artistName));
+    expect(res).toEqual(call(getItune, { artistName: artistName, pageNumber: 1, pageSize: 10 }));
     const apiResponse = [
       {
         trackId: 1,

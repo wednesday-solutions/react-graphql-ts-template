@@ -29,7 +29,7 @@ describe('ItuneContainer saga tests', () => {
       payload: { artistName: artistName, pageNumber: 1, pageSize: 10 }
     });
     const res = getSongListGenerator.next().value;
-    expect(res).toEqual(call(getItune, { artistName: artistName, pageNumber: 1, pageSize: 10 }));
+    expect(res).toEqual(call(getItune, { artistName, pageNumber: 1, pageSize: 10 }));
     const apiResponse = [
       {
         trackId: 1,

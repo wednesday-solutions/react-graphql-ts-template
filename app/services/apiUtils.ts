@@ -7,5 +7,7 @@ type ApiParamProps = {
   pageSize: number;
 };
 
-export const getItune = ({ artistName, pageNumber = 1, pageSize = 10 }: ApiParamProps) =>
-  ituneApi.get(`/search?term=${artistName}&offset=${pageNumber}&limit=${pageSize}`);
+export const getItune = (parms: ApiParamProps) => {
+  const { artistName, pageNumber, pageSize } = parms;
+  return ituneApi.get(`/search?term=${artistName}&offset=${pageNumber}&limit=${pageSize}`);
+};

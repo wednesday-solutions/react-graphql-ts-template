@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import debounce from 'lodash-es/debounce';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
@@ -13,8 +13,7 @@ import styled from 'styled-components';
 import { Input, Pagination, PaginationProps } from 'antd';
 import { media } from '@app/themes';
 import { ErrorHandler, T } from '@app/components';
-import history from '@app/utils/history';
-import { setQueryParam } from '@app/utils';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const InputContainer = styled.div`
   && {
@@ -36,16 +35,32 @@ const CustomInput = styled(Input)`
 `;
 
 const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError }: ItuneContainerProps) => {
-  const artistName = new URLSearchParams(history.location.search).get('artist_name');
-  const setArtistName = (artistName: string) => setQueryParam({ param: 'artist_name', value: artistName });
+  const [paginationParams, setPaginationParams] = useState({ pageNumber: 1, pageSize: 10 });
+  const history = useHistory();
+  const location = useLocation();
+  const artistName = location.pathname.slice(1);
+  console.log(artistName, location);
+  const { pageNumber, pageSize } = paginationParams;
 
   const handlePaginationOnChange: PaginationProps['onChange'] = (pageNumber: number, pageSize) => {
-    dispatchArtistName({ artistName, pageNumber, pageSize });
+    if (pageNumber !== undefined) {
+      setPaginationParams((prev) => ({ ...prev, pageNumber }));
+    }
+    if (pageSize !== undefined) {
+      setPaginationParams((prev) => ({ ...prev, pageSize }));
+    }
   };
+
+  useEffect(() => {
+    if (artistName !== undefined) {
+      dispatchArtistName({ artistName, pageNumber, pageSize });
+    }
+  }, [artistName, pageNumber, pageSize]);
+
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const artistName = e.target.value;
     if (artistName.trim()) {
-      setArtistName(artistName);
+      history.push(`/${artistName}`);
       dispatchArtistName({ artistName });
     }
   }, 500);

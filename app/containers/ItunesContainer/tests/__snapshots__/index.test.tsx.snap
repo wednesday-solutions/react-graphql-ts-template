@@ -43,7 +43,7 @@ exports[`<ItuneContainer /> test should render and match the snapshot 1`] = `
         </div>
       </div>
       <ul
-        class="ant-pagination"
+        class="ant-pagination ItunesContainer__CustomPagination-sc-1mn0u29-2 hzRSsv"
         unselectable="unselectable"
       >
         <li

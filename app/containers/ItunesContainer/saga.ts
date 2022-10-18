@@ -4,14 +4,12 @@ import { getItune } from '@services/apiUtils';
 
 export function* fetchDataFromItune(action: any): Generator<any, any> {
   const { artistName, pageNumber, pageSize } = action.payload ?? { artistName: '', pageNumber: 0, pageSize: 0 };
-  if (artistName !== null) {
-    const res: any = yield call(getItune, { artistName, pageNumber, pageSize });
-    const { data, ok, error } = res;
-    if (ok) {
-      yield put(successGetSongList(data));
-    } else {
-      yield put(failureGetSongList(error));
-    }
+  const res: any = yield call(getItune, { artistName, pageNumber, pageSize });
+  const { data, ok, error } = res;
+  if (ok) {
+    yield put(successGetSongList(data));
+  } else {
+    yield put(failureGetSongList(error));
   }
 }
 

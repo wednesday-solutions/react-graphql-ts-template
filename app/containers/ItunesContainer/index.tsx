@@ -34,12 +34,17 @@ const CustomInput = styled(Input)`
   }
 `;
 
+const CustomPagination = styled(Pagination)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError }: ItuneContainerProps) => {
   const [paginationParams, setPaginationParams] = useState({ pageNumber: 1, pageSize: 10 });
   const history = useHistory();
   const location = useLocation();
   const artistName = location.pathname.slice(1);
-  console.log(artistName, location);
   const { pageNumber, pageSize } = paginationParams;
 
   const handlePaginationOnChange: PaginationProps['onChange'] = (pageNumber: number, pageSize) => {
@@ -78,7 +83,7 @@ const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError 
       </InputContainer>
       <ItuneSongList loading={loading} songData={songData} />
       <ErrorHandler loading={loading} launchListError={songListError} />
-      <Pagination onChange={handlePaginationOnChange} defaultCurrent={1} total={50} />
+      <CustomPagination onChange={handlePaginationOnChange} defaultCurrent={1} total={50} />
     </div>
   );
 };

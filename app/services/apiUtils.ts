@@ -1,5 +1,5 @@
-import { generateApiClient } from '@app/utils/apiUtils';
-const ituneApi = generateApiClient('itune');
+import { create } from 'apisauce';
+const api = create({ baseURL: 'https://itunes.apple.com' });
 
 type ApiParamProps = {
   artistName: string;
@@ -7,7 +7,11 @@ type ApiParamProps = {
   pageSize: number;
 };
 
-export const getItune = (parms: ApiParamProps) => {
-  const { artistName, pageNumber, pageSize } = parms;
-  return ituneApi.get(`/search?term=${artistName}&offset=${pageNumber}&limit=${pageSize}`);
+export const getItune = (params: ApiParamProps) => {
+  const { artistName, pageNumber, pageSize } = params;
+  return api.get('https://itunes.apple.com/search', {
+    term: artistName,
+    offset: pageNumber,
+    limit: pageSize
+  });
 };

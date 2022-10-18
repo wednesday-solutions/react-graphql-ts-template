@@ -27,8 +27,7 @@ const ituneSlice = createSlice({
       prepare
     },
     successGetSongList: (state, action) => {
-      state.songData.results = action.payload?.results;
-      state.songData = action.payload;
+      state.songData.results = action.payload.results;
       state.songListError = '';
       state.loading = false;
     },

@@ -61,7 +61,6 @@ const ItuneCard = ({
 }: ItuneCardProps) => {
   const history = useHistory();
   const goToSongdetails = () => history.push(`/song/${trackId}`);
-  console.log(trackId, 'IN card', history);
   const audioRef = useRef(null);
   useEffect(() => {
     if (audioRef.current) {

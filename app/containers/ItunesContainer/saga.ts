@@ -1,5 +1,5 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { requestGetSongList, successGetSongList, failureGetSongList } from './reducer';
+import { requestGetSongList, successGetSongList, failureGetSongList } from '../SongProviderContainer/reducer';
 import { getItune } from '@services/apiUtils';
 
 export function* fetchDataFromItune(action: any): Generator<any, any> {

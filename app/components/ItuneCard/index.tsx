@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { Card } from 'antd';
 import styled from 'styled-components';
 import { media } from '@app/themes';
+import { useHistory } from 'react-router-dom';
 import If from '../If';
 
 const { Meta } = Card;
@@ -58,6 +59,9 @@ const ItuneCard = ({
   currentTrackId,
   handleOnPlay
 }: ItuneCardProps) => {
+  const history = useHistory();
+  const goToSongdetails = () => history.push(`/song/${trackId}`);
+  console.log(trackId, 'IN card', history);
   const audioRef = useRef(null);
   useEffect(() => {
     if (audioRef.current) {
@@ -69,6 +73,7 @@ const ItuneCard = ({
   return (
     <If condition={trackId}>
       <CustomCard
+        onClick={goToSongdetails}
         hoverable
         key={trackId}
         bodyStyle={{ padding: '10px' }}

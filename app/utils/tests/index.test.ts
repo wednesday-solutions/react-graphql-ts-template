@@ -11,7 +11,7 @@ describe('Tests for getCurrentRouteDetails method', () => {
 
   it('should return the details of the route', () => {
     const location = { pathname: '/' };
-    expect(getCurrentRouteDetails(location)).toEqual(routeConstants.home);
+    expect(getCurrentRouteDetails(location)).toEqual(routeConstants.itune);
   });
 
   it('should return null of the route if pathname is not in routeConstants', () => {

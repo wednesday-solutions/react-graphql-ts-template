@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { injectSaga } from 'redux-injectors';
 import { AnyAction, compose } from '@reduxjs/toolkit';
 import { selectSongListError, selectLoading, selectSongData } from './selector';
-import { requestGetSongList } from './reducer';
+import { requestGetSongList } from '../SongProviderContainer/reducer';
 import ituneCallSaga from './saga';
 import { ItuneContainerProps, RequestSongListActionPayload } from './types';
 import ItuneSongList from '@app/components/ItuneSongList';
@@ -13,7 +13,8 @@ import styled from 'styled-components';
 import { Input, Pagination, PaginationProps } from 'antd';
 import { media } from '@app/themes';
 import { ErrorHandler, T } from '@app/components';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { setQueryParam } from '@app/utils';
 
 const InputContainer = styled.div`
   && {
@@ -43,8 +44,8 @@ const CustomPagination = styled(Pagination)`
 const ItunesContainer = ({ dispatchSongList, songData, loading, songListError }: ItuneContainerProps) => {
   const [paginationParams, setPaginationParams] = useState({ pageNumber: 1, pageSize: 10 });
   const history = useHistory();
-  const location = useLocation();
-  const artistName = location.pathname.slice(1);
+  const artistName = new URLSearchParams(history.location.search).get('artist_name');
+  const setArtistName = (artistName: string) => setQueryParam({ param: 'artist_name', value: artistName });
   const { pageNumber, pageSize } = paginationParams;
 
   const handlePaginationOnChange: PaginationProps['onChange'] = (pageNumber: number, pageSize) => {
@@ -65,7 +66,7 @@ const ItunesContainer = ({ dispatchSongList, songData, loading, songListError }:
   const handleOnChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
     const artistName = e.target.value;
     if (artistName.trim()) {
-      history.push(`/${artistName}`);
+      setArtistName(artistName);
       dispatchSongList({ artistName });
     }
   }, 500);

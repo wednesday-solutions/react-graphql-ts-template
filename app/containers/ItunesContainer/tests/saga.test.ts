@@ -1,7 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { getItune } from '@app/services/apiUtils';
 import { apiResponseGenerator } from '@app/utils/testUtils';
-import { requestGetSongList, successGetSongList } from '../reducer';
+import { requestGetSongList, successGetSongList } from '@app/containers/SongProviderContainer/reducer';
 import ituneCallSaga, { fetchDataFromItune } from '../saga';
 
 describe('ItuneContainer saga tests', () => {

@@ -14,6 +14,8 @@ export interface SongData {
 
 export interface RequestSongListActionPayload {
   artistName: string;
+  pageNumber: number;
+  pageSize: number;
 }
 export type SongActionCreator = (payload: any) => AnyAction;
 

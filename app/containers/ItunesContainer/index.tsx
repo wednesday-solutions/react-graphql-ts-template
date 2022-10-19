@@ -7,7 +7,7 @@ import { AnyAction, compose } from '@reduxjs/toolkit';
 import { selectSongListError, selectLoading, selectSongData } from './selector';
 import { requestGetSongList } from './reducer';
 import ituneCallSaga from './saga';
-import { ItuneContainerProps } from './types';
+import { ItuneContainerProps, RequestSongListActionPayload } from './types';
 import ItuneSongList from '@app/components/ItuneSongList';
 import styled from 'styled-components';
 import { Input, Pagination, PaginationProps } from 'antd';
@@ -45,7 +45,6 @@ const ItunesContainer = ({ dispatchSongList, songData, loading, songListError }:
   const history = useHistory();
   const location = useLocation();
   const artistName = location.pathname.slice(1);
-  console.log(artistName, location);
   const { pageNumber, pageSize } = paginationParams;
 
   const handlePaginationOnChange: PaginationProps['onChange'] = (pageNumber: number, pageSize) => {
@@ -95,9 +94,9 @@ const mapStateToProps = createStructuredSelector({
   songListError: selectSongListError()
 });
 
-export function mapDispatchToProps(dispatch: (arg0: AnyAction) => void) {
+export function mapDispatchToProps(dispatch: (arg0: AnyAction) => any) {
   return {
-    dispatchSongList: (payload: string) => dispatch(requestGetSongList(payload))
+    dispatchSongList: (payload: RequestSongListActionPayload) => dispatch(requestGetSongList(payload))
   };
 }
 

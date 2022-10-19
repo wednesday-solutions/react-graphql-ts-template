@@ -36,15 +36,19 @@ describe('<ItuneContainer /> test', () => {
     expect(getByTestId('search-label')).toBeInTheDocument();
   });
 
-  it('should validate the dispatchArtistName action', () => {
-    const dispatchArtistNameSpy = jest.fn();
-    const artistName = 'Arijit Singh';
-    const action = {
-      dispatchArtistName: requestGetSongList(artistName)
+  it('should validate the mapDispatchToProps action', () => {
+    const dispatchSongListSpy = jest.fn();
+    const payload = {
+      artistName: 'Arijit Singh',
+      pageNumber: 1,
+      pageSize: 10
     };
-    const props = mapDispatchToProps(dispatchArtistNameSpy);
-    props.dispatchSongList(artistName);
-    expect(dispatchArtistNameSpy).toHaveBeenCalledWith(action.dispatchArtistName);
+    const action = {
+      dispatchArtistName: requestGetSongList(payload)
+    };
+    const props = mapDispatchToProps(dispatchSongListSpy);
+    props.dispatchSongList(payload);
+    expect(dispatchSongListSpy).toHaveBeenCalledWith(action.dispatchArtistName);
   });
 
   it('should call the dispatchArtistName on change', async () => {

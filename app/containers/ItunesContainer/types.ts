@@ -18,7 +18,7 @@ export interface RequestSongListActionPayload {
 export type SongActionCreator = (payload: any) => AnyAction;
 
 export interface ItuneContainerProps {
-  dispatchArtistName: SongActionCreator;
+  dispatchSongList: SongActionCreator;
   songData: {
     results: Song[];
   };

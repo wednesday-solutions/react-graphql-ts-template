@@ -1,5 +1,5 @@
 import { create } from 'apisauce';
-const api = create({ baseURL: 'https://itunes.apple.com' });
+const api = create({ baseURL: process.env.ITUNE_URL });
 
 type ApiParamProps = {
   artistName: string;
@@ -9,7 +9,7 @@ type ApiParamProps = {
 
 export const getItune = (params: ApiParamProps) => {
   const { artistName, pageNumber, pageSize } = params;
-  return api.get('https://itunes.apple.com/search', {
+  return api.get('/search', {
     term: artistName,
     offset: pageNumber,
     limit: pageSize

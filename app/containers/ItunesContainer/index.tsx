@@ -40,11 +40,12 @@ const CustomPagination = styled(Pagination)`
   justify-content: center;
 `;
 
-const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError }: ItuneContainerProps) => {
+const ItunesContainer = ({ dispatchSongList, songData, loading, songListError }: ItuneContainerProps) => {
   const [paginationParams, setPaginationParams] = useState({ pageNumber: 1, pageSize: 10 });
   const history = useHistory();
   const location = useLocation();
   const artistName = location.pathname.slice(1);
+  console.log(artistName, location);
   const { pageNumber, pageSize } = paginationParams;
 
   const handlePaginationOnChange: PaginationProps['onChange'] = (pageNumber: number, pageSize) => {
@@ -58,7 +59,7 @@ const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError 
 
   useEffect(() => {
     if (artistName !== undefined) {
-      dispatchArtistName({ artistName, pageNumber, pageSize });
+      dispatchSongList({ artistName, pageNumber, pageSize });
     }
   }, [artistName, pageNumber, pageSize]);
 
@@ -66,7 +67,7 @@ const ItunesContainer = ({ dispatchArtistName, songData, loading, songListError 
     const artistName = e.target.value;
     if (artistName.trim()) {
       history.push(`/${artistName}`);
-      dispatchArtistName({ artistName });
+      dispatchSongList({ artistName });
     }
   }, 500);
 
@@ -96,7 +97,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch: (arg0: AnyAction) => void) {
   return {
-    dispatchArtistName: (payload: string) => dispatch(requestGetSongList(payload))
+    dispatchSongList: (payload: string) => dispatch(requestGetSongList(payload))
   };
 }
 

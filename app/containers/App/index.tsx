@@ -9,10 +9,14 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { compose } from 'redux';
-import ItunesContainer from '../ItunesContainer';
+// import ItunesContainer from '../ItunesContainer';
+import map from 'lodash-es/map';
 import { ThemeProvider } from 'styled-components';
 import { colors } from '@app/themes';
 import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
+import { For } from '@app/components';
+import { routeConfig } from '@app/routeConfig';
+import { Route, Switch } from 'react-router-dom';
 const theme = {
   fg: colors.primary,
   bg: colors.secondaryText,
@@ -23,7 +27,27 @@ const theme = {
 export function App() {
   return (
     <ThemeProvider theme={theme}>
-      <ItunesContainer />
+      <For
+        ParentComponent={(props) => <Switch {...props} />}
+        of={map(Object.keys(routeConfig))}
+        renderItem={(routeKey, index) => {
+          const Component = routeConfig[routeKey].component;
+          return (
+            <Route
+              exact={routeConfig[routeKey].exact}
+              key={index}
+              path={routeConfig[routeKey].route}
+              render={(props) => {
+                const updatedProps = {
+                  ...props,
+                  ...routeConfig[routeKey].props
+                };
+                return <Component {...updatedProps} />;
+              }}
+            />
+          );
+        }}
+      />
     </ThemeProvider>
   );
 }

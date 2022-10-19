@@ -12,7 +12,7 @@ describe('<ItuneContainer /> test', () => {
   beforeEach(() => {
     submitSpy = jest.fn();
     defaultProps = {
-      dispatchArtistName: submitSpy,
+      dispatchSongList: submitSpy,
       loading: true,
       songData: {
         results: [
@@ -43,13 +43,13 @@ describe('<ItuneContainer /> test', () => {
       dispatchArtistName: requestGetSongList(artistName)
     };
     const props = mapDispatchToProps(dispatchArtistNameSpy);
-    props.dispatchArtistName(artistName);
+    props.dispatchSongList(artistName);
     expect(dispatchArtistNameSpy).toHaveBeenCalledWith(action.dispatchArtistName);
   });
 
   it('should call the dispatchArtistName on change', async () => {
     const { getByTestId } = renderProvider(
-      <ItunesContainer {...defaultProps} dispatchArtistName={submitSpy} loading={false} />
+      <ItunesContainer {...defaultProps} dispatchSongList={submitSpy} loading={false} />
     );
     fireEvent.change(getByTestId('search-bar'), {
       target: { value: 'Arijit Singh' }

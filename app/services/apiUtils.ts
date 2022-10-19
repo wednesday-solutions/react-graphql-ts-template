@@ -1,4 +1,17 @@
-import { generateApiClient } from '@app/utils/apiUtils';
-const ituneApi = generateApiClient('itune');
+import { create } from 'apisauce';
+const api = create({ baseURL: process.env.ITUNE_URL });
 
-export const getItune = (param: any) => ituneApi.get(`/search?term=${param}`);
+type ApiParamProps = {
+  artistName: string;
+  pageNumber: number;
+  pageSize: number;
+};
+
+export const getItune = (params: ApiParamProps) => {
+  const { artistName, pageNumber, pageSize } = params;
+  return api.get('/search', {
+    term: artistName,
+    offset: pageNumber,
+    limit: pageSize
+  });
+};

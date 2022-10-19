@@ -9,7 +9,7 @@ exports[`<ItuneSongList/>  should render and match the snapshot 1`] = `
       orientation="row"
     >
       <div
-        class="ant-card ant-card-bordered ant-card-hoverable ItuneCard__CustomCard-sc-1g3ywlw-0 hpUjWG"
+        class="ant-card ant-card-bordered ant-card-hoverable ItuneCard__CustomCard-sc-1g3ywlw-0 YOMkc"
       >
         <div
           class="ant-card-cover"

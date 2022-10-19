@@ -19,7 +19,7 @@ export interface ItuneCardProps {
 const CustomCard = styled(Card)`
   && {
     padding: 5px;
-    margin: 1rem;
+    margin: 0.5rem;
     width: 17rem;
 
     ${media.lessThan('tablet')`

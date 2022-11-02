@@ -1,7 +1,7 @@
 import React from 'react';
 import { renderProvider, timeout } from '@app/utils/testUtils';
 import { ItunesContainerTest as ItunesContainer, mapDispatchToProps } from '..';
-import { requestGetSongList } from '../reducer';
+import { requestGetSongList } from '@app/containers/SongProviderContainer/reducer';
 import { ItuneContainerProps } from '../types';
 import { fireEvent } from '@testing-library/react';
 

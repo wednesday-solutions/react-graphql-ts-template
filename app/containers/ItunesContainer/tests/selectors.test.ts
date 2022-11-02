@@ -15,7 +15,7 @@ describe('', () => {
     loading = false;
 
     mockedState = {
-      ituneReducer: {
+      songReducer: {
         songData,
         songListError,
         loading
@@ -30,7 +30,7 @@ describe('', () => {
 
   it('should select the global state', () => {
     const selector = selectItuneState(mockedState);
-    expect(selector).toEqual(mockedState.ituneReducer);
+    expect(selector).toEqual(mockedState.songReducer);
   });
 
   it('should select the global state from initial state if state.ituneReducer is not defined', () => {

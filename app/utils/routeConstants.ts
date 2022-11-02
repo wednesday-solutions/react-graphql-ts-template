@@ -6,12 +6,20 @@ export type RouteConstant = {
 };
 
 const routeConstants: Record<string, RouteConstant> = {
-  home: {
+  // home: {
+  //   route: '/',
+  //   exact: true
+  // },
+  itune: {
     route: '/',
     exact: true
   },
-  launch: {
-    route: '/launch/:launchId',
+  // launch: {
+  //   route: '/launch/:launchId',
+  //   exact: true
+  // },
+  song: {
+    route: '/song/:trackId',
     exact: true
   }
 };

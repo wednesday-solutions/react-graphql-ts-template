@@ -1,13 +1,30 @@
-name: React GraphQL TypeScript Template CD
+name: Itune APP CD
 on:
   push:
     branches: [master]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    env:
+      SOURCE_DIR: './build/'
+      AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      PATHS: '/*'
+
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+       uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: yarn
 
       - name: Install dependencies
         run: yarn

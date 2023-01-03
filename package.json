@@ -1,17 +1,17 @@
 {
-  "name": "react-template",
+  "name": "react-graphql-ts-template",
   "version": "14.0.9",
-  "description": "A template react application",
+  "description": "A React Typescript GraphQL application",
   "repository": {
     "type": "git",
-    "url": "git://github.com/wednesday-solutions/react-template.git"
+    "url": "git://github.com/wednesday-solutions/react-graphql-ts-template.git"
   },
   "engines": {
     "npm": ">=5",
     "node": ">=8.15.1"
   },
   "author": "Mac",
-  "homepage": "http://wednesday-solutions.github.io/react-template",
+  "homepage": "https://github.com/wednesday-solutions/react-graphql-ts-template",
   "license": "MIT",
   "scripts": {
     "analyze:clean": "rimraf stats.json",

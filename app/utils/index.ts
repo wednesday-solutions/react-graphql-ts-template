@@ -20,9 +20,9 @@ export const mapKeysDeep = <T>(obj: T, fn: (key: string) => string): T =>
   Array.isArray(obj)
     ? obj.map((val) => mapKeysDeep(val, fn))
     : typeof obj === 'object'
-    ? Object.keys(obj).reduce((acc, current) => {
+    ? Object.keys(obj!).reduce((acc, current) => {
         const key = fn(current);
-        const val = obj[current as keyof T];
+        const val = obj![current as keyof T];
         acc[key] = val !== null && typeof val === 'object' ? mapKeysDeep(val, fn) : val;
         return acc;
       }, {} as any)

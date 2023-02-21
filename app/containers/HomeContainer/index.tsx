@@ -59,14 +59,14 @@ const ButtonBox = styled.div`
 `;
 
 const SortSelect = styled(Select)`
-  && {
+  /* && {
     width: 9.5rem;
     background-color: #fff;
 
     .ant-select-selection-item {
       color: ${colors.secondaryText};
     }
-  }
+  } */
 `;
 
 const CustomFooter = styled.div`

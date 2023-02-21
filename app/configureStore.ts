@@ -55,7 +55,7 @@ export default function configureStore(initialState: object) {
     runSaga
   });
 
-  const store = createStore(persistedReducer, initialState, composeEnhancers(...enhancers, injectEnhancer));
+  const store = createStore(persistedReducer, initialState, composeEnhancers(...enhancers, injectEnhancer) as any);
   const persistor = persistStore(store);
 
   // Extensions

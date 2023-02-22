@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Launch } from '@app/containers/HomeContainer/types';
 import { Button, Card } from 'antd';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import If from '@components/If';
 import { T } from '@components/T';
 import isEmpty from 'lodash-es/isEmpty';

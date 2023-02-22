@@ -11,7 +11,7 @@ describe('<App /> container tests', () => {
         <App />
       </BrowserRouter>
     );
-    await waitFor(() => expect(container.textContent).toContain('SORT BY'));
+    await waitFor(() => expect(container.textContent).toContain('Wednesday Solutions'));
     await waitFor(() => expect(container).toMatchSnapshot());
   });
 });

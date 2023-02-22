@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { If, T, For } from '@components';
 import isEmpty from 'lodash-es/isEmpty';
 import { colors, media } from '@app/themes';
@@ -15,13 +16,12 @@ const LaunchDetailsCard = styled(Card)`
       flex-direction: column;
       justify-content: space-between;
       color: ${(props) => props.color};
-
-      ${media.greaterThan('tablet')`
-        flex-direction: row;
-        gap: 1rem;
-      `}
     }
     margin: 1.5rem;
+    @media (min-width: ${media.tablet}) {
+      flex-direction: row;
+      gap: 1rem;
+    }
     background-color: ${colors.cardBg};
   }
 `;
@@ -30,10 +30,11 @@ const CustomImage = styled.img`
   && {
     width: 100%;
     height: auto;
-    ${media.greaterThan('tablet')`
+    @media (min-width: ${media.tablet}) {
       width: 50%;
       max-height: 698px;
-      object-fit: cover;`}
+      object-fit: cover;
+    }
   }
 `;
 
@@ -44,9 +45,9 @@ const DetailsCard = styled.div`
     justify-content: center;
     gap: 1rem;
     margin: 3rem 0;
-    ${media.greaterThan('tablet')`
+    @media (min-width: ${media.tablet}) {
       width: 50%;
-   `}
+    }
   }
 `;
 

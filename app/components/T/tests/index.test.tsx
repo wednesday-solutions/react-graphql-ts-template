@@ -5,9 +5,11 @@
  */
 
 import React from 'react';
-import { renderWithIntl, getComponentStyles } from '@utils/testUtils';
+import { matchers } from '@emotion/jest';
+import { renderWithIntl } from '@utils/testUtils';
 import { T } from '../index';
 
+expect.extend(matchers);
 describe('<T /> component tests', () => {
   it('should render and match the snapshot', () => {
     const { baseElement } = renderWithIntl(<T />);
@@ -24,21 +26,25 @@ describe('<T /> component tests', () => {
     expect(getAllByText(/List of launches/).length).toBe(1);
   });
 
-  it('should have a margin-bottom of 5px when we pass marginBottom as 5', () => {
+  it('should have a margin-bottom of 5rem when we pass marginBottom as number', () => {
     const props = {
       marginBottom: 5,
       id: 'launches_list'
     };
-    const styles = getComponentStyles(T, props);
-    expect(styles.marginBottom).toBe(`${props.marginBottom}rem`);
+
+    const { getByTestId } = renderWithIntl(<T {...props} />);
+    const styledText = getByTestId('t');
+    expect(styledText).toHaveStyle({ marginBottom: '5rem' });
   });
 
-  it('should have a margin-bottom of 5px when we pass marginBottom as 5', () => {
+  it('should have a margin-bottom of 5px when we pass marginBottom as string', () => {
     const props = {
-      marginBottom: '5px',
+      marginBottom: '5',
       id: 'launches_list'
     };
-    const styles = getComponentStyles(T, props);
-    expect(styles.marginBottom).toBe(props.marginBottom);
+
+    const { getByTestId } = renderWithIntl(<T {...props} />);
+    const styledText = getByTestId('t');
+    expect(styledText).toHaveStyle({ marginBottom: '5' });
   });
 });

@@ -7,25 +7,31 @@
  *
  */
 import React from 'react';
-import GlobalStyle from '@app/global-styles';
+import globalStyle from '@app/global-styles';
 import { routeConfig } from '@app/routeConfig';
+import { Global } from '@emotion/react';
 import { Layout } from 'antd';
 import map from 'lodash-es/map';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { compose } from 'redux';
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider as MUIThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
+import styled from '@emotion/styled';
 import For from '@components/For';
 import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
-import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
-const theme = {
-  fg: colors.primary,
-  bg: colors.secondaryText,
-  headerHeight: HEADER_HEIGHT,
-  sidebarWidth: MIN_SIDEBAR_WIDTH
-};
+
+export const theme = createTheme({
+  palette: {
+    primary: {
+      main: colors.primary
+    },
+    secondary: {
+      main: colors.secondary
+    }
+  }
+});
 
 const CustomLayout = styled(Layout)`
   && {
@@ -35,36 +41,38 @@ const CustomLayout = styled(Layout)`
 
 export function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <CustomLayout>
-        <Sidebar />
-        <Layout.Content>
-          <For
-            ParentComponent={(props) => <Switch {...props} />}
-            of={map(Object.keys(routeConfig))}
-            renderItem={(routeKey, index) => {
-              const Component = routeConfig[routeKey].component;
-              return (
-                <Route
-                  exact={routeConfig[routeKey].exact}
-                  key={index}
-                  path={routeConfig[routeKey].route}
-                  render={(props) => {
-                    const updatedProps = {
-                      ...props,
-                      ...routeConfig[routeKey].props
-                    };
-                    return <Component {...updatedProps} />;
-                  }}
-                />
-              );
-            }}
-          />
-          <GlobalStyle />
-        </Layout.Content>
-      </CustomLayout>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <MUIThemeProvider theme={theme}>
+        <Header />
+        <CustomLayout>
+          <Sidebar />
+          <Layout.Content>
+            <For
+              ParentComponent={(props) => <Switch {...props} />}
+              of={map(Object.keys(routeConfig))}
+              renderItem={(routeKey, index) => {
+                const Component = routeConfig[routeKey].component;
+                return (
+                  <Route
+                    exact={routeConfig[routeKey].exact}
+                    key={index}
+                    path={routeConfig[routeKey].route}
+                    render={(props) => {
+                      const updatedProps = {
+                        ...props,
+                        ...routeConfig[routeKey].props
+                      };
+                      return <Component {...updatedProps} />;
+                    }}
+                  />
+                );
+              }}
+            />
+            <Global styles={globalStyle} />
+          </Layout.Content>
+        </CustomLayout>
+      </MUIThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

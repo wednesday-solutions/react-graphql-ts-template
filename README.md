@@ -101,9 +101,9 @@ An enterprise react template application showcasing - Testing strategies, Global
   - [app/utils/graphqlUtils.ts](app/utils/graphqlUtils.ts)
   - [app/containers/HomeContainer/saga.ts](app/containers/HomeContainer/saga.ts)
 
-## Styling using styled-components
+## Styling using emotion
 
-- Styling components using [Styled Components](https://styled-components.com)
+- Styling components using [Emotion](https://emotion.sh/)
 
   Take a look at the following files
 
@@ -200,7 +200,6 @@ An enterprise react template application showcasing - Testing strategies, Global
   - [app/containers/HomeContainer/tests](app/containers/HomeContainer/tests)
   - [app/services/tests/repoApi.test.ts](app/services/tests/repoApi.test.ts)
   - [app/components/T/tests/index.test.tsx](app/components/T/tests/index.test.tsx)
-
 
 ## Misc
 

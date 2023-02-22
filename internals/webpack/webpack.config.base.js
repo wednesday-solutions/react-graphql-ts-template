@@ -169,6 +169,9 @@ module.exports = (options) => ({
       '@images': path.resolve(__dirname, '../../app/images'),
       '@hooks': path.resolve(__dirname, '../../app/hooks'),
       moment$: path.resolve(__dirname, '../../node_modules/moment/moment.js'),
+      '@emotion/core': path.resolve(__dirname, '../../node_modules/moment/@emotion/react'),
+      '@emotion/styled': path.resolve(__dirname, '../../node_modules/@emotion/styled'),
+      'emotion-theming': path.resolve(__dirname, '../../node_modules/@emotion/react'),
       '@ant-design/icons/lib/dist$': path.resolve(__dirname, './app/icons.js')
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.react.js'],

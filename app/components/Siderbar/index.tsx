@@ -2,12 +2,18 @@ import React, { useState, useCallback } from 'react';
 import { colors } from '@app/themes';
 import { Button, Drawer, DrawerProps } from 'antd';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { CloseOutlined } from '@ant-design/icons';
 import icon from '@images/ion_rocket-sharp.svg';
 import menuIcon from '@images/menu.svg';
 import If from '@components/If';
 import useMedia from '@utils/useMedia';
+import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
+
+export const theme = {
+  headerHeight: HEADER_HEIGHT,
+  sidebarWidth: MIN_SIDEBAR_WIDTH
+};
 
 const SidebarWrapper = styled.div`
   position: relative;
@@ -17,9 +23,9 @@ const SidebarWrapper = styled.div`
 const SidebarDrawer = styled(Drawer)`
   && {
     .ant-drawer-body {
-      padding: ${(props) => props.theme.headerHeight} 0 0 0;
+      padding: ${theme.headerHeight} 0 0 0;
       background-color: ${colors.primary};
-      width: ${(props) => props.theme.sidebarWidth};
+      width: ${theme.sidebarWidth};
       text-align: center;
     }
     .ant-drawer-close {
@@ -33,7 +39,7 @@ const SideBarStatic = styled.div`
     width: 6%;
     min-width: 4.5rem;
     max-width: 7rem;
-    min-height: calc(100vh - ${(props) => props.theme.headerHeight});
+    min-height: calc(100vh - ${theme.headerHeight});
     height: auto;
     background-color: ${colors.primary};
     display: inline;
@@ -51,8 +57,8 @@ const RocketLogo = styled.img`
 const MenuButton = styled(Button)`
   && {
     position: absolute;
-    top: calc(${(props) => props.theme.headerHeight} / -2);
-    left: calc(${(props) => props.theme.sidebarWidth} / 2);
+    top: calc(${theme.headerHeight} / -2);
+    left: calc(${theme.sidebarWidth} / 2);
     transform: translate(-50%, -50%);
   }
 `;

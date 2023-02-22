@@ -1,16 +1,22 @@
-import { css, FlattenSimpleInterpolation } from 'styled-components';
-import { media } from '@themes/index';
+import { css } from '@emotion/react';
+import media from '@themes/media';
 
 // sizes
 
-export const dynamicFontSize = (font: () => FlattenSimpleInterpolation, desktopDelta = 0, tabletDelta = 0) => css`
+export const dynamicFontSize = (font: any, desktopDelta = 0, tabletDelta = 0) => css`
   ${font()}
-  ${media.greaterThan('tablet')`font-size: ${
-    tabletDelta + parseInt((font()[0]! as string).replace('font-size:', '').replace('rem;', '').replace(/\s+/g, ''))
-  }rem;`}
-${media.greaterThan('desktop')`font-size: ${
-    desktopDelta + parseInt((font()[0]! as string).replace('font-size:', '').replace('rem;', '').replace(/\s+/g, ''))
-  }rem;`}
+  ${`@media (min-width: ${media.tablet}) {
+  font-size: ${
+    /* eslint-disable-next-line */
+    tabletDelta + parseInt(font()['styles'].replace('font-size:', '').replace('rem;', '').replace(/\s+/g, ''))
+  }rem;
+}`}
+  ${`@media (min-width: ${media.desktop}) {
+  font-size: ${
+    /* eslint-disable-next-line */
+    desktopDelta + parseInt(font()['styles'].replace('font-size:', '').replace('rem;', '').replace(/\s+/g, ''))
+  }rem;
+}`}
 `;
 const regular = () => css`
   font-size: 1rem;

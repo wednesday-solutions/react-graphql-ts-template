@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { Image } from 'antd';
 import notFoundImage from '@images/undraw_page_not_found_re_e9o6.svg';
 import { T } from '@components';

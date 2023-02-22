@@ -5,16 +5,16 @@ exports[`<LaunchDetails /> container tests should render and match the snapshot 
   <div>
     <div>
       <div
-        class="NotFoundPage__NotFoundContainer-ywwv48-1 kdRizI"
+        class="css-1kl4iw3 e18gl1ph1"
       >
         <p
-          class="T__StyledText-gcrjip-0 irGVum"
+          class="css-1s7p6g7 e17qkzd60"
           data-testid="details"
         >
           Oops you ran out of Oxygen!, dont worry, you can go back home and start exploring again!
         </p>
         <button
-          class="NotFoundPage__CustomButton-ywwv48-2 dmxaol"
+          class="css-1v20wh2 e18gl1ph0"
           data-testid="back-button"
         >
           Go Back
@@ -23,13 +23,13 @@ exports[`<LaunchDetails /> container tests should render and match the snapshot 
           class="ant-image"
         >
           <img
-            class="ant-image-img NotFoundPage__NotFoundImage-ywwv48-0 iaNjhN"
+            class="ant-image-img css-1y6wh7i e18gl1ph2"
             src="IMAGE_MOCK"
           />
         </div>
       </div>
       <p
-        class="T__StyledText-gcrjip-0 gIxZML"
+        class="css-1irx5r2 e17qkzd60"
         data-testid="default-message"
       />
     </div>

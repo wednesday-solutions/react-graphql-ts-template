@@ -1,7 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
+import { css } from '@emotion/react';
 import { colors } from '@app/themes';
 
-const GlobalStyle = createGlobalStyle`
+const globalStyle = css`
   html,
   body {
     height: 100vh;
@@ -35,4 +35,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default GlobalStyle;
+export default globalStyle;

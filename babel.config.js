@@ -3,6 +3,7 @@ module.exports = {
     [
       '@babel/preset-env',
       {
+        shippedProposals: true,
         targets: {
           browsers: ['> 0.25%, not dead']
         },
@@ -17,9 +18,27 @@ module.exports = {
   plugins: [
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-syntax-optional-chaining',
-    'styled-components',
     '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-syntax-dynamic-import'
+    '@babel/plugin-syntax-dynamic-import',
+    [
+      '@emotion',
+      {
+        importMap: {
+          '@mui/system': {
+            styled: {
+              canonicalImport: ['@emotion/styled', 'default'],
+              styledBaseImport: ['@mui/system', 'styled']
+            }
+          },
+          '@mui/material/styles': {
+            styled: {
+              canonicalImport: ['@emotion/styled', 'default'],
+              styledBaseImport: ['@mui/material/styles', 'styled']
+            }
+          }
+        }
+      }
+    ]
   ],
   env: {
     production: {
@@ -61,7 +80,13 @@ module.exports = {
       plugins: [
         '@babel/plugin-transform-modules-commonjs',
         'dynamic-import-node',
-        ['import', { libraryName: 'antd', style: true }]
+        ['import', { libraryName: 'antd', style: true }],
+        [
+          '@emotion',
+          {
+            autoLabel: 'never'
+          }
+        ]
       ]
     }
   }

@@ -6,7 +6,7 @@ import { AnyAction, compose } from 'redux';
 import debounce from 'lodash-es/debounce';
 import isEmpty from 'lodash-es/isEmpty';
 import { SearchOutlined } from '@ant-design/icons';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { injectSaga } from 'redux-injectors';
 import { Button, Input, Select } from 'antd';
 import { selectLaunchData, selectLaunchListError, selectLoading } from './selectors';
@@ -39,10 +39,9 @@ const CustomHeader = styled.div`
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
-
-  ${media.greaterThan('tablet')`
+  @media (min-width: ${media.tablet}) {
     flex-direction: row;
-  `}
+  }
 `;
 
 const CustomSearch = styled(Input)`

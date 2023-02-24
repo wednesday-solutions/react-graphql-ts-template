@@ -6,17 +6,16 @@ import { If, T, For } from '@components';
 import isEmpty from 'lodash-es/isEmpty';
 import { colors, media } from '@app/themes';
 import { LaunchDetails as LaunchDetailsType } from '@app/containers/LaunchDetails/types';
-import { Card, Skeleton } from 'antd';
+import { Card, Skeleton } from '@mui/material';
 import placeholderImage from '@images/undraw_to_the_stars_re_wq2x.svg';
 
 const LaunchDetailsCard = styled(Card)`
   && {
-    .ant-card-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: ${(props) => props.color};
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: ${(props) => props.color};
+
     margin: 1.5rem;
     @media (min-width: ${media.tablet}) {
       flex-direction: row;
@@ -98,15 +97,25 @@ interface LaunchDetailsProps extends LaunchDetailsType {
   loading: boolean;
 }
 
+const renderSkeleton = () => {
+  return (
+    <>
+      <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+      <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+      <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+    </>
+  );
+};
+
 function LaunchDetails({ missionName, links, details, rocket, ships, loading }: LaunchDetailsProps) {
   return (
-    <LaunchDetailsCard data-testid="launch-details">
-      <Skeleton loading={loading} active>
+    <LaunchDetailsCard data-testid="launch-details" variant="outlined">
+      <If condition={!loading} otherwise={renderSkeleton()}>
         <If condition={!isEmpty(links?.flickrImages)} otherwise={<CustomImage src={placeholderImage} />}>
           <CustomImage src={links?.flickrImages![0]} />
         </If>
-      </Skeleton>
-      <Skeleton loading={loading} active>
+      </If>
+      <If condition={!loading} otherwise={renderSkeleton()}>
         <DetailsCard>
           <If condition={!isEmpty(missionName)}>
             <CustomT marginBottom={0.5} data-testid="mission-name" type="heading" text={missionName} />
@@ -156,7 +165,7 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
             </ShipContainer>
           </If>
         </DetailsCard>
-      </Skeleton>
+      </If>
     </LaunchDetailsCard>
   );
 }

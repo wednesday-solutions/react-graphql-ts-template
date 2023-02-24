@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 import { Launch } from '@app/containers/HomeContainer/types';
-import { Button, Card } from 'antd';
+import { Button, Card } from '@mui/material';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import If from '@components/If';
 import { T } from '@components/T';
 import isEmpty from 'lodash-es/isEmpty';
 import { colors } from '@app/themes';
-import { GlobalOutlined } from '@ant-design/icons';
+import LanguageIcon from '@mui/icons-material/Language';
 import history from '@app/utils/history';
 import { format } from 'date-fns';
 
@@ -45,7 +45,7 @@ function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
   );
 
   return (
-    <LaunchCard data-testid="launch-item" onClick={goToLaunch}>
+    <LaunchCard data-testid="launch-item" onClick={goToLaunch} variant="outlined">
       <If condition={!isEmpty(missionName)}>
         <T data-testid="mission-name" marginBottom={1.5} type="subheading" text={missionName} />
       </If>
@@ -56,12 +56,9 @@ function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
         <If condition={!isEmpty(links.wikipedia)}>
           <WikiLink
             data-testid="wiki-link"
-            type="link"
-            rel="noreferrer"
-            target="_blank"
             onClick={(e) => e.stopPropagation()}
             href={links.wikipedia}
-            icon={<GlobalOutlined />}
+            endIcon={<LanguageIcon />}
           >
             Wikipedia
           </WikiLink>

@@ -5,14 +5,11 @@ import { createStructuredSelector } from 'reselect';
 import { AnyAction, compose } from 'redux';
 import debounce from 'lodash-es/debounce';
 import isEmpty from 'lodash-es/isEmpty';
-import { SearchOutlined } from '@ant-design/icons';
+import { Search as SearchOutlined } from '@mui/icons-material';
 import styled from '@emotion/styled';
 import { injectSaga } from 'redux-injectors';
-import { Button, Input, Select } from 'antd';
+import { Button, Select, IconButton, InputAdornment, OutlinedInput, MenuItem } from '@mui/material';
 import { selectLaunchData, selectLaunchListError, selectLoading } from './selectors';
-import arrowUp from '@images/ArrowUp.svg';
-import arrowDown from '@images/ArrowDown.svg';
-import arrowUpDown from '@images/ArrowUpDown.svg';
 import homeContainerSaga from './saga';
 import { requestGetLaunchList } from './reducer';
 import { LaunchList, ErrorHandler } from '@components';
@@ -29,7 +26,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem 4rem;
     background-color: ${colors.secondaryText};
   }
 `;
@@ -44,10 +41,14 @@ const CustomHeader = styled.div`
   }
 `;
 
-const CustomSearch = styled(Input)`
+const CustomSearch = styled(OutlinedInput)`
   && {
-    .ant-input {
-      padding-left: 0.5rem;
+    width: 90%;
+    legend {
+      display: none;
+    }
+    > fieldset {
+      top: 0;
     }
   }
 `;
@@ -59,12 +60,9 @@ const ButtonBox = styled.div`
 
 const SortSelect = styled(Select)`
   && {
-    width: 9.5rem;
+    width: 11.5rem;
     background-color: #fff;
-
-    .ant-select-selection-item {
-      color: ${colors.secondaryText};
-    }
+    padding-right: 0;
   }
 `;
 
@@ -101,61 +99,61 @@ export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, l
     }
   }, 300);
 
-  const prefix = (
-    <SearchOutlined
-      style={{
-        fontSize: 22,
-        color: 'black'
-      }}
-    />
-  );
-
   return (
     <Container>
       <CustomHeader>
         <CustomSearch
-          prefix={prefix}
-          data-testid="search-bar"
+          autoFocus
+          inputProps={{ 'data-testid': 'search-bar' }}
           type="text"
           placeholder={intl.formatMessage({ id: 'placeholder_text' })}
           defaultValue={missionName || ''}
           onChange={handleSearch}
-          autoFocus
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                data-testid="search-icon"
+                aria-label="search repos"
+                type="button"
+                onClick={() => missionName && setMissionName(missionName)}
+              >
+                <SearchOutlined />
+              </IconButton>
+            </InputAdornment>
+          }
         />
         <ButtonBox>
-          <Button disabled={!order} onClick={handleClearSort} data-testid="clear-sort">
+          <Button
+            variant="contained"
+            disabled={!order}
+            onClick={handleClearSort}
+            data-testid="clear-sort"
+            sx={{ minWidth: 'max-content' }}
+          >
             CLEAR SORT
           </Button>
           <SortSelect
-            data-testid="sort-select"
+            inputProps={{ 'data-testid': 'sort-select' }}
+            variant="outlined"
             id="sort-select"
-            suffixIcon={
-              order === 'asc' ? (
-                <img src={arrowUp} alt="chevron-up" />
-              ) : order === 'desc' ? (
-                <img src={arrowDown} alt="chevron-down" />
-              ) : (
-                <img src={arrowUpDown} alt="chevron-up-down" />
-              )
-            }
             value={order || 'default'}
             onChange={handleDateSort as any}
           >
-            <Select.Option value="default" disabled>
+            <MenuItem value="default" disabled>
               SORT BY DATE
-            </Select.Option>
-            <Select.Option value="desc">DESC</Select.Option>
-            <Select.Option value="asc">ASC</Select.Option>
+            </MenuItem>
+            <MenuItem value="desc">DESC</MenuItem>
+            <MenuItem value="asc">ASC</MenuItem>
           </SortSelect>
         </ButtonBox>
       </CustomHeader>
       <LaunchList launchData={launchData} loading={loading} />
       <ErrorHandler loading={loading} launchListError={launchListError} />
       <CustomFooter>
-        <Button data-testid="prev-btn" type="primary" onClick={handlePrev} disabled={loading || !hasPrevPage}>
+        <Button variant="contained" data-testid="prev-btn" onClick={handlePrev} disabled={loading || !hasPrevPage}>
           PREV
         </Button>
-        <Button data-testid="next-btn" type="primary" onClick={handleNext} disabled={loading || !hasNextPage}>
+        <Button variant="contained" data-testid="next-btn" onClick={handleNext} disabled={loading || !hasNextPage}>
           NEXT
         </Button>
       </CustomFooter>

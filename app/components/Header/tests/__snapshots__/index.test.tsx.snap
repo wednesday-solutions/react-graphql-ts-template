@@ -3,8 +3,8 @@
 exports[`<Header /> should render and match the snapshot 1`] = `
 <body>
   <div>
-    <header
-      class="ant-layout-header css-afors1 e1x0oejn2"
+    <div
+      class="css-1x3xpf e1x0oejn2"
       data-testid="header"
     >
       <a
@@ -17,12 +17,12 @@ exports[`<Header /> should render and match the snapshot 1`] = `
         />
       </a>
       <p
-        class="e1x0oejn0 css-6k35l8 e17qkzd60"
+        class="e1x0oejn0 css-m77det e17qkzd60"
         data-testid="t"
       >
         Wednesday Solutions
       </p>
-    </header>
+    </div>
   </div>
 </body>
 `;

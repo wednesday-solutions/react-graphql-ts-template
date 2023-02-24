@@ -16,13 +16,10 @@ exports[`<NotFoundPage /> tests should render and match the snapshot 1`] = `
   >
     Go Back
   </button>
-  <div
-    class="ant-image"
-  >
-    <img
-      class="ant-image-img css-1y6wh7i e18gl1ph2"
-      src="IMAGE_MOCK"
-    />
-  </div>
+  <img
+    alt="not found"
+    class="css-1y6wh7i e18gl1ph2"
+    src="IMAGE_MOCK"
+  />
 </div>
 `;

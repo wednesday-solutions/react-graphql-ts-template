@@ -79,6 +79,7 @@
   "pre-commit": "lint:staged",
   "dependencies": {
     "@babel/helper-regex": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.21.0",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

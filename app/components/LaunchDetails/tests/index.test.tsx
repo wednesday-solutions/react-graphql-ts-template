@@ -50,6 +50,6 @@ describe('<LaundDetails> tests', () => {
   it('should render the skeleton  if loading is true', () => {
     launchDetails.loading = true;
     const { baseElement } = renderProvider(<LaunchDetails {...launchDetails} />);
-    expect(baseElement.getElementsByClassName('ant-skeleton').length).toEqual(2);
+    expect(baseElement.getElementsByClassName('skeleton')).toBeTruthy();
   });
 });

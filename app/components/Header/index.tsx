@@ -4,7 +4,6 @@
  *
  */
 import React from 'react';
-import { Layout } from 'antd';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { fonts, colors, media } from '@themes/index';
@@ -17,18 +16,16 @@ export const theme = {
   sidebarWidth: MIN_SIDEBAR_WIDTH
 };
 
-const StyledHeader = styled(Layout.Header)`
+const StyledHeader = styled.div`
   && {
-    &.ant-layout-header {
-      padding: 0 1rem;
-      height: ${theme.headerHeight};
-      align-items: center;
-      justify-content: center;
-      background-color: ${colors.primary};
-      gap: 1rem;
-      @media (min-width: ${media.tablet}) {
-        padding-left: ${theme.sidebarWidth};
-      }
+    padding: 0 1rem;
+    height: ${theme.headerHeight};
+    align-items: center;
+    justify-content: center;
+    background-color: ${colors.primary};
+    gap: 1rem;
+    @media (min-width: ${media.tablet}) {
+      padding-left: ${theme.sidebarWidth};
     }
     display: flex;
   }
@@ -45,7 +42,7 @@ const Logo = styled.img`
 
 const Title = styled(T)`
   && {
-    margin-bottom: 0;
+    margin: 0;
     ${fonts.dynamicFontSize(fonts.size.xRegular, 1, 0.5)};
     display: flex;
     align-self: center;

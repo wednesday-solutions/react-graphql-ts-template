@@ -2,52 +2,60 @@
 
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
-  <header
-    class="ant-layout-header css-afors1 e1x0oejn2"
-    data-testid="header"
-  >
-    <a
-      href="/"
-    >
-      <img
-        alt="logo"
-        class="css-gwc5j9 e1x0oejn1"
-        src="IMAGE_MOCK"
-      />
-    </a>
-    <p
-      class="e1x0oejn0 css-6k35l8 e17qkzd60"
-      data-testid="t"
-    >
-      Wednesday Solutions
-    </p>
-  </header>
-  <section
-    class="ant-layout css-12ggqm5 e1n4vwcq0"
+  <div
+    class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
   >
     <div
-      class="css-8k1832 eoyrkzq5"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
     >
       <div
-        class="css-159g3zw eoyrkzq3"
-        data-testid="sidebar"
+        class="css-1x3xpf e1x0oejn2"
+        data-testid="header"
       >
         <a
-          aria-label="home link"
-          data-testid="rocket-home-link"
           href="/"
         >
           <img
-            alt="rocket-icon"
-            class="css-1f98nht eoyrkzq2"
+            alt="logo"
+            class="css-gwc5j9 e1x0oejn1"
             src="IMAGE_MOCK"
           />
         </a>
+        <p
+          class="e1x0oejn0 css-m77det e17qkzd60"
+          data-testid="t"
+        >
+          Wednesday Solutions
+        </p>
       </div>
     </div>
-    <main
-      class="ant-layout-content"
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 css-1ot6ykd-MuiGrid-root"
+    >
+      <div
+        class="css-8k1832 eoyrkzq4"
+      >
+        <div
+          class="css-159g3zw eoyrkzq2"
+          data-testid="sidebar"
+        >
+          <a
+            aria-label="home link"
+            data-testid="rocket-home-link"
+            href="/"
+          >
+            <img
+              alt="rocket-icon"
+              class="css-1f98nht eoyrkzq1"
+              src="IMAGE_MOCK"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11.5 css-512jjm-MuiGrid-root"
     />
-  </section>
+  </div>
 </div>
 `;

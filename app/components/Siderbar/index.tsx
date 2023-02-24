@@ -1,11 +1,10 @@
 import React, { useState, useCallback } from 'react';
 import { colors } from '@app/themes';
-import { Button, Drawer, DrawerProps } from 'antd';
+import { Drawer, DrawerProps, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { CloseOutlined } from '@ant-design/icons';
 import icon from '@images/ion_rocket-sharp.svg';
-import menuIcon from '@images/menu.svg';
+import MenuIcon from '@mui/icons-material/Menu';
 import If from '@components/If';
 import useMedia from '@utils/useMedia';
 import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
@@ -22,14 +21,11 @@ const SidebarWrapper = styled.div`
 
 const SidebarDrawer = styled(Drawer)`
   && {
-    .ant-drawer-body {
+    .MuiDrawer-paper {
       padding: ${theme.headerHeight} 0 0 0;
       background-color: ${colors.primary};
-      width: ${theme.sidebarWidth};
+      min-width: ${theme.sidebarWidth};
       text-align: center;
-    }
-    .ant-drawer-close {
-      top: 1rem;
     }
   }
 `;
@@ -54,19 +50,13 @@ const RocketLogo = styled.img`
   }
 `;
 
-const MenuButton = styled(Button)`
+const MenuButton = styled(IconButton)`
   && {
     position: absolute;
     top: calc(${theme.headerHeight} / -2);
     left: calc(${theme.sidebarWidth} / 2);
     transform: translate(-50%, -50%);
   }
-`;
-
-const MenuImg = styled.img`
-  width: 1.7rem;
-  height: auto;
-  object-fit: contain;
 `;
 
 const Sidebar: React.FC = () => {
@@ -76,12 +66,10 @@ const Sidebar: React.FC = () => {
   const toggleSidebar = useCallback(() => setVisible((v) => !v), []);
   const sidebarProps: DrawerProps = isMobile
     ? {
-        closeIcon: <CloseOutlined style={{ color: colors.secondary, fontSize: '1.9rem' }} />,
-        placement: 'left',
-        visible,
-        closable: true,
+        anchor: 'left',
+        open: visible,
         onClose: toggleSidebar,
-        width: 'max-content'
+        variant: 'temporary'
       }
     : {};
 
@@ -91,14 +79,9 @@ const Sidebar: React.FC = () => {
   return (
     <SidebarWrapper>
       <If condition={isMobile}>
-        <MenuButton
-          data-testid="menu-icon"
-          type="primary"
-          size="large"
-          aria-label="toggle sidebar"
-          onClick={toggleSidebar}
-          icon={<MenuImg src={menuIcon} alt="menu icon" />}
-        />
+        <MenuButton data-testid="menu-icon" size="large" aria-label="toggle sidebar" onClick={toggleSidebar}>
+          <MenuIcon sx={{ color: 'white' }} />
+        </MenuButton>
       </If>
       <SidebarComponent {...sidebarProps}>
         <Link onClick={toggleSidebar} data-testid="rocket-home-link" aria-label="home link" to="/">

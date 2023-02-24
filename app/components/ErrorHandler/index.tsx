@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { Card } from 'antd';
+import { Card } from '@mui/material';
 import { T, If } from '@components';
 
 const CustomCard = styled(Card)`
   && {
     margin: 20px 0;
+    padding: 20px;
+    padding-top: 0;
     color: ${(props) => props.color};
   }
 `;
@@ -20,7 +22,7 @@ export function ErrorHandler({ loading, launchListError }: ErrorHandlerTypes) {
   if (!loading) {
     return (
       <If condition={launchListError} otherwise={<T data-testid="default-message" id={launchListError} />}>
-        <CustomCard data-testid="error-card">
+        <CustomCard data-testid="error-card" variant="outlined">
           <T data-testid="error-message" text={launchListError} />
         </CustomCard>
       </If>

@@ -19,14 +19,11 @@ exports[`<LaunchDetails /> container tests should render and match the snapshot 
         >
           Go Back
         </button>
-        <div
-          class="ant-image"
-        >
-          <img
-            class="ant-image-img css-1y6wh7i e18gl1ph2"
-            src="IMAGE_MOCK"
-          />
-        </div>
+        <img
+          alt="not found"
+          class="css-1y6wh7i e18gl1ph2"
+          src="IMAGE_MOCK"
+        />
       </div>
       <p
         class="css-1irx5r2 e17qkzd60"

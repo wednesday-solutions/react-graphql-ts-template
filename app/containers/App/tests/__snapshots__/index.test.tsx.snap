@@ -3,7 +3,7 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="ant-layout-header Header__StyledHeader-a7tfu0-0 eDpQQE"
+    class="ant-layout-header Header__StyledHeader-sc-1oujkb8-0 jGIKQI"
     data-testid="header"
   >
     <a
@@ -11,25 +11,25 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     >
       <img
         alt="logo"
-        class="Header__Logo-a7tfu0-1 hbWjcY"
+        class="Header__Logo-sc-1oujkb8-1 jCVyTI"
         src="IMAGE_MOCK"
       />
     </a>
     <p
-      class="T__StyledText-gcrjip-0 emthK Header__Title-a7tfu0-2 elUMIm"
+      class="T__StyledText-znbtqz-0 gcpeYe Header__Title-sc-1oujkb8-2 fbBQMG"
       data-testid="t"
     >
       Wednesday Solutions
     </p>
   </header>
   <section
-    class="ant-layout App__CustomLayout-di9tar-0 gvzqHR"
+    class="ant-layout App__CustomLayout-sc-1cjfzn6-0 dcysLj"
   >
     <div
-      class="Siderbar__SidebarWrapper-qw2kux-0 gaTYUT"
+      class="Siderbar__SidebarWrapper-sc-1qq6lqc-0 jnbRYB"
     >
       <div
-        class="Siderbar__SideBarStatic-qw2kux-2 lhyiGU"
+        class="Siderbar__SideBarStatic-sc-1qq6lqc-2 bVRpka"
         data-testid="sidebar"
       >
         <a
@@ -39,7 +39,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
         >
           <img
             alt="rocket-icon"
-            class="Siderbar__RocketLogo-qw2kux-3 iVxHgo"
+            class="Siderbar__RocketLogo-sc-1qq6lqc-3 pAjdu"
             src="IMAGE_MOCK"
           />
         </a>
@@ -47,153 +47,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     </div>
     <main
       class="ant-layout-content"
-    >
-      <div
-        class="HomeContainer__Container-wd79o1-0 gPuIaC"
-      >
-        <div
-          class="HomeContainer__CustomHeader-wd79o1-1 dpKNJS"
-        >
-          <span
-            class="ant-input-affix-wrapper ant-input-affix-wrapper-focused HomeContainer__CustomSearch-wd79o1-2 jUUWQt"
-          >
-            <span
-              class="ant-input-prefix"
-            >
-              <span
-                aria-label="search"
-                class="anticon anticon-search"
-                role="img"
-                style="font-size: 22px; color: black;"
-              >
-                <svg
-                  aria-hidden="true"
-                  data-icon="search"
-                  fill="currentColor"
-                  focusable="false"
-                  height="1em"
-                  viewBox="64 64 896 896"
-                  width="1em"
-                >
-                  <path
-                    d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
-                  />
-                </svg>
-              </span>
-            </span>
-            <input
-              class="ant-input"
-              data-testid="search-bar"
-              placeholder="SEARCH BY MISSION NAME"
-              type="text"
-              value=""
-            />
-          </span>
-          <div
-            class="HomeContainer__ButtonBox-wd79o1-3 jIUvfd"
-          >
-            <button
-              class="ant-btn"
-              data-testid="clear-sort"
-              disabled=""
-              type="button"
-            >
-              <span>
-                CLEAR SORT
-              </span>
-            </button>
-            <div
-              class="ant-select HomeContainer__SortSelect-wd79o1-4 SiddR ant-select-single ant-select-show-arrow"
-              data-testid="sort-select"
-            >
-              <div
-                class="ant-select-selector"
-              >
-                <span
-                  class="ant-select-selection-search"
-                >
-                  <input
-                    aria-activedescendant="sort-select_list_0"
-                    aria-autocomplete="list"
-                    aria-controls="sort-select_list"
-                    aria-haspopup="listbox"
-                    aria-owns="sort-select_list"
-                    autocomplete="off"
-                    class="ant-select-selection-search-input"
-                    id="sort-select"
-                    readonly=""
-                    role="combobox"
-                    style="opacity: 0;"
-                    type="search"
-                    unselectable="on"
-                    value=""
-                  />
-                </span>
-                <span
-                  class="ant-select-selection-item"
-                  title="SORT BY DATE"
-                >
-                  SORT BY DATE
-                </span>
-              </div>
-              <span
-                aria-hidden="true"
-                class="ant-select-arrow"
-                style="user-select: none;"
-                unselectable="on"
-              >
-                <img
-                  alt="chevron-up-down"
-                  src="IMAGE_MOCK"
-                />
-              </span>
-            </div>
-          </div>
-        </div>
-        <div
-          class="ant-card ant-card-bordered LaunchList__CustomErrorCard-sc-1l6drbj-0 ldMApU"
-        >
-          <div
-            class="ant-card-body"
-          >
-            <p
-              class="T__StyledText-gcrjip-0 gIxZML"
-              data-testid="default-message"
-            >
-              No results found for the search term.
-            </p>
-          </div>
-        </div>
-        <p
-          class="T__StyledText-gcrjip-0 gIxZML"
-          data-testid="default-message"
-        />
-        <div
-          class="HomeContainer__CustomFooter-wd79o1-5 frgUSq"
-        >
-          <button
-            class="ant-btn ant-btn-primary"
-            data-testid="prev-btn"
-            disabled=""
-            type="button"
-          >
-            <span>
-              PREV
-            </span>
-          </button>
-          <button
-            class="ant-btn ant-btn-primary"
-            data-testid="next-btn"
-            disabled=""
-            type="button"
-          >
-            <span>
-              NEXT
-            </span>
-          </button>
-        </div>
-      </div>
-    </main>
+    />
   </section>
 </div>
 `;

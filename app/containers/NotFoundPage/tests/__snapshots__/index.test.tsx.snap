@@ -2,16 +2,16 @@
 
 exports[`<NotFoundPage /> tests should render and match the snapshot 1`] = `
 <div
-  class="NotFoundPage__NotFoundContainer-ywwv48-1 kdRizI"
+  class="NotFoundPage__NotFoundContainer-sc-13pqvdn-1 jceXFB"
 >
   <p
-    class="T__StyledText-gcrjip-0 irGVum"
+    class="T__StyledText-znbtqz-0 jrmeQy"
     data-testid="details"
   >
     Oops you ran out of Oxygen!, dont worry, you can go back home and start exploring again!
   </p>
   <button
-    class="NotFoundPage__CustomButton-ywwv48-2 dmxaol"
+    class="NotFoundPage__CustomButton-sc-13pqvdn-2 cmxmPU"
     data-testid="back-button"
   >
     Go Back
@@ -20,7 +20,7 @@ exports[`<NotFoundPage /> tests should render and match the snapshot 1`] = `
     class="ant-image"
   >
     <img
-      class="ant-image-img NotFoundPage__NotFoundImage-ywwv48-0 iaNjhN"
+      class="ant-image-img NotFoundPage__NotFoundImage-sc-13pqvdn-0 eCyeLE"
       src="IMAGE_MOCK"
     />
   </div>

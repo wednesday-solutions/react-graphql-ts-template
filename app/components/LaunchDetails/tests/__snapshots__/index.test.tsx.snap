@@ -4,62 +4,62 @@ exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered LaunchDetails__LaunchDetailsCard-ytnak2-0 jEXwRD"
+      class="ant-card ant-card-bordered LaunchDetails__LaunchDetailsCard-asn7bn-0 dsEqMn"
       data-testid="launch-details"
     >
       <div
         class="ant-card-body"
       >
         <img
-          class="LaunchDetails__CustomImage-ytnak2-1 iXORvU"
+          class="LaunchDetails__CustomImage-asn7bn-1 jvjRBY"
           src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
         />
         <div
-          class="LaunchDetails__DetailsCard-ytnak2-2 hkMZdw"
+          class="LaunchDetails__DetailsCard-asn7bn-2 cBuJTk"
         >
           <p
-            class="T__StyledText-gcrjip-0 irGVum LaunchDetails__CustomT-ytnak2-4 dKPFxL"
+            class="T__StyledText-znbtqz-0 jrmeQy LaunchDetails__CustomT-asn7bn-4 dMaFrz"
             data-testid="mission-name"
           >
             CRS-21
           </p>
           <p
-            class="T__StyledText-gcrjip-0 gIxZML LaunchDetails__CustomT-ytnak2-4 dKPFxL"
+            class="T__StyledText-znbtqz-0 TmgHn LaunchDetails__CustomT-asn7bn-4 dMaFrz"
             data-testid="details"
           >
             <b
-              class="LaunchDetails__LaunchLabel-ytnak2-5 ibUuTD"
+              class="LaunchDetails__LaunchLabel-asn7bn-5 eWVLWT"
             >
               Details
             </b>
              SpaceX's 21st ISS resupply mission.
           </p>
           <p
-            class="T__StyledText-gcrjip-0 cTCPAw LaunchDetails__LaunchLabelT-ytnak2-6 jcSOHI"
+            class="T__StyledText-znbtqz-0 gLJJxM LaunchDetails__LaunchLabelT-asn7bn-6 rxgOQ"
             data-testid="t"
           >
             Rocket 
           </p>
           <div
-            class="LaunchDetails__RocketBox-ytnak2-3 jQCsNq"
+            class="LaunchDetails__RocketBox-asn7bn-3 ezZdiq"
           >
             <p
-              class="T__StyledText-gcrjip-0 gIxZML LaunchDetails__CustomT-ytnak2-4 dKPFxL"
+              class="T__StyledText-znbtqz-0 TmgHn LaunchDetails__CustomT-asn7bn-4 dMaFrz"
               data-testid="rocket-name"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 ibUuTD"
+                class="LaunchDetails__LaunchLabel-asn7bn-5 eWVLWT"
               >
                 Name
               </b>
                Falcon 9
             </p>
             <p
-              class="T__StyledText-gcrjip-0 gIxZML LaunchDetails__CustomT-ytnak2-4 dKPFxL"
+              class="T__StyledText-znbtqz-0 TmgHn LaunchDetails__CustomT-asn7bn-4 dMaFrz"
               data-testid="rocket-type"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 ibUuTD"
+                class="LaunchDetails__LaunchLabel-asn7bn-5 eWVLWT"
               >
                 Type
               </b>
@@ -67,31 +67,31 @@ exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
             </p>
           </div>
           <p
-            class="T__StyledText-gcrjip-0 cTCPAw LaunchDetails__LaunchLabelT-ytnak2-6 jcSOHI"
+            class="T__StyledText-znbtqz-0 gLJJxM LaunchDetails__LaunchLabelT-asn7bn-6 rxgOQ"
             data-testid="t"
           >
             Ships 
           </p>
           <div
-            class="LaunchDetails__ShipContainer-ytnak2-7 ImOjY"
+            class="LaunchDetails__ShipContainer-asn7bn-7 ksAIqA"
           >
             <p
-              class="T__StyledText-gcrjip-0 gIxZML LaunchDetails__CustomT-ytnak2-4 dKPFxL"
+              class="T__StyledText-znbtqz-0 TmgHn LaunchDetails__CustomT-asn7bn-4 dMaFrz"
               data-testid="ship-name"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 ibUuTD"
+                class="LaunchDetails__LaunchLabel-asn7bn-5 eWVLWT"
               >
                 Name
               </b>
                Ship 1
             </p>
             <p
-              class="T__StyledText-gcrjip-0 gIxZML LaunchDetails__CustomT-ytnak2-4 dKPFxL"
+              class="T__StyledText-znbtqz-0 TmgHn LaunchDetails__CustomT-asn7bn-4 dMaFrz"
               data-testid="ship-type"
             >
               <b
-                class="LaunchDetails__LaunchLabel-ytnak2-5 ibUuTD"
+                class="LaunchDetails__LaunchLabel-asn7bn-5 eWVLWT"
               >
                 Type
               </b>

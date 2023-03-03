@@ -4,31 +4,31 @@ exports[`<LaunchList /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="LaunchList__Container-sc-1l6drbj-1 hstKCz"
+      class="LaunchList__Container-sc-1rqj0ky-1 eTexWw"
       data-testid="for"
       orientation="row"
     >
       <div
-        class="ant-card ant-card-bordered LaunchItem__LaunchCard-tig4gy-0 gCObRf"
+        class="ant-card ant-card-bordered LaunchItem__LaunchCard-yxhovu-0 crOuqK"
         data-testid="launch-item"
       >
         <div
           class="ant-card-body"
         >
           <p
-            class="T__StyledText-gcrjip-0 izlutd"
+            class="T__StyledText-znbtqz-0 ciuNwl"
             data-testid="mission-name"
           >
             Thaicom 6
           </p>
           <p
-            class="T__StyledText-gcrjip-0 gIxZML"
+            class="T__StyledText-znbtqz-0 TmgHn"
             data-testid="t"
           >
             Mon, 6th January 2014, 06:06 PM
           </p>
           <a
-            class="ant-btn ant-btn-link LaunchItem__WikiLink-tig4gy-1 cfMXJX"
+            class="ant-btn ant-btn-link LaunchItem__WikiLink-yxhovu-1 hcXJZC"
             data-testid="wiki-link"
             href="https://en.wikipedia.org/wiki/Thaicom_6"
             rel="noreferrer"

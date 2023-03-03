@@ -4,14 +4,14 @@ exports[`<ErrorHandler /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered ErrorHandler__CustomCard-lh5a37-0 fOqTqj"
+      class="ant-card ant-card-bordered ErrorHandler__CustomCard-sc-1rh55w4-0 eOLbNC"
       data-testid="error-card"
     >
       <div
         class="ant-card-body"
       >
         <p
-          class="T__StyledText-gcrjip-0 gIxZML"
+          class="T__StyledText-znbtqz-0 TmgHn"
           data-testid="error-message"
         >
           something_went_wrong

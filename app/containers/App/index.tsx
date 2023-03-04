@@ -21,6 +21,7 @@ import For from '@components/For';
 import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
+import { SCREEN_BREAK_POINTS } from '@app/utils/constants';
 
 export const theme = createTheme({
   palette: {
@@ -29,6 +30,15 @@ export const theme = createTheme({
     },
     secondary: {
       main: colors.secondary
+    }
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: SCREEN_BREAK_POINTS.mobile,
+      md: SCREEN_BREAK_POINTS.tablet,
+      lg: SCREEN_BREAK_POINTS.desktop,
+      xl: SCREEN_BREAK_POINTS.largeDesktop
     }
   }
 });

@@ -39,12 +39,12 @@ describe('<T /> component tests', () => {
 
   it('should have a margin-bottom of 5px when we pass marginBottom as string', () => {
     const props = {
-      marginBottom: '5px',
+      marginBottom: '5',
       id: 'launches_list'
     };
 
     const { getByTestId } = renderWithIntl(<T {...props} />);
     const styledText = getByTestId('t');
-    expect(styledText).toHaveStyle({ marginBottom: '5px' });
+    expect(styledText).toHaveStyle({ marginBottom: '5' });
   });
 });

@@ -1,10 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Header /> should render and match the snapshot 1`] = `
+.emotion-0.emotion-0 {
+  padding: 0 1rem;
+  height: 7rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #000000;
+  gap: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (min-width: 48em) {
+  .emotion-0.emotion-0 {
+    padding-left: 4.5rem;
+  }
+}
+
+.emotion-2 {
+  height: 5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 48em) {
+  .emotion-2 {
+    height: 4rem;
+  }
+}
+
+.emotion-5.emotion-5 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.emotion-5.emotion-5 {
+  margin: 0;
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: #FFFFFF;
+}
+
+@media (min-width: 48em) {
+  .emotion-5.emotion-5 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 62em) {
+  .emotion-5.emotion-5 {
+    font-size: 2rem;
+  }
+}
+
 <body>
   <div>
     <div
-      class="css-1x3xpf e1x0oejn2"
+      class="emotion-0 emotion-1"
       data-testid="header"
     >
       <a
@@ -12,12 +79,12 @@ exports[`<Header /> should render and match the snapshot 1`] = `
       >
         <img
           alt="logo"
-          class="css-gwc5j9 e1x0oejn1"
+          class="emotion-2 emotion-3"
           src="IMAGE_MOCK"
         />
       </a>
       <p
-        class="e1x0oejn0 css-m77det e17qkzd60"
+        class="emotion-4 emotion-5 emotion-6"
         data-testid="t"
       >
         Wednesday Solutions

@@ -1,15 +1,326 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> container tests should render and match the snapshot 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  max-width: 100%;
+}
+
+@media (min-width:320px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width:768px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width:992px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width:1400px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+.emotion-2.emotion-2 {
+  padding: 0 1rem;
+  height: 7rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #000000;
+  gap: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (min-width: 48em) {
+  .emotion-2.emotion-2 {
+    padding-left: 4.5rem;
+  }
+}
+
+.emotion-4 {
+  height: 5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 48em) {
+  .emotion-4 {
+    height: 4rem;
+  }
+}
+
+.emotion-7.emotion-7 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.emotion-7.emotion-7 {
+  margin: 0;
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: #FFFFFF;
+}
+
+@media (min-width: 48em) {
+  .emotion-7.emotion-7 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 62em) {
+  .emotion-7.emotion-7 {
+    font-size: 2rem;
+  }
+}
+
+.emotion-9 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-basis: 4.166667%;
+  -ms-flex-preferred-size: 4.166667%;
+  flex-basis: 4.166667%;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  max-width: 4.166667%;
+}
+
+@media (min-width:320px) {
+  .emotion-9 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+@media (min-width:768px) {
+  .emotion-9 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+@media (min-width:992px) {
+  .emotion-9 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+@media (min-width:1400px) {
+  .emotion-9 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+.emotion-10 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-12.emotion-12 {
+  width: 6%;
+  min-width: 4.5rem;
+  max-width: 7rem;
+  min-height: calc(100vh - 7rem);
+  height: auto;
+  background-color: #000000;
+  display: inline;
+  text-align: center;
+}
+
+.emotion-14.emotion-14 {
+  margin-top: 1rem;
+  object-fit: contain;
+}
+
+.emotion-16 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-basis: 95.833333%;
+  -ms-flex-preferred-size: 95.833333%;
+  flex-basis: 95.833333%;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  max-width: 95.833333%;
+}
+
+@media (min-width:320px) {
+  .emotion-16 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
+@media (min-width:768px) {
+  .emotion-16 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
+@media (min-width:992px) {
+  .emotion-16 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
+@media (min-width:1400px) {
+  .emotion-16 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
 <div>
   <div
-    class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+    class="MuiGrid-root MuiGrid-container emotion-0"
   >
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-e1adj7-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 emotion-1"
     >
       <div
-        class="css-1x3xpf e1x0oejn2"
+        class="emotion-2 emotion-3"
         data-testid="header"
       >
         <a
@@ -17,12 +328,12 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
         >
           <img
             alt="logo"
-            class="css-gwc5j9 e1x0oejn1"
+            class="emotion-4 emotion-5"
             src="IMAGE_MOCK"
           />
         </a>
         <p
-          class="e1x0oejn0 css-m77det e17qkzd60"
+          class="emotion-6 emotion-7 emotion-8"
           data-testid="t"
         >
           Wednesday Solutions
@@ -30,13 +341,13 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 css-1qlk6ma-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 emotion-9"
     >
       <div
-        class="css-8k1832 eoyrkzq5"
+        class="emotion-10 emotion-11"
       >
         <div
-          class="css-159g3zw eoyrkzq3"
+          class="emotion-12 emotion-13"
           data-testid="sidebar"
         >
           <a
@@ -46,7 +357,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
           >
             <img
               alt="rocket-icon"
-              class="css-1f98nht eoyrkzq2"
+              class="emotion-14 emotion-15"
               src="IMAGE_MOCK"
             />
           </a>
@@ -54,7 +365,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11.5 css-wbdwku-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11.5 emotion-16"
     />
   </div>
 </div>

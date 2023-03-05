@@ -1,31 +1,121 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LaunchList /> should render and match the snapshot 1`] = `
+.emotion-0.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #FFFFFF;
+}
+
+.emotion-3 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.emotion-3.emotion-3 {
+  padding: 1rem;
+  cursor: pointer;
+  margin: 1rem 0;
+  background-color: #d8d8d8;
+}
+
+.emotion-3.emotion-3:hover {
+  box-shadow: inset 0 0 10px -5px rgba(0, 0, 0, 0.6);
+}
+
+.emotion-4.emotion-4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.emotion-6.emotion-6 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.emotion-9 {
+  margin: 0;
+  color: #000000;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-9.emotion-9 {
+  padding: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #212529;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.emotion-9.emotion-9:hover {
+  opacity: 0.6;
+}
+
+.emotion-10 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+}
+
 <body>
   <div>
     <div
-      class="css-sngb0n e190mglb0"
+      class="emotion-0 emotion-1"
       data-testid="for"
       orientation="row"
     >
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root e1lhyjmf1 css-184nbnk-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root emotion-2 emotion-3"
         data-testid="launch-item"
       >
         <p
-          class="css-1u7m6xy e17qkzd60"
+          class="emotion-4 emotion-5"
           data-testid="mission-name"
         >
           Thaicom 6
         </p>
         <p
-          class="css-1irx5r2 e17qkzd60"
+          class="emotion-6 emotion-5"
           data-testid="t"
         >
           Mon, 6th January 2014, 06:06 PM
         </p>
         <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone e1lhyjmf0 css-d3f5x2-MuiTypography-root-MuiLink-root"
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone emotion-8 emotion-9"
           data-testid="wiki-link"
           href="https://en.wikipedia.org/wiki/Thaicom_6"
           rel="noreferrer"
@@ -33,7 +123,7 @@ exports[`<LaunchList /> should render and match the snapshot 1`] = `
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-10"
             data-testid="LanguageIcon"
             focusable="false"
             viewBox="0 0 24 24"

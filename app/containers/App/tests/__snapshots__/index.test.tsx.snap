@@ -6,7 +6,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
     class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
   >
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-e1adj7-MuiGrid-root"
     >
       <div
         class="css-1x3xpf e1x0oejn2"
@@ -30,7 +30,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 css-1ot6ykd-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 css-1qlk6ma-MuiGrid-root"
     >
       <div
         class="css-8k1832 eoyrkzq4"
@@ -54,7 +54,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
       </div>
     </div>
     <div
-      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11.5 css-512jjm-MuiGrid-root"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11.5 css-wbdwku-MuiGrid-root"
     />
   </div>
 </div>

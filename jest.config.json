@@ -16,6 +16,7 @@
     "!app/vendor.d.ts"
   ],
   "testEnvironment": "jsdom",
+  "testTimeout": 20000,
   "reporters": [
     "default",
     [

@@ -3,7 +3,7 @@ import camelCase from 'lodash-es/camelCase';
 import { mapKeysDeep } from '.';
 
 export const client = new ApolloClient({
-  uri: 'https://spacex-production.up.railway.app',
+  uri: 'https://api.spacex.land/graphql',
   cache: new InMemoryCache()
 });
 

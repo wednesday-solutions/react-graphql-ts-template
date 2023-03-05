@@ -33,10 +33,10 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 css-1qlk6ma-MuiGrid-root"
     >
       <div
-        class="css-8k1832 eoyrkzq4"
+        class="css-8k1832 eoyrkzq5"
       >
         <div
-          class="css-159g3zw eoyrkzq2"
+          class="css-159g3zw eoyrkzq3"
           data-testid="sidebar"
         >
           <a
@@ -46,7 +46,7 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
           >
             <img
               alt="rocket-icon"
-              class="css-1f98nht eoyrkzq1"
+              class="css-1f98nht eoyrkzq2"
               src="IMAGE_MOCK"
             />
           </a>

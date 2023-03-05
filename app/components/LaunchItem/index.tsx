@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { Launch } from '@app/containers/HomeContainer/types';
-import { Button, Card } from '@mui/material';
+import { Card, Link } from '@mui/material';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import If from '@components/If';
@@ -13,6 +13,7 @@ import { format } from 'date-fns';
 
 const LaunchCard = styled(Card)`
   && {
+    padding: 1rem;
     cursor: pointer;
     margin: 1rem 0;
     color: ${(props) => props.color};
@@ -23,10 +24,11 @@ const LaunchCard = styled(Card)`
   }
 `;
 
-const WikiLink = styled(Button)`
+const WikiLink = styled(Link)`
   && {
     padding: 0;
     display: flex;
+    gap: 5px;
     align-items: center;
     color: ${colors.text};
     width: max-content;
@@ -55,12 +57,14 @@ function LaunchItem({ missionName, launchDateUtc, links, id }: Launch) {
       <If condition={!isEmpty(links)}>
         <If condition={!isEmpty(links.wikipedia)}>
           <WikiLink
+            underline="none"
+            rel="noreferrer"
+            target="_blank"
             data-testid="wiki-link"
             onClick={(e) => e.stopPropagation()}
             href={links.wikipedia}
-            endIcon={<LanguageIcon />}
           >
-            Wikipedia
+            <LanguageIcon /> Wikipedia
           </WikiLink>
         </If>
       </If>

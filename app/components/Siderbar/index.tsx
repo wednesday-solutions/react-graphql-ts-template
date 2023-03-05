@@ -4,7 +4,8 @@ import { Drawer, DrawerProps, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import icon from '@images/ion_rocket-sharp.svg';
-import MenuIcon from '@mui/icons-material/Menu';
+import menuIcon from '@images/menu.svg';
+import CloseIcon from '@mui/icons-material/Close';
 import If from '@components/If';
 import useMedia from '@utils/useMedia';
 import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
@@ -22,7 +23,7 @@ const SidebarWrapper = styled.div`
 const SidebarDrawer = styled(Drawer)`
   && {
     .MuiDrawer-paper {
-      padding: ${theme.headerHeight} 0 0 0;
+      padding: 2.5rem 0 0 0;
       background-color: ${colors.primary};
       min-width: ${theme.sidebarWidth};
       text-align: center;
@@ -59,6 +60,12 @@ const MenuButton = styled(IconButton)`
   }
 `;
 
+const MenuImg = styled.img`
+  width: 1.7rem;
+  height: auto;
+  object-fit: contain;
+`;
+
 const Sidebar: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const { isMobile } = useMedia();
@@ -74,13 +81,22 @@ const Sidebar: React.FC = () => {
     : {};
 
   const SidebarComponent = (props: DrawerProps) =>
-    isMobile ? <SidebarDrawer {...props} /> : <SideBarStatic data-testid="sidebar" {...(props as any)} />;
+    isMobile ? (
+      <SidebarDrawer {...props}>
+        <IconButton onClick={toggleSidebar}>
+          <CloseIcon sx={{ color: 'white', fontSize: '2rem', marginBottom: '1rem' }} />
+        </IconButton>
+        <div>{props.children}</div>
+      </SidebarDrawer>
+    ) : (
+      <SideBarStatic data-testid="sidebar" {...(props as any)} />
+    );
 
   return (
     <SidebarWrapper>
       <If condition={isMobile}>
         <MenuButton data-testid="menu-icon" size="large" aria-label="toggle sidebar" onClick={toggleSidebar}>
-          <MenuIcon sx={{ color: 'white' }} />
+          <MenuImg src={menuIcon} alt="menu icon" />
         </MenuButton>
       </If>
       <SidebarComponent {...sidebarProps}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { renderProvider, timeout } from '@utils/testUtils';
 import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
 import { HomeContainerProps, LaunchData } from '../types';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';
 import history from '@app/utils/history';
@@ -239,6 +239,26 @@ describe('<HomeContainer /> tests', () => {
     const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} loading={false} launchData={launchData} />);
     fireEvent.click(getByTestId('prev-btn'));
     expect(history.location.search).toContain('page=1');
+  });
+
+  it('should sort the launches by date in DESC', async () => {
+    const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />);
+    const selectDiv = within(getByTestId('sort-select'));
+    fireEvent.mouseDown(selectDiv.getByRole('button'));
+
+    const listbox = within(screen.getByRole('listbox'));
+    fireEvent.click(listbox.getByText('DESC'));
+    await waitFor(() => expect(history.location.search).toContain('order=desc'));
+  });
+
+  it('should sort the launches by date in ASC', async () => {
+    const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />);
+    const selectDiv = within(getByTestId('sort-select'));
+    fireEvent.mouseDown(selectDiv.getByRole('button'));
+
+    const listbox = within(screen.getByRole('listbox'));
+    fireEvent.click(listbox.getByText('ASC'));
+    await waitFor(() => expect(history.location.search).toContain('order=asc'));
   });
 
   it('should clear sort when clicked on clear sort button', async () => {

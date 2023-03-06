@@ -133,9 +133,9 @@ export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, l
             CLEAR SORT
           </Button>
           <SortSelect
-            inputProps={{ 'data-testid': 'sort-select' }}
             variant="outlined"
             id="sort-select"
+            data-testid="sort-select"
             value={order || 'default'}
             onChange={handleDateSort as any}
           >

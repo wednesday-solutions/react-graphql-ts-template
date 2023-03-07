@@ -3,7 +3,7 @@
 exports[`<App /> container tests should render and match the snapshot 1`] = `
 <div>
   <header
-    class="ant-layout-header css-18r3smc e1x0oejn2"
+    class="ant-layout-header css-8wwf0y e1x0oejn2"
     data-testid="header"
   >
     <a

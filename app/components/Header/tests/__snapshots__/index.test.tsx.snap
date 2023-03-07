@@ -4,7 +4,7 @@ exports[`<Header /> should render and match the snapshot 1`] = `
 <body>
   <div>
     <header
-      class="ant-layout-header css-afors1 e1x0oejn2"
+      class="ant-layout-header css-18r3smc e1x0oejn2"
       data-testid="header"
     >
       <a
@@ -12,7 +12,7 @@ exports[`<Header /> should render and match the snapshot 1`] = `
       >
         <img
           alt="logo"
-          class="css-gwc5j9 e1x0oejn1"
+          class="css-1jpb57k e1x0oejn1"
           src="IMAGE_MOCK"
         />
       </a>

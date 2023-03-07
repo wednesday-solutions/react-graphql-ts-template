@@ -104,19 +104,13 @@ exports[`<App /> container tests should render and match the snapshot 1`] = `
   display: flex;
 }
 
-@media (min-width: 48em) {
-  .emotion-2.emotion-2 {
-    padding-left: 4.5rem;
-  }
-}
-
 .emotion-4 {
   height: 5rem;
   width: auto;
   object-fit: contain;
 }
 
-@media (min-width: 48em) {
+@media (max-width:319.95px) {
   .emotion-4 {
     height: 4rem;
   }

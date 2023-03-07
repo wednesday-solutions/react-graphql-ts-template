@@ -20,7 +20,23 @@ import For from '@components/For';
 import Header from '@components/Header';
 import { colors } from '@themes/index';
 import Sidebar from '@app/components/Siderbar';
-import { SCREEN_BREAK_POINTS } from '@app/utils/constants';
+import { SCREEN_BREAK_POINTS, HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
+
+declare module '@mui/material/styles' {
+  export interface Theme {
+    baseLayout: {
+      headerHeight: string;
+      sidebarWidth: string;
+    };
+  }
+  // allow configuration using `createTheme`
+  export interface ThemeOptions {
+    baseLayout?: {
+      headerHeight: string;
+      sidebarWidth: string;
+    };
+  }
+}
 
 export const theme = createTheme({
   palette: {
@@ -30,6 +46,10 @@ export const theme = createTheme({
     secondary: {
       main: colors.secondary
     }
+  },
+  baseLayout: {
+    headerHeight: HEADER_HEIGHT,
+    sidebarWidth: MIN_SIDEBAR_WIDTH
   },
   breakpoints: {
     values: {

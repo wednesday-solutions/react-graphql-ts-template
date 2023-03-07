@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 import { If, T, For } from '@components';
 import isEmpty from 'lodash-es/isEmpty';
-import { colors, media } from '@app/themes';
+import { colors } from '@app/themes';
 import { LaunchDetails as LaunchDetailsType } from '@app/containers/LaunchDetails/types';
 import { Card, Skeleton } from '@mui/material';
 import placeholderImage from '@images/undraw_to_the_stars_re_wq2x.svg';
@@ -17,10 +17,10 @@ const LaunchDetailsCard = styled(Card)`
     color: ${(props) => props.color};
 
     margin: 1.5rem;
-    @media (min-width: ${media.tablet}) {
+    ${({ theme }: any) => `${theme.breakpoints.up('md')} {
       flex-direction: row;
       gap: 1rem;
-    }
+    }`};
     background-color: ${colors.cardBg};
   }
 `;
@@ -29,11 +29,11 @@ const CustomImage = styled.img`
   && {
     width: 100%;
     height: auto;
-    @media (min-width: ${media.tablet}) {
+    ${({ theme }: any) => `${theme.breakpoints.up('md')} {
       width: 50%;
       max-height: 698px;
       object-fit: cover;
-    }
+    }`};
   }
 `;
 
@@ -44,9 +44,9 @@ const DetailsCard = styled.div`
     justify-content: center;
     gap: 1rem;
     margin: 3rem 0;
-    @media (min-width: ${media.tablet}) {
+    ${({ theme }: any) => `${theme.breakpoints.up('md')} {
       width: 50%;
-    }
+    }`};
   }
 `;
 

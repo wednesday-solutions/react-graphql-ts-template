@@ -8,12 +8,6 @@ import menuIcon from '@images/menu.svg';
 import CloseIcon from '@mui/icons-material/Close';
 import If from '@components/If';
 import useMedia from '@utils/useMedia';
-import { HEADER_HEIGHT, MIN_SIDEBAR_WIDTH } from '@app/utils/constants';
-
-export const theme = {
-  headerHeight: HEADER_HEIGHT,
-  sidebarWidth: MIN_SIDEBAR_WIDTH
-};
 
 const SidebarWrapper = styled.div`
   position: relative;
@@ -25,7 +19,7 @@ const SidebarDrawer = styled(Drawer)`
     .MuiDrawer-paper {
       padding: 2.5rem 0 0 0;
       background-color: ${colors.primary};
-      min-width: ${theme.sidebarWidth};
+      width: ${({ theme }: any) => theme.baseLayout.sidebarWidth};
       text-align: center;
     }
   }
@@ -36,7 +30,7 @@ const SideBarStatic = styled.div`
     width: 6%;
     min-width: 4.5rem;
     max-width: 7rem;
-    min-height: calc(100vh - ${theme.headerHeight});
+    min-height: calc(100vh - ${({ theme }: any) => theme.baseLayout.headerHeight});
     height: auto;
     background-color: ${colors.primary};
     display: inline;
@@ -54,8 +48,8 @@ const RocketLogo = styled.img`
 const MenuButton = styled(IconButton)`
   && {
     position: absolute;
-    top: calc(${theme.headerHeight} / -2);
-    left: calc(${theme.sidebarWidth} / 2);
+    top: calc(${({ theme }: any) => theme.baseLayout.headerHeight} / -2);
+    left: calc(${({ theme }: any) => theme.baseLayout.sidebarWidth} / 2);
     transform: translate(-50%, -50%);
   }
 `;

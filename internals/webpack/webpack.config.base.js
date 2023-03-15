@@ -169,7 +169,15 @@ module.exports = (options) => ({
       '@images': path.resolve(__dirname, '../../app/images'),
       '@hooks': path.resolve(__dirname, '../../app/hooks'),
       moment$: path.resolve(__dirname, '../../node_modules/moment/moment.js'),
-      '@ant-design/icons/lib/dist$': path.resolve(__dirname, './app/icons.js')
+      '@emotion/core': path.resolve(__dirname, '../../node_modules/moment/@emotion/react'),
+      '@emotion/styled': path.resolve(__dirname, '../../node_modules/@emotion/styled'),
+      'emotion-theming': path.resolve(__dirname, '../../node_modules/@emotion/react'),
+      '@mui/base': '@mui/base/modern',
+      '@mui/lab': '@mui/lab/modern',
+      '@mui/material': '@mui/material/modern',
+      '@mui/styled-engine': '@mui/styled-engine/modern',
+      '@mui/system': '@mui/system/modern',
+      '@mui/utils': '@mui/utils/modern'
     },
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.react.js'],
     mainFields: ['browser', 'jsnext:main', 'main']

@@ -6,15 +6,14 @@
  */
 
 import React from 'react';
-import styled from 'styled-components';
-import { Image } from 'antd';
+import styled from '@emotion/styled';
 import notFoundImage from '@images/undraw_page_not_found_re_e9o6.svg';
 import { T } from '@components';
 import messages from './messages';
 import { colors } from '@app/themes';
 import history from '@utils/history';
 
-const NotFoundImage = styled(Image)`
+const NotFoundImage = styled.img`
   && {
     height: 60%;
     width: 60%;
@@ -49,7 +48,7 @@ export default function NotFound() {
       <CustomButton data-testid="back-button" onClick={() => history.push('/')}>
         Go Back
       </CustomButton>
-      <NotFoundImage src={notFoundImage} preview={false} />
+      <NotFoundImage src={notFoundImage} alt="not found" />
     </NotFoundContainer>
   );
 }

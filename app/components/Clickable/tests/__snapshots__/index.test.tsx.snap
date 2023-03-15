@@ -1,14 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Clickable /> component tests should render and match the snapshot 1`] = `
+.emotion-0 {
+  color: #1890ff;
+}
+
+.emotion-0:hover {
+  cursor: pointer;
+}
+
+.emotion-2.emotion-2 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
 <body>
   <div>
     <div
-      class="Clickable__StyledClickable-sc-1vn3tbu-0 mgTtM"
+      class="emotion-0 emotion-1"
       data-testid="clickable"
     >
       <p
-        class="T__StyledText-znbtqz-0 TmgHn"
+        class="emotion-2 emotion-3"
         data-testid="t"
       >
         List of launches

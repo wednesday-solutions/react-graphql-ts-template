@@ -5,15 +5,16 @@
  */
 
 import React, { memo } from 'react';
-import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import styled from '@emotion/styled';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { CSSInterpolation } from '@emotion/serialize';
 import If from '@components/If';
 import { fonts } from '@themes/index';
 
 interface StyledTextProps {
   marginBottom?: string | number;
-  font?: () => FlattenSimpleInterpolation;
+  font?: () => CSSInterpolation;
 }
 
 const StyledText = styled.p<StyledTextProps>`

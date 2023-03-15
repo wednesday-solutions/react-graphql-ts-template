@@ -1,53 +1,434 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> container tests should render and match the snapshot 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-1 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-basis: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  max-width: 100%;
+}
+
+@media (min-width:320px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width:768px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width:992px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width:1400px) {
+  .emotion-1 {
+    -webkit-flex-basis: 100%;
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 100%;
+  }
+}
+
+.emotion-3 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  position: static;
+  background-color: #000000;
+  color: #fff;
+}
+
+.emotion-3.emotion-3 {
+  padding: 0 1rem;
+  height: 7rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #000000;
+  gap: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-4 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  min-height: 56px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+@media (min-width:320px) {
+  .emotion-4 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:0px) {
+  @media (orientation: landscape) {
+    .emotion-4 {
+      min-height: 48px;
+    }
+  }
+}
+
+@media (min-width:320px) {
+  .emotion-4 {
+    min-height: 64px;
+  }
+}
+
+.emotion-5 {
+  height: 5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width:319.95px) {
+  .emotion-5 {
+    height: 4rem;
+  }
+}
+
+.emotion-8.emotion-8 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.emotion-8.emotion-8 {
+  margin: 0;
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: #FFFFFF;
+}
+
+@media (min-width: 48em) {
+  .emotion-8.emotion-8 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 62em) {
+  .emotion-8.emotion-8 {
+    font-size: 2rem;
+  }
+}
+
+.emotion-10 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-basis: 4.166667%;
+  -ms-flex-preferred-size: 4.166667%;
+  flex-basis: 4.166667%;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  max-width: 4.166667%;
+}
+
+@media (min-width:320px) {
+  .emotion-10 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+@media (min-width:768px) {
+  .emotion-10 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+@media (min-width:992px) {
+  .emotion-10 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+@media (min-width:1400px) {
+  .emotion-10 {
+    -webkit-flex-basis: 4.166667%;
+    -ms-flex-preferred-size: 4.166667%;
+    flex-basis: 4.166667%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 4.166667%;
+  }
+}
+
+.emotion-11 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-13.emotion-13 {
+  width: 6%;
+  min-width: 4.5rem;
+  max-width: 7rem;
+  min-height: 135vh;
+  height: auto;
+  background-color: #000000;
+  display: inline;
+  text-align: center;
+}
+
+.emotion-15.emotion-15 {
+  margin-top: 1rem;
+  object-fit: contain;
+}
+
+.emotion-17 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-basis: 95.833333%;
+  -ms-flex-preferred-size: 95.833333%;
+  flex-basis: 95.833333%;
+  -webkit-box-flex: 0;
+  -webkit-flex-grow: 0;
+  -ms-flex-positive: 0;
+  flex-grow: 0;
+  max-width: 95.833333%;
+}
+
+@media (min-width:320px) {
+  .emotion-17 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
+@media (min-width:768px) {
+  .emotion-17 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
+@media (min-width:992px) {
+  .emotion-17 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
+@media (min-width:1400px) {
+  .emotion-17 {
+    -webkit-flex-basis: 95.833333%;
+    -ms-flex-preferred-size: 95.833333%;
+    flex-basis: 95.833333%;
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    max-width: 95.833333%;
+  }
+}
+
 <div>
-  <header
-    class="ant-layout-header Header__StyledHeader-sc-1oujkb8-0 jGIKQI"
-    data-testid="header"
-  >
-    <a
-      href="/"
-    >
-      <img
-        alt="logo"
-        class="Header__Logo-sc-1oujkb8-1 jCVyTI"
-        src="IMAGE_MOCK"
-      />
-    </a>
-    <p
-      class="T__StyledText-znbtqz-0 gcpeYe Header__Title-sc-1oujkb8-2 fbBQMG"
-      data-testid="t"
-    >
-      Wednesday Solutions
-    </p>
-  </header>
-  <section
-    class="ant-layout App__CustomLayout-sc-1cjfzn6-0 dcysLj"
+  <div
+    class="MuiGrid-root MuiGrid-container emotion-0"
   >
     <div
-      class="Siderbar__SidebarWrapper-sc-1qq6lqc-0 jnbRYB"
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 emotion-1"
+    >
+      <header
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic emotion-2 emotion-3"
+        data-testid="header"
+      >
+        <div
+          class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular emotion-4"
+        >
+          <a
+            href="/"
+          >
+            <img
+              alt="logo"
+              class="emotion-5 emotion-6"
+              src="IMAGE_MOCK"
+            />
+          </a>
+          <p
+            class="emotion-7 emotion-8 emotion-9"
+            data-testid="t"
+          >
+            Wednesday Solutions
+          </p>
+        </div>
+      </header>
+    </div>
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-0.5 emotion-10"
     >
       <div
-        class="Siderbar__SideBarStatic-sc-1qq6lqc-2 bVRpka"
-        data-testid="sidebar"
+        class="emotion-11 emotion-12"
       >
-        <a
-          aria-label="home link"
-          data-testid="rocket-home-link"
-          href="/"
+        <div
+          class="emotion-13 emotion-14"
+          data-testid="sidebar"
         >
-          <img
-            alt="rocket-icon"
-            class="Siderbar__RocketLogo-sc-1qq6lqc-3 pAjdu"
-            src="IMAGE_MOCK"
-          />
-        </a>
+          <a
+            aria-label="home link"
+            data-testid="rocket-home-link"
+            href="/"
+          >
+            <img
+              alt="rocket-icon"
+              class="emotion-15 emotion-16"
+              src="IMAGE_MOCK"
+            />
+          </a>
+        </div>
       </div>
     </div>
-    <main
-      class="ant-layout-content"
+    <div
+      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-11.5 emotion-17"
     />
-  </section>
+  </div>
 </div>
 `;

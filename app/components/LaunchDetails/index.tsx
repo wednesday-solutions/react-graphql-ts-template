@@ -1,27 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { If, T, For } from '@components';
 import isEmpty from 'lodash-es/isEmpty';
-import { colors, media } from '@app/themes';
+import { colors } from '@app/themes';
 import { LaunchDetails as LaunchDetailsType } from '@app/containers/LaunchDetails/types';
-import { Card, Skeleton } from 'antd';
+import { Card, Skeleton } from '@mui/material';
 import placeholderImage from '@images/undraw_to_the_stars_re_wq2x.svg';
 
 const LaunchDetailsCard = styled(Card)`
   && {
-    .ant-card-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: ${(props) => props.color};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: ${(props) => props.color};
 
-      ${media.greaterThan('tablet')`
-        flex-direction: row;
-        gap: 1rem;
-      `}
-    }
     margin: 1.5rem;
+    ${({ theme }: any) => `${theme.breakpoints.up('md')} {
+      flex-direction: row;
+      gap: 1rem;
+    }`};
     background-color: ${colors.cardBg};
   }
 `;
@@ -30,10 +29,11 @@ const CustomImage = styled.img`
   && {
     width: 100%;
     height: auto;
-    ${media.greaterThan('tablet')`
+    ${({ theme }: any) => `${theme.breakpoints.up('md')} {
       width: 50%;
       max-height: 698px;
-      object-fit: cover;`}
+      object-fit: cover;
+    }`};
   }
 `;
 
@@ -44,9 +44,9 @@ const DetailsCard = styled.div`
     justify-content: center;
     gap: 1rem;
     margin: 3rem 0;
-    ${media.greaterThan('tablet')`
+    ${({ theme }: any) => `${theme.breakpoints.up('md')} {
       width: 50%;
-   `}
+    }`};
   }
 `;
 
@@ -97,15 +97,25 @@ interface LaunchDetailsProps extends LaunchDetailsType {
   loading: boolean;
 }
 
+const renderSkeleton = () => {
+  return (
+    <>
+      <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+      <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+      <Skeleton data-testid="skeleton" animation="wave" variant="text" height={40} />
+    </>
+  );
+};
+
 function LaunchDetails({ missionName, links, details, rocket, ships, loading }: LaunchDetailsProps) {
   return (
-    <LaunchDetailsCard data-testid="launch-details">
-      <Skeleton loading={loading} active>
+    <LaunchDetailsCard data-testid="launch-details" variant="outlined">
+      <If condition={!loading} otherwise={renderSkeleton()}>
         <If condition={!isEmpty(links?.flickrImages)} otherwise={<CustomImage src={placeholderImage} />}>
           <CustomImage src={links?.flickrImages![0]} />
         </If>
-      </Skeleton>
-      <Skeleton loading={loading} active>
+      </If>
+      <If condition={!loading} otherwise={renderSkeleton()}>
         <DetailsCard>
           <If condition={!isEmpty(missionName)}>
             <CustomT marginBottom={0.5} data-testid="mission-name" type="heading" text={missionName} />
@@ -155,7 +165,7 @@ function LaunchDetails({ missionName, links, details, rocket, ships, loading }: 
             </ShipContainer>
           </If>
         </DetailsCard>
-      </Skeleton>
+      </If>
     </LaunchDetailsCard>
   );
 }

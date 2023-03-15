@@ -1,35 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LaunchDetails /> container tests should render and match the snapshot 1`] = `
+.emotion-0.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 30%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 5% auto;
+}
+
+.emotion-2.emotion-2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.emotion-4.emotion-4 {
+  background-color: #000000;
+  color: #FFFFFF;
+  max-width: 30%;
+  margin: 2%;
+  cursor: pointer;
+}
+
+.emotion-6.emotion-6 {
+  height: 60%;
+  width: 60%;
+  margin: 25%;
+}
+
+.emotion-8.emotion-8 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
 <body>
   <div>
     <div>
       <div
-        class="NotFoundPage__NotFoundContainer-sc-13pqvdn-1 jceXFB"
+        class="emotion-0 emotion-1"
       >
         <p
-          class="T__StyledText-znbtqz-0 jrmeQy"
+          class="emotion-2 emotion-3"
           data-testid="details"
         >
           Oops you ran out of Oxygen!, dont worry, you can go back home and start exploring again!
         </p>
         <button
-          class="NotFoundPage__CustomButton-sc-13pqvdn-2 cmxmPU"
+          class="emotion-4 emotion-5"
           data-testid="back-button"
         >
           Go Back
         </button>
-        <div
-          class="ant-image"
-        >
-          <img
-            class="ant-image-img NotFoundPage__NotFoundImage-sc-13pqvdn-0 eCyeLE"
-            src="IMAGE_MOCK"
-          />
-        </div>
+        <img
+          alt="not found"
+          class="emotion-6 emotion-7"
+          src="IMAGE_MOCK"
+        />
       </div>
       <p
-        class="T__StyledText-znbtqz-0 TmgHn"
+        class="emotion-8 emotion-3"
         data-testid="default-message"
       />
     </div>

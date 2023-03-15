@@ -16,6 +16,7 @@
     "!app/vendor.d.ts"
   ],
   "testEnvironment": "jsdom",
+  "testTimeout": 20000,
   "reporters": [
     "default",
     [
@@ -49,5 +50,5 @@
   "setupFilesAfterEnv": ["<rootDir>/jest.setup.js", "<rootDir>/internals/testing/test-bundler.js"],
   "setupFiles": ["raf/polyfill"],
   "testRegex": "tests/.*\\.test\\.[jt]sx?$",
-  "snapshotSerializers": []
+  "snapshotSerializers": ["@emotion/jest/serializer"]
 }

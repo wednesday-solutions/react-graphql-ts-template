@@ -1,27 +1,156 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Header /> should render and match the snapshot 1`] = `
+.emotion-1 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  position: static;
+  background-color: #000000;
+  color: #fff;
+}
+
+.emotion-1.emotion-1 {
+  padding: 0 1rem;
+  height: 7rem;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #000000;
+  gap: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-2 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
+  min-height: 56px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+@media (min-width:320px) {
+  .emotion-2 {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width:0px) {
+  @media (orientation: landscape) {
+    .emotion-2 {
+      min-height: 48px;
+    }
+  }
+}
+
+@media (min-width:320px) {
+  .emotion-2 {
+    min-height: 64px;
+  }
+}
+
+.emotion-3 {
+  height: 5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width:319.95px) {
+  .emotion-3 {
+    height: 4rem;
+  }
+}
+
+.emotion-6.emotion-6 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.emotion-6.emotion-6 {
+  margin: 0;
+  font-size: 1.125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: #FFFFFF;
+}
+
+@media (min-width: 48em) {
+  .emotion-6.emotion-6 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 62em) {
+  .emotion-6.emotion-6 {
+    font-size: 2rem;
+  }
+}
+
 <body>
   <div>
     <header
-      class="ant-layout-header Header__StyledHeader-sc-1oujkb8-0 gUdnlM"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic emotion-0 emotion-1"
       data-testid="header"
     >
-      <a
-        href="/"
+      <div
+        class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular emotion-2"
       >
-        <img
-          alt="logo"
-          class="Header__Logo-sc-1oujkb8-1 jCVyTI"
-          src="IMAGE_MOCK"
-        />
-      </a>
-      <p
-        class="T__StyledText-znbtqz-0 gcpeYe Header__Title-sc-1oujkb8-2 fbBQMG"
-        data-testid="t"
-      >
-        Wednesday Solutions
-      </p>
+        <a
+          href="/"
+        >
+          <img
+            alt="logo"
+            class="emotion-3 emotion-4"
+            src="IMAGE_MOCK"
+          />
+        </a>
+        <p
+          class="emotion-5 emotion-6 emotion-7"
+          data-testid="t"
+        >
+          Wednesday Solutions
+        </p>
+      </div>
     </header>
   </div>
 </body>

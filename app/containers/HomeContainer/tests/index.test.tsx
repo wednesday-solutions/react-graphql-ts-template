@@ -2,7 +2,7 @@ import React from 'react';
 import { renderProvider, timeout } from '@utils/testUtils';
 import { HomeContainerTest as HomeContainer, mapDispatchToProps } from '../index';
 import { HomeContainerProps, LaunchData } from '../types';
-import { fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, screen, waitFor, within } from '@testing-library/react';
 import { createIntl } from 'react-intl';
 import { translationMessages } from '@app/i18n';
 import history from '@app/utils/history';
@@ -194,7 +194,7 @@ describe('<HomeContainer /> tests', () => {
   it('should render Skeleton Comp when "loading" is true', async () => {
     const { baseElement } = renderProvider(<HomeContainer {...defaultProps} loading={true} />);
 
-    expect(baseElement.getElementsByClassName('ant-skeleton').length).toBe(1);
+    expect(baseElement.getElementsByClassName('skeleton')).toBeTruthy();
   });
 
   it('should delete mission_name query param from search on empty change', async () => {
@@ -214,25 +214,6 @@ describe('<HomeContainer /> tests', () => {
   it('should  dispatchLaunchList on update on mount if there is no launchQuery and no data already persisted', async () => {
     renderProvider(<HomeContainer {...defaultProps} launchData={{}} />);
     await waitFor(() => expect(submitSpy).toBeCalled());
-  });
-
-  it('should sort the launches by date in ASC', async () => {
-    history.location.search = '?order=unknown';
-    const { getByText, getByRole } = renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
-    );
-    fireEvent.mouseDown(getByRole('combobox')!);
-    fireEvent.click(getByText('ASC'));
-    await waitFor(() => expect(history.location.search).toContain('order=asc'));
-  });
-
-  it('should sort the launches by date in DESC', async () => {
-    const { getByText, getByRole } = renderProvider(
-      <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
-    );
-    fireEvent.mouseDown(getByRole('combobox')!);
-    fireEvent.click(getByText('DESC'));
-    await waitFor(() => expect(history.location.search).toContain('order=desc'));
   });
 
   it('should push to first page if no data found in the current page', async () => {
@@ -260,12 +241,31 @@ describe('<HomeContainer /> tests', () => {
     expect(history.location.search).toContain('page=1');
   });
 
+  it('should sort the launches by date in DESC', async () => {
+    const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />);
+    const selectDiv = within(getByTestId('sort-select'));
+    fireEvent.mouseDown(selectDiv.getByRole('button'));
+
+    const listbox = within(screen.getByRole('listbox'));
+    fireEvent.click(listbox.getByText('DESC'));
+    await waitFor(() => expect(history.location.search).toContain('order=desc'));
+  });
+
+  it('should sort the launches by date in ASC', async () => {
+    const { getByTestId } = renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />);
+    const selectDiv = within(getByTestId('sort-select'));
+    fireEvent.mouseDown(selectDiv.getByRole('button'));
+
+    const listbox = within(screen.getByRole('listbox'));
+    fireEvent.click(listbox.getByText('ASC'));
+    await waitFor(() => expect(history.location.search).toContain('order=asc'));
+  });
+
   it('should clear sort when clicked on clear sort button', async () => {
-    const { getByText, getByRole, getByTestId, rerender } = renderProvider(
+    const { getByTestId, rerender } = renderProvider(
       <HomeContainer {...defaultProps} launchData={launchData} loading={false} />
     );
-    fireEvent.mouseDown(getByRole('combobox')!);
-    fireEvent.click(getByText('DESC'));
+    fireEvent.mouseDown(getByTestId('sort-select'));
     await waitFor(() => {
       renderProvider(<HomeContainer {...defaultProps} launchData={launchData} loading={false} />, {}, rerender as any);
     });

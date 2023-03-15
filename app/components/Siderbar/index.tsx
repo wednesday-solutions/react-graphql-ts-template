@@ -30,7 +30,7 @@ const SideBarStatic = styled.div`
     width: 6%;
     min-width: 4.5rem;
     max-width: 7rem;
-    min-height: calc(100vh - ${({ theme }: any) => theme.baseLayout.headerHeight});
+    min-height: 135vh;
     height: auto;
     background-color: ${colors.primary};
     display: inline;

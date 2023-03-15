@@ -44,6 +44,7 @@ const CustomHeader = styled.div`
 const CustomSearch = styled(OutlinedInput)`
   && {
     width: 90%;
+    margin-top: 6px;
     legend {
       display: none;
     }
@@ -128,7 +129,7 @@ export function HomeContainer({ dispatchLaunchList, loading, launchData, intl, l
             disabled={!order}
             onClick={handleClearSort}
             data-testid="clear-sort"
-            sx={{ minWidth: 'max-content' }}
+            sx={{ minWidth: 'max-content', marginTop: '6px' }}
           >
             CLEAR SORT
           </Button>

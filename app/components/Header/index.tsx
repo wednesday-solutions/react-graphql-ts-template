@@ -5,12 +5,13 @@
  */
 import React from 'react';
 import styled from '@emotion/styled';
+import { AppBar, Toolbar } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { fonts, colors } from '@themes/index';
 import T from '@components/T';
 import logo from '@images/icon-512x512.png';
 
-const StyledHeader = styled.div`
+const StyledHeader = styled(AppBar)`
   && {
     padding: 0 1rem;
     height: ${({ theme }: any) => theme.baseLayout.headerHeight};
@@ -46,11 +47,13 @@ const Title = styled(T)`
 
 const Header: React.FC = () => {
   return (
-    <StyledHeader data-testid="header">
-      <Link to="/">
-        <Logo alt="logo" src={logo} />
-      </Link>
-      <Title type="heading" id="wednesday_solutions" />
+    <StyledHeader data-testid="header" position="static">
+      <Toolbar sx={{ display: 'flex', gap: '1rem' }}>
+        <Link to="/">
+          <Logo alt="logo" src={logo} />
+        </Link>
+        <Title type="heading" id="wednesday_solutions" />
+      </Toolbar>
     </StyledHeader>
   );
 };

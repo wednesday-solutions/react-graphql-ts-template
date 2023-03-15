@@ -110,6 +110,7 @@ exports[`<HomeContainer /> tests should render and match the snapshot 1`] = `
 
 .emotion-5.emotion-5 {
   width: 90%;
+  margin-top: 6px;
 }
 
 .emotion-5.emotion-5 legend {
@@ -438,6 +439,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-6:focus::-ms-input-p
   min-width: -webkit-max-content;
   min-width: -moz-max-content;
   min-width: max-content;
+  margin-top: 6px;
 }
 
 .emotion-15::-moz-focus-inner {

@@ -1,35 +1,77 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LaunchDetails /> container tests should render and match the snapshot 1`] = `
+.emotion-0.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  max-width: 30%;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 5% auto;
+}
+
+.emotion-2.emotion-2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.emotion-4.emotion-4 {
+  background-color: #000000;
+  color: #FFFFFF;
+  max-width: 30%;
+  margin: 2%;
+  cursor: pointer;
+}
+
+.emotion-6.emotion-6 {
+  height: 60%;
+  width: 60%;
+  margin: 25%;
+}
+
+.emotion-8.emotion-8 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
 <body>
   <div>
     <div>
       <div
-        class="css-1kl4iw3 e18gl1ph1"
+        class="emotion-0 emotion-1"
       >
         <p
-          class="css-1s7p6g7 e17qkzd60"
+          class="emotion-2 emotion-3"
           data-testid="details"
         >
           Oops you ran out of Oxygen!, dont worry, you can go back home and start exploring again!
         </p>
         <button
-          class="css-1v20wh2 e18gl1ph0"
+          class="emotion-4 emotion-5"
           data-testid="back-button"
         >
           Go Back
         </button>
-        <div
-          class="ant-image"
-        >
-          <img
-            class="ant-image-img css-1y6wh7i e18gl1ph2"
-            src="IMAGE_MOCK"
-          />
-        </div>
+        <img
+          alt="not found"
+          class="emotion-6 emotion-7"
+          src="IMAGE_MOCK"
+        />
       </div>
       <p
-        class="css-1irx5r2 e17qkzd60"
+        class="emotion-8 emotion-3"
         data-testid="default-message"
       />
     </div>

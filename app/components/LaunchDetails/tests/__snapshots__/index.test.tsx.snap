@@ -1,103 +1,232 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LaundDetails> tests should render and match the snapshot 1`] = `
+.emotion-1 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.emotion-1.emotion-1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  margin: 1.5rem;
+  background-color: #d8d8d8;
+}
+
+@media (min-width:768px) {
+  .emotion-1.emotion-1 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+.emotion-2.emotion-2 {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width:768px) {
+  .emotion-2.emotion-2 {
+    width: 50%;
+    max-height: 698px;
+    object-fit: cover;
+  }
+}
+
+.emotion-4.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 3rem 0;
+}
+
+@media (min-width:768px) {
+  .emotion-4.emotion-4 {
+    width: 50%;
+  }
+}
+
+.emotion-7.emotion-7 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.emotion-7.emotion-7 {
+  display: block;
+  font-weight: thin;
+}
+
+.emotion-10.emotion-10 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.emotion-10.emotion-10 {
+  display: block;
+  font-weight: thin;
+}
+
+.emotion-12 {
+  text-transform: uppercase;
+  display: block;
+  color: #000000;
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.emotion-15 {
+  text-transform: uppercase;
+  display: block;
+  color: #000000;
+  font-size: smaller;
+  font-weight: bold;
+}
+
+.emotion-15.emotion-15 {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.emotion-17.emotion-17 {
+  margin-left: 1rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.emotion-32 {
+  margin-left: 1rem;
+  display: grid;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  row-gap: 1rem;
+}
+
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered css-dnax8p e1uve3jx7"
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root emotion-0 emotion-1"
       data-testid="launch-details"
     >
+      <img
+        class="emotion-2 emotion-3"
+        src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
+      />
       <div
-        class="ant-card-body"
+        class="emotion-4 emotion-5"
       >
-        <img
-          class="css-1v87snz e1uve3jx6"
-          src="https://farm9.staticflickr.com/8617/16789019815_f99a165dc5_o.jpg"
-        />
+        <p
+          class="emotion-6 emotion-7 emotion-8"
+          data-testid="mission-name"
+        >
+          CRS-21
+        </p>
+        <p
+          class="emotion-6 emotion-10 emotion-8"
+          data-testid="details"
+        >
+          <b
+            class="emotion-12 emotion-13"
+          >
+            Details
+          </b>
+           SpaceX's 21st ISS resupply mission.
+        </p>
+        <p
+          class="emotion-14 emotion-15 emotion-8"
+          data-testid="t"
+        >
+          Rocket 
+        </p>
         <div
-          class="css-bzx5os e1uve3jx5"
+          class="emotion-17 emotion-18"
         >
           <p
-            class="e1uve3jx3 css-1cewy1q e17qkzd60"
-            data-testid="mission-name"
-          >
-            CRS-21
-          </p>
-          <p
-            class="e1uve3jx3 css-139w90b e17qkzd60"
-            data-testid="details"
+            class="emotion-6 emotion-10 emotion-8"
+            data-testid="rocket-name"
           >
             <b
-              class="css-1mq3jm7 e1uve3jx2"
+              class="emotion-12 emotion-13"
             >
-              Details
+              Name
             </b>
-             SpaceX's 21st ISS resupply mission.
+             Falcon 9
           </p>
           <p
-            class="e1uve3jx1 css-rz7hlo e17qkzd60"
-            data-testid="t"
+            class="emotion-6 emotion-10 emotion-8"
+            data-testid="rocket-type"
           >
-            Rocket 
+            <b
+              class="emotion-12 emotion-13"
+            >
+              Type
+            </b>
+             FT
           </p>
-          <div
-            class="css-1pbbfrk e1uve3jx4"
-          >
-            <p
-              class="e1uve3jx3 css-139w90b e17qkzd60"
-              data-testid="rocket-name"
-            >
-              <b
-                class="css-1mq3jm7 e1uve3jx2"
-              >
-                Name
-              </b>
-               Falcon 9
-            </p>
-            <p
-              class="e1uve3jx3 css-139w90b e17qkzd60"
-              data-testid="rocket-type"
-            >
-              <b
-                class="css-1mq3jm7 e1uve3jx2"
-              >
-                Type
-              </b>
-               FT
-            </p>
-          </div>
+        </div>
+        <p
+          class="emotion-14 emotion-15 emotion-8"
+          data-testid="t"
+        >
+          Ships 
+        </p>
+        <div
+          class="emotion-32 emotion-33"
+        >
           <p
-            class="e1uve3jx1 css-rz7hlo e17qkzd60"
-            data-testid="t"
+            class="emotion-6 emotion-10 emotion-8"
+            data-testid="ship-name"
           >
-            Ships 
+            <b
+              class="emotion-12 emotion-13"
+            >
+              Name
+            </b>
+             Ship 1
           </p>
-          <div
-            class="css-wt1l7g e1uve3jx0"
+          <p
+            class="emotion-6 emotion-10 emotion-8"
+            data-testid="ship-type"
           >
-            <p
-              class="e1uve3jx3 css-139w90b e17qkzd60"
-              data-testid="ship-name"
+            <b
+              class="emotion-12 emotion-13"
             >
-              <b
-                class="css-1mq3jm7 e1uve3jx2"
-              >
-                Name
-              </b>
-               Ship 1
-            </p>
-            <p
-              class="e1uve3jx3 css-139w90b e17qkzd60"
-              data-testid="ship-type"
-            >
-              <b
-                class="css-1mq3jm7 e1uve3jx2"
-              >
-                Type
-              </b>
-               Type 1
-            </p>
-          </div>
+              Type
+            </b>
+             Type 1
+          </p>
         </div>
       </div>
     </div>

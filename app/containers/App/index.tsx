@@ -10,13 +10,12 @@ import React from 'react';
 import globalStyle from '@app/global-styles';
 import { routeConfig } from '@app/routeConfig';
 import { Global } from '@emotion/react';
-import { Layout } from 'antd';
 import map from 'lodash-es/map';
 import { withRouter } from 'react-router';
 import { Route, Switch } from 'react-router-dom';
 import { compose } from 'redux';
 import { ThemeProvider as MUIThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
-import styled from '@emotion/styled';
+import { CssBaseline, Grid } from '@mui/material';
 import For from '@components/For';
 import Header from '@components/Header';
 import { colors } from '@themes/index';
@@ -63,20 +62,20 @@ export const theme = createTheme({
   }
 });
 
-const CustomLayout = styled(Layout)`
-  && {
-    flex-direction: row;
-  }
-`;
-
 export function App() {
   return (
     <StyledEngineProvider injectFirst>
       <MUIThemeProvider theme={theme}>
-        <Header />
-        <CustomLayout>
-          <Sidebar />
-          <Layout.Content>
+        <CssBaseline />
+        <Global styles={globalStyle} />
+        <Grid container>
+          <Grid item xs={12}>
+            <Header />
+          </Grid>
+          <Grid item xs={0.5}>
+            <Sidebar />
+          </Grid>
+          <Grid item xs={11.5}>
             <For
               ParentComponent={(props) => <Switch {...props} />}
               of={map(Object.keys(routeConfig))}
@@ -98,9 +97,8 @@ export function App() {
                 );
               }}
             />
-            <Global styles={globalStyle} />
-          </Layout.Content>
-        </CustomLayout>
+          </Grid>
+        </Grid>
       </MUIThemeProvider>
     </StyledEngineProvider>
   );

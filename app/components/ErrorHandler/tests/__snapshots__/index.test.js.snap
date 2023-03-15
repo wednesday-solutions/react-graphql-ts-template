@@ -1,22 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ErrorHandler /> should render and match the snapshot 1`] = `
+.emotion-1 {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.87);
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.emotion-1.emotion-1 {
+  margin: 20px 0;
+  padding: 20px;
+  padding-top: 0;
+}
+
+.emotion-2.emotion-2 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
 <body>
   <div>
     <div
-      class="ant-card ant-card-bordered css-1cd7yd0 ep6oj70"
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root emotion-0 emotion-1"
       data-testid="error-card"
     >
-      <div
-        class="ant-card-body"
+      <p
+        class="emotion-2 emotion-3"
+        data-testid="error-message"
       >
-        <p
-          class="css-1irx5r2 e17qkzd60"
-          data-testid="error-message"
-        >
-          something_went_wrong
-        </p>
-      </div>
+        something_went_wrong
+      </p>
     </div>
   </div>
 </body>

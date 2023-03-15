@@ -1,11 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { colors } from '@app/themes';
-import { Button, Drawer, DrawerProps } from 'antd';
+import { Drawer, DrawerProps, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { CloseOutlined } from '@ant-design/icons';
 import icon from '@images/ion_rocket-sharp.svg';
 import menuIcon from '@images/menu.svg';
+import CloseIcon from '@mui/icons-material/Close';
 import If from '@components/If';
 import useMedia from '@utils/useMedia';
 
@@ -16,14 +16,11 @@ const SidebarWrapper = styled.div`
 
 const SidebarDrawer = styled(Drawer)`
   && {
-    .ant-drawer-body {
-      padding: ${({ theme }: any) => theme.baseLayout.headerHeight} 0 0 0;
+    .MuiDrawer-paper {
+      padding: 2.5rem 0 0 0;
       background-color: ${colors.primary};
       width: ${({ theme }: any) => theme.baseLayout.sidebarWidth};
       text-align: center;
-    }
-    .ant-drawer-close {
-      top: 1rem;
     }
   }
 `;
@@ -33,7 +30,7 @@ const SideBarStatic = styled.div`
     width: 6%;
     min-width: 4.5rem;
     max-width: 7rem;
-    min-height: calc(100vh - ${({ theme }: any) => theme.baseLayout.headerHeight});
+    min-height: 135vh;
     height: auto;
     background-color: ${colors.primary};
     display: inline;
@@ -48,7 +45,7 @@ const RocketLogo = styled.img`
   }
 `;
 
-const MenuButton = styled(Button)`
+const MenuButton = styled(IconButton)`
   && {
     position: absolute;
     top: calc(${({ theme }: any) => theme.baseLayout.headerHeight} / -2);
@@ -70,29 +67,31 @@ const Sidebar: React.FC = () => {
   const toggleSidebar = useCallback(() => setVisible((v) => !v), []);
   const sidebarProps: DrawerProps = isMobile
     ? {
-        closeIcon: <CloseOutlined style={{ color: colors.secondary, fontSize: '1.9rem' }} />,
-        placement: 'left',
-        visible,
-        closable: true,
+        anchor: 'left',
+        open: visible,
         onClose: toggleSidebar,
-        width: 'max-content'
+        variant: 'temporary'
       }
     : {};
 
   const SidebarComponent = (props: DrawerProps) =>
-    isMobile ? <SidebarDrawer {...props} /> : <SideBarStatic data-testid="sidebar" {...(props as any)} />;
+    isMobile ? (
+      <SidebarDrawer {...props}>
+        <IconButton onClick={toggleSidebar}>
+          <CloseIcon sx={{ color: 'white', fontSize: '2rem', marginBottom: '1rem' }} />
+        </IconButton>
+        <div>{props.children}</div>
+      </SidebarDrawer>
+    ) : (
+      <SideBarStatic data-testid="sidebar" {...(props as any)} />
+    );
 
   return (
     <SidebarWrapper>
       <If condition={isMobile}>
-        <MenuButton
-          data-testid="menu-icon"
-          type="primary"
-          size="large"
-          aria-label="toggle sidebar"
-          onClick={toggleSidebar}
-          icon={<MenuImg src={menuIcon} alt="menu icon" />}
-        />
+        <MenuButton data-testid="menu-icon" size="large" aria-label="toggle sidebar" onClick={toggleSidebar}>
+          <MenuImg src={menuIcon} alt="menu icon" />
+        </MenuButton>
       </If>
       <SidebarComponent {...sidebarProps}>
         <Link onClick={toggleSidebar} data-testid="rocket-home-link" aria-label="home link" to="/">

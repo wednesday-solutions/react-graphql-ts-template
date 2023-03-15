@@ -110,9 +110,9 @@ An enterprise react template application showcasing - Testing strategies, Global
   - [app/components/T/index.tsx](app/components/T/index.tsx)
   - [app/containers/HomeContainer/index.tsx](app/containers/HomeContainer/index.tsx)
 
-## Using antd as the component library
+## Using Material UI as the component library
 
-- Reusing components from [Ant design](https://ant.design)
+- Reusing components from [Material UI](https://mui.com)
 
   Take a look at the following files
 

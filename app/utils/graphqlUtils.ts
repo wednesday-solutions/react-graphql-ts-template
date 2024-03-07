@@ -22,9 +22,8 @@ export const getQueryResponse = <Data, Variables>(
     .then((res) => {
       if (res.errors) {
         return { error: res.errors, ok: false };
-      } else {
-        return { data: mapKeysDeep(res.data, camelCase), ok: true };
       }
+      return { data: mapKeysDeep(res.data, camelCase), ok: true };
     })
     .catch((err) => {
       return { error: err, ok: false };

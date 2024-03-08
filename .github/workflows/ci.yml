@@ -1,6 +1,6 @@
 name: React Template CI
 on:
-  pull_request_target:
+  pull_request:
     branches: [master, qa, develop]
 jobs:
   build-and-test:

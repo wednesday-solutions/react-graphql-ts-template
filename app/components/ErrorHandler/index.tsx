@@ -25,9 +25,8 @@ export function ErrorHandler({ loading, launchListError }: ErrorHandlerTypes) {
         </CustomCard>
       </If>
     );
-  } else {
-    return null;
   }
+  return null;
 }
 
 ErrorHandler.propTypes = {

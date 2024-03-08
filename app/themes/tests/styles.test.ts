@@ -48,7 +48,7 @@ describe('Tests for styles', () => {
     expectedResult = css`
       box-shadow: ${hOffset}px ${vOffset}px ${blur}px ${spread}px ${color};
     `;
-    expect(styles.boxShadow(hOffset, vOffset, blur, spread, color)).toEqual(expectedResult);
+    expect(styles.boxShadow({ hOffset, vOffset, blur, spread, color })).toEqual(expectedResult);
   });
 
   it('should return the borderRaduis stylings according to the radius value and types passed', () => {
@@ -74,7 +74,7 @@ describe('Tests for styles', () => {
       border: ${width}px ${type} ${color};
       ${styles.borderRadius(radius)}
     `;
-    expect(styles.borderWithRadius(width, type, color, radius)).toEqual(expectedResult);
+    expect(styles.borderWithRadius({ width, type, color, radius })).toEqual(expectedResult);
   });
 
   it('should return borderRadiusBottom stylings according to the bottomRadius value passed', () => {
@@ -95,56 +95,6 @@ describe('Tests for styles', () => {
     expect(styles.borderRadiusTop(topRadius)).toEqual(expectedResult);
   });
 
-  it('should return the margin-top Styling according to the top distance value provided', () => {
-    const marginTop = 12;
-    expectedResult = css`
-      margin-top: ${marginTop}rem;
-    `;
-    expect(styles.margin.top(marginTop)).toEqual(expectedResult);
-  });
-
-  it('should return the margin-bottom Styling according to the bottom distance value provided', () => {
-    const marginBottom = 12;
-    expectedResult = css`
-      margin-bottom: ${marginBottom}rem;
-    `;
-    expect(styles.margin.bottom(marginBottom)).toEqual(expectedResult);
-  });
-
-  it('should return the margin-left Styling according to the left distance value provided', () => {
-    const marginLeft = 12;
-    expectedResult = css`
-      margin-left: ${marginLeft}rem;
-    `;
-    expect(styles.margin.left(marginLeft)).toEqual(expectedResult);
-  });
-
-  it('should return the margin-left Styling according to the left distance value provided', () => {
-    const marginRight = 12;
-    expectedResult = css`
-      margin-right: ${marginRight}rem;
-    `;
-    expect(styles.margin.right(marginRight)).toEqual(expectedResult);
-  });
-
-  it('should return the vertical margin styilngs according to the verticalMargin value passed', () => {
-    const verticalMargin = 10;
-    expectedResult = css`
-      margin-top: ${verticalMargin}rem;
-      margin-bottom: ${verticalMargin}rem;
-    `;
-    expect(styles.margin.vertical(verticalMargin)).toEqual(expectedResult);
-  });
-
-  it('should return the horizontal margin styilngs according to the horizontalMargin value passed', () => {
-    const horizontalMargin = 10;
-    expectedResult = css`
-      margin-left: ${horizontalMargin}rem;
-      margin-right: ${horizontalMargin}rem;
-    `;
-    expect(styles.margin.horizontal(horizontalMargin)).toEqual(expectedResult);
-  });
-
   it('should return the row stylings', () => {
     expect(styles.flexConfig.row()).toEqual(css`
       display: flex;
@@ -155,7 +105,12 @@ describe('Tests for styles', () => {
 
   it('should return the rowCenter stylings', () => {
     expectedResult = css`
-      ${configureFlex('row', 'center', 'center', 'center')};
+      ${configureFlex({
+        direction: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignContent: 'center'
+      })};
     `;
     expect(styles.flexConfig.rowCenter()).toEqual(expectedResult);
   });
@@ -171,7 +126,15 @@ describe('Tests for styles', () => {
 
   it('should return the unequalColumns stylings', () => {
     expectedResult = css`
-      ${configureFlex('column', '', '', '', 0, 0, 0)};
+      ${configureFlex({
+        direction: 'column',
+        justifyContent: '',
+        alignItems: '',
+        alignContent: '',
+        flexBasis: 0,
+        flexGrow: 0,
+        flexShrink: 0
+      })};
     `;
     expect(styles.flexConfig.unequalColumns()).toEqual(expectedResult);
   });
@@ -182,6 +145,123 @@ describe('Tests for styles', () => {
       height: ${height}rem;
     `;
     expect(styles.height()).toEqual(expectedResult);
+  });
+
+  it('should return default borderRadiusBottom stylings', () => {
+    const bottomRadius = 0;
+    expectedResult = css`
+      border-bottom-left-radius: ${bottomRadius}px;
+      border-bottom-right-radius: ${bottomRadius}px;
+    `;
+    expect(styles.borderRadiusBottom()).toEqual(expectedResult);
+  });
+
+  it('should return default borderRadiusTop stylings', () => {
+    const topRadius = 0;
+    expectedResult = css`
+      border-top-left-radius: ${topRadius}px;
+      border-top-right-radius: ${topRadius}px;
+    `;
+    expect(styles.borderRadiusTop()).toEqual(expectedResult);
+  });
+
+  it('should return default borderWithRadius stylings', () => {
+    const width = 1;
+    const type = 'solid';
+    const color = '#ccc';
+    const radius = 0;
+
+    expectedResult = css`
+      border: ${width}px ${type} ${color};
+      ${styles.borderRadius(radius)}
+    `;
+    expect(styles.borderWithRadius({})).toEqual(expectedResult);
+  });
+
+  it('should return default boxShadow stylings', () => {
+    const hOffset = 0;
+    const vOffset = 0;
+    const blur = 0;
+    const spread = 0;
+    const color = '#ccc';
+
+    expectedResult = css`
+      box-shadow: ${hOffset}px ${vOffset}px ${blur}px ${spread}px ${color};
+    `;
+    expect(styles.boxShadow({})).toEqual(expectedResult);
+  });
+
+  it('should return default z-index stylings', () => {
+    const z = 1;
+    expectedResult = css`
+      z-index: ${z};
+    `;
+    expect(styles.zIndex()).toEqual(expectedResult);
+  });
+
+  it('should return default textEllipsis stylings', () => {
+    const width = '200px';
+    expectedResult = css`
+      white-space: nowrap;
+      overflow: hidden;
+      width: ${width};
+      text-overflow: ellipsis;
+    `;
+    expect(styles.textEllipsis()).toEqual(expectedResult);
+  });
+});
+
+describe('Tests for margin stylings', () => {
+  let marginValue;
+  let expectedResult;
+  it('should return the margin-top stylings according to the value passed', () => {
+    marginValue = 12;
+    expectedResult = css`
+      margin-top: ${marginValue}rem;
+    `;
+    expect(styles.margin.top(marginValue)).toEqual(expectedResult);
+  });
+
+  it('should return the margin-bottom stylings according to the value passed', () => {
+    marginValue = 12;
+    expectedResult = css`
+      margin-bottom: ${marginValue}rem;
+    `;
+    expect(styles.margin.bottom(marginValue)).toEqual(expectedResult);
+  });
+
+  it('should return the margin-left stylings according to the value passed', () => {
+    marginValue = 12;
+    expectedResult = css`
+      margin-left: ${marginValue}rem;
+    `;
+    expect(styles.margin.left(marginValue)).toEqual(expectedResult);
+  });
+
+  it('should return the margin-right stylings according to the value passed', () => {
+    marginValue = 12;
+    expectedResult = css`
+      margin-right: ${marginValue}rem;
+    `;
+    expect(styles.margin.right(marginValue)).toEqual(expectedResult);
+  });
+
+  it('should return the vertical margin stylings according to the value passed', () => {
+    marginValue = 10;
+    expectedResult = css`
+      margin-top: ${marginValue}rem;
+      margin-bottom: ${marginValue}rem;
+    `;
+    expect(styles.margin.vertical(marginValue)).toEqual(expectedResult);
+  });
+
+  it('should return the horizontal margin stylings according to the value passed', () => {
+    marginValue = 10;
+    expectedResult = css`
+      margin-left: ${marginValue}rem;
+      margin-right: ${marginValue}rem;
+    `;
+    expect(styles.margin.horizontal(marginValue)).toEqual(expectedResult);
   });
 
   it('should return default marginTop stylings', () => {
@@ -233,69 +313,6 @@ describe('Tests for styles', () => {
     `;
     expect(styles.margin.horizontal()).toEqual(expectedResult);
   });
-
-  it('should return default borderRadiusBottom stylings', () => {
-    const bottomRadius = 0;
-    expectedResult = css`
-      border-bottom-left-radius: ${bottomRadius}px;
-      border-bottom-right-radius: ${bottomRadius}px;
-    `;
-    expect(styles.borderRadiusBottom()).toEqual(expectedResult);
-  });
-
-  it('should return default borderRadiusTop stylings', () => {
-    const topRadius = 0;
-    expectedResult = css`
-      border-top-left-radius: ${topRadius}px;
-      border-top-right-radius: ${topRadius}px;
-    `;
-    expect(styles.borderRadiusTop()).toEqual(expectedResult);
-  });
-
-  it('should return default borderWithRadius stylings', () => {
-    const width = 1;
-    const type = 'solid';
-    const color = '#ccc';
-    const radius = 0;
-
-    expectedResult = css`
-      border: ${width}px ${type} ${color};
-      ${styles.borderRadius(radius)}
-    `;
-    expect(styles.borderWithRadius()).toEqual(expectedResult);
-  });
-
-  it('should return default boxShadow stylings', () => {
-    const hOffset = 0;
-    const vOffset = 0;
-    const blur = 0;
-    const spread = 0;
-    const color = '#ccc';
-
-    expectedResult = css`
-      box-shadow: ${hOffset}px ${vOffset}px ${blur}px ${spread}px ${color};
-    `;
-    expect(styles.boxShadow()).toEqual(expectedResult);
-  });
-
-  it('should return default z-index stylings', () => {
-    const z = 1;
-    expectedResult = css`
-      z-index: ${z};
-    `;
-    expect(styles.zIndex()).toEqual(expectedResult);
-  });
-
-  it('should return default textEllipsis stylings', () => {
-    const width = '200px';
-    expectedResult = css`
-      white-space: nowrap;
-      overflow: hidden;
-      width: ${width};
-      text-overflow: ellipsis;
-    `;
-    expect(styles.textEllipsis()).toEqual(expectedResult);
-  });
 });
 
 describe('Tests for ConfigureFlex method', () => {
@@ -326,9 +343,17 @@ describe('Tests for ConfigureFlex method', () => {
       flex-grow: ${flexGrow};
       flex-shrink: ${flexShrink};
     `;
-    expect(configureFlex(direction, justifyContent, alignItems, alignContent, flexBasis, flexGrow, flexShrink)).toEqual(
-      expectedResult
-    );
+    expect(
+      configureFlex({
+        direction,
+        justifyContent,
+        alignItems,
+        alignContent,
+        flexBasis,
+        flexGrow,
+        flexShrink
+      })
+    ).toEqual(expectedResult);
   });
   it('should return the default css styling accordingly', () => {
     direction = 'row';
@@ -348,6 +373,6 @@ describe('Tests for ConfigureFlex method', () => {
       flex-grow: ${flexGrow};
       flex-shrink: ${flexShrink};
     `;
-    expect(JSON.stringify(configureFlex())).toEqual(JSON.stringify(expectedResult));
+    expect(configureFlex({})).toEqual(expectedResult);
   });
 });

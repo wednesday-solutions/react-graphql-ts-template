@@ -2,7 +2,8 @@ name: SonarQube Analysis
 on:
   workflow_run:
     workflows: [React Template CI]
-    types: [completed]
+    types:
+      - completed
 
 jobs:
   sonar-analysis:

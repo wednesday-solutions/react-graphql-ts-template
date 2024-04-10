@@ -1,0 +1,26 @@
+name: SonarQube Analysis
+on:
+  workflow_run:
+    workflows: [React Template CI]
+    types: [completed]
+
+jobs:
+  sonar-analysis:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download code coverage artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+          path: coverage/lcov.info
+
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

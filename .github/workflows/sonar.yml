@@ -3,7 +3,7 @@ on:
   workflow_run:
     workflows: [React Template CI]
     types:
-      - completed
+      - requested
 
 jobs:
   sonar-analysis:
@@ -14,14 +14,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Download code coverage artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: coverage
-          path: coverage/lcov.info
+      -name: Echo to test
+        run: echo "Hello World"
 
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # - name: Download code coverage artifact
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: coverage
+      #     path: coverage/lcov.info
+
+      # - name: SonarQube Scan
+      #   uses: sonarsource/sonarqube-scan-action@master
+      #   env:
+      #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

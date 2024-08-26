@@ -1,14 +1,19 @@
-/**
- *
- * Stories for Header
- *
- * @see https://github.com/storybookjs/storybook
- *
- */
-
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { text } from '@storybook/addon-knobs';
+import { MemoryRouter } from 'react-router-dom';
 import Header from '../index';
 
-storiesOf('Header').add('simple', () => <Header id={text('id', 'Header')} />);
+export default {
+  title: 'Header',
+  component: Header
+};
+
+const HeaderTemplate = (args) => (
+  <MemoryRouter>
+    <Header {...args} />
+  </MemoryRouter>
+);
+
+export const HeaderStoryComponent = HeaderTemplate.bind({});
+HeaderStoryComponent.args = {
+  id: 'Header'
+};

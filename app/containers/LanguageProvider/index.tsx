@@ -21,7 +21,6 @@ export interface LanguageProviderProps {
 
 export function LanguageProvider({ locale, messages, children }: PropsWithChildren<LanguageProviderProps>) {
   const localizedMessages = messages[locale];
-
   i18n.load(locale, localizedMessages);
   i18n.activate(locale);
 

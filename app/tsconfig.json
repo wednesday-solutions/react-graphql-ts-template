@@ -16,6 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "typeRoots": ["node_modules/@types"],
+
     "paths": {
       "@app/*": ["./*"],
       "@components/*": ["components/*"],
